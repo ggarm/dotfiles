@@ -35,14 +35,13 @@ autoload -U colors && colors
 #}}}
 #set-prompt
 
-# Gittiness
+# Gittiness #{{{
 
 # get the name of the branch we are on
-function git_prompt_info() { #{{{
+function git_prompt_info() {
 	ref=$(git symbolic-ref HEAD 2> /dev/null) || return
 	echo -n "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
-#}}}
 
 parse_git_dirty () { #{{{
 	gitstat=$(git status 2>/dev/null | grep '\(# Untracked\|# Changes\|# Changed but not updated:\)')
@@ -62,22 +61,26 @@ parse_git_dirty () { #{{{
 
 # Will return the current branch name
 # Usage example: git pull origin $(current_branch)
-#function current_branch() { #{{{
+#function current_branch() {
 	#ref=$(git symbolic-ref HEAD 2> /dev/null) || return
 	#echo ${ref#refs/heads/}
 #}
+
 #}}}
 
 precmd(){
 
-PROMPT="%{$fg[yellow]%}%n%{$reset_color%} on %{$fg[blue]%}%m%{$reset_color%} in %{$fg[red]%}%~%{$reset_color%}$(git_prompt_info)
-$(battery_prompt.pl)%{$fg[green]%}>%{$fg[blue]%}>%{$fg[cyan]%}>%{$reset_color%} "
-local time="%{$fg[magenta]%}%*%{$reset_color%}"
-#local batt="$(battery_prompt.pl)"
-RPROMPT="${time} %{$reset_color%}"
+local time="%B%{$fg[black]%}%@%b" #%* for hh:mm:ss
+local batt="$(battery_prompt.pl)"
+
+PROMPT="${batt}${time} %b%{$fg[magenta]%}%~%b%{$reset_color%}$(git_prompt_info) "
+
+#PROMPT="%{$fg[yellow]%}%n%{$reset_color%} in %{$fg[blue]%}%~%{$reset_color%}$(git_prompt_info)
+#$(battery_prompt.pl)%{$fg[green]%}» "
+#RPROMPT="${time} %{$reset_color%}"
 
 }
-ZSH_THEME_GIT_PROMPT_PREFIX=" [branch: %{$fg[magenta]%}"
+ZSH_THEME_GIT_PROMPT_PREFIX=" [branch: %{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}]"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[green]%}!"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?"

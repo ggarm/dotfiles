@@ -1,0 +1,84 @@
+#!/bin/sh
+# Author: Ricardo Costa
+# Modified: 2011-01-22 15:36
+# Script to update custom PKGBUILDs
+
+ABS_DIR='/var/abs'
+
+black="\033[30m";
+bright_black="\033[30;1m";
+red="\033[31m";
+bright_red="\033[31;1m";
+green="\033[32m";
+bright_green="\033[32;1m";
+yellow="\033[33m";
+bright_yellow="\033[33;1m";
+blue="\033[34m";
+bright_blue="\033[34;1m";
+magenta="\033[35m";
+bright_magenta="\033[35;1m";
+cyan="\033[36m";
+bright_cyan="\033[36;1m";
+white="\033[37m";
+
+db() {
+	sudo clyde -Syy;
+	sudo clyde -Su --aur;
+}
+
+sync() {
+	sudo abs;
+}
+
+pkgbuild() {
+	printf "==> Checking PKGBUILDS \n";
+	cd $HOME/devel;
+
+	for i in `find . -mindepth 1 -maxdepth 1 -type d | tr -d './'`; do
+
+		[[ $i == "patches" ]] && continue;
+		printf " $i:";
+
+		ABS_FILE=`find /var/abs -path "/var/abs/*/$i/PKGBUILD"`
+		if [[ -n $ABS_FILE ]]; then
+			OUT=`diff $ABS_FILE ./$i/PKGBUILD | egrep 'pkg(ver|rel)=' `;
+			if [[ -n $OUT ]]; then
+				printf "\r\t\t$yellow PKGBUILD changed\n";
+				printf "$OUT";
+			else
+				printf "\r\t\t$green PKGBUILD up-to-date";
+			fi
+		else
+			printf "\r\t\t$red PKGBUILD not found in $ABS_DIR";
+		fi
+
+		printf "$white\n";
+
+	done;
+}
+
+case "$1" in
+	sync)
+		sync;
+		pkgbuild;
+		;;
+	-edit)
+		;;
+	-q)
+		pkgbuild;
+		;;
+	-a)
+		db;
+		sync;
+		pkgbuild;
+		;;
+	'')
+		db;
+		sync;
+		pkgbuild;
+		;;
+	*)
+		echo "usage: $0 {sync|-q|-a}"
+esac
+
+# vim: set ts=2 noet:

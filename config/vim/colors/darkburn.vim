@@ -4,7 +4,7 @@
 " Maintainer: Taurus Olson <taurusolson@gmail.com>
 " License:    GPL
 " Created:    2009-03-27 20:25:21 CET
-" Modified:   2009-06-06 21:18:55 CET
+" Modified: 2011-01-03 15:28
 " Version:    1.2
 
 " Modified version of zenburn originally created by: 
@@ -31,11 +31,11 @@
 " * You can now set a darker background for bright environments. To activate, use:
 "   contrast Zenburn, use:
 "
-"     let g:darkburn_high_Contrast = 1
+"    let g:darkburn_high_Contrast = 1
 "
 " * To get more contrast to the Visual selection, use
 "   
-"     let g:darkburn_alternate_Visual = 1
+"    let g:darkburn_alternate_Visual = 1
 " 
 " * To use alternate colouring for Error message, use
 "     
@@ -50,7 +50,7 @@
 "   as light values, and sets background to light for some people. If you have
 "   this problem, use:
 "
-"     let g:darkburn_force_dark_Background = 1
+"    let g:darkburn_force_dark_Background = 1
 "
 " * To turn the parameter(s) back to defaults, use UNLET:
 "

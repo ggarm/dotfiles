@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# Count emails in a mboxrd
+
+MAILFILE='/home/ricardo/Mail/GMAIL/Inbox';
+NEW_MAIL=`awk 'BEGIN { i=0 } /Message-I[[:alpha:]]:/ { i+=1 } END {print i}' $MAILFILE`;
+
+echo $NEW_MAIL > /tmp/new_mail
+

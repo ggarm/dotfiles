@@ -5,26 +5,26 @@
 ! -------------------------------------------------
 
 !black
-color0: #333333
-color8: #666666
+URxvt*color0: #333333
+URxvt*color8: #666666
 !red
-color1: #d15517
-color9: #d11723
+URxvt*color1: #d15517
+URxvt*color9: #d11723
 !green
-color2: #36b217
-color10: #00d56a
+URxvt*color2: #36b217
+URxvt*color10: #00d56a
 !yellow
-color3: #d1b217
-color11: #ffea55
+URxvt*color3: #d1b217
+URxvt*color11: #ffea55
 !blue
-color4: #55aaff
-color12: #1793d1
+URxvt*color4: #55aaff
+URxvt*color12: #1793d1
 !magenta
-color5: #b217d1
-color13: #d11793
+URxvt*color5: #b217d1
+URxvt*color13: #d11793
 !cyan
-color6: #93d1b2
-color14: #17d1b2
+URxvt*color6: #93d1b2
+URxvt*color14: #17d1b2
 !white
-color7: #eeeeee
-color15: #ffffff
+URxvt*color7: #eeeeee
+URxvt*color15: #ffffff

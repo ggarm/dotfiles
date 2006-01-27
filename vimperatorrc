@@ -11,7 +11,7 @@ colorscheme bigchu
 "au LocationChange .* js modes.passAllKeys = /google\.com\/(reader|calendar|mail|a)/.test(buffer.URL);
 
 "loadplugins
-source ~/.vimperator/styles/styles.js
+"source ~/.vimperator/styles/styles.js
 
 set runtimepath=$HOME/.vimperator
 source! $HOME/.vimperatorrc.local
@@ -20,11 +20,11 @@ set shell='/bin/zsh'
 set editor='urxvt -e vim'
 set showtabline=1
 set showstatuslinks=2
-set ic
+"set ic
 "set popups=2
-set wildoptions=auto
+"set wildoptions=auto
 set complete=l
-set focuscontent
+"set focuscontent
 
 "map lazyness
 noremap h 4h
@@ -38,9 +38,9 @@ mappings.addUserMap([modes.NORMAL, modes.PLAYER, modes.VISUAL, modes.CARET,
 		["<F2>"],
 		"toggle default/custom colours",
 		function() {
-		udc = options.getPref("browser.display.use_document_colors")
-		bg  = options.getPref("browser.display.background_color")
-		fg  = options.getPref("browser.display.foreground_color")
+		udc = prefs.get("browser.display.use_document_colors")
+		bg  = prefs.get("browser.display.background_color")
+		fg  = prefs.get("browser.display.foreground_color")
 		if ( udc == true ) {
 		udc = false
 		bg  = '#1c1c1c'
@@ -53,9 +53,9 @@ mappings.addUserMap([modes.NORMAL, modes.PLAYER, modes.VISUAL, modes.CARET,
 		fg  = '#000000'
 		alert("Switching to default colours")
 		}
-		options.setPref("browser.display.use_document_colors", udc)
-			options.setPref("browser.display.background_color", bg)
-			options.setPref("browser.display.foreground_color", fg)
+			prefs.set("browser.display.use_document_colors", udc)
+			prefs.set("browser.display.background_color", bg)
+			prefs.set("browser.display.foreground_color", fg)
 		});
 EOM
 

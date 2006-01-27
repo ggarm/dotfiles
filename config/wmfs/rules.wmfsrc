@@ -1,0 +1,46 @@
+# Author: Ricardo Costa
+# Modified Mon Jan 17 15:44:39 GMT 2011
+# ~/.config/wmfs/rules.wmfsrc 
+#
+
+[rules]
+			 [rule]
+							 instance = "xv"       # First part of WM_CLASS
+							 class    = "MPlayer"  # Seconf part of WM_CLASS, not needed if first part is correct
+							 # role = ""           # WM_WINDOW_ROLE
+							 screen   = 0          # Screen to use
+							 tag      = 2          # Tag number of apps
+							 free     = true       # Set automatic free client
+							 max      = false      # Set automatic maximized client
+			 [/rule]
+			 [rule]
+							 instance = "Navigator" 
+							 class    = "Namoroka"  
+							 screen   = 0          
+							 tag      = 2          
+							 free     = false      
+							 max      = false     
+			 [/rule]
+			 [rule]
+							 instance = "sonata" 
+							 class    = "Sonata"  
+							 screen   = 0          
+							 tag      = 2          
+							 free     = true      
+							 max      = false    
+			 [/rule]
+			 [rule]
+							 instance = "emesene" 
+							 class    = "emesene"  
+							 screen   = 0          
+							 tag      = 3          
+							 free     = true      
+							 max      = false    
+			 [/rule]
+			 [rule]
+							 instance = "eclipse" 
+							 class    = "Eclipse"  
+							 free     = true      
+							 max      = false    
+			 [/rule]
+[/rules]

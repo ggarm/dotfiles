@@ -1,28 +1,28 @@
 ##fruityjessica##
 
-*background:    #1C1C1C
-*foreground:    #B5B5B5
+URxvt*background:    #1C1C1C
+URxvt*foreground:    #B5B5B5
 
-*color0: #1C1C1C   
-*color8:   #3D3A3A  
+URxvt*color0: #1C1C1C   
+URxvt*color8:   #3D3A3A  
 
-*color1:   #FE4365
-*color9:   #FC9D9A
+URxvt*color1:   #FE4365
+URxvt*color9:   #FC9D9A
 
-*color2:    #BBF144
-*color10:   #C7F464 
+URxvt*color2:    #BBF144
+URxvt*color10:   #C7F464 
 
-*color3:    #F8CA00
-*color11:    #FEDA3A
+URxvt*color3:    #F8CA00
+URxvt*color11:    #FEDA3A
 
-*color4:    #556270
-*color12:    #697785
+URxvt*color4:    #556270
+URxvt*color12:    #697785
 
-*color5:    #73626E
-*color13:  #B38184 
+URxvt*color5:    #73626E
+URxvt*color13:  #B38184 
 
-*color6:   #3B8686
-*color14:  #7ED0CA
+URxvt*color6:   #3B8686
+URxvt*color14:  #7ED0CA
 
-*color7:    #808080
-*color15:   #DAD3D3
+URxvt*color7:    #808080
+URxvt*color15:   #DAD3D3

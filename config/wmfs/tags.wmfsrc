@@ -1,0 +1,63 @@
+#
+# Author: Ricardo Costa
+# Modified Mon Jan 17 15:44:39 GMT 2011
+# ~/.config/wmfs/tags.wmfsrc 
+#
+
+[tags]
+				[default_tag]
+						 name             = "1"
+						 mwfact           = 0.5
+						 nmaster          = 1
+						 layout           = "tile_grid"
+						 resizehint       = false
+						 infobar_position = "top"
+				[/default_tag]
+
+				tag_round      = false
+				tag_auto_prev  = true
+				occupied_bg    = "#2f2f2f"
+				occupied_fg    = "#D4D4D4"
+				sel_fg         = "#bc61a3"
+				sel_bg         = "#191919"
+				urgent_bg      = "#DD1111"
+				urgent_fg      = "#000000"
+				# If true, number of the tag will be used for name
+				name_count     = false
+				#default_name   = "new tag" # deprecated, use [default_tag] instead
+				#default_layout = "tile_right" # deprecated, use [default_tag] instead
+
+				# Border around the tag buttons.
+				border      = false
+
+				# Hide empty tags in tag list
+				autohide    = true
+
+				# Mouse buttons action on tag.
+				mouse_button_tag_sel       = "1"
+				mouse_button_tag_transfert = "2"
+				mouse_button_tag_add       = "3"
+				mouse_button_tag_next      = "4"
+				mouse_button_tag_prev      = "5"
+
+				[tag]
+								name             = "main"
+								screen           = 0
+								mwfact           = 0.65
+								nmaster          = 1
+								layout           = "tile_grid_vertical"
+								resizehint       = false
+								infobar_position = "top"
+
+								#[mouse] [/mouse] Possible multi mouse section
+				[/tag]
+
+				[tag] name = "web"   [/tag]
+				[tag] name = "chat" screen = 0 layout = "free" [/tag]
+				[tag] name = "four"  [/tag]
+				[tag] name = "five"  [/tag]
+				[tag] name = "six"   [/tag]
+				[tag] name = "seven" [/tag]
+				[tag] name = "eight" [/tag]
+				[tag] name = "nine"  [/tag]
+[/tags]

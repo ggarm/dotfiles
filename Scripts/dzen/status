@@ -225,8 +225,6 @@ WS=` wmctrl -d | awk '/\*/ {print $10}' `
 	RCAP=`awk '/remaining/ {print $3 }' $STATEFILE`;
 	if [[ -n $RCAP ]]; then
 		# calculate remaining power
-		#RPERCT=`expr $RCAP \* 100`;
-		#RPERC=`expr $RPERCT / $BAT_FULL`;
 		RPERC=`expr $RCAP \* 100 / $BAT_TOTAL`;
 		 
 		if [ $RPERC -le 15 ]; then BAT_GFG=$LOWCOL; BAT_CAPTION=$BAT_LOW;
@@ -234,7 +232,6 @@ WS=` wmctrl -d | awk '/\*/ {print $10}' `
 		else BAT_GFG=$HIGHCOL; BAT_CAPTION=$BAT_FULL;
 		fi
 		echo -n "^p(3X) $BAT_CAPTION^p(3X)";
-		#echo -n `echo -n "$RPERC" | gdbar -s o -h $BAT_GH -w $BAT_GW -fg $BAT_GFG -bg $BAT_GBG;`
 		echo -n "^fg($BAT_GFG)$RPERC%^fg()";
 
 		SLEEP=5; #let's save some power...

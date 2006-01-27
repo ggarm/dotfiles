@@ -5,11 +5,45 @@
 # Executed by startx (run your window manager from here)
 
 (xmodmap .Xmodmap) &			#keymapping
+(urxvtd -q -o -f) &				#URxvt daemon starts here
+(nice -n-5 mpd 2>/dev/null) &	#MPD starts here
+(mpdcron 2>/dev/null) &	#MPDCron starts here
+
+WM=wmfs
+
+case $WM in
+	openbox)
+		(nitrogen --restore) &
+		(stalonetray 2>/dev/null) &		#systray in upper-right corner
+		(statusbar.sh) &				#Dzen-statusbar (only for openbox, code-it... FIXME)
+		exec dbus-launch --exit-with-session openbox-session
+		;;
+	xmonad)
+		xsetroot -cursor_name left_ptr	#see above
+		(nitrogen --restore) &
+		(stalonetray 2>/dev/null) &		#systray in upper-right corner
+		for i in {lbottom.sh,rbottom.sh,rtop.sh}; do
+			(~/Scripts/dzen/$i) &
+		done
+		exec xmonad
+		;;
+	wmfs)
+		for i in {lbottom.sh}; do
+			(~/Scripts/dzen/$i) &
+		done
+		exec wmfs
+		;;
+	*)
+		exec openbox-session
+		;;
+esac
+
+(xmodmap .Xmodmap) &			#keymapping
 #(setxkbmap pt) &				#pt-keys (Xorg ignores the conf file? FIXME)
-xload .Xdefaults				#Xmonad is retarded
+#xload .Xdefaults				#Xmonad is retarded
 xsetroot -cursor_name left_ptr	#see above
 
-unclutter &						#for hiding the mouse when idle
+#unclutter &					#for hiding the mouse when idle
 (urxvtd -q -o -f) &				#URxvt daemon starts here
 
 #Disabled Apps #{{{
@@ -32,18 +66,19 @@ unclutter &						#for hiding the mouse when idle
 		#(xcompmgr -cCfF -r7 -o.65 -l-10 -t-8 -D7 2>/dev/null) &
 #}}}
 
+(nitrogen --restore) &
 #eval `cat ~/.fehbg` &			#Set the last wallpaper
-wallpaperd &					#Set a wallpaper per workspace
+#wallpaperd &					#Set a wallpaper per workspace
 
 (stalonetray 2>/dev/null) &		#systray in upper-right corner
 
-(sleep 1; mpd 2>/dev/null) &	#MPD starts here
-#(amixer -q set PCM 25% ) &		#Lower the volume (place it in rc.local? FIXME)
-#(amixer -q set Master mute) &	#Mute the volume
+(nice -n-5 mpd 2>/dev/null) &	#MPD starts here
 
 #(tmux) &						#tmux starts here (can't figure out the auto-start part... FIXME)
 
-#(statusbar.sh) &				#Dzen-statusbar (only for openbox, code-it... FIXME)
+for i in {lbottom.sh,rbottom.sh,rtop.sh}; do
+	(~/Scripts/dzen/$i) &
+done
 
-#exec dbus-launch --exit-with-session openbox-session
-xmonad
+#xmonad
+exec wmfs

@@ -1,26 +1,26 @@
-*background: #000000
-*foreground: #FFFFFF
+Urxvt*background: #000000
+Urxvt*foreground: #FFFFFF
 !black
-*color0 : #222222
-*color8 : #454545
+Urxvt*color0 : #222222
+Urxvt*color8 : #454545
 !red
-*color1 : #F92672
-*color9 : #F92672
+Urxvt*color1 : #F92672
+Urxvt*color9 : #F92672
 !green
-*color2 : #A6E22E
-*color10: #A6E22E
+Urxvt*color2 : #A6E22E
+Urxvt*color10: #A6E22E
 !yellow
-*color3 : #FD971F
-*color11: #FD971F
+Urxvt*color3 : #FD971F
+Urxvt*color11: #FD971F
 !blue
-*color4 : #4682B4
-*color12: #4682B4
+Urxvt*color4 : #4682B4
+Urxvt*color12: #4682B4
 !magenta
-*color5 : #AE81FF
-*color13: #AE81FF
+Urxvt*color5 : #AE81FF
+Urxvt*color13: #AE81FF
 !cyan
-*color6 : #66D9EF
-*color14: #66D9EF
+Urxvt*color6 : #66D9EF
+Urxvt*color14: #66D9EF
 !white
-*color7 : #FFFFFF
-*color15: #FFFFFF
+Urxvt*color7 : #FFFFFF
+Urxvt*color15: #FFFFFF

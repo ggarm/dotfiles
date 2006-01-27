@@ -1,7 +1,7 @@
 ! ----------------------------------------------------------------------------
 ! ! file:     ~/.Xdefaults
 ! ! author:   Ricardo Costa (and +stolen stuff)
-! ! modified: 2010-11-05 15:38
+! ! modified: 2006-01-27 13:32
 ! ! vim::nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
 ! ! ----------------------------------------------------------------------------
 !
@@ -223,6 +223,7 @@ URxvt*pointerColor2: #0092FF
 
 !Latest
 !#include "/home/ricardo/.colours/arch"
+#include "/home/ricardo/.colours/modR"
 !#include "/home/ricardo/.colours/mason"
 !#include "/home/ricardo/.colours/thayer"
 !#include "/home/ricardo/.colours/tvale"
@@ -235,8 +236,9 @@ URxvt*pointerColor2: #0092FF
 !#include "/home/ricardo/.colours/trapd00r"
 !#include "/home/ricardo/.colours/daisuke"
 !#include "/home/ricardo/.colours/fall"
-#include "/home/ricardo/.colours/molokai"
+!#include "/home/ricardo/.colours/molokai"
 !#include "/home/ricardo/.colours/insectica"
 !#include "/home/ricardo/.colours/mmso"
+!#include "/home/ricardo/.colours/crshd"
 !#include "/home/ricardo/.colours/fruityjessica"
 ! }}}

@@ -1,7 +1,7 @@
 #!/bin/sh
 ## Functions
 
-# Decompress any archive TODO use only 7z
+# Decompress any archive 
 ex () {
  if [ -f "$1" ] ; then
    case "$1" in
@@ -52,6 +52,9 @@ if [[ -f ~/Scripts/utils/alias ]]; then
 	salias () { ~/Scripts/utils/alias; }
 fi
 
+function +x(){ chmod +x $1; }
+function +w(){ chmod +w $1; }
+
 
 # Creates an archive from given directory
 mktar() { tar cvf  "${1%%/}.tar"     "${1%%/}/"; }
@@ -95,7 +98,7 @@ clyde () {
 			/usr/bin/clyde "$@" ;;
 	esac
 	rehash
-	~ricardo/Scripts/pacman/pacman_updates.cron
+	~ricardo/Scripts/cron/pacman_updates.cron
 	#/usr/bin/clyde -Qu | wc -l > ~/Scripts/pacman_updates;
 }
 

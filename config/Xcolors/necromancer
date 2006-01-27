@@ -1,4 +1,3 @@
-
 ! -------------------------------------------------
 ! file:     .colours/necromancer                           
 ! author:   Ricardo Costa
@@ -6,29 +5,29 @@
 ! -------------------------------------------------
 
 !black
-*color0: #1C1C1C
-*color8: #4d4d4d
+URxvt*color0: #1C1C1C
+URxvt*color8: #4d4d4d
 !red
-*color1: #a0c0e0
-*color9: #6080a0
+URxvt*color1: #a0c0e0
+URxvt*color9: #6080a0
 !green
-*color2: #6080c0
-*color10: #0040a0
+URxvt*color2: #6080c0
+URxvt*color10: #0040a0
 !yellow
-*color3: #4060c0
-*color11: #4060a0
+URxvt*color3: #4060c0
+URxvt*color11: #4060a0
 !blue
-*color4: #66AABB
-*color12: #AACCBB
+URxvt*color4: #66AABB
+URxvt*color12: #AACCBB
 !magenta
-*color5: #e0f0f0
-*color13: #2060c0
+URxvt*color5: #e0f0f0
+URxvt*color13: #2060c0
 !cyan
-*color6: #5E7175
-*color14: #A3BABF
+URxvt*color6: #5E7175
+URxvt*color14: #A3BABF
 !white
-*color7: #DDEEDD
-*color15: #6C887A
+URxvt*color7: #DDEEDD
+URxvt*color15: #6C887A
 
-*foreground: #DDEEDD
-*background: #1C1C1C
+URxvt*foreground: #DDEEDD
+URxvt*background: #1C1C1C

@@ -124,8 +124,8 @@ scratchPadList = [scratchMixer, scratchMusic, scratchTop, scratchTerminal]
 scratchMixer :: ScratchPad
 scratchMixer = ScratchPad
     { keybind  = "M4-x"
-    , cmd      = "ossxmix"
-    , query    = className =? "Ossxmix"
+    , cmd      = "urxvtc -name sp-alsamixer -e alsamixer"
+    , query    = className =? "Alsamixer"
     , hook     = centerScreen 0.65
     }
 
@@ -153,7 +153,7 @@ scratchTerminal = ScratchPad
     { keybind  = "M4-t"
     , cmd      = "urxvtc -name sp-term"
     , query    = resource =? "sp-term"
-    , hook     = bottomEdge 0.15
+    , hook     = rightScreen 0.15
     }
 
 -- $managehooks
@@ -168,3 +168,8 @@ centerScreen h = doRectFloat $ W.RationalRect ((1 - h)/2) ((1 - h)/2) h h
 -- | Floating, bottom edge with a given height
 bottomEdge :: Rational -> ManageHook
 bottomEdge h = doRectFloat $ W.RationalRect 0 (1 - h) 1 h
+
+-- | Floating, right side with a given height
+rightScreen :: Rational -> ManageHook
+--rightScreen h = doRectFloat $ W.RationalRect (1/2 + h) (h) (1/2 - h) (1/2 + h)
+rightScreen h = doRectFloat $ W.RationalRect (2.5 * h) (h) 0.6 0.4

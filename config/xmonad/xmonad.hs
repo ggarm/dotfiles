@@ -35,16 +35,30 @@ import XMonad.Hooks.EwmhDesktops         (ewmh)
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
+
+-- Layouts
 import XMonad.Layout.IM                  (Property(..), withIM)
 import XMonad.Layout.LayoutCombinators   ((|||), JumpToLayout(..))
 import XMonad.Layout.LayoutHints         (layoutHintsWithPlacement)
 import XMonad.Layout.NoBorders           (Ambiguity(..), With(..), lessBorders)
 import XMonad.Layout.PerWorkspace        (onWorkspace)
 import XMonad.Layout.ResizableTile       (ResizableTall(..), MirrorResize(..))
+
+import XMonad.Layout.Tabbed
+import XMonad.Layout.DragPane
+import XMonad.Layout.DecorationMadness
+import XMonad.Layout.TabBarDecoration
+import XMonad.Layout.Grid
+import XMonad.Layout.Reflect
+import XMonad.Layout.DwmStyle
+import XMonad.Layout.ToggleLayouts
+import XMonad.Layout.Spacing
+
 import XMonad.Util.EZConfig              (additionalKeysP)
-import XMonad.Util.Loggers               (Logger, logCmd, battery, date, maildirNew, dzenColorL, wrapL, shortenL)
+import XMonad.Util.Loggers               (Logger, logCmd, battery, date, dzenColorL, wrapL, shortenL)
 import XMonad.Util.Run                   (spawnPipe)
 import XMonad.Util.WindowProperties      (getProp32s)
+import XMonad.Actions.GridSelect
 --import XMonad.Util.WorkspaceCompare      (getSortByXineramaRule)
 
 import qualified XMonad.Prompt as P
@@ -65,6 +79,7 @@ main = do
     --spawn "conky"
     --spawn $ "conky -c ~/.dzen_conkyrc | " ++ show myRightBar
 	--spawnDzen myRssBar >>= spawnReader myReaderConf
+	--spawnDzen myRtopBar >>= "~/Scripts/dzen/rtop.sh"
 
     -- ewmh just makes wmctrl work
     xmonad $ ewmh $ withUrgencyHookC myUrgencyHook myUrgencyConfig $ defaultConfig
@@ -76,7 +91,6 @@ main = do
         , layoutHook         = myLayout
         , manageHook         = myManageHook
         , logHook            = myLogHook d
-		--, modMask = mod4Mask --Use Super instead of Alt
         } `additionalKeysP` myKeys
 
 -- }}}
@@ -84,11 +98,11 @@ main = do
 -- Options {{{
 myTerminal           = "urxvtc"
 myBorderWidth        = 3
-myNormalBorderColor  = colorFG
-myFocusedBorderColor = colorFG5
+myNormalBorderColor  = colorFG5
+myFocusedBorderColor = colorFG4
 
 -- if you change workspace names, be sure to update them throughout
-myWorkspaces = ["1-main","2-web","3-zen"] ++ map show [4..9]
+myWorkspaces = ["1-main","2-web","3-chat"] ++ map show [4..9]
 --myWorkspaces   = ["α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι"]
 
 -- aur/dzen2-svn is required for an xft font
@@ -99,18 +113,14 @@ myFont = "montecarlo-10"
 
 -- background/foreground and various levels of emphasis
 colorBG  = "#303030"
-colorFG  = "#606060"
+colorFG  = "#616161"
 colorFG2 = "#909090"
 colorFG3 = "#c4df90"
 colorFG4 = "#cc896d"
 colorFG5 = "#c4df90"
 colorFG6 = "#ffffba"
-
--- status bar sizes
---leftBarWidth  = 920
-leftBarWidth  = 1440
-rssBarWidth   = 1000
-rightBarWidth = 680
+--colorFG7 = "#b65def"
+colorFG7 = "#6c3d8a"
 
 -- Bitmap dir
 myBitmapDir	 = "/home/ricardo/Scripts/dzen/xbm"
@@ -177,7 +187,7 @@ myManageHook = mainManageHook <+> manageDocks <+> manageFullScreen <+> manageScr
         myIgnores = ["desktop","desktop_window","stalonetray"]
         myChats   = ["irssi","mutt" ]
         myWebs    = ["Uzbl","Uzbl-core","Jumanji","Chromium","Namoroka","Firefox","Vimperator"]
-        myFloats  = ["MPlayer","Zenity","VirtualBox","rdesktop","Sonata"]
+        myFloats  = ["MPlayer","Zenity","VirtualBox","rdesktop","Sonata","Nitrogen","Eclipse","Eclipse SDK"]
         myCFloats = ["Xmessage","Save As...","XFontSel"]
         myCNames  = ["bashrun"]
 
@@ -189,24 +199,21 @@ myManageHook = mainManageHook <+> manageDocks <+> manageFullScreen <+> manageScr
 --
 myLeftBar :: DzenConf
 myLeftBar = defaultDzen
-    { width       = leftBarWidth
+    { width       = 1000
+    , height    = 16
     , font        = myFont
     , fg_color    = colorFG
-    , bg_color    = colorBG
+    , bg_color    = "#111111"
     }
--- }}}
 
--- RssReader {{{
---
--- See http://pbrisbin.com/xmonad/docs/RssReader.html
---
--- myReaderConf :: ReaderConf
--- myReaderConf = defaultReaderConf
-    -- stealing some dynamicLog functions here
-    -- { titleFormat = wrap "" ":" . dzenColor colorFG2 "" . dzenEscape
-    -- , descrFormat = dzenEscape . shorten 200
-    -- }
-
+--myLbottomBar :: DzenConf
+--mLbottomBar = defaultDzen
+    --{ width       = 1000
+    --, height      = 20
+    --, font        = myFont
+    --, fg_color    = colorFG
+    --, bg_color    = "#111111"
+    --}
 -- }}}
 
 -- Prompt {{{
@@ -227,17 +234,17 @@ myLogHook :: Handle -> X ()
 myLogHook h = do
     -- the main logHook
     dynamicLogWithPP $ defaultPP
-        { ppCurrent         = dzenBG colorFG5 . pad
-        , ppVisible         = dzenFG colorFG2 . noScratchPad
-        , ppHidden          = dzenBG colorFG2 . dzenFG "#333333" . noScratchPad
+        { ppCurrent         = dzenBG colorFG4 . dzenFG "#000000" . pad
+        --, ppVisible         = dzenBG colorFG2 . noScratchPad
+        , ppHidden          = dzenBG colorBG . dzenFG colorFG4 . noScratchPad
         , ppHiddenNoWindows = namedOnly
-        , ppUrgent          = dzenFG "#333333" . dzenBG colorFG4 . pad . dzenStrip
+        , ppUrgent          = dzenBG "#FF0000" . dzenFG colorBG . pad . dzenStrip
         , ppSep             = replicate 4 ' '
         , ppWsSep           = []
-        , ppTitle           = shorten 100 . highlightBase colorFG6
+        , ppTitle           = dzenFG colorFG4 . shorten 100
         , ppLayout          = dzenFG colorFG2 . renameLayouts . stripIM
         --, ppSort            = getSortByXineramaRule
-        , ppExtras          = [myLoad, myBat, myMail, myUpdates, myWifi, myMpc, myVol, myDate]
+        , ppExtras          = [myLoad, myBat, myWifi]
         , ppOutput          = hPutStrLn h
         }
 
@@ -262,14 +269,13 @@ myLogHook h = do
         dzenFGL c = dzenColorL c "" 
 
         -- custom loggers
-        myLoad    = wrapL "Load: "    "" . dzenFGL colorFG6 $ logCmd "perl ~/Scripts/dzen/load.pl"
-        myBat     = wrapL "Bat: "     "" . dzenFGL colorFG6 $ battery
-		--TODO: mudar de mbox para maildir
-        myMail    = wrapL "Mail: "    "" . dzenFGL colorFG6 $ maildirNew "/home/ricardo/Mail/GMAIL/Inbox"
-        myUpdates = wrapL "Updates: " "" . dzenFGL colorFG6 $ logCmd "cat ~/Scripts/pacman_updates"
+        myLoad    = wrapL "Load: "    "" . dzenFGL colorFG4 $ logCmd "perl ~/Scripts/dzen/load.pl"
+        myBat     = wrapL "Bat: "     "" . dzenFGL colorFG4 $ battery
+        --myUpdates = wrapL "Updates: " "" . dzenFGL colorFG4 $ logCmd "cat ~/Scripts/pacman_updates"
 		--shit
 		--myWifi    = wrapL "Wifi: "    "" . dzenFGL colorFG6 $ logCmd "cat ~/Scripts/dzen/wifi.sh"
-        myWifi    = wrapL "Wifi: "    "" . dzenFGL colorFG4 $ logCmd "sh ~/Scripts/dzen/wifi.sh"
+        myWifi    = wrapL "Wifi: "    "" . dzenFGL colorFG5 $ logCmd "sh ~/Scripts/dzen/wifi.sh"
+        myRtop    = wrapL ""    "" . dzenFGL colorFG5 $ logCmd "zsh ~/Scripts/dzen/newRtop.sh"
         myVol     = wrapL "Vol: "    "" . dzenFGL colorFG5$ logCmd "sh ~/Scripts/dzen/vol.sh"
         myMpc     = wrapL "Mpc: "    "" . dzenFGL colorFG5$ logCmd "sh ~/Scripts/dzen/mpc.sh"
         myDate    = wrapL "Time: "    "" . dzenFGL colorFG5 $ date "%H:%M"
@@ -325,6 +331,7 @@ myKeys = [ ("M-p"                   , spawn "dmenu_launch.sh"               ) --
          , ("M4-i"                  , myIRC                          ) -- open/attach IRC client in screen
          , ("M4-r"                  , myTorrents                     ) -- open/attach rtorrent in screen 
          , ("M-j"                   , spawn "dmenu-mpc-search.sh"            ) -- search current playlist via dmenu
+		 , ("M4-<Tab>", spawnSelected defaultGSConfig ["urxvtc -e tmux attach","urxvtd", "sonata","nitrogen","gvim", "dropboxd"])
          , ("<Print>"               , spawn "scrot"                  ) -- take a screenshot
 
          -- extended workspace navigations
@@ -338,8 +345,9 @@ myKeys = [ ("M-p"                   , spawn "dmenu_launch.sh"               ) --
          , ("M-o"                   , mirrorShrink                   ) -- shink slave panes vertically
          , ("M-i"                   , mirrorExpand                   ) -- expand slave panes vertically
          , ("M-f"                   , jumpToFull                     ) -- jump to full layout
-         , ("M-b"                   , banishScreen LowerRight        ) -- banish the mouse
+         , ("M-b"                   , banishScreen LowerLeft        ) -- banish the mouse
          --, ("M-<Tab>"               , nextMatch History (return True)) -- recreates a "normal" Alt-Tab
+         , ("M-S-<Tab>"               , goToSelected defaultGSConfig   ) -- grid select 
 
          -- non-standard screen navigation
          , ("M-h"                 , shrink                         ) -- shrink master (was M-h)
@@ -347,18 +355,19 @@ myKeys = [ ("M-p"                   , spawn "dmenu_launch.sh"               ) --
 
          -- media keys
          , ("<XF86HomePage>"        , myBrowser                      ) -- open web client
+         , ("<XF86MailForward>"     , spawn "rfkill.sh"            ) -- use wpa_auto to reconnect
          , ("<XF86Mail>"            , spawn "thunderbird"            ) -- open mail client
-         , ("<XF86AudioPlay>"       , spawn "mpc -q toggle"          ) -- play/pause mpd
-         , ("<XF86AudioStop>"       , spawn "mpc -q stop"            ) -- stop mpd
-         , ("<XF86AudioPrev>"       , spawn "mpc -q prev"            ) -- prev song
-         , ("<XF86AudioNext>"       , spawn "mpc -q next"            ) -- next song
+         , ("<XF86AudioPlay>"       , spawn "/usr/bin/mpc -q toggle"          ) -- play/pause mpd
+         , ("<XF86AudioStop>"       , spawn "/usr/bin/mpc -q stop"            ) -- stop mpd
+         , ("<XF86AudioPrev>"       , spawn "/usr/bin/mpc -q prev"            ) -- prev song
+         , ("<XF86AudioNext>"       , spawn "/usr/bin/mpc -q next"            ) -- next song
          , ("<XF86AudioMute>"       , spawn "amixer -q set Master toggle" ) -- toggle mute
          , ("<XF86AudioLowerVolume>", spawn "amixer -q set PCM 10- unmute"            ) -- volume down 
          , ("<XF86AudioRaiseVolume>", spawn "amixer -q set PCM 10+ unmute"            ) -- volume up
-         , ("M-<XF86AudioPlay>"     , mplayer "pause"                ) -- play/pause mplayer
-         , ("M-<XF86AudioStop>"     , mplayer "stop"                 ) -- stop mplayer
-         , ("M-<XF86AudioPrev>"     , mplayer "seek -10"             ) -- seek back 10s
-         , ("M-<XF86AudioNext>"     , mplayer "seek 10"              ) -- seek forward 10s
+         --, ("M-<XF86AudioPlay>"     , mplayer "pause"                ) -- play/pause mplayer
+--         , ("M-<XF86AudioStop>"     , mplayer "stop"                 ) -- stop mplayer
+         --, ("M-<XF86AudioPrev>"     , mplayer "seek -10"             ) -- seek back 10s
+         --, ("M-<XF86AudioNext>"     , mplayer "seek 10"              ) -- seek forward 10s
          , ("<XF86PowerOff>"		, spawn "shutdown-dialog.py"     ) -- Log off
 		 , ("<XF86Sleep>"			, spawn "sudo pm-suspend"		 ) -- Stand by
 
@@ -403,7 +412,7 @@ myKeys = [ ("M-p"                   , spawn "dmenu_launch.sh"               ) --
                 command s = ("\""++) . (++"\"") $ unwords ["SCREEN_CONF=" ++ s, "tmux -S", s, "-R -D", s]
 
         -- see http://pbrisbin.com/posts/controlling_mplayer/
-        mplayer s = spawn $ unwords [ "echo", s, "> $HOME/.mplayer_fifo" ]
+        mplayer s = spawn $ unwords [ "echo", s, "> $HOME/.mplayer/mplayer.fifo" ]
 
         -- kill all conky/dzen2 before executing default restart command
         myRestart = spawn $ "for pid in `pgrep conky`; do kill -9 $pid; done && " ++

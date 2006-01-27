@@ -2,7 +2,7 @@
 ## Aliases
 
 if [[ $SHELL == *zsh ]]; then
-	#Zsh Auto extension {
+	#Zsh Auto extension {{{
 	alias -s gz=tar -xzvf
 	alias -s bz2=tar -xjvf
 	alias -s nfo=pnfo
@@ -10,26 +10,28 @@ if [[ $SHELL == *zsh ]]; then
 	alias -s {sxw,doc,ppt,xls}=soffice
 	alias -s {html,org,php,com,net}=$BROWSER
 	alias -s {java,txt,c,cpp,h,PKGBUILD}=$EDITOR
-	alias -s {asx,avi,wmv,mp4,mp3,wav}=mplayer
+	alias -s {asx,avi,wmv,mp4,mp3,wav}=mplayerd
 	alias -s pdf=$PDFVIEWER
 	alias -s {png,jpg,gif}=$IMGVIEWER
 	alias -s exe=wine
 	alias -s PKGBUILD=$EDITOR
 	alias -s TODO=$EDITOR
-	# }
+	# }}}
 fi
 
 # mplayer --now-playing
-alias mplayer='mplayer -identify $@> $HOME/.mplayer/mplayerd.log'
+#alias mplayer='mplayerd'
+#alias mplayer='mplayer -identify $@> $HOME/.mplayer/mplayerd.log'
 
-#Downloads dir
+#Downloads & Torrent dir
 alias dl='~/Downloads'
+alias dlc='~/Downloads/Completed/'
 
 #sudo
 alias !='sudo'
 
 #tmux - 256 color hack
-alias tmux='tmux -2 attach || tmux new'
+#alias tmux='tmux -2 attach || tmux new'
 
 #vim gvim - open in tabs
 alias vim='vim -p' 
@@ -66,7 +68,9 @@ alias ..='cd ..'
 alias top10='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
 
 #ls
-if [[ -f ~/bin/pilsner && $TERM != linux ]]; then
+if [[ -f `which ls++` && $TERM != linux ]]; then
+	alias ls='ls++';
+elif [[ -f ~/bin/pilsner && $TERM != linux ]]; then
 	alias ls='~/bin/pilsner';
 else
 	alias ls='ls --group-directories-first -hF --color=always'
@@ -79,8 +83,10 @@ alias lr='ls -R'
 alias lx='ll -BX'	#sort by extension
 alias lz='ll -rS'	#sort by size
 alias lt='ll -rt'	#sort by date
-alias l='ls' 	#because of typos
 alias lsq='ls -AlQ --color=always --time-style=full-iso'
+if [[ -f `which ls++` && $TERM != linux ]]; then
+	alias l='ls++';
+fi
 
 #power management
 alias poweroff='sudo poweroff'

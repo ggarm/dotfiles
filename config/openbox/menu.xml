@@ -224,7 +224,6 @@
 		<menu id="games-menu"/>
 		<separator/>
 		<!-- <menu id="chwall" label="Wallpaper" execute="wallmenu.py" /> -->
-		<menu id="pipe-wifi" label="Wifi" execute="sudo /home/ricardo/.config/openbox/wifi-pipe wlan0" />
 		<separator/>
 		<separator label="Applications"/>
 		<!-- <menu id="apps-accessories-menu"/> -->

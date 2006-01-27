@@ -1,30 +1,30 @@
 /* trapd00r shiva */
 /* black */
-URxvt.shiva.color0: #121212
-URxvt.shiva.*color8: #484848
+URxvt.color0: #121212
+URxvt.*color8: #484848
 /* red */
-URxvt.shiva.color1: #FF4747
-URxvt.shiva.color9: #FF6767
+URxvt.color1: #FF4747
+URxvt.color9: #FF6767
 /* green */
-URxvt.shiva.color2: #4D4C4C /* green => grey */
-URxvt.shiva.color10: #B03B31 /* green => faluröd */
+URxvt.color2: #4D4C4C /* green => grey */
+URxvt.color10: #B03B31 /* green => faluröd */
 /* yellow */
-URxvt.shiva.color3: #FF8F00
-URxvt.shiva.color11: #BDF13D
+URxvt.color3: #FF8F00
+URxvt.color11: #BDF13D
 /* blue */
-URxvt.shiva.color4: #1165E9
-URxvt.shiva.color12: #5496FF
+URxvt.color4: #1165E9
+URxvt.color12: #5496FF
 /* purple */
-URxvt.shiva.color5: #89005A
-URxvt.shiva.color13: #B50077
+URxvt.color5: #89005A
+URxvt.color13: #B50077
 /* cyan */
-URxvt.shiva.color6: #CB1C13 /* cyan => red */ /* 47E0FF */
-URxvt.shiva.color14: #6BE603 /* cyan => green */
+URxvt.color6: #CB1C13 /* cyan => red */ /* 47E0FF */
+URxvt.color14: #6BE603 /* cyan => green */
 /* white */
-URxvt.shiva.color7: #FFFFFF
-URxvt.shiva.color15: #DEDEDE
+URxvt.color7: #FFFFFF
+URxvt.color15: #DEDEDE
 /* orange */
-URxvt.shiva.color16: #FFB000
+URxvt.color16: #FFB000
 
 
 /* trapd00r default */

@@ -1,7 +1,7 @@
 # Write your default config options here!
 # 
 # Video Driver
-vo=gl
+#vo=gl
 # Audio Driver
 ao=alsa
 # Double Buffering
@@ -33,8 +33,11 @@ spualign=-1
 # Anti-alias subs. (4: best and slowest)
 spuaa=4
 # Fullscreen
-fs=yes
+fs=0
+# Colors
+msgmodule=1
+msgcolor=1
 
 # Misc settings
 nolirc=yes
-onTop=1 # Always on Top
+onTop=0 # Always on Top

@@ -2,81 +2,80 @@
 set background=light 	" light things up
 if has("gui_running")
 	" Gui Options "{{{
-		set lines=45 columns=80 	" Set window size close to maximized
-		"let g:zenburn_high_Contrast = 1
-		"let g:zenburn_alternate_Visual = 1
-		"let g:zenburn_alternate_Error = 1
-		"let g:zenburn_alternate_Include = 1
-		"colorscheme zenburn			" Need a better one...
-		"let g:darkburn_high_Contrast = 1
-		"let g:darkburn_alternate_Visual = 1
-		"let g:darkburn_alternate_Error = 1
-		"let g:darkburn_alternate_Include = 1
-		"colorscheme darkburn			" Need a better one...
-		colorscheme darkspectrum			" Need a better one...
-		set guioptions=aivmR
-		set showtabline=2
-		set mousehide
-		"set guifont=Envy\ Code\ R\ 11
-		set guifont=Droid\ Sans\ Mono\ Slashed\ 10
+	set lines=45 columns=80 	" Set window size close to maximized
+	"let g:zenburn_high_Contrast = 1
+	"let g:zenburn_alternate_Visual = 1
+	"let g:zenburn_alternate_Error = 1
+	"let g:zenburn_alternate_Include = 1
+	"colorscheme zenburn			" Need a better one...
+	"let g:darkburn_high_Contrast = 1
+	"let g:darkburn_alternate_Visual = 1
+	"let g:darkburn_alternate_Error = 1
+	"let g:darkburn_alternate_Include = 1
+	"colorscheme darkburn			" Need a better one...
+	colorscheme neverland "darkspectrum
+	set guioptions=aivmR
+	set showtabline=2
+	set mousehide
+	"set guifont=Envy\ Code\ R\ 11
+	set guifont=Droid\ Sans\ Mono\ Slashed\ 10
 	"}}}
 elseif ( &term =~ 'linux' || $DISPLAY =~ ' ')
 	colorscheme desert256
-	"colorscheme caravaggio
 	set bg=dark
 	"set colorcolumn=80		" line at 80 cols
 	highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 	match OverLength /\%81v.\+/
 else                            " we are on tty
 	set t_Co=256				" Using 256-color yay
-	"colorscheme zenburn
-	colorscheme neverland
+	colorscheme neverland-ansi_bg "cottonmouse
+	"colorscheme neverland
 	"set term=rxvt-256color
-    " Stupid Bindings for tmux/Screen "{{{
-    
-    if $TERM == "linux"	" we are in X (hopefully)
-    "set t_#2=[7$     
-    "set t_KB=O*n     
-    set t_kh=[7~
-    set t_@7=[8~
-    "set t_#4=[d      
-    set t_k1=[11;*~  
-    "set t_kl=O*D
-    "set t_%1=[28;*~  
-    set t_k2=[12;*~  
-    "set t_kr=O*C
-    "set t_%i=[c      
-    set t_k3=[13;*~  
-    "set t_ku=O*A
-    "set t_&8=[26;*~  
-    set t_k4=[14;*~  
-    "set t_*7=[8$     
-    set t_k5=[15;*~ 
-    set t_k6=[17;*~
-    set t_F1=[23;*~  
-    set t_k7=[18;*~  
-    set t_F2=[24;*~  
-    set t_k8=[19;*~ 
-    "set t_K1=[1;*~   
-    set t_k9=[20;*~
-    "set t_K3=Oy      
-    set t_k;=[21;*~
-    "set t_K4=[4;*~   
-    "set t_kB=[Z   
-    "set t_K5=Os      
-    set t_kD=[3~   
-    "set t_K6=O*k     
-    "set t_kI=[2;*~
-    "set t_K7=O*m     
-    set t_kN=[6;*~
-    "set t_K8=O*o     
-    set t_kP=[5;*~       
-    "set t_K9=O*j     
-    "set t_KA=O*M     
-    "set t_kd=O*B       
-    
-    endif
-    "}}}
+	" Stupid Bindings for tmux/Screen "{{{
+
+	if $TERM == "linux"	" we are in X (hopefully)
+		"set t_#2=[7$     
+		"set t_KB=O*n     
+		set t_kh=[7~
+		set t_@7=[8~
+		"set t_#4=[d      
+		set t_k1=[11;*~  
+		"set t_kl=O*D
+		"set t_%1=[28;*~  
+		set t_k2=[12;*~  
+		"set t_kr=O*C
+		"set t_%i=[c      
+		set t_k3=[13;*~  
+		"set t_ku=O*A
+		"set t_&8=[26;*~  
+		set t_k4=[14;*~  
+		"set t_*7=[8$     
+		set t_k5=[15;*~ 
+		set t_k6=[17;*~
+		set t_F1=[23;*~  
+		set t_k7=[18;*~  
+		set t_F2=[24;*~  
+		set t_k8=[19;*~ 
+		"set t_K1=[1;*~   
+		set t_k9=[20;*~
+		"set t_K3=Oy      
+		set t_k;=[21;*~
+		"set t_K4=[4;*~   
+		"set t_kB=[Z   
+		"set t_K5=Os      
+		set t_kD=[3~   
+		"set t_K6=O*k     
+		"set t_kI=[2;*~
+		"set t_K7=O*m     
+		set t_kN=[6;*~
+		"set t_K8=O*o     
+		set t_kP=[5;*~       
+		"set t_K9=O*j     
+		"set t_KA=O*M     
+		"set t_kd=O*B       
+
+	endif
+	"}}}
 endif
 " }}}
 
@@ -92,21 +91,21 @@ if has('folding')
 	set foldcolumn=0 " Don't waste screen space
 	set foldminlines=5       " Minimum lines to fold
 
-function! SimpleFoldText() " {
-    return getline(v:foldstart).' '
-endfunction " }
-    set foldtext=SimpleFoldText() " Custom fold text function
-                                  " (cleaner than default)
+	function! SimpleFoldText() " {
+		return getline(v:foldstart).' '
+	endfunction " }
+	set foldtext=SimpleFoldText() " Custom fold text function
+	" (cleaner than default)
 
 endif
 " }}}
 
 " Indenting and spaces " {{{
 set backspace=indent,eol,start
+set tabstop=2		" Number of spaces of tab character
+set softtabstop=2 	" Backspace fake tabs
+set shiftwidth=2	" Number of spaces to (auto)indent
 set smarttab		" tabs at the beginning of lines, spaces everywhere else
-set tabstop=4		" Number of spaces of tab character
-set softtabstop=4 	" Backspace fake tabs
-set shiftwidth=4	" Number of spaces to (auto)indent
 "set expandtab		" Insert spaces instead of tabs
 set whichwrap=b,s,h,l,<,>,~,[,] 
 set autoindent		" Always set autoindenting on
@@ -122,12 +121,17 @@ filetype indent on
 set nocompatible 	" vi is dead
 set backup
 set backupdir=~/.vim/backup
+set undofile 		" Persistent undo upon leaving files
+set undodir=~/.vim/undo
 "set noswapfile
 set autowrite		" Save before commands like :next and :make
-set shortmess=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
-"set shortmess=aIoO	" short msg, no intro
-set cot+=menuone	" show preview of function prototype
+"set shortmess=filmnrwxoOtT      " abbrev. of messages (avoids 'hit enter')
+set shortmess=asoOItT	" short msg, no intro
 set mouse=a
+set title			" Title for xterm
+"set lazyredraw " Don't redraw screen during macros
+set ttyfast " Improves redrawing for newer computers
+set timeoutlen=500 " Lower timeout for mappings
 " }}}
 
 " Matching (), History, Lineno, Search options " {{{
@@ -137,7 +141,7 @@ set showmatch           " Show matching parentheses/brackets
 set matchtime=3			" Show matching brackets for only 0.3 seconds
 set showmode            " Show current vim mode
 set viminfo='20,\"50    " read/write a .viminfo file, don't store more
-						" than 50 lines of registers
+" than 50 lines of registers
 set history=50          " keep 50 lines of command line history
 set ruler               " show the cursor position all the time
 set autoread			" auto read when file is changed
@@ -152,10 +156,13 @@ set wildignore=*.o,*.obj,*.bak,*.exe
 set hidden				" hide buffers
 set splitbelow          " splitted window under current one
 set wildchar=<Tab>		" tab for autocompletion
-set completeopt-=menu	" Get rid of the ugly menu
+set completeopt+=menu	" show preview of function prototype
+set completeopt+=preview	" show preview of function prototype
+set completeopt+=longest	" show longest match
+"set completeopt-=menu	" Get rid of the ugly menu
 
 set linespace=0			" don't insert any extra pixel lines
-						" betweens rows
+" betweens rows
 
 "set autochdir			" always switch to the current file directory
 set nostartofline		" leave my cursor where it was
@@ -185,80 +192,107 @@ set laststatus=2
 
 " Uber cool status line
 " Ripped of in github.com
-set statusline=%<[%02n]\ %F%m%r%h%w%=(%{strlen(&ft)?&ft:'?'},%{&fenc},%{&ff})\ \ %-9.(%l,%c%V%)\ \ %<%P
+set statusline=%<[%02n]\ %F%m%r%h%w%{fugitive#statusline()}%=(%{strlen(&ft)?&ft:'?'},%{&fenc},%{&ff})\ \ %-9.(%l,%c%V%)\ \ %<%P
 
 "set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)\ [%08O:%02B]
 "}}}
 
 " Filter expected errors from make
 if has("eval") && v:version >= 700
-	if hostname() == "ricardo"
-		let &makeprg="nice -n7 make -j3 2>&1"
-	elseif hostname() == "snowmobile"
-		let &makeprg="nice -n7 make -j1 2>&1"
-	else
-		let &makeprg="nice -n7 make -j2 2>&1"
-	endif
+	"if hostname() == "ricardo"
+	"let &makeprg="nice -n7 make -j2 2>&1"
+	"elseif hostname() == "snowmobile"
+	"let &makeprg="nice -n7 make -j1 2>&1"
+	"else
+	"let &makeprg="nice -n7 make -j2 2>&1"
+	"endif
 
-" ignore libtool links with version-info
-    let &errorformat="%-G%.%#libtool%.%#version-info%.%#,".&errorformat
+	" ignore libtool links with version-info
+	let &errorformat="%-G%.%#libtool%.%#version-info%.%#,".&errorformat
 
-" catch internal errors
-    let &errorformat="%.%#Internal error at %.%# at %f:%l: %m,".&errorformat
+	" catch internal errors
+	let &errorformat="%.%#Internal error at %.%# at %f:%l: %m,".&errorformat
 endif
 
 " Key mappings {{{
+
+" simulate shift-arrows (select block in windows) with control-arrows
+inoremap <Esc>[a <C-O>vk
+vnoremap <Esc>[a k
+inoremap <Esc>[b <C-O>vj
+vnoremap <Esc>[b j
+inoremap <Esc>[c <C-O>vl
+vnoremap <Esc>[c l
+inoremap <Esc>[d <C-O>vh
+vnoremap <Esc>[d h
+
+inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+"inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 " Move text, but keep highlight
 vnoremap > ><CR>gv
 vnoremap < <<CR>gv
 
+" Pasting according to previous indentation
+nnoremap p ]p
+
+" Leave the cursor where it was before editing
+nmap . .`[
 " Allow the . to execute once for each line in visual selection
 vnoremap . :normal .<CR>
 
 " Make tab perform keyword/tag completion if we're not following whitespace
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <tab> <C-r>=InsertTabWrapper()<CR>
 
 " Ctrl-s saves
 inoremap <C-s> <Esc>:w<CR>a
 nnoremap <C-s> :w<CR>
 
-" Edit as superuser
+" Edit as superuser:
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 
-" Omnicomplete:
 " Remap code completion from Ctrl+x, Ctrl+o to Ctrl+Space
-inoremap <C-Space> <C-x><C-o>
+inoremap <C-space> <C-x><C-o>
 
 " Mapping Enter and Backspace 
 "  to work in normal mode.
 nmap <Return> o<Esc>
-nmap <Backspace> i<Backspace><Esc>
- 
+nmap <Backspace> i<Backspace><Esc>l 
+
 " Typos:
 " Use ',' instead of ':'
 " Use :W as :w
 noremap , :
 cmap W w
 nmap q: :q<cr>
+nmap ZA zA
  
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
+" Correct some spelling mistakes
 ia teh the
 ia htis this
 ia tihs this
 ia whit with
+ia reutrn return
+ia retunr return
+ia :w<Return> <Esc>:w
+ia :x<Return> <Esc>:x
 
 " Programming Keys:
 "   F9  = Make
 "   F10 = Next Error
 "   F11 = Prev Error
 "inoremap <F9> <Esc>:make<CR>
-inoremap <F9> <Esc>:make<CR><CR>:copen<CR>
+inoremap <F9> <Esc>:!ctags -R .<CR>:make<CR><CR>:copen<CR>
 inoremap <F10> <Esc>:cnext<CR>
 inoremap <F11> <Esc>:cprev<CR>
-noremap <F9> <Esc>:make<CR>
+noremap <F9> <Esc>:!ctags -R .<CR>:make<CR><CR>
 noremap <F10> <Esc>:cnext<CR>
 noremap <F11> <Esc>:cprev<CR>
 
@@ -276,9 +310,6 @@ noremap <F4> <Esc>:bd<CR>
 " NERD_Tree:
 :map <F12> <Esc>:NERDTreeToggle<CR>
 
-" TagList:
-:map <F1> <Esc>:Tlist<CR>
-
 " BufferList:
 nnoremap \ :call BufferList()<CR>
 let g:BufferListWidth = 25
@@ -292,11 +323,39 @@ hi BufferNormal term=NONE ctermfg=black ctermbg=darkcyan cterm=NONE
 ":noremap!   <Up> <C-O>gk
 ":noremap    <Down> gj
 ":noremap!   <Down> <C-O>gj
-:noremap    k gk
-:noremap    j gj
+":noremap    k gk
+":noremap    j gj
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+noremap	<space> za
+noremap	<C-Space> zA
 
-" Comments:
+let mapleader=','
+if exists(":Tabularize")
+	nmap <Leader>a= :Tabularize /=<CR>
+	vmap <Leader>a= :Tabularize /=<CR>
+	nmap <Leader>a: :Tabularize /:\zs<CR>
+	vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
 
+" Fugitive Maps:
+map <Leader>gc :Gcommit
+map <Leader>gs :Gstatus
+
+
+"inoremap <silent> =   =<Esc>:call <SID>align()<CR>a
+"
+"function! s:align()
+	"let p = '^\s*|\s.*\s|\s*$'
+	"if exists(':Tabularize') && getline('.') =~# '^\s*=' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+		"echo "ola"
+		"let column = strlen(substitute(getline('.')[0:col('.')],'[^=]','','g'))
+		"let position = strlen(matchstr(getline('.')[0:col('.')],'.*=\s*\zs.*'))
+		"Tabularize/=/l1
+		"normal! 0
+		"call search(repeat('[^=]*=',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+	"endif
+"endfunction
 " Key mappings }}}
 
 " Tabs {{{
@@ -385,37 +444,74 @@ function! InsertTabWrapper()
         return "\<c-p>"
     endif
 endfunction
- inoremap <Tab> <C-R>=InsertTabWrapper()<CR>
- inoremap <S-Tab> <C-P>
+ "inoremap <Tab> <C-R>=InsertTabWrapper()<CR>
+ "inoremap <S-Tab> <C-P>
 " InsertTabWrapper() }}}
 
 "}}}
 
 " Plugins {{{ 
-	"TagList {{{
-	"will recurse backwards until 'tags' is found
-	set tags+=tags;
+" TagList: {{{
+"will recurse backwards until 'tags' is found
+set tags+=tags;
 
-	"let Tlist_Display_Tag_Scope = 1 "ugh...
-	let g:Tlist_Display_Prototype = 1
-	let g:Tlist_Use_Right_Window = 1
-	let g:Tlist_Exit_OnlyWindow = 1
-	let g:Tlist_Enable_Fold_Column = 0
-	let g:Tlist_Sort_Type = "name"
-	let g:Tlist_Compact_Format = 0
-	let g:Tlist_File_Fold_Auto_Close = 0
-	let g:Tlist_WinWidth = 50
-	" }}}
-
-	"NetRW {{{
+"let Tlist_Display_Tag_Scope = 1 "ugh...
+let g:Tlist_Display_Prototype = 1
+let g:Tlist_Use_Right_Window = 1
+let g:Tlist_Exit_OnlyWindow = 1
+let g:Tlist_Enable_Fold_Column = 0
+let g:Tlist_Sort_Type = "name"
+let g:Tlist_Compact_Format = 0
+let g:Tlist_File_Fold_Auto_Close = 0
+let g:Tlist_WinWidth = 50
+" }}}
+	" NetRW: {{{
+	"
 	let g:netrw_keepdir = 1
 	let g:netrw_winsize = 40
 	let g:netrw_alto = 1
-	" }}}
 
-	" NERDTree {{{
+	" }}}
+	" NERDTree: {{{
+	"
 	let g:NERDChristmasTree = 1
 	let g:NERDTreeiHijackNetrw = 1
+
+	" }}}
+	" SuperTab {{{
+	"let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
+	let g:SuperTabDefaultCompletionType = "context"
+	let g:SuperTabContextDefaultCompletionType = "<c-p>"
+	let g:SuperTabLongestEnhanced = 1
+	let g:SuperTabLongestHighlight = 1
+	let g:SuperTabCrMapping = 1
+
+	"let g:SuperTabMappingForward = '<c-space>'
+	"let g:SuperTabMappingBackward = '<s-c-space>'
+	" }}}
+	" OmniComplete: {{{
+	let OmniCpp_GlobalScopeSearch   = 1
+	let OmniCpp_NamespaceSearch     = 1				" 2 for searching in included files
+	let OmniCpp_DisplayMode         = 0				" 1 always show all members
+	let OmniCpp_ShowScopeInAbbr     = 0				" 1 scope to the left
+	let OmniCpp_ShowPrototypeInAbbr = 0		" 1 display prototype
+	let OmniCpp_ShowAccess          = 1						" 0 disable
+	let OmniCpp_MayCompleteDot      = 1				" .
+	let OmniCpp_MayCompleteArrow    = 1			" ->
+	let OmniCpp_MayCompleteScope    = 1			" ::
+	let OmniCpp_SelectFirstItem     = 0				" 1 select first & insert / 2 select !insert
+	let OmniCpp_LocalSearchDecl     = 0				" 1 local search function
+	"let omnicpp-popup 
+
+	" }}}
+	" SnipMate: {{{
+	let g:snips_author = 'Ricardo Costa'
+
+	ino <tab> <c-r>=TriggerSnippet()<cr>
+	snor <tab> <esc>i<right><c-r>=TriggerSnippet()<cr>
+
+	"ino <C-Space> <c-r>=TriggerSnippet()<cr>
+	"snor <C-Space> <esc>i<right><c-r>=TriggerSnippet()<cr>
 	" }}}
 " }}}
 
@@ -423,8 +519,8 @@ endfunction
 if has('autocmd')
 
 	" Automatically add CREATED date and update MODIFIED date
-    autocmd BufNewFile * call Created()
-    autocmd BufWrite * call LastModified()
+  autocmd BufNewFile * call Created()
+  autocmd BufWrite * call LastModified()
 
 	" Set comment characters for common languages
 	autocmd FileType python,sh,bash,zsh,ruby,perl,muttrc let StartComment="#" | let EndComment=""

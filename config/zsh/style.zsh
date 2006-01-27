@@ -45,13 +45,15 @@ zstyle ':completion:*:ssh:*' group-order \
 	   hosts-domain hosts-host users hosts-ipaddr
 
 zstyle ':completion:*:correct:*' insert-unambiguous true # start menu completion only if it could find no unambiguous initial string
+zstyle ':completion:*:mplayer:*' ignored-patterns \
+	cdda:// cddb:// dvd:// file: ftp:// gopher:// http:// https:// tv:// vcd:// 
 zstyle ':completion:*:man:*' menu yes select
 zstyle ':completion:*:history-words' menu yes # activate menu
 zstyle ':completion:*:*:cd:*:directory-stack' menu yes select # complete 'cd -<tab>' with menu
 zstyle ':completion:*:functions' ignored-patterns '_*'
 
 # Filename suffixes to ignore during completion (except after rm command)
-zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' \
+zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.hi' '*?.o' '*?.c~' \
 	'*?.old' '*?.pro'
 
 zstyle ':vcs_info:*' enable git cvs svn

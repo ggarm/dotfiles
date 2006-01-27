@@ -1,0 +1,130 @@
+#
+# Author: Ricardo Costa
+# Modified Mon Jan 17 15:44:39 GMT 2011
+# ~/.config/wmfs/wmfsrc 
+#
+
+[misc]
+        font               = "montecarlo-10"
+        raisefocus         = false
+        focus_follow_mouse = true
+        # focus_pointer_click: click on unfocused client area:
+        # true  -- default, set focus
+        # false -- click go to client; including dockapps
+        focus_pointer_click = true
+        status_timing      = 1     #seconds
+        status_path        = "~/.config/wmfs/wmfstatus.sh"
+[/misc]
+
+[bar]
+        bg     = "#191919"
+        fg     = "#D4D4D4"
+        height = 16
+				border = false
+
+        [systray]
+								active = true # Enable/disable systray
+								screen = 0 # Screen of systray
+                spacing = 3 # Spacing between tray icons
+        [/systray]
+
+        # Remove this section to disable the selbar.
+        [selbar]
+                bg = "#191919"
+                fg = "#D4D4ff"
+
+                # Cut title length
+                # max_length = 25
+
+                [mouse] button = "3" func = "clientlist"  [/mouse]
+                [mouse] button = "4" func = "client_next" [/mouse]
+                [mouse] button = "5" func = "client_prev" [/mouse]
+        [/selbar]
+
+[/bar]
+
+[layouts]
+        fg = "#F99017"
+        bg = "#000000"
+
+        border = false # Border around the layout button.
+        system = "menu" # Value menu or switch.
+        placement = "left" # Value left or right.
+        keep_layout_geo = false # Keep layout geo for free layout
+        selected_layout_symbol = "*"
+        # layout_button_width = x
+
+        # Tiling layouts.
+				[layout] type = "tile_right"         symbol = "\i[0;0;14;14;/home/ricardo/Scripts/wmfs/layouts/tile_right.png]\"    [/layout]
+				[layout] type = "tile_left"          symbol = "\i[0;0;14;14;/home/ricardo/Scripts/wmfs/layouts/tile_left.png]\"     [/layout]
+				[layout] type = "tile_top"           symbol = "\i[0;0;14;14;/home/ricardo/Scripts/wmfs/layouts/tile_top.png]\"      [/layout]
+				[layout] type = "tile_bottom"        symbol = "\i[0;0;14;14;/home/ricardo/Scripts/wmfs/layouts/tile_bottom.png]\"   [/layout]
+				[layout] type = "tile_grid"          symbol = "\i[0;0;14;14;/home/ricardo/Scripts/wmfs/layouts/tile_grid.png]\"     [/layout]
+				[layout] type = "tile_grid_vertical" symbol = "\i[0;0;14;14;/home/ricardo/Scripts/wmfs/layouts/tile_grid_v.png]\"   [/layout]
+        [layout] type = "mirror_vertical"    symbol = "MIRROR_V" [/layout]
+        [layout] type = "mirror_horizontal"  symbol = "MIRROR_H" [/layout]
+
+        # Other layouts.
+				[layout] type = "max"   symbol = "\i[0;0;14;14;/home/ricardo/Scripts/wmfs/layouts/max.png]\"  	 [/layout]
+				[layout] type = "free"  symbol = "\i[0;0;14;14;/home/ricardo/Scripts/wmfs/layouts/floating.png]\" [/layout]
+
+[/layouts]
+
+@include "~/.config/wmfs/tags.wmfsrc"
+
+[root]
+       # Command you can execute to set the background.
+        #background_command = "~/.config/wmfs/autorun.sh"
+background_command = "nitrogen --restore" #"xsetroot -solid black"
+
+        [mouse] button = "4" func = "tag_next"              [/mouse]
+        [mouse] button = "5" func = "tag_prev"              [/mouse]
+        [mouse] button = "3" func = "menu" cmd = "rootmenu" [/mouse]
+[/root]
+
+[client]
+#client_round         = false
+        border_height        = 1
+        border_shadow        = false
+        border_normal        = "#222222"
+        border_focus         = "#F99017"
+        resize_corner_normal = "#222222"
+        resize_corner_focus  = "#F99017"
+				set_new_win_master	 = false
+
+        # Space between tiled clients
+        padding = 0
+
+        # Modifier for mouse use
+        modifier = "Alt"
+
+        [mouse] button = "1" func = "client_raise" [/mouse]
+        [mouse] button = "1" func = "mouse_move"   [/mouse]
+        [mouse] button = "3" func = "client_raise" [/mouse]
+        [mouse] button = "3" func = "mouse_resize" [/mouse]
+
+        # Remove this section to delete the titlebar.
+[/client]
+
+@include "~/.config/wmfs/rules.wmfsrc"
+@include "~/.config/wmfs/menu.wmfsrc"
+
+[launcher]
+        [set_launcher]
+                # Limit size of the launcher window (px)
+                width_limit = 300
+
+                name = "launcher_exec"
+                prompt = "Exec: "
+                command = "exec"
+        [/set_launcher]
+
+        #ViWMFS : manage wmfs with vi-based command.
+        [set_launcher]
+                name = "viwmfs"
+                prompt = "> "
+                command = "wmfs -V"
+        [/set_launcher]
+[/launcher]
+
+@include "~/.config/wmfs/keys.wmfsrc"

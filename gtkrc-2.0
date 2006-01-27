@@ -1,11 +1,12 @@
-gtk-icon-theme-name = "Tango"
-#gtk-icon-theme-name = "gnome-human"
-#gtk-theme-name = "ntsumi"
-gtk-theme-name = "Shiki-Wise"
+#include "/home/ricardo/.icons/ACYL_Icon_Theme_0.9.3/index.theme"
+gtk-icon-theme-name = "ACYL_Icon_Theme_0.9.3" #"AnyColorYouLike"
+#gtk-theme-name = "Shiki-Human"
+
+gtk-theme-name = "Clearlooks-Zenburn"
+include "/home/ricardo/.config/gtk-2.0/Clearlooks-Zenburn/gtk-2.0/gtkrc"
 
 #include "/home/ricardo/.config/gtk-2.0/ElegantBrit/gtkrc"
 #include "/home/ricardo/.config/gtk-2.0/PerfectGnome/gtkrc"
 #include "/home/ricardo/.config/gtk-2.0/Variable/gtkrc"
 #include "/home/ricardo/.config/gtk-2.0/termGTK/gtkrc"
 #include "/home/ricardo/.config/gtk-2.0/gtkrc.arch"
-#include "/home/ricardo/.themes/ntsumi/gtk-2.0/gtkrc"

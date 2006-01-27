@@ -1,5 +1,6 @@
 # .rtorrent.rc
 # Author: Ricardo Costa
+# vim:syntax=sh
 
 # Maximum and minimum number of peers to connect to per torrent, down and seed.
 min_peers = 40
@@ -121,5 +122,3 @@ encryption = allow_incoming,enable_retry,prefer_plaintext
 # Remove a scheduled event.
 #schedule_remove = "ip_tick1"
 # }}}
-
-# vim:syntax=sh

@@ -8,13 +8,12 @@
 "
 " Author: Magnus Woldrich <trapd00r@trapd00r.se>
 
+set background=dark
 hi clear
 
-set background=dark
 if version > 580
     " no guarantees for version 5.8 and below, but this makes it stop
     " complaining
-    hi clear
     if exists("syntax_on")
         syntax reset
     endif
@@ -22,6 +21,9 @@ endif
 let g:colors_name="neverland-ansi_bg"
 
 if &t_Co > 255
+   hi Normal          ctermfg=225 ctermbg=000 cterm=none
+   set background=dark
+
    hi Boolean         ctermfg=135 ctermbg=000 cterm=bold
    hi Character       ctermfg=143 ctermbg=000 cterm=none
    hi Number          ctermfg=033 ctermbg=000 cterm=bold
@@ -48,7 +50,7 @@ if &t_Co > 255
    hi Function        ctermfg=33 ctermbg=000 cterm=bold " sub laleh 
    hi Identifier      ctermfg=148 ctermbg=000 cterm=none " $laleh
    hi Ignore          ctermfg=244 ctermbg=232 cterm=none
-   hi IncSearch       ctermfg=193 ctermbg=016 cterm=none
+   hi IncSearch       ctermfg=193 ctermbg=196 cterm=bold
 
    hi Keyword         ctermfg=111 ctermbg=000 cterm=none
    hi Label           ctermfg=226 ctermbg=000 cterm=bold
@@ -70,7 +72,7 @@ if &t_Co > 255
    hi PreProc         ctermfg=218 ctermbg=000 cterm=none
    hi Question        ctermfg=081 ctermbg=000 cterm=none
    hi Repeat          ctermfg=161 ctermbg=000 cterm=none
-   hi Search                      ctermbg=000 cterm=bold cterm=italic
+   hi Search          ctermfg=220 ctermbg=236 cterm=bold
 
    " marks column
    hi SignColumn      ctermfg=118 ctermbg=235 cterm=none
@@ -98,9 +100,8 @@ if &t_Co > 255
    hi WarningMsg      ctermfg=21  ctermbg=238 cterm=bold
    hi WildMenu        ctermfg=81  ctermbg=016 cterm=none
 
-   hi Normal          ctermfg=225 ctermbg=000 cterm=none
    hi Comment         ctermfg=137 ctermbg=000 cterm=none
-   hi CursorLine                  ctermbg=233 cterm=none
+   hi CursorLine                  ctermbg=235 cterm=none
    hi CursorColumn    ctermfg=000 ctermbg=000 cterm=none
    hi LineNr          ctermfg=241 ctermbg=000 cterm=none
    hi NonText         ctermfg=000 ctermbg=000 cterm=none

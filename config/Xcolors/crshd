@@ -1,0 +1,37 @@
+! inspired by 1944mustang
+! http://kuler.adobe.com/#themeID/4817
+
+*foreground:              #909090
+*background:              #151515
+
+!black
+*color0:                  #353535
+*color8:                  #353535
+
+!red
+*color1:                  #a03636
+*color9:                  #ec9797
+
+!green
+*color2:                  #636f4b
+*color10:                 #d9eeae
+
+!yellow
+*color3:                  #7f5b26
+*color11:                 #ff9800
+
+!blue
+*color4:                  #5d6aa6
+*color12:                 #d1d7f2
+
+!magenta
+*color5:                  #6e4073
+*color13:                 #bda4bf
+
+!cyan
+*color6:                  #565f6f
+*color14:                 #597cbb
+
+!white
+*color7:                  #888888
+*color15:                 #cccccc

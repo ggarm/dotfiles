@@ -6,6 +6,9 @@ export EDITOR=vim
 export FM=pcmanfm
 export PDFVIEWER=zathura
 export IMGVIEWER=mirage
+if [[ -d /usr/lib/cw ]]; then
+	export PATH=/usr/lib/cw:$PATH
+fi
 if [[ -d /usr/share/perl5/site_perl/auto/share/dist/Cope ]]; then
 	export PATH=/usr/share/perl5/site_perl/auto/share/dist/Cope:$PATH
 fi

@@ -10,6 +10,10 @@ setopt prompt_subst
 setopt always_last_prompt
 setopt nohup
 setopt interactive_comments
+#setopt noclobber					# no accidental overwrite
+setopt correct						# did you mean [nyae]?
+setopt correctall					# ^^ for all args
+#setopt CSHJUNKIEQUOTES    # quote unmatched :) 
 unsetopt BG_NICE 
 unsetopt bgnice				# do NOT nice bg commands
 
@@ -18,7 +22,9 @@ compinit colors
 
 # smart urls
 autoload -U url-quote-magic
-zle -N self-insert url-quote-magic
+#zle -N self-insert url-quote-magic
+
+
 
 HISTFILE=$HOME/.histfile
 HISTSIZE=5000
