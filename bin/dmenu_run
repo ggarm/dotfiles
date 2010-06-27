@@ -1,0 +1,3 @@
+#!/bin/sh
+#exe=`dmenu_path | dmenu -b -p '>>' -sb '#00DDDD' -sf '#000000' -nb '#000000' -nf '#0099FF' ${1+"$@"}` && exec $exe
+exe=`dmenu_path | dmenu -p '>>' -sb '#00DDDD' -sf '#000000' -nb '#000000' -nf '#0099FF' ${1+"$@"}` && exec $exe
