@@ -10,24 +10,17 @@ source $HOME/.sh/exports
 # 
 #Zsh Auto extension
 
-alias -s html=$BROWSER
-alias -s org=$BROWSER
-alias -s php=$BROWSER
-alias -s com=$BROWSER
-alias -s net=$BROWSER
-alias -s png=feh
-alias -s jpg=feh
-alias -s gif=feg
-alias -s sxw=soffice
-alias -s doc=soffice
 alias -s gz=tar -xzvf
 alias -s bz2=tar -xjvf
 alias -s zip=7z X
-alias -s java=$EDITOR
-alias -s txt=$EDITOR
-alias -s c=cpp=h=$EDITOR
-alias -s PKGBUILD=$EDITOR
 alias -s nfo=pnfo
+
+#Idea borrowed from tvale @github 
+for ext in png jpg gif; do alias -s $ext=feh; done
+for ext in sxw doc ppt; do alias -s $ext=soffice; done
+for ext in html org php com net; do alias -s $ext=$BROWSER; done
+for ext in java txt c cpp h PKGBUILD; do alias -s $ext=$EDITOR; done
+for ext in avi mp3 wav; do alias -s $ext=mplayer; done
 
 #Normal aliases
 
@@ -66,7 +59,7 @@ zstyle ':vcs_info:*:prompt:*' formats "${white}[${WHITE}%b%u%c${white}]${NC}" ''
 zstyle ':vcs_info:*:prompt:*' nvcsformats '' 
 
 
-autoload -Uz compinit colors
+autoload -Uz compinit colors vcs_info
 compinit colors
 #zle -N zle-line-init
 #zle -N zle-keymap-select
