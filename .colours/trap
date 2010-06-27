@@ -1,0 +1,27 @@
+
+/* black */
+*color0: #3E3E3E
+*color8: #1C1C1C
+/* red */
+*color1: #FF4747
+*color9: #FF6767
+/* green */
+*color2: #4D4C4C /* green => grey */
+*color10: #B03B31 /* green => faluröd */
+/* yellow */
+*color3: #FF8F00
+*color11: #BDF13D
+/* blue */
+*color4: #1165E9
+*color12: #5496FF
+/* purple */
+*color5: #89005A
+*color13: #B50077
+/* cyan */
+*color6: #CB1C13 /* cyan => red */ /* 47E0FF */
+*color14: #6BE603 /* cyan => green */
+/* white */
+*color7: #FFFFFF
+*color15: #DEDEDE
+/* orange */
+*color16: #FFB000

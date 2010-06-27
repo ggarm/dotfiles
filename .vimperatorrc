@@ -1,0 +1,27 @@
+"2.2 (created: 2009/10/28 19:04:27)
+
+map <C-f> /
+map <C-b> <C-v><C-b> 
+
+colorscheme desert_revisited
+
+set runtimepath=$HOME/.vimperator
+source! $HOME/.vimperatorrc.local
+
+"set errorbells
+"set visualbell
+"hi Bell opacity: .5;
+
+set showtabline=1
+set showstatuslinks=2
+set ic
+"set popups=2
+set wildoptions=auto
+set complete=l
+set focuscontent
+
+"map lazyness
+noremap j 4j
+noremap k 4k
+
+" vim: set ft=vimperator:

@@ -1,0 +1,30 @@
+! -------------------------------------------------
+! file:     .colours/pvnema                           
+! author:  Ricardo Costa 
+! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=txt:
+! -------------------------------------------------
+
+!black
+color0: #333333
+color8: #666666
+!red
+color1: #d15517
+color9: #d11723
+!green
+color2: #36b217
+color10: #00d56a
+!yellow
+color3: #d1b217
+color11: #ffea55
+!blue
+color4: #55aaff
+color12: #1793d1
+!magenta
+color5: #b217d1
+color13: #d11793
+!cyan
+color6: #93d1b2
+color14: #17d1b2
+!white
+color7: #eeeeee
+color15: #ffffff

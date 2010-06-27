@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# ~/.xinitrc
+#
+# Executed by startx (run your window manager from here)
+
+# exec gnome-session
+# exec startkde
+# exec startxfce4
+# ...or the Window Manager of your choice
+
+xmodmap ~/.Xmodmap
+
+setxkbmap pt
+
+#for disabling the touchpad when I am writing
+#(syndaemon -i 2 -d) &
+
+#exec xterm
+#exec ck-launch-session openbox-session
+exec startfluxbox

@@ -1,0 +1,28 @@
+# single tab opens all
+set show-all-if-ambiguous on
+
+# dunno...
+set visible-stats on
+
+# sudo has auto-complete?
+#set complete -cf sudo
+
+#vi key-bindings
+#set editing-mode vi
+
+# blink, blink
+set blink-matching-paren on
+
+#smart completion
+"\e[A":history-search-backward
+"\e[B":history-search-forward
+
+# Control + Left/Right Arrow jumps to the beginning/end of line
+"Oa": end-of-line
+"Ob": beginning-of-line
+"Oc": forward-word
+"Od": backward-word
+
+# Fix Home and End Keys
+#"[7~": beginning-of-line
+#"[8~": end-of-line

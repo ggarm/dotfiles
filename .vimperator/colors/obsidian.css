@@ -1,0 +1,119 @@
+/*
+ * Obsidian Coast Style Sheet
+ * dbbolton
+ * danielbarrettbolton@gmail.com
+ */
+
+/*
+ * Font sizes *******************************************************
+ */
+
+* { 
+	font-size : 11px ! important; 
+}
+
+SMALL, SUB, SUP {
+	font-size : 8px ! important;
+}
+
+BIG {
+	font-size : 13px ! important;
+}
+
+H1, H1 A {
+	font-size : 19px ! important;
+}
+
+H2, H2 A {
+	font-size : 17px ! important;
+}
+
+H3, H3 A {
+	font-size : 16px ! important;
+}
+
+H4, H4 A {
+	font-size : 15px ! important;
+}
+
+H5, H5 A {
+	font-size : 13px ! important;
+}
+
+
+/*
+ * General **********************************************************
+ */
+
+* {
+	background : #333232 ! important;
+	color : #e0dedb ! important;
+	font-family : sans-serif;
+}
+
+body {
+	color:#e0e0e0;
+	background-color:#333232;
+	background-image : none ! important;
+	margin: 0px 100px 0px 100px
+	font-family: sans-serif;
+	font-size: 9pt;
+}
+
+table, td {
+	border-color : #4F4D4D! important;
+	border-style:solid;
+	border-width:1px;
+}
+
+
+
+/*
+ * Images ***********************************************************
+ */
+
+img {
+	padding:1px;
+	border:1px solid #4F4D4D;
+}
+
+
+/*
+ * Links ************************************************************
+ */
+
+a:link {
+    color:#4F8FD8 ! important ;
+}
+
+a:visited {
+	color:#8E79A5 ! important ;
+}
+
+a:hover {
+	color:#E85848 ! important ;
+}
+
+/* 
+ * Code *************************************************************
+ */
+
+blockquote, code, div.code, kbd, pre.bbcodeblock, pre, td.code, textarea {
+    font-family: monospace ! important ;
+    color:#79B753 ! important ;
+    background:#1f1f1f ! important ;
+}
+
+/*
+ * Other ************************************************************
+ */
+
+div.post {
+    border-color : #4f4d4d ! important;
+    border-style:solid;
+    border-width:1px;
+}
+
+.tborder {
+	border: 1px solid #4f4d4d ! important;
+}

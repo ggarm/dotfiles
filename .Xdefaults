@@ -1,0 +1,94 @@
+! ----------------------------------------------------------------------------
+! ! file:     ~/.Xdefaults
+! ! author:   Ricardo Costa (and +stolen stuff)
+! ! modified: 2010-06-27 03:02
+! ! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
+! ! ----------------------------------------------------------------------------
+!
+!
+! Xcursor --------------------------------------------------------------------
+
+Xcursor*theme: Vanilla-DMZ-AA
+Xcursor.size:  22
+
+## XTERM
+xterm*background:       black
+xterm*foreground:       green
+xterm*cursorColor:	orange
+xterm*eightBitInput:    true
+xterm*saveLines:        32767
+xterm*scrollTtyKeypress:       false
+xterm*scrollTtyOutput:  true
+#xterm*font:		*-fixed-medium-*-normal-*-14-*
+xterm*scrollBar:        false
+xterm*loginShell:       false
+xterm*jumpScroll:       true
+xterm*multiScroll:      false
+xterm*toolBar:          false
+xterm*geometry:         80x25
+
+## URXVT
+URxvt*termName: rxvt-256color
+URxvt.buffered: true
+URxvt.background: black
+URxvt.foreground: white
+URxvt.cursorColor: orange
+URxvt.underlineColor: yellow
+
+## clickable URLS
+URxvt.perl-ext: default,matcher
+URxvt.urlLauncher: /usr/bin/firefox
+URxvt.matcher.button: 1
+
+## borderless and no scrollbar
+URxvt*scrollBar_right: false
+URxvt*scrollBar: false
+URxvt*borderLess: false
+URxvt*cursorBlink: true
+
+## teh transparency stuff
+URxvt*inheritPixmap: true
+URxvt*tintColor: white
+URxvt*shading: 25
+
+## Icon for urxvt
+URxvt*iconFile: /usr/share/pixmaps/rxvt-unicode.png
+
+## geometry and font
+URxvt*geometry: 80x30
+#URxvt*geometry: 179x60
+URxvt*font: xft:terminus:pixelsize=14:antialias=false
+URxvt*boldFont: xft:terminus:bold:pixelsize=14:antialias=false
+URxvt*italicFont: xft:terminus:bold:pixelsize=14:antialias=false
+
+!fade text n% upon unfocus
+urxvt*fading:             20
+
+! x11-ssh-askpass ------------------------------------------------------------
+!
+x11-ssh-askpass*font:                   -*-dina-medium-r-*-*-12-*-*-*-*-*-*-*
+x11-ssh-askpass*background:             #000000
+x11-ssh-askpass*foreground:             #ffffff
+x11-ssh-askpass.Button*background:      #000000
+x11-ssh-askpass.Indicator*foreground:   #ff9900
+x11-ssh-askpass.Indicator*background:   #090909
+x11-ssh-askpass*topShadowColor:         #000000
+x11-ssh-askpass*bottomShadowColor:      #000000
+x11-ssh-askpass.*borderWidth:           1
+
+!Colors
+!
+URxvt*background: #000000
+URxvt*foreground: #A8A8A8
+
+!Latest
+!#include "/home/ricardo/.colours/arch"
+!#include "/home/ricardo/.colours/mason"
+#include "/home/ricardo/.colours/thayer"
+
+!#include "/home/ricardo/.colours/dark"
+!#include "/home/ricardo/.colours/pvenma"
+!#include "/home/ricardo/.colours/necromancer"
+!#include "/home/ricardo/.colours/milo"
+!#include "/home/ricardo/.colours/trap"
+!#include "/home/ricardo/.colours/tvale"
