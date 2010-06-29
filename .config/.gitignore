@@ -1,4 +1,13 @@
-libfm
-mpd
-pcmanfm
+autostart/*
+audacious/*
+libfm/*
+mpd/*
+pcmanfm/*
+cairo-dock/*
+emesene1.0/*
+epdfview/*
+gtk-2.0/*
+menus/*
+.openoffice.org/
 Trolltech.conf
+urxvtq

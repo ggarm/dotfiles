@@ -1,0 +1,158 @@
+#!/bin/bash
+#
+# /etc/rc.shutdown
+#
+
+. /etc/rc.conf
+. /etc/rc.d/functions
+
+# avoid staircase effect
+/bin/stty onlcr
+
+echo " "
+printhl "Initiating Shutdown..."
+echo " "
+
+# avoid NIS hanging syslog-ng on shutdown by unsetting the domainname
+#if [ -x /bin/domainname ]; then /bin/domainname ""; fi
+
+# Find daemons NOT in the DAEMONS array. Shut these down first
+if [ -d /var/run/daemons ]; then
+	for daemon in $(/bin/ls -1t /var/run/daemons); do
+		if ! in_array $daemon ${DAEMONS[@]}; then
+			stop_daemon $daemon
+		fi
+	done
+fi
+# Shutdown daemons in reverse order
+let i=${#DAEMONS[@]}-1
+while [ $i -ge 0 ]; do
+	if [ "${DAEMONS[$i]:0:1}" != '!' ]; then
+		ck_daemon ${DAEMONS[$i]#@} || stop_daemon ${DAEMONS[$i]#@}
+	fi
+	let i=i-1
+done
+
+# Terminate all processes
+stat_busy "Sending SIGTERM To Processes"
+/sbin/killall5 -15 &> /dev/null
+/bin/sleep 3
+stat_done
+
+stat_busy "Sending SIGKILL To Processes"
+/sbin/killall5 -9 &> /dev/null
+/bin/sleep 1
+stat_done
+
+stat_busy "Saving Random Seed"
+RANDOM_SEED=/var/lib/misc/random-seed
+[ -d $(dirname $RANDOM_SEED) ] || mkdir -p $(dirname $RANDOM_SEED)
+: > $RANDOM_SEED
+/bin/chmod 0600 $RANDOM_SEED
+POOL_FILE=/proc/sys/kernel/random/poolsize
+if [ -r $POOL_FILE ]; then
+	POOL_SIZE=$(/bin/cat $POOL_FILE)
+else
+	POOL_SIZE=512
+fi
+/bin/dd if=/dev/urandom of=$RANDOM_SEED count=1 bs=$POOL_SIZE &> /dev/null
+stat_done
+
+stat_busy "Saving System Clock"
+	/bin/rm -f /etc/localtime
+	/bin/cp "/usr/share/zoneinfo/$TIMEZONE" /etc/localtime
+	/sbin/hwclock --systohc --localtime
+stat_done
+
+# removing psmouse module to fix some reboot issues on newer laptops
+/sbin/modprobe -r psmouse >/dev/null 2>&1
+
+# Write to wtmp file before unmounting
+/sbin/halt -w
+
+stat_busy "Removing Leftover Files"
+/bin/rm -f /etc/nologin &>/dev/null
+/bin/rm -f /etc/shutdownpid &>/dev/null
+/bin/rm -f /var/lock/* &>/dev/null
+/bin/rm -rf /tmp/* /tmp/.* &>/dev/null
+/bin/rm -f /forcefsck &>/dev/null
+(cd /var/run && /usr/bin/find . ! -type d -exec /bin/rm -f -- {} \; )
+: >| /var/run/utmp
+/bin/chmod 0664 /var/run/utmp
+stat_done
+
+stat_busy "Unmounting Filesystems"
+/bin/umount -a -r -t noramfs,notmpfs,nosysfs,noproc,nodevtmpfs -O no_netdev
+stat_done
+
+stat_busy "Remounting Root Filesystem Read-only"
+/bin/mount -n -o remount,ro /
+stat_done
+
+# fsck hack # {{{
+
+FORCEFSCK=
+[ -f /forcefsck ] && FORCEFSCK="-- -f"
+NETFS="nonfs,nonfs4,nosmbfs,nocifs,nocodafs,noncpfs,nosysfs,noshfs,nofuse,nofuseblk,noglusterfs"
+
+fsck_reboot() {
+    echo "Automatic reboot in progress..."
+    /bin/umount -a
+    /bin/mount -n -o remount,ro /
+    /sbin/reboot -f
+    exit 0
+}
+
+stat_busy "Checking Filesystems"
+FSCK_OUT=/dev/stdout
+FSCK_ERR=/dev/stdout
+FSCK_FD=
+/sbin/fsck -A -T -C$FSCK_FD -a -t "$NETFS,noopts=_netdev" $FORCEFSCK >$FSCK_OUT 2>$FSCK_ERR
+fsckret=$?
+if [ ${fsckret} -gt 1 ]; then
+    stat_fail
+fi
+if [ $((${fsckret}&2)) -eq 2 ]; then
+    echo
+    echo "********************** REBOOT REQUIRED *********************"
+    echo "*                                                          *"
+    echo "* The system will be rebooted automatically in 15 seconds. *"
+    echo "*                                                          *"
+    echo "************************************************************"
+    echo
+    /bin/sleep 15
+    fsck_reboot
+fi
+if [ ${fsckret} -gt 1 -a ${fsckret} -ne 32 ]; then
+    echo
+    echo "*****************  FILESYSTEM CHECK FAILED  ****************"
+    echo "*                                                          *"
+    echo "*  Please repair manually and reboot. Note that the root   *"
+    echo "*  file system is currently mounted read-only. To remount  *"
+    echo "*  it read-write type: mount -n -o remount,rw /            *"
+    echo "*  When you exit the maintenance shell the system will     *"
+    echo "*  reboot automatically.                                   *"
+    echo "*                                                          *"
+    echo "************************************************************"
+    echo
+    /sbin/sulogin -p
+    fsck_reboot
+fi
+stat_done
+#}}}
+
+# Power off or reboot
+if [ "$RUNLEVEL" = "0" ]; then
+	printsep
+	printhl "${C_H2}POWER OFF"
+	/sbin/poweroff -d -f -h -i
+else
+	printsep
+	printhl "${C_H2}REBOOTING"
+	# if kexec is installed and a kernel is loaded, use it
+	[ -x /sbin/kexec ] && /sbin/kexec -e > /dev/null 2>&1
+	/sbin/reboot -d -f -i
+fi
+
+# End of file
+# vim: set ts=2 sw=2 noet:

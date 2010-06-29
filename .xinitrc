@@ -9,7 +9,7 @@
 # exec startxfce4
 # ...or the Window Manager of your choice
 
-setxkbmap pt
+#setxkbmap pt
 
 #for disabling the touchpad when I am writing
 #(syndaemon -i 2 -d) &

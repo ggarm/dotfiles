@@ -6,6 +6,9 @@ export EDITOR=vim
 export PATH=/usr/share/perl5/site_perl/5.10.1/auto/share/dist/Cope:$HOME/bin:$PATH
 #export LD_LIBRARY_PATH=$HOME/compiladores/root/usr/include/rts:$LD_LIBRARY_PATH
 
+#rxvt
+export RXVT_SOCKET=$HOME/.config/
+
 # speed up firefox
 export MOZ_DISABLE_PANGO=1
 
@@ -25,6 +28,11 @@ export LESSHISTFILE='/dev/null'
 export HISTFILE=$HOME/.histfile
 export HISTIGNORE=ignoredups:ls:ll:la:l:rm:cd:dl:mkdir
 export HISTSIZE=5000
+
+#XDG vars
+XDG_DATA_HOME=/home/ricardo/dotfiles/.local/share 
+XDG_CONFIG_HOME=/home/ricardo/dotfiles/.config 
+XDG_CACHE_HOME=/home/ricardo/dotfiles/.cache 
 
 #cvs
 #export CVSROOT=':ext:ist162578@comp.rnl.ist.utl.pt:/cvs'

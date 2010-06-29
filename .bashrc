@@ -1,9 +1,9 @@
 # Check for an interactive session
 [ -z "$PS1" ] && return
 
-. $HOME/.sh/aliases
-. $HOME/.sh/functions
-#. $HOME/.sh/exports
+. $HOME/.config/zsh/aliases
+. $HOME/.config/zsh/functions
+#. $HOME/.config/zsh/exports
 
 # cd to a dir without cd!
 shopt -s autocd
@@ -15,8 +15,6 @@ shopt -s dirspell
 shopt -s dotglob
 # matches filenames in a case-insensitive fashion when performing filename expansion.
 shopt -s nocaseglob
-# allows filename patterns which match no files to expand to a null string, rather than themselves.
-#shopt -s nullglob
 # will not attempt to search the PATH for possible completions when completion is attempted on an empty line. 
 shopt -s no_empty_cmd_completion
 # do not overwrite the hist file, append to it.

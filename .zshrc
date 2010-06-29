@@ -4,7 +4,8 @@
 #
 # EXPORTS =================================
 
-source $HOME/.sh/exports
+# done in .zprofile
+#source $HOME/.config/zsh/exports
 
 # ALIASES =================================
 # 
@@ -24,11 +25,11 @@ for ext in avi mp3 wav; do alias -s $ext=mplayer; done
 
 #Normal aliases
 
-source $HOME/.sh/aliases
+source $HOME/.config/zsh/aliases
 
 # FUNCTIONS  ==============================
  
-source $HOME/.sh/functions
+source $HOME/.config/zsh/functions
 
 # AUTOCOMPLETE ============================
 
@@ -114,7 +115,7 @@ bindkey '^i' expand-or-complete-prefix
 
 # = PROMPT ======================================
 
-source $HOME/.sh/prompt
+source $HOME/.config/zsh/prompt
 
 # Set urxvt title
 case $TERM in

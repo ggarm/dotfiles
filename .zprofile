@@ -1,4 +1,3 @@
-. $HOME/.sh/exports
-#. $HOME/.zshrc
+. $HOME/.config/zsh/exports
 
-if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then startx 2>/dev/null &; fi
+if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then xinit 2>/dev/null &; fi

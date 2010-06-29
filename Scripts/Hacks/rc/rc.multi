@@ -1,0 +1,35 @@
+#!/bin/bash
+#
+# /etc/rc.multi
+#
+
+# Load sysctl variables if sysctl.conf is present
+/sbin/sysctl -q -p &>/dev/null
+
+#(/sbin/bootchartd stop) &
+##Login and start X
+#(/bin/su ricardo -l -c "/bin/bash --login -c xinit fluxbox >/dev/null 2>&1") &
+#(/bin/su ricardo -l -c "/bin/dash -l -c 'xinit fluxbox' >/dev/null 2>&1") &
+
+##Set up network IP
+#(dhcpcd eth0 ) &
+#(/usr/sbin/wicd &>/dev/null) &
+
+##Setting the alsa volumes 
+(/usr/sbin/alsactl restore &>/dev/null 2>&1) &
+
+##starting the cron daemon 
+#(sleep 10 /etc/rc.d/crond start &>/dev/null 2>&1) &
+#(/etc/rc.d/crond start) &
+(sleep 10; /usr/sbin/crond -l info &>/dev/null 2>&1) &
+
+##starting the hal daemon
+#(/etc/rc.d/hal start &>/dev/null 2>&1) &
+
+##Save power with wireless
+#(/usr/sbin/iwpriv wlan0 set_power 5) &
+
+##stop boot chart logging 
+#(/sbin/bootchartd stop) &
+
+# vim: set ts=2 noet:

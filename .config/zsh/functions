@@ -65,22 +65,15 @@ hist () {
  `history | grep $number | tr -s ' ' | cut -d ' ' -f 3-`
 }
 
-# color diffs for CVS
-cvsdiff () {
-  if [ "$1" != "" ]; then
-    cvs diff $@ | colordiff;
-  else
-    cvs diff | colordiff;
-  fi
-}
-
 # clyde - no more manual sudo
 clyde() {
 	case $1 in
-		(-Ss | -Si | -Q* | -T | -G)
+		(-Ss | -Si | -Q* | -T | -G | --stats)
 			/usr/bin/clyde "$@" ;;
-		(-S* | -R* | -U | *)
+		(-S* | -R* | -U)
 			/usr/bin/sudo /usr/bin/clyde "$@" ;;
+		(*)
+			/usr/bin/clyde "$@" ;;
 	esac
 }
 
