@@ -1,0 +1,32 @@
+!
+! file ~/.Xdefaults color scheme
+! author "Daisuke Aramaki"
+! modified 14:59 31 october 2009
+! descr X config
+
+*background: #040404
+*foreground: #D0D0D0
+!black
+*color0 : #040404
+*color8 : #554444
+!red
+*color1 : #C14B4B
+*color9 : #BA7373
+!green
+*color2 : #6CA318
+*color10: #739456
+!yellow
+*color3 : #A4712E
+*color11: #7F672E
+!blue
+*color4 : #537595
+*color12: #7985A3
+!magenta
+*color5 : #A971A7
+*color13: #6F4F70
+!cyan
+*color6 : #B0C4DE
+*color14: #70999A
+!white
+*color7 : #D0D0D0
+*color15: #CACACA

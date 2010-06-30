@@ -1,0 +1,33 @@
+!
+! file ~/.Xdefaults color scheme
+! author Tiago Vale
+! modified 16:22 08 december 2009
+! descr X config
+
+! colors ######################################################################
+*background: #000000
+*foreground: #FFFFFF
+!black
+*color0 : #1A1A1A
+*color8 : #1A1A1A
+!red
+*color1 : #E34E25
+*color9 : #E34E25
+!green
+*color2 : #987A3D
+*color10: #987A3D
+!yellow
+*color3 : #F48220
+*color11: #F48220
+!blue
+*color4 : #3D678D
+*color12: #3D678D
+!magenta
+*color5 : #986F78
+*color13: #986F78
+!cyan
+*color6 : #70DAC0
+*color14: #70DAC0
+!white
+*color7 : #C0C0C0
+*color15: #FFFFFF

@@ -1,0 +1,32 @@
+background no
+use_xft yes
+xftfont Lovitz:Bold:size=22
+xftalpha 0.9
+update_interval 60.0
+total_run_times 0
+own_window yes
+own_window_type desktop
+own_window_transparent yes
+own_window_hints undecorated,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size  250 75
+maximum_width 250
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+#default_color 333333
+default_color AAAA77
+#default_shade_color 101319
+default_outline_color green
+alignment bottom_middle
+gap_x 30
+gap_y 145
+no_buffers yes
+uppercase no
+#cpu_avg_samples 2
+override_utf8_locale no
+
+TEXT
+${alignc}${offset -60}${font lovitz:bold:size=72}${time %l:%M}${font}
+${alignc}${time %b %d %Y}

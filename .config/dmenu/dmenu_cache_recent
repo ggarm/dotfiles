@@ -1,0 +1,100 @@
+urxvtd
+urxvtc -e tmux -2 attach
+urxvtd
+urxvt -e tmux -2 attach
+urxvt
+pkill urxvtd
+urxvtc -e tmux -2 attach
+mpd
+audacious
+mpc random
+conky
+dia
+dia
+dia
+conky
+emesene
+xkill
+emesene
+urxvtc -e tmux -2 attach
+urxvtd
+urxvtc -e tmux -2 attach
+conky -c /home/ricardo/clock
+mpd --kill && mpd
+conky
+mpd
+pcmanfm
+pcmanfm
+conky -c /home/ricardo/clock
+conky
+pkill conky
+conky
+zathura
+pcmanfm
+pcmanfm
+zathura
+epdfview
+urxvtc -e dash
+uzbl-tabbed
+pkill trayer
+trayer
+urxvtc -e tmux -2 attach
+pcmanfm
+uzbl-browser
+uzbl-browser
+mpc random
+mpc random
+urxvtc -e tmux -2 attach
+urxvtc -e htop
+urxvtc -e tmux -2 attach
+urxvtc e
+urxvt -e tmux
+mpc random
+mpc random
+
+dmenu_launch.sh
+pcmanfm
+xcalc
+xman
+emesene
+conky -c /home/ricardo/clock
+conky -c ~ricardo/clock
+conky
+pkill conky
+conky
+pkill conky
+pkill conky
+pkill conky
+conky
+pkill conky
+xkill
+conky
+pkill conky
+mpc random
+mpc random
+emesene
+pkill emesene
+emesene
+mpc random
+mpc random
+mpc random
+mpc random
+mpc random
+mpc random
+mpc random
+epdfview
+conky
+conky -c ~/clock
+cairo-dock -o
+pkill cairo-dock
+epdfview
+pcmanfm
+pcmanfm
+pcmanfm
+pcmanfm
+pcmanfm
+pcmanfm
+conky
+pkill conky
+pkill conky && conky
+conky
