@@ -1,7 +1,7 @@
 ! ----------------------------------------------------------------------------
 ! ! file:     ~/.Xdefaults
 ! ! author:   Ricardo Costa (and +stolen stuff)
-! ! modified: 2010-06-30 15:30
+! ! modified: 2010-06-30 17:04
 ! ! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
 ! ! ----------------------------------------------------------------------------
 !
@@ -95,6 +95,7 @@ URxvt*foreground: #A8A8A8
 !#include "/home/ricardo/.colours/necromancer"
 !#include "/home/ricardo/.colours/milo"
 !#include "/home/ricardo/.colours/trap"
+!#include "/home/ricardo/.colours/trapd00r"
 !#include "/home/ricardo/.colours/daisuke"
 !#include "/home/ricardo/.colours/fall"
 !#include "/home/ricardo/.colours/molokai"
