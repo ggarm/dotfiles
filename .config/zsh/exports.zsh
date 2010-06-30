@@ -43,7 +43,7 @@ XDG_CACHE_HOME=/home/ricardo/dotfiles/.cache
 #export YYDEBUG=1
 
 #grep
-export GREP_COLOR="1;33"
+#export GREP_COLOR="1;33"
 
 #colors in the file by same name
 
