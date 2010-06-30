@@ -1,9 +1,9 @@
 # Check for an interactive session
 [ -z "$PS1" ] && return
 
-. $HOME/.config/zsh/aliases
-. $HOME/.config/zsh/functions
-#. $HOME/.config/zsh/exports
+. $HOME/.config/zsh/aliases.zsh
+. $HOME/.config/zsh/functions.zsh
+#. $HOME/.config/zsh/exports.zsh
 
 # cd to a dir without cd!
 shopt -s autocd

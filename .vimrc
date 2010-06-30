@@ -7,7 +7,7 @@ elseif ( &term =~ 'linux' || $DISPLAY =~ ' ')
 	colorscheme desert256
 else                            " we are on tty
 	set t_Co=256				" Using 256-color yay
-	colorscheme neverland-laptop " This 256-theme rocks!
+	colorscheme neverland-dont_use_this_one " This 256-theme rocks!
 	"set term=rxvt-256color
     " Stupid Bindings for tmux/Screen "{{{
     
@@ -105,20 +105,19 @@ set viminfo='20,\"50    " read/write a .viminfo file, don't store more
 						" than 50 lines of registers
 set history=50          " keep 50 lines of command line history
 set ruler               " show the cursor position all the time
+set cursorline          " hilight line where cursor is
 set number 				" show line numbers
+set numberwidth=1 " Keep number bar small if it's shown
 
 set hlsearch 		" highlight search terms
 set incsearch 		" go jump around hits
 set ignorecase		" search ignoring case
 set wildignore=*.o,*.obj,*.bak,*.exe
 set hidden			" hide buffers
+set splitbelow          " splitted window under current one
+set cot+=menuone        " show preview of function prototype
+set completeopt-=menu " Get rid of the ugly menu
 " }}}
-
-" Ripped of from a .vimrc in github
-if v:version >= 700
-    set numberwidth=1 " Keep number bar small if it's shown
-    set completeopt-=menu " Get rid of the ugly menu
-endif
 
 " Low priority filename suffixes for filename completion {{{
 set suffixes-=.h        " Don't give .h low priority
@@ -210,6 +209,7 @@ if has('autocmd')
 	" Go back where I left off
 	autocmd BufReadPost * call RestoreCursorPos()
 	autocmd BufWinEnter * call OpenFoldOnRestore()
+
 endif
 
     " Reread configuration of Vim if .vimrc is saved {{{

@@ -5,7 +5,9 @@
 # EXPORTS =================================
 
 # done in .zprofile
-#source $HOME/.config/zsh/exports
+#source $HOME/.config/zsh/exports.zsh
+
+source $HOME/.config/zsh/colors.zsh
 
 # ALIASES =================================
 # 
@@ -25,11 +27,11 @@ for ext in avi mp3 wav; do alias -s $ext=mplayer; done
 
 #Normal aliases
 
-source $HOME/.config/zsh/aliases
+source $HOME/.config/zsh/aliases.zsh
 
 # FUNCTIONS  ==============================
  
-source $HOME/.config/zsh/functions
+source $HOME/.config/zsh/functions.zsh
 
 # AUTOCOMPLETE ============================
 
@@ -50,6 +52,10 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' force-list always
 zstyle ':completion:*:*:killall:*' menu yes select
 zstyle ':completion:*:killall:*' force-list always
+zstyle ':completion:*:scp:*' tag-order
+zstyle ':completion:*:scp:*' group-order
+zstyle ':completion:*:ssh:*' tag-order
+zstyle ':completion:*:ssh:*' group-order
 
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*:prompt:*' check-for-changes true
@@ -115,7 +121,32 @@ bindkey '^i' expand-or-complete-prefix
 
 # = PROMPT ======================================
 
-source $HOME/.config/zsh/prompt
+source $HOME/.config/zsh/prompt.zsh
+
+
+#very nice colors
+if [ "$TERM" = "linux" ]; then #
+	echo -en "\e]P01c1c1c" #black
+	echo -en "\e]P81c1c1c" #darkgrey
+	echo -en "\e]P1ff4747" #darkred
+	echo -en "\e]P9ff6767" #red
+	echo -en "\e]P24d4c4c" #darkgreen
+	echo -en "\e]PAb03b31" #green
+	echo -en "\e]P3ff8f00" #brown
+	echo -en "\e]PBbdf13d" #yellow
+	echo -en "\e]P41165e9" #darkblue
+	echo -en "\e]PC5496ff" #blue
+	echo -en "\e]P589005a" #darkmagenta
+	echo -en "\e]PDb50077" #magenta
+	echo -en "\e]P6cb1c13" #darkcyan
+	echo -en "\e]PE6be603" #cyan
+	echo -en "\e]P7ffffff" #lightgrey
+	echo -en "\e]PFdedede" #white
+	#clear #for background artifacting
+	LS_COLORS="*.pl=01;35:ow=01;34:no=00:fi=00:di=01;33:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=01;32:*.cmd=01;32:*.exe=01;32:*.com=01;32:*.btm=01;32:*.bat=01;32:*.sh=01;32:*.csh=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tz=01;31:*.rpm=01;31:*.cpio=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.xbm=01;35:*.xpm=01;35:*.png=01;35:*.tif=01;35:"
+	export LS_COLORS
+fi
+
 
 # Set urxvt title
 case $TERM in

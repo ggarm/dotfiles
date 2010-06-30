@@ -1,17 +1,18 @@
 ! ----------------------------------------------------------------------------
 ! ! file:     ~/.Xdefaults
 ! ! author:   Ricardo Costa (and +stolen stuff)
-! ! modified: 2010-06-30 01:05
+! ! modified: 2010-06-30 15:30
 ! ! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
 ! ! ----------------------------------------------------------------------------
 !
 !
-! Xcursor --------------------------------------------------------------------
-
+! Xcursor ---------------------------------------------------------------------- {{{
+!
 Xcursor*theme: Vanilla-DMZ-AA
 Xcursor.size:  22
+! }}}
 
-## XTERM
+! Xterm ---------------------------------------------------------------------- {{{
 xterm*background:       black
 xterm*foreground:       green
 xterm*cursorColor:	orange
@@ -26,8 +27,9 @@ xterm*jumpScroll:       true
 xterm*multiScroll:      false
 xterm*toolBar:          false
 xterm*geometry:         80x25
+! }}}
 
-## URXVT
+! urxvt ---------------------------------------------------------------------- {{{
 URxvt*termName: rxvt-256color
 URxvt.buffered: true
 URxvt.background: black
@@ -35,36 +37,36 @@ URxvt.foreground: white
 URxvt.cursorColor: orange
 URxvt.underlineColor: yellow
 
-## clickable URLS
+! clickable URLS
 URxvt.perl-ext: default,matcher
 URxvt.urlLauncher: /usr/bin/firefox
 URxvt.matcher.button: 1
 
-## borderless and no scrollbar
+! borderless and no scrollbar
 URxvt*scrollBar_right: false
 URxvt*scrollBar: false
 URxvt*borderLess: false
 URxvt*cursorBlink: true
 
-## teh transparency stuff
+! Transparency stuff
 URxvt*inheritPixmap: true
 URxvt*tintColor: white
 URxvt*shading: 25
 
-## Icon for urxvt
+! Icon for urxvt
 URxvt*iconFile: /usr/share/pixmaps/rxvt-unicode.png
 
-## geometry and font
+! geometry and font
 URxvt*geometry: 80x30
-#URxvt*geometry: 179x60
 URxvt*font: xft:terminus:pixelsize=14:antialias=false
 URxvt*boldFont: xft:terminus:bold:pixelsize=14:antialias=false
 URxvt*italicFont: xft:terminus:bold:pixelsize=14:antialias=false
 
-!fade text n% upon unfocus
+! fade text n% upon unfocus
 urxvt*fading:             20
+! }}}
 
-! x11-ssh-askpass ------------------------------------------------------------
+! x11-ssh-askpass ------------------------------------------------------------ {{{
 !
 x11-ssh-askpass*font:                   -*-dina-medium-r-*-*-12-*-*-*-*-*-*-*
 x11-ssh-askpass*background:             #000000
@@ -75,20 +77,25 @@ x11-ssh-askpass.Indicator*background:   #090909
 x11-ssh-askpass*topShadowColor:         #000000
 x11-ssh-askpass*bottomShadowColor:      #000000
 x11-ssh-askpass.*borderWidth:           1
+! }}}
 
-!Colors
+!Colors ------------------------------------------------------------------- {{{
 !
 URxvt*background: #000000
 URxvt*foreground: #A8A8A8
 
 !Latest
 !#include "/home/ricardo/.colours/arch"
-#include "/home/ricardo/.colours/mason"
+!#include "/home/ricardo/.colours/mason"
 !#include "/home/ricardo/.colours/thayer"
+#include "/home/ricardo/.colours/tvale"
 
 !#include "/home/ricardo/.colours/dark"
 !#include "/home/ricardo/.colours/pvenma"
 !#include "/home/ricardo/.colours/necromancer"
 !#include "/home/ricardo/.colours/milo"
 !#include "/home/ricardo/.colours/trap"
-!#include "/home/ricardo/.colours/tvale"
+!#include "/home/ricardo/.colours/daisuke"
+!#include "/home/ricardo/.colours/fall"
+!#include "/home/ricardo/.colours/molokai"
+! }}}
