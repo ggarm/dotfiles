@@ -53,8 +53,9 @@ alignment tl
 background yes
 border_inner_margin 0
 border_width 0
-default_color FFFFFF
+#default_color FFFFFF
 #default_color 000000
+default_color AAAA77
 default_outline_color black
 default_shade_color black
 double_buffer yes
@@ -79,7 +80,7 @@ uppercase no
 use_spacer right
 #use_spacer none
 use_xft yes
-xftalpha 1.0 #0.2
+#xftalpha 1.0 #0.2
 xftfont Sans Mono:size=7
 #xftalpha 0.8
 #xftfont Purisa:size=10

@@ -4,10 +4,13 @@ if has("gui_running")
 	set lines=41 columns=142 	" Set window size close to maximized
 	colorscheme wombat			" Need a better one...
 elseif ( &term =~ 'linux' || $DISPLAY =~ ' ')
-	colorscheme desert256
+	"colorscheme desert256
+	colorscheme caravaggio
+	set bg=dark
 else                            " we are on tty
 	set t_Co=256				" Using 256-color yay
-	colorscheme neverland-dont_use_this_one " This 256-theme rocks!
+	"colorscheme neverland-dont_use_this_one " This 256-theme rocks!
+	colorscheme zenburn
 	"set term=rxvt-256color
     " Stupid Bindings for tmux/Screen "{{{
     
@@ -105,7 +108,7 @@ set viminfo='20,\"50    " read/write a .viminfo file, don't store more
 						" than 50 lines of registers
 set history=50          " keep 50 lines of command line history
 set ruler               " show the cursor position all the time
-set cursorline          " hilight line where cursor is
+"set cursorline          " hilight line where cursor is
 set number 				" show line numbers
 set numberwidth=1 " Keep number bar small if it's shown
 
@@ -115,7 +118,7 @@ set ignorecase		" search ignoring case
 set wildignore=*.o,*.obj,*.bak,*.exe
 set hidden			" hide buffers
 set splitbelow          " splitted window under current one
-set cot+=menuone        " show preview of function prototype
+"set cot+=menuone        " show preview of function prototype
 set completeopt-=menu " Get rid of the ugly menu
 " }}}
 
@@ -210,15 +213,26 @@ if has('autocmd')
 	autocmd BufReadPost * call RestoreCursorPos()
 	autocmd BufWinEnter * call OpenFoldOnRestore()
 
-endif
+	" Automatic ctags handling
+	function! UPDATE_TAGS()
+		let _f_ = expand("%:p")
+		let _cmd_ = '"ctags -a -R $HOME/Targizi/pacman-3.2.2/ --c++-kinds=+p --fields=+iaS --extra=+q " ' . '"' . _f_ . '"'
+		let _resp = system(_cmd_)
+		unlet _cmd_
+		unlet _f_
+		unlet _resp
+	endfunction
+	au BufWritePost *.cpp,*.h,*.c call UPDATE_TAGS()
+	" au BufWritePre * %s/\s\+$//e | norm! ``
 
-    " Reread configuration of Vim if .vimrc is saved {{{
+    " Reread configuration of Vim if .vimrc is saved
     augroup VimConfig
         au!
         autocmd BufWritePost ~/.vimrc       so ~/.vimrc
         autocmd BufWritePost vimrc          so ~/.vimrc
     augroup END
-    " }}}
+
+endif
 "}}}
 
 " Tabs {{{

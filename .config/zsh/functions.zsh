@@ -28,7 +28,9 @@ extract () {
 
 # auto-ls on cd
 cd () {
- builtin cd $@ && ls
+ builtin cd $@ && ls;
+ grep -s . README;
+ true;
 }
 
 # Creates an archive from given directory
@@ -46,9 +48,10 @@ mvcd () {
 
 # Define stuff
 google () {
- url=$(echo http://google.com/search?q=$(echo "$@" | sed s/\ /+/g))
+ #url=$(echo http://google.com/search?q=$(echo "$@" | sed s/\ /+/g))
+ url="http://google.com/search?q=$(echo "$@" | sed s/\ /+/g)"
  if [[ "$DISPLAY" = "" ]]; then
- 	$BROWSER "$url"
+ 	w3m $url
  else
 	firefox "$url"
  fi
