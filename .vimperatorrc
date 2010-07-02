@@ -3,7 +3,15 @@
 map <C-f> /
 map <C-b> <C-v><C-b> 
 
-colorscheme desert_revisited
+"colorscheme desert_revisited
+"colorscheme griff
+"colorscheme bigchu-mini
+colorscheme bigchu
+
+au LocationChange .* js modes.passAllKeys = /google\.com\/(reader|calendar|mail|a)/.test(buffer.URL);
+
+"loadplugins
+source ~/.vimperator/styles/styles.js
 
 set runtimepath=$HOME/.vimperator
 source! $HOME/.vimperatorrc.local
@@ -23,5 +31,7 @@ set focuscontent
 "map lazyness
 noremap j 4j
 noremap k 4k
+
+set editor='urxvt -e vim'
 
 " vim: set ft=vimperator:
