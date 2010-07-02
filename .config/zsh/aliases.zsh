@@ -1,11 +1,20 @@
 #!/bin/sh
 ## Aliases
-# Check for pacman-color
-if [ -f /usr/bin/pacman-color ]
-then alias pacman='pacman-color $@'
-fi
 
-# clyde - pacman wrapper
+if [[ $SHELL == *zsh ]]; then
+#Zsh Auto extension {{{
+alias -s gz=tar -xzvf
+alias -s bz2=tar -xjvf
+alias -s nfo=pnfo
+alias -s {rar,zip,ZIP,7z}=7z X
+alias -s {png,jpg,gif}=feh
+alias -s {sxw,doc,ppt}=soffice
+alias -s {html,org,php,com,net}=$BROWSER
+alias -s {java,txt,c,cpp,h,PKGBUILD}=$EDITOR
+alias -s {avi,mp3,wav}=mplayer
+alias -s pdf=$PDFVIEWER
+# }}}
+fi
 
 #sudo
 alias !='sudo'

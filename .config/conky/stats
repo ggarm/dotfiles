@@ -93,14 +93,14 @@ ${goto 15}|${goto 40}|
 ${goto 15}|${goto 38}+-- CPU${goto 125}${cpu cpu0}% - ${freq_g}GHz
 ${goto 15}|${goto 38}+-- MEM${goto 125}${memmax} Total
 ${goto 15}|${goto 60}+-- In Use${goto 125}${mem} (${memperc}%) 
-${goto 15}|${goto 38}+-- Swap${goto 125}${swapmax} Total
-${goto 15}|${goto 60}+-- Used${goto 125}${swap} - ${swapperc}%
+#${goto 15}|${goto 38}+-- Swap${goto 125}${swapmax} Total
+#${goto 15}|${goto 60}+-- Used${goto 125}${swap} - ${swapperc}%
 ${goto 15}|${goto 38}+-- LoadAvg${goto 125}${loadavg}
 ${goto 15}|${goto 38}+-- Diskio ${goto 125}${diskio}
 ${goto 15}|${goto 60}+-- Read${goto 125}${diskio_read}
-${goto 15}|${goto 60}+-- Write${goto 125}${diskio_write}
+${goto 15}|${goto 60}+-- Write${goto 125}${diskio_write} ${if_match "${battery BAT1}" != "not present"}
 ${goto 15}|${goto 38}+-- Battery 1 ${goto 125}${battery BAT1}
-${goto 15}|${goto 60}+-- Life${goto 125}${battery_time BAT1}
+${goto 15}|${goto 60}+-- Life${goto 125}${battery_time BAT1} ${endif}
 ${goto 15}|
 ${goto 12}+----Storage
 ${goto 15}|${goto 40}|

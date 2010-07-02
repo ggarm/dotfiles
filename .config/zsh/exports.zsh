@@ -3,12 +3,12 @@
 ## Variables et al
 export BROWSER=firefox
 export EDITOR=vim
+export PDFVIEWER=zathura
 export PATH=/usr/share/perl5/site_perl/5.10.1/auto/share/dist/Cope:$HOME/bin:$PATH
 #export LD_LIBRARY_PATH=$HOME/compiladores/root/usr/include/rts:$LD_LIBRARY_PATH
 
 #rxvt
 export RXVT_SOCKET=$HOME/.config/rxvt-unicode-ricardoArch
-
 
 # speed up firefox
 export MOZ_DISABLE_PANGO=1
@@ -29,6 +29,7 @@ export LESSHISTFILE='/dev/null'
 export HISTFILE=$HOME/.histfile
 export HISTIGNORE=ignoredups:ls:ll:la:l:rm:cd:dl:mkdir
 export HISTSIZE=5000
+export SAVEHIST=5000
 
 #XDG vars
 XDG_DATA_HOME=/home/ricardo/dotfiles/.local/share 
@@ -42,8 +43,4 @@ XDG_CACHE_HOME=/home/ricardo/dotfiles/.cache
 #Flex Yacc debug
 #export YYDEBUG=1
 
-#grep
-#export GREP_COLOR="1;33"
-
 #colors in the file by same name
-

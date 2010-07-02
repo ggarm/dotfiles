@@ -1,8 +1,10 @@
 " Colorscheme and Background "{{{
 set background=light 	" light things up
 if has("gui_running")
-	set lines=41 columns=142 	" Set window size close to maximized
+	set lines=41 columns=71 	" Set window size close to maximized
 	colorscheme wombat			" Need a better one...
+	set guioptions=avRT
+	set showtabline=2
 elseif ( &term =~ 'linux' || $DISPLAY =~ ' ')
 	"colorscheme desert256
 	colorscheme caravaggio
@@ -108,7 +110,6 @@ set viminfo='20,\"50    " read/write a .viminfo file, don't store more
 						" than 50 lines of registers
 set history=50          " keep 50 lines of command line history
 set ruler               " show the cursor position all the time
-"set cursorline          " hilight line where cursor is
 set number 				" show line numbers
 set numberwidth=1 " Keep number bar small if it's shown
 
@@ -118,7 +119,6 @@ set ignorecase		" search ignoring case
 set wildignore=*.o,*.obj,*.bak,*.exe
 set hidden			" hide buffers
 set splitbelow          " splitted window under current one
-"set cot+=menuone        " show preview of function prototype
 set completeopt-=menu " Get rid of the ugly menu
 " }}}
 
@@ -159,8 +159,10 @@ vnoremap . :normal .<CR>
 " Make tab perform keyword/tag completion if we're not following whitespace
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
-" no more shift for :commands
-:map , :
+" Typos:
+" Use ',' instead of ':'
+" Use :W as :w
+noremap , :
 
 " Programming Keys:
 "   F9  = Make
@@ -328,18 +330,6 @@ endfunction
  inoremap <Tab> <C-R>=InsertTabWrapper()<CR>
  inoremap <S-Tab> <C-P>
 " InsertTabWrapper() }}}
-
-" Tab-Completion {{{
-function! CleverTab()
-  if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-	return "\<Tab>"
-  else
-	return "\<C-N>"
-  endif
-endfun
-"inoremap <Tab> <C-R>=CleverTab()<CR>
-"inoremap <S-Tab> <C-P>
-"}}}
 
 " Functions }}}
 

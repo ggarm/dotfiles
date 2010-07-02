@@ -1,14 +1,15 @@
 ! ----------------------------------------------------------------------------
 ! ! file:     ~/.Xdefaults
 ! ! author:   Ricardo Costa (and +stolen stuff)
-! ! modified: 2010-06-30 17:04
+! ! modified: 2010-07-02 12:31
 ! ! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
 ! ! ----------------------------------------------------------------------------
 !
 !
 ! Xcursor ---------------------------------------------------------------------- {{{
 !
-Xcursor*theme: Vanilla-DMZ-AA
+!Xcursor*theme: Vanilla-DMZ-AA
+Xcursor.theme: neutral
 Xcursor.size:  22
 ! }}}
 
@@ -78,6 +79,31 @@ x11-ssh-askpass*topShadowColor:         #000000
 x11-ssh-askpass*bottomShadowColor:      #000000
 x11-ssh-askpass.*borderWidth:           1
 ! }}}
+
+!------------------------------------------------------------------------------- {{{
+!!
+!! X L O C K
+!!
+!!
+!XLock.mode: fzort
+!XLock.mode: atunnels
+XLock.username: User:
+XLock.password: Pass:
+XLock.timeout: 5
+XLock.foreground: White
+XLock.background: Gray20
+XLock.description: false
+XLock.echokeys: true
+XLock.echokey: *
+XLock.info:
+!XLock.info: Enter password to unlock \nSelect icon to lock
+XLock.validate: Validating login...
+XLock.invalid: Login failed, please go away
+XLock.font: -xos4-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+XLock.planfont: -xos4-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+XLock.messagefont: -xos4-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+XLock.ncolors: 256
+!}}}
 
 !Colors ------------------------------------------------------------------- {{{
 !
