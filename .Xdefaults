@@ -1,7 +1,7 @@
 ! ----------------------------------------------------------------------------
 ! ! file:     ~/.Xdefaults
 ! ! author:   Ricardo Costa (and +stolen stuff)
-! ! modified: 2010-07-02 12:31
+! ! modified: 2010-07-03 15:50
 ! ! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
 ! ! ----------------------------------------------------------------------------
 !
@@ -32,22 +32,22 @@ xterm*geometry:         80x25
 
 ! urxvt ---------------------------------------------------------------------- {{{
 URxvt*termName: rxvt-256color
-URxvt.buffered: true
-URxvt.background: black
-URxvt.foreground: white
-URxvt.cursorColor: orange
-URxvt.underlineColor: yellow
+URxvt*buffered: true
+URxvt*background: black
+URxvt*foreground: white
+URxvt*cursorColor: orange
+URxvt*cursorBlink: true
+URxvt*underlineColor: yellow
 
 ! clickable URLS
-URxvt.perl-ext: default,matcher
-URxvt.urlLauncher: /usr/bin/firefox
-URxvt.matcher.button: 1
+URxvt*perl-ext: default,matcher
+URxvt*urlLauncher: /usr/bin/firefox
+URxvt*matcher.button: 1
 
 ! borderless and no scrollbar
 URxvt*scrollBar_right: false
 URxvt*scrollBar: false
 URxvt*borderLess: false
-URxvt*cursorBlink: true
 
 ! Transparency stuff
 URxvt*inheritPixmap: true
@@ -55,7 +55,8 @@ URxvt*tintColor: white
 URxvt*shading: 25
 
 ! Icon for urxvt
-URxvt*iconFile: /usr/share/pixmaps/rxvt-unicode.png
+!URxvt*iconFile: /usr/share/pixmaps/rxvt-unicode.png
+URxvt*iconFile: /usr/share/pixmaps/terminal.png
 
 ! geometry and font
 URxvt*geometry: 80x30

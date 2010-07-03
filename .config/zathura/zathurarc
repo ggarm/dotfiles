@@ -18,8 +18,8 @@ map - zoom out
 
 map <Left> navigate previous
 map <Right> navigate next
-map <Up> navigate previous
-map <Down> navigate next
+map <Up> k
+map <Down> j
 
 map <C-q> quit
 

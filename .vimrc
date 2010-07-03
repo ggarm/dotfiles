@@ -159,10 +159,18 @@ vnoremap . :normal .<CR>
 " Make tab perform keyword/tag completion if we're not following whitespace
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
+" Ctrl-s saves
+inoremap <C-s> <Esc>:w<CR>a
+nnoremap <C-s> :w<CR>
+
+" Edit as superuser
+cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
+
 " Typos:
 " Use ',' instead of ':'
 " Use :W as :w
 noremap , :
+cmap W w
 
 " Programming Keys:
 "   F9  = Make
@@ -187,12 +195,15 @@ noremap <F2> <Esc>:bn<CR>
 noremap <F3> <Esc>:bp<CR>
 noremap <F4> <Esc>:bd<CR>
 
-" map <F12> to toggle the NERD_Tree
+" NERD_Tree:
 :map <F12> <Esc>:NERDTreeToggle<CR>
 
-" Ctrl-s saves
-:inoremap <C-s> <Esc>:w<CR>a
-:nnoremap <C-s> :w<CR>
+" BufferList:
+nnoremap \ :call BufferList()<CR>
+let g:BufferListWidth = 25
+let g:BufferListMaxWidth = 50
+hi BufferSelected term=reverse ctermfg=white ctermbg=red cterm=bold
+hi BufferNormal term=NONE ctermfg=black ctermbg=darkcyan cterm=NONE
 
 " Key mappings }}}
 

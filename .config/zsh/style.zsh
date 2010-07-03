@@ -27,7 +27,7 @@ zstyle ':completion:*:man:*' menu yes select
 zstyle ':completion:*:history-words' menu yes # activate menu
 zstyle ':completion:*:*:cd:*:directory-stack' menu yes select # complete 'cd -<tab>' with menu
 
-zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' enable git cvs svn
 zstyle ':vcs_info:*:prompt:*' check-for-changes true
 zstyle ':vcs_info:*:prompt:*' unstagedstr '${RED}*${NC}'
 zstyle ':vcs_info:*:prompt:*' stagedstr '${YELLOW}+${NC}'

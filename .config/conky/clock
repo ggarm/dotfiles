@@ -28,5 +28,5 @@ uppercase no
 override_utf8_locale no
 
 TEXT
-${alignc}${offset -60}${font lovitz:bold:size=72}${time %l:%M}${font}
+${alignc}${offset -60}${font lovitz:bold:size=72}${time %k:%M}${font}
 ${alignc}${time %b %d %Y}

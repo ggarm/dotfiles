@@ -78,5 +78,6 @@ clyde() {
 		(*)
 			/usr/bin/clyde "$@" ;;
 	esac
+	rehash
 }
 
