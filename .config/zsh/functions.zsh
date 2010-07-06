@@ -2,7 +2,7 @@
 ## Functions
 
 # Decompress any archive TODO use only 7z
-extract () {
+ex () {
  if [ -f "$1" ] ; then
    case "$1" in
 	*.tar.bz2)	tar xvjf $1	;;
@@ -26,10 +26,25 @@ extract () {
   fi
 }
 
+# Compress to an archive
+function roll() {
+	local FILE
+	FILE=$1
+	case $FILE in
+		*.tar.bz2)  shift && tar cjf $FILE $* ;;
+		*.tbz2)     shift && tar cjf $FILE $* ;;
+		*.tar.gz)   shift && tar czf $FILE $* ;;
+		*.tgz)      shift && tar czf $FILE $* ;;
+		*.zip)      shift && zip $FILE $*     ;;
+		*.rar)      shift && rar $FILE $*     ;;
+		*)			echo "Don't know that filetype: $1" ;;
+	esac
+}
+
 # auto-ls on cd
 cd () {
  builtin cd $@ && ls;
- grep -s . README;
+ grep -s -i . README;
  true;
 }
 
@@ -37,14 +52,10 @@ cd () {
 mktar() { tar cvf  "${1%%/}.tar"     "${1%%/}/"; }
 
 # Create a new directory and enter it
-mkcd () { 
- mkdir $1 && cd $1
-}
+mkcd () { mkdir $1 && cd $1; }
 
 # Move file to a directory and enter it
-mvcd () { 
- mv $1 $2 && cd $2 
-}
+mvcd () { mv $1 $2 && cd $2; }
 
 # Define stuff
 google () {
@@ -68,6 +79,9 @@ hist () {
  `history | grep $number | tr -s ' ' | cut -d ' ' -f 3-`
 }
 
+# Locate + Grep
+# locate () { locate $@ | grep $@ }
+
 # clyde - no more manual sudo
 clyde() {
 	case $1 in
@@ -81,3 +95,18 @@ clyde() {
 	rehash
 }
 
+# git functions
+function ga() { git add $* }
+function gl() { git log $* }
+function gs() { git status $* }
+function gp() { git push $* }
+function gc() { git commit }
+#function gc() { git commit -m "$*" }
+function gpl() { git pull $* }
+function gco() {
+  if [ -z "$1" ]; then
+      git checkout master
+  else
+      git checkout $1
+  fi
+}

@@ -36,6 +36,9 @@ active_bg_color = 0
 
 # PRETTY COLORS -end-
 
+# First and only argument to rtorrent_mail.sh is completed file's name (d.get_name)
+system.method.set_key = event.download.finished,notify_me,"execute=~/bin/down-complete.sh,$d.get_name="
+
 # Watch a directory for new torrents, and stop those that have been
 # deleted.
 schedule = watch_directory,10,10,load_start=~/Downloads/Torrents/*.torrent

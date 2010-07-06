@@ -5,6 +5,7 @@ if has("gui_running")
 	colorscheme wombat			" Need a better one...
 	set guioptions=avRT
 	set showtabline=2
+	set mousehide
 elseif ( &term =~ 'linux' || $DISPLAY =~ ' ')
 	"colorscheme desert256
 	colorscheme caravaggio
@@ -70,8 +71,15 @@ if has('folding')
 	set foldopen-=undo " Do not open folds when undo'ing changes
 	set foldlevel=0 " Zero default so folds are hidden at start
 	" set foldlevel=999 " High default so folds are shown to start
-	set foldmarker={{{,}}} " Keep foldmarkers default
+	set foldmarker={,} " Fold C style code
 	set foldcolumn=0 " Don't waste screen space
+
+function! SimpleFoldText() " {
+    return getline(v:foldstart).' '
+endfunction " }
+    set foldtext=SimpleFoldText() " Custom fold text function
+                                  " (cleaner than default)
+
 endif
 " }}}
 
@@ -111,15 +119,22 @@ set viminfo='20,\"50    " read/write a .viminfo file, don't store more
 set history=50          " keep 50 lines of command line history
 set ruler               " show the cursor position all the time
 set number 				" show line numbers
-set numberwidth=1 " Keep number bar small if it's shown
+set numberwidth=1		" Keep number bar small if it's shown
 
-set hlsearch 		" highlight search terms
-set incsearch 		" go jump around hits
-set ignorecase		" search ignoring case
+"set hlsearch			" highlight search terms
+set nohlsearch			" do not highlight searched for phrases
+set incsearch			" go jump around hits
+set ignorecase			" search ignoring case
+set smartcase			" if there are caps, go case-sensitive
 set wildignore=*.o,*.obj,*.bak,*.exe
-set hidden			" hide buffers
+set hidden				" hide buffers
 set splitbelow          " splitted window under current one
-set completeopt-=menu " Get rid of the ugly menu
+set completeopt-=menu	" Get rid of the ugly menu
+
+set linespace=0			" don't insert any extra pixel lines
+						" betweens rows
+set autochdir			" always switch to the current file directory 
+set nostartofline		" leave my cursor where it was
 " }}}
 
 " Low priority filename suffixes for filename completion {{{
@@ -171,6 +186,10 @@ cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 " Use :W as :w
 noremap , :
 cmap W w
+nmap q: :q<cr>
+ia teh the
+ia htis this
+ia tihs this
 
 " Programming Keys:
 "   F9  = Make
@@ -238,6 +257,8 @@ if has('autocmd')
 	au BufWritePost *.cpp,*.h,*.c call UPDATE_TAGS()
 	" au BufWritePre * %s/\s\+$//e | norm! ``
 
+	autocmd BufWinEnter *.c,*.cpp,*.h set foldmethod=syntax
+
     " Reread configuration of Vim if .vimrc is saved
     augroup VimConfig
         au!
@@ -287,7 +308,6 @@ endif
 	 call LastModified()
  endfunction
  " }}}
-
  " Auto update last modified date {{{
  function! LastModified()
 	 if &modified
@@ -298,7 +318,6 @@ endif
 	 endif
  endfunction
  " }}}
-
 " Restore my cursor position {{{
 function! RestoreCursorPos()
 	if expand("<afile>:p:h") !=? $TEMP
@@ -314,7 +333,6 @@ function! RestoreCursorPos()
 	endif
 endfunction
 " }}}
-
 " Open the fold if restoring cursor position {{{
 function! OpenFoldOnRestore()
 	if exists("b:doopenfold")
@@ -326,7 +344,6 @@ function! OpenFoldOnRestore()
 	endif
 endfunction
 " }}}
-
 " InsertTabWrapper() {{{
 " Tab completion of tags/keywords if not at the beginning of the
 " line.  Very slick.
@@ -342,7 +359,7 @@ endfunction
  inoremap <S-Tab> <C-P>
 " InsertTabWrapper() }}}
 
-" Functions }}}
+"}}}
 
 " Settings for specific syntax files {{{
 let c_gnu=1

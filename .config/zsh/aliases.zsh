@@ -2,18 +2,18 @@
 ## Aliases
 
 if [[ $SHELL == *zsh ]]; then
-#Zsh Auto extension {{{
-alias -s gz=tar -xzvf
-alias -s bz2=tar -xjvf
-alias -s nfo=pnfo
-alias -s {rar,zip,ZIP,7z}=7z X
-alias -s {png,jpg,gif}=feh
-alias -s {sxw,doc,ppt,xls}=soffice
-alias -s {html,org,php,com,net}=$BROWSER
-alias -s {java,txt,c,cpp,h,PKGBUILD}=$EDITOR
-alias -s {avi,mp3,wav}=mplayer
-alias -s pdf=$PDFVIEWER
-# }}}
+	#Zsh Auto extension {
+	alias -s gz=tar -xzvf
+	alias -s bz2=tar -xjvf
+	alias -s nfo=pnfo
+	alias -s {rar,zip,ZIP,7z}=7z X
+	alias -s {sxw,doc,ppt,xls}=soffice
+	alias -s {html,org,php,com,net}=$BROWSER
+	alias -s {java,txt,c,cpp,h,PKGBUILD}=$EDITOR
+	alias -s {avi,mp3,wav}=mplayer
+	alias -s pdf=$PDFVIEWER
+	alias -s {png,jpg,gif}=$IMGVIEWER
+	# }
 fi
 
 #sudo
@@ -50,8 +50,6 @@ alias clisp='clisp -q'
 
 #Downloads dir
 alias dl='cd ~/Downloads/'
-#Music dir
-alias music='cd /media/Prog/TORRENT/Music/'
 
 #cd
 alias back='cd $OLDPWD'

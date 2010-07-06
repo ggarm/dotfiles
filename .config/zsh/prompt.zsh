@@ -55,11 +55,12 @@ local user="%{${fg[yellow]}%}%n%{$reset_color%}"
 local time="%*"
 local smiley="%(?,%{$fg[green]%}:%)%{$reset_color%},%{$fg[red]%}:(%{$reset_color%})"
 local thunder="%{${fg[green]}%}"`echo -n "\u26A1"` # a lightning bolt
+local cur_cmd="${blue_op}%_${blue_cp}"
 PROMPT="${retval}┌┤ ${path_p}${GIT_BRANCH} ${retval}${time} ${user}
 ${retval}└╼ %{$reset_color%}"
+RPROMPT=$(battery)
 #${retval}└╼ >>%B>%b%{$reset_color%} "
 #└──${blue_op}${smiley}${blue_cp} >> "
-local cur_cmd="${blue_op}%_${blue_cp}"
 #PROMPT2="${cur_cmd}> "
 #RPROMPT="${thunder} ${bat_percent} $RPROMPT"
 

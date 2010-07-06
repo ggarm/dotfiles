@@ -1,5 +1,6 @@
 #!/bin/sh
 
+setopt noflowcontrol			# don’t freeze the terminal if I type Ctrl−S
 setopt appendhistory 
 setopt autocd
 setopt extendedglob
