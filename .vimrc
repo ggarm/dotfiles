@@ -121,8 +121,7 @@ set ruler               " show the cursor position all the time
 set number 				" show line numbers
 set numberwidth=1		" Keep number bar small if it's shown
 
-"set hlsearch			" highlight search terms
-set nohlsearch			" do not highlight searched for phrases
+set hlsearch			" highlight search terms
 set incsearch			" go jump around hits
 set ignorecase			" search ignoring case
 set smartcase			" if there are caps, go case-sensitive
@@ -190,6 +189,7 @@ nmap q: :q<cr>
 ia teh the
 ia htis this
 ia tihs this
+ia whit with
 
 " Programming Keys:
 "   F9  = Make
