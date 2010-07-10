@@ -10,7 +10,6 @@ setopt prompt_subst
 setopt always_last_prompt
 setopt nohup
 setopt interactivecomments
-setopt histverify
 
 autoload -Uz compinit colors vcs_info
 compinit colors

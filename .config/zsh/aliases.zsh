@@ -10,11 +10,14 @@ if [[ $SHELL == *zsh ]]; then
 	alias -s {sxw,doc,ppt,xls}=soffice
 	alias -s {html,org,php,com,net}=$BROWSER
 	alias -s {java,txt,c,cpp,h,PKGBUILD}=$EDITOR
-	alias -s {avi,mp3,wav}=mplayer
+	alias -s {avi,wmv,mp4,mp3,wav}=mplayer
 	alias -s pdf=$PDFVIEWER
 	alias -s {png,jpg,gif}=$IMGVIEWER
 	# }
 fi
+
+#Downloads dir
+alias dl='~/Downloads'
 
 #sudo
 alias !='sudo'
@@ -47,9 +50,6 @@ alias amke='make' 	#typos
 
 #clisp
 alias clisp='clisp -q'
-
-#Downloads dir
-alias dl='cd ~/Downloads/'
 
 #cd
 alias back='cd $OLDPWD'

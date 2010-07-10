@@ -2,13 +2,13 @@
 set background=light 	" light things up
 if has("gui_running")
 	set lines=41 columns=71 	" Set window size close to maximized
-	colorscheme wombat			" Need a better one...
+	colorscheme zenburn			" Need a better one...
 	set guioptions=avRT
 	set showtabline=2
 	set mousehide
 elseif ( &term =~ 'linux' || $DISPLAY =~ ' ')
-	"colorscheme desert256
-	colorscheme caravaggio
+	colorscheme desert256
+	"colorscheme caravaggio
 	set bg=dark
 else                            " we are on tty
 	set t_Co=256				" Using 256-color yay
@@ -134,6 +134,8 @@ set linespace=0			" don't insert any extra pixel lines
 						" betweens rows
 set autochdir			" always switch to the current file directory 
 set nostartofline		" leave my cursor where it was
+set list 
+set listchars=tab:>-,trail:-
 " }}}
 
 " Low priority filename suffixes for filename completion {{{
@@ -179,6 +181,10 @@ nnoremap <C-s> :w<CR>
 
 " Edit as superuser
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
+
+" Folds:
+nnoremap za 3za
+nnoremap zc 3zc
 
 " Typos:
 " Use ',' instead of ':'

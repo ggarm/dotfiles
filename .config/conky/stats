@@ -55,7 +55,8 @@ border_inner_margin 0
 border_width 0
 #default_color FFFFFF
 #default_color 000000
-default_color AAAA77
+#default_color AAAA77
+default_color CCCCCC
 default_outline_color black
 default_shade_color black
 double_buffer yes

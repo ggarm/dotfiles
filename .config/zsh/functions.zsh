@@ -100,9 +100,15 @@ function ga() { git add $* }
 function gl() { git log $* }
 function gs() { git status $* }
 function gp() { git push $* }
-function gc() { git commit }
-#function gc() { git commit -m "$*" }
 function gpl() { git pull $* }
+function gc() { 
+	if [ -z "$1" ]; then
+		git commit
+	else
+		git commit -m "$*"
+	fi
+}
+#function gc() { git commit -m "$*" }
 function gco() {
   if [ -z "$1" ]; then
       git checkout master

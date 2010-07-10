@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# fluxbox startup-script:
+
+# Change your keymap:
+#xmodmap "/home/ricardo/.Xmodmap"
+#setxkbmap pt
+
+# Prettify apps
+fbsetbg -l &
+
+#ck-launch-session fluxbox-session
+exec fluxbox
+# exec fluxbox -log "/home/ricardo/.fluxbox/log"

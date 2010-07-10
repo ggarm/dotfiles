@@ -42,7 +42,7 @@ if [[ -n $GIT_BRANCH ]]; then GIT_BRANCH="%{$fg[red]%} $GIT_BRANCH"; fi
 #PROMPT="%{${fg[yellow]}%} ${exit} %{${fg[yellow]}%}%n%{${fg[default]}%} %{${fg[blue]}%}%B%~%b ${char} %{${fg[default]}%}"
 
 # Messing up with the prompt
-local retval="%(?,%{$fg[green]%},%{$fg[red]%})"
+local retval="%(?,%{$fg_bold[green]%},%{$fg[red]%})"
 local blue_op="%{$fg[blue]%}[%{$reset_color%}"
 local blue_cp="%{$fg[blue]%}]%{$reset_color%}"
 #local path_p="${blue_op}%{${fg_bold[yellow]}%}%~%b${blue_cp}"
@@ -56,11 +56,9 @@ local time="%*"
 local smiley="%(?,%{$fg[green]%}:%)%{$reset_color%},%{$fg[red]%}:(%{$reset_color%})"
 local thunder="%{${fg[green]}%}"`echo -n "\u26A1"` # a lightning bolt
 local cur_cmd="${blue_op}%_${blue_cp}"
-PROMPT="${retval}┌┤ ${path_p}${GIT_BRANCH} ${retval}${time} ${user}
+PROMPT="${retval}┌┤ ${path_p}${GIT_BRANCH} ${retval}${time} ${user}	$(battery)
 ${retval}└╼ %{$reset_color%}"
-RPROMPT=$(battery)
-#${retval}└╼ >>%B>%b%{$reset_color%} "
-#└──${blue_op}${smiley}${blue_cp} >> "
+#RPROMPT="$(battery)"
 #PROMPT2="${cur_cmd}> "
 #RPROMPT="${thunder} ${bat_percent} $RPROMPT"
 

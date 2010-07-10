@@ -1,0 +1,25 @@
+/* XPM */
+static char *selected[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 3 1",
+"  c black",
+". c gray100",
+"X c None",
+/* pixels */
+"XXXXXXXXXXXXXXXX",
+"XXXXXXXXXXXXXXXX",
+"XXXXXXXXX XXXXXX",
+"XXXXXXXX  XXXXXX",
+"XXXXXXX   XXXXXX",
+"XXXXXX    XXXXXX",
+"X XXX    XXXXXXX",
+"X  X    XXXXXXXX",
+"X      XXXXXXXXX",
+"X     XXXXXXXXXX",
+"XX   XXXXXXXXXXX",
+"XXX XXXXXXXXXXXX",
+"XXXXXXXXXXXXXXXX",
+"XXXXXXXXXXXXXXXX",
+"XXXXXXXXXXXXXXXX",
+"XXXXXXXXXXXXXXXX"
+};
