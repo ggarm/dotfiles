@@ -49,7 +49,8 @@
 
 <theme>
 	<!-- <name>Clearlooks</name> -->
-	<name>PerfectGnome</name>
+	<!-- <name>PerfectGnome</name> -->
+	<name>2px</name>
   <titleLayout>NLIMC</titleLayout>
   <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -295,10 +296,6 @@
 	  <action name="Execute"> <command>
 			  xlock
 		  </command> </action> </keybind>
-  <keybind key="XF86Print">
-	  <action name="Execute"> <command>
-			  scrot
-		  </command> </action> </keybind>
   <keybind key="XF86HomePage">
 	  <action name="Execute"> <command>
 			  firefox
@@ -352,7 +349,20 @@
 			scrot
 		</command> </action> </keybind>
 
+	<keybind key="A-F9">
+		<action name="Iconify"/>
+	</keybind>
+	<keybind key="A-F10">
+		<action name="ToggleMaximizeFull"/>
+	</keybind>
 	
+	<keybind key="Menu">
+		<!-- <keybind key="BackSpace"> -->
+			<action name="Execute"> <command>
+				sonata -t
+			</command> </action> </keybind>
+			<!-- </keybind> -->
+
 
 </keyboard>
 

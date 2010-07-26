@@ -1,6 +1,8 @@
 #!/bin/sh
 
 zstyle :compinstall filename '~/.zshrc'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path $HOME/.cache/zsh
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu select=long
 zstyle ':completion:*' original false
@@ -12,7 +14,7 @@ zstyle ':completion:*' file-sort name
 zstyle ':completion:*' max-errors 3
 zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
 zstyle ':completion:*:*:kill:*' menu yes select
-zstyle ':completion:*:*:kill:*:processes' command 'ps xw -o pid,tty,time,args'
+zstyle ':completion:*:*:kill:*:processes' command 'ps --forest -a -o pid,state,tty,cmd'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' force-list always
 zstyle ':completion:*:*:killall:*' menu yes select
@@ -26,6 +28,7 @@ zstyle ':completion:*:correct:*' insert-unambiguous true # start menu completion
 zstyle ':completion:*:man:*' menu yes select
 zstyle ':completion:*:history-words' menu yes # activate menu
 zstyle ':completion:*:*:cd:*:directory-stack' menu yes select # complete 'cd -<tab>' with menu
+zstyle ':completion:*:functions' ignored-patterns '_*'
 
 zstyle ':vcs_info:*' enable git cvs svn
 zstyle ':vcs_info:*:prompt:*' check-for-changes true

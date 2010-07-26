@@ -13,9 +13,6 @@ echo " "
 printhl "Initiating Shutdown..."
 echo " "
 
-# avoid NIS hanging syslog-ng on shutdown by unsetting the domainname
-#if [ -x /bin/domainname ]; then /bin/domainname ""; fi
-
 # Find daemons NOT in the DAEMONS array. Shut these down first
 if [ -d /var/run/daemons ]; then
 	for daemon in $(/bin/ls -1t /var/run/daemons); do

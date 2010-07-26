@@ -86,16 +86,17 @@ echo > /proc/sys/kernel/hotplug
 cat /proc/mounts >| /etc/mtab
 /bin/mount /dev/sda11 #-L ArchHome
 
-/bin/mount -t devpts -o defaults none /dev/pts
-/bin/mount -t tmpfs -o defaults none /dev/shm
-
-/bin/mount -t ext3 -o defaults,noatime /dev/sda7 /media/UbuntuRoot #-L UbuntuRoot
-/bin/mount -t ext3 -o defaults,noatime /dev/sda8 /media/UbuntuHome #-L UbuntuHome
-/bin/mount -t ntfs -o rw,noexec,dmask=007,fmask=117,uid=ricardo,gid=ricardo /dev/sda1 /media/Ricardo #-L Ricardo
-/bin/mount -t ntfs -o rw,noexec,dmask=007,fmask=117,uid=ricardo,gid=ricardo /dev/sda5 /media/Dados #-L Dados
-/bin/mount -t ntfs -o rw,noexec,dmask=007,fmask=117,uid=ricardo,gid=ricardo /dev/sda6 /media/Prog #-L Prog
-#/bin/mount -a -t nonfs,nonfs4,nosmbfs,nocifs,nocodafs,noncpfs,nosysfs,noshfs,nofuse,nofuseblk,noglusterfs
-#(/bin/mount -a -t devpts,tmpfs,ext3,ntfs) &
+#/bin/mount -t devpts -o defaults none /dev/pts
+#/bin/mount -t tmpfs -o defaults none /dev/shm
+#
+#/bin/mount -t ext3 -o defaults,noatime /dev/sda7 /media/UbuntuRoot #-L UbuntuRoot
+#/bin/mount -t ext3 -o defaults,noatime /dev/sda8 /media/UbuntuHome #-L UbuntuHome
+#/bin/mount -t ntfs -o rw,noexec,dmask=007,fmask=117,uid=ricardo,gid=ricardo /dev/sda1 /media/Ricardo #-L Ricardo
+#/bin/mount -t ntfs -o rw,noexec,dmask=007,fmask=117,uid=ricardo,gid=ricardo /dev/sda5 /media/Dados #-L Dados
+#/bin/mount -t ntfs -o rw,noexec,dmask=007,fmask=117,uid=ricardo,gid=ricardo /dev/sda6 /media/Prog #-L Prog
+/bin/mount -a -t nonfs,nonfs4,nosmbfs,nocifs,nocodafs,noncpfs,nosysfs,noshfs,nofuse,nofuseblk,noglusterfs
+#(/bin/mount -a -F -t devpts,tmpfs,ext3,ntfs) &
+#(/bin/mount -a -F) &
 #}}}
 
 (/bin/hostname ricardoArch) & #status "Setting Hostname: $HOSTNAME"

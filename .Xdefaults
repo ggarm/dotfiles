@@ -9,8 +9,10 @@
 ! Xcursor ---------------------------------------------------------------------- {{{
 !
 !Xcursor*theme: Vanilla-DMZ-AA
-Xcursor.theme: neutral
-Xcursor.size:  22
+!Xcursor.theme: neutral
+!Xcursor.size:  22
+Xcursor.theme: whiteglass
+Xcursor.size:  18
 ! }}}
 
 ! Xterm ---------------------------------------------------------------------- {{{
@@ -115,7 +117,7 @@ URxvt*foreground: #A8A8A8
 !#include "/home/ricardo/.colours/arch"
 !#include "/home/ricardo/.colours/mason"
 !#include "/home/ricardo/.colours/thayer"
-#include "/home/ricardo/.colours/tvale"
+!#include "/home/ricardo/.colours/tvale"
 
 !#include "/home/ricardo/.colours/dark"
 !#include "/home/ricardo/.colours/pvenma"
@@ -125,5 +127,6 @@ URxvt*foreground: #A8A8A8
 !#include "/home/ricardo/.colours/trapd00r"
 !#include "/home/ricardo/.colours/daisuke"
 !#include "/home/ricardo/.colours/fall"
-!#include "/home/ricardo/.colours/molokai"
+#include "/home/ricardo/.colours/molokai"
+!#include "/home/ricardo/.colours/insectica"
 ! }}}

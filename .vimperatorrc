@@ -16,10 +16,8 @@ source ~/.vimperator/styles/styles.js
 set runtimepath=$HOME/.vimperator
 source! $HOME/.vimperatorrc.local
 
-"set errorbells
-"set visualbell
-"hi Bell opacity: .5;
-
+set shell='/bin/zsh'
+set editor='urxvt -e vim'
 set showtabline=1
 set showstatuslinks=2
 set ic
@@ -32,6 +30,31 @@ set focuscontent
 noremap j 4j
 noremap k 4k
 
-set editor='urxvt -e vim'
+javascript <<EOM
+mappings.addUserMap([modes.NORMAL, modes.PLAYER, modes.VISUAL, modes.CARET,
+		modes.INSERT, modes.TEXTAREA],
+		["<F2>"],
+		"toggle default/custom colours",
+		function() {
+		udc = options.getPref("browser.display.use_document_colors")
+		bg  = options.getPref("browser.display.background_color")
+		fg  = options.getPref("browser.display.foreground_color")
+		if ( udc == true ) {
+		udc = false
+		bg  = '#1c1c1c'
+		fg  = '#d7d7d7'
+		alert("Switching to custom colours")
+		}
+		else {
+		udc = true
+		bg  = '#ffffff'
+		fg  = '#000000'
+		alert("Switching to default colours")
+		}
+		options.setPref("browser.display.use_document_colors", udc)
+			options.setPref("browser.display.background_color", bg)
+			options.setPref("browser.display.foreground_color", fg)
+		});
+EOM
 
 " vim: set ft=vimperator:

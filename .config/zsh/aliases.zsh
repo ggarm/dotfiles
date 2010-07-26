@@ -16,6 +16,9 @@ if [[ $SHELL == *zsh ]]; then
 	# }
 fi
 
+# mplayer --now-playing
+alias mplayer='mplayer -identify $@> $HOME/.mplayer/mylog.log'
+
 #Downloads dir
 alias dl='~/Downloads'
 

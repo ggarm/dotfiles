@@ -41,23 +41,33 @@ if [[ -n $GIT_BRANCH ]]; then GIT_BRANCH="%{$fg[red]%} $GIT_BRANCH"; fi
 
 #PROMPT="%{${fg[yellow]}%} ${exit} %{${fg[yellow]}%}%n%{${fg[default]}%} %{${fg[blue]}%}%B%~%b ${char} %{${fg[default]}%}"
 
-# Messing up with the prompt
-local retval="%(?,%{$fg_bold[green]%},%{$fg[red]%})"
-local blue_op="%{$fg[blue]%}[%{$reset_color%}"
-local blue_cp="%{$fg[blue]%}]%{$reset_color%}"
-#local path_p="${blue_op}%{${fg_bold[yellow]}%}%~%b${blue_cp}"
+#PROMPT="${retval}┌┼─┼─┌┤ ${path_p}${GIT_BRANCH} ${retval}${time} ${user}	$(battery)
+#${retval}└╼ ¥%{$reset_color%}"
+
+local retval="%(?,%{$fg_bold[green]%},%{$fg_bold[red]%})"
+local retchar="%(?,%b%{$fg[green]%}>>%B>%b,%b%{$fg[red]%}>>%B>%b)"
+#local blue_op="%{$fg[blue]%}[%{$reset_color%}"
+#local blue_cp="%{$fg[blue]%}]%{$reset_color%}"
+#local cur_cmd="${blue_op}%_${blue_cp}"
 local path_p="%{${fg_bold[blue]}%}%~%b%{$reset_color%}"
 #local user_host="${blue_op}%{${fg[yellow]}%}%n@%{${fg[magenta]}%}%m${blue_cp}"
-local user="%{${fg[yellow]}%}%n%{$reset_color%}"
-#local user="${blue_op}%{${fg[yellow]}%}%n${blue_cp}"
-#local time="${blue_op}%{${fg[blue]}%}%T${blue_cp}"
-#local time="%{${fg[blue]}%}%T%{$reset_color%}"
-local time="%*"
-local smiley="%(?,%{$fg[green]%}:%)%{$reset_color%},%{$fg[red]%}:(%{$reset_color%})"
-local thunder="%{${fg[green]}%}"`echo -n "\u26A1"` # a lightning bolt
-local cur_cmd="${blue_op}%_${blue_cp}"
-PROMPT="${retval}┌┤ ${path_p}${GIT_BRANCH} ${retval}${time} ${user}	$(battery)
-${retval}└╼ %{$reset_color%}"
+#local user="%{${fg[yellow]}%}%n%{$reset_color%}"
+local time="%{$fg_bold[cyan]%}%*%{$reset_color%}"
+#local smiley="%(?,%{$fg[green]%}:%)%{$reset_color%},%{$fg[red]%}:(%{$reset_color%})"
+#local thunder="%{${fg[green]}%}"`echo -n "\u26A1"` # a lightning bolt
+local w=$(echo "${PWD/#$HOME/~}" | sed 's/.*\/\(.*\/.*\/.*\)$/\1/') # pwd max depth 3
+# pwd max length L, prefix shortened pwd with m
+local L=30 m='←<'
+if [ ${#w} -gt $L ]; then
+	local w="${m}%.";
+fi
+#||   local w="${w}"
+#PROMPT="${retval} ${path_p}${GIT_BRANCH} ${retval}─┤├─ %b>>${retval}>%{$reset_color%}"
+#PROMPT="${retval}${path_p}${GIT_BRANCH} ${retval}─┤├─ ${retchar} %{$reset_color%}"
+#PROMPT="${retval}${path_p}${GIT_BRANCH} ${retchar} %{$reset_color%}"
+#PROMPT="${retval}${w}${GIT_BRANCH} ${retchar} %{$reset_color%}"
+PROMPT="%{$fg_bold[blue]%}${w}${GIT_BRANCH} ${retchar} %{$reset_color%}"
+RPROMPT="${time} $(battery)"
 #RPROMPT="$(battery)"
 #PROMPT2="${cur_cmd}> "
 #RPROMPT="${thunder} ${bat_percent} $RPROMPT"

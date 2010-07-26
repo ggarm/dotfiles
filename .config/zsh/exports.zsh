@@ -14,6 +14,9 @@ export RXVT_SOCKET=$HOME/.config/rxvt-unicode-ricardoArch
 # speed up firefox
 export MOZ_DISABLE_PANGO=1
 
+#Less
+export LESSCHARSET="utf-8"
+
 # Colorized less, woohoo
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;34m'
@@ -33,9 +36,12 @@ export HISTSIZE=5000
 export SAVEHIST=5000
 
 #XDG vars
-XDG_DATA_HOME=/home/ricardo/dotfiles/.local/share 
-XDG_CONFIG_HOME=/home/ricardo/dotfiles/.config 
-XDG_CACHE_HOME=/home/ricardo/dotfiles/.cache 
+export XDG_DATA_HOME=/home/ricardo/dotfiles/.local/share 
+export XDG_CONFIG_HOME=/home/ricardo/dotfiles/.config 
+export XDG_CACHE_HOME=/home/ricardo/dotfiles/.cache 
+
+#XAUTHORITY
+export XAUTHORITY=$HOME/.config/.Xauthority
 
 #cvs
 #export CVSROOT=':ext:ist162578@comp.rnl.ist.utl.pt:/cvs'

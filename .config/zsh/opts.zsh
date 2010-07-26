@@ -9,7 +9,7 @@ setopt notify
 setopt prompt_subst
 setopt always_last_prompt
 setopt nohup
-setopt interactivecomments
+setopt interactive_comments
 
 autoload -Uz compinit colors vcs_info
 compinit colors

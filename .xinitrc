@@ -17,26 +17,31 @@ setxkbmap pt
 #(syndaemon -i 2 -d) &
 
 # Prettify apps
-fbsetbg -l &
+# fbsetbg -l &
 #(idesk &>/dev/null) &
 #(tint2 &>/dev/null) &
+#(sleep 1; cairo-dock -o &>/dev/null) &
 #(conky -c ~/.config/conky/stats 2>/dev/null) &
-(conky -c ~/.config/conky/clock 2>/dev/null) &
-(sleep 1; cairo-dock -o &>/dev/null) &
-(trayer --edge bottom --align right --widthtype request --transparent true --alpha 255 --tint ffffff --SetDockType true --SetPartialStrut false --expand true) &
-#(xcompmgr -c -D 7 -f -F -n &>/dev/null) &
+#(conky -c ~/.config/conky/clock 2>/dev/null) &
+
+(sh .fehbg) &
+
+#(pcmanfm --desktop -d 2>/dev/null) &
+(adeskbar 2>/dev/null) &
+#(trayer --edge bottom --align right --widthtype request --transparent true --alpha 255 --tint ffffff --SetDockType true --SetPartialStrut false --expand true) &
+#(xcompmgr -c -D 7 -f -F -n 2>/dev/null) &
+(xcompmgr -cCfF -r7 -o.65 -l-10 -t-8 -D7 2>/dev/null) &
 
 #Using mpd for now...
 (mpd 2>/dev/null) &
 
 (urxvtd -q -o -f) &
+#(urxvtc -e tmux && tmux detach) &
 
 # TODO: check if there is internet before launch
 (sleep 2; thunderbird 2>/dev/null) &
-(sonata --hidden 2>/dev/null) &
-
-(urxvtc -e tmux -2 attach) &
+(sleep 3; sonata --hidden 2>/dev/null) &
 
 #exec ck-launch-session openbox-session
 #exec startfluxbox
-exec openbox-session
+exec dbus-launch --exit-with-session openbox-session

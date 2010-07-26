@@ -14,6 +14,9 @@
 ##Set up network IP
 #(dhcpcd eth0 ) &
 #(/usr/sbin/wicd &>/dev/null) &
+(ifconfig wlan0 up 2>/dev/null) &
+(wpa_supplicant -B -i wlan0 -c /home/ricardo/wicd-confs/Home 2>/dev/null) &
+(dhcpcd -b wlan0 2>/dev/null) &
 
 ##Setting the alsa volumes 
 (/usr/sbin/alsactl restore &>/dev/null 2>&1) &
@@ -21,7 +24,15 @@
 ##starting the cron daemon 
 #(sleep 10 /etc/rc.d/crond start &>/dev/null 2>&1) &
 #(/etc/rc.d/crond start) &
-(sleep 10; /usr/sbin/crond -l info &>/dev/null 2>&1) &
+(sleep 5; /usr/sbin/crond -l info &>/dev/null 2>&1) &
+
+(pkill -f udevd) &
+
+echo auto > /sys/bus/usb/devices/4-2/power/level
+echo auto > /sys/bus/usb/devices/1-2/power/level
+echo 1500 > /proc/sys/vm/dirty_writeback_centisecs
+#echo 5 > /proc/sys/vm/laptop_mode
+
 
 ##starting the hal daemon
 #(/etc/rc.d/hal start &>/dev/null 2>&1) &

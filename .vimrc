@@ -104,6 +104,7 @@ filetype indent on
 set nocompatible 	" vi is dead
 set backup
 set backupdir=~/.vim/backup
+"set noswapfile
 set autowrite		" Save before commands like :next and :make
 set mouse=a
 " }}}
@@ -134,8 +135,8 @@ set linespace=0			" don't insert any extra pixel lines
 						" betweens rows
 set autochdir			" always switch to the current file directory 
 set nostartofline		" leave my cursor where it was
-set list 
-set listchars=tab:>-,trail:-
+
+set clipboard+=unnamed  " yank and copy to X clipboard
 " }}}
 
 " Low priority filename suffixes for filename completion {{{
@@ -163,6 +164,24 @@ set statusline=%F%m%r%h%w%=(%{strlen(&ft)?&ft:'?'},%{&fenc},%{&ff})\ \ %-9.(%l,%
 
 "}}}
 
+" Filter expected errors from make
+if has("eval") && v:version >= 700
+	if hostname() == "snowcone"
+		let &makeprg="nice -n7 make -j4 2>&1"
+	elseif hostname() == "snowmobile"
+		let &makeprg="nice -n7 make -j1 2>&1"
+	else
+		let &makeprg="nice -n7 make -j2 2>&1"
+	endif
+
+" ignore libtool links with version-info
+    let &errorformat="%-G%.%#libtool%.%#version-info%.%#,".&errorformat
+
+" catch internal errors
+    let &errorformat="%.%#Internal error at %.%# at %f:%l: %m,".&errorformat
+endif
+
+
 " Key mappings {{{
 
 " Move text, but keep highlight
@@ -182,6 +201,10 @@ nnoremap <C-s> :w<CR>
 " Edit as superuser
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 
+" Omnicomplete:
+" Remap code completion from Ctrl+x, Ctrl+o to Ctrl+Space
+inoremap <C-Space> <C-x><C-o>
+
 " Folds:
 nnoremap za 3za
 nnoremap zc 3zc
@@ -192,6 +215,9 @@ nnoremap zc 3zc
 noremap , :
 cmap W w
 nmap q: :q<cr>
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
 ia teh the
 ia htis this
 ia tihs this
@@ -230,6 +256,15 @@ let g:BufferListMaxWidth = 50
 hi BufferSelected term=reverse ctermfg=white ctermbg=red cterm=bold
 hi BufferNormal term=NONE ctermfg=black ctermbg=darkcyan cterm=NONE
 
+" Navigation:
+" Scroll one screen line regardless of editor line length
+":noremap    <Up> gk
+":noremap!   <Up> <C-O>gk
+":noremap    <Down> gj
+":noremap!   <Down> <C-O>gj
+:noremap    k gk
+:noremap    j gj
+
 " Key mappings }}}
 
 " Auto Commands "{{{
@@ -254,13 +289,14 @@ if has('autocmd')
 	" Automatic ctags handling
 	function! UPDATE_TAGS()
 		let _f_ = expand("%:p")
-		let _cmd_ = '"ctags -a -R $HOME/Targizi/pacman-3.2.2/ --c++-kinds=+p --fields=+iaS --extra=+q " ' . '"' . _f_ . '"'
+		let _cmd_ = '"ctags -a -R --c++-kinds=+p --fields=+iaS --extra=+q " ' . '"' . _f_ . '"'
 		let _resp = system(_cmd_)
 		unlet _cmd_
 		unlet _f_
 		unlet _resp
 	endfunction
-	au BufWritePost *.cpp,*.h,*.c call UPDATE_TAGS()
+	au BufReadPost *.cpp,*.h,*.c call UPDATE_TAGS()
+	" au BufWritePost *.cpp,*.h,*.c call UPDATE_TAGS()
 	" au BufWritePre * %s/\s\+$//e | norm! ``
 
 	autocmd BufWinEnter *.c,*.cpp,*.h set foldmethod=syntax
@@ -314,7 +350,7 @@ endif
 	 call LastModified()
  endfunction
  " }}}
- " Auto update last modified date {{{
+" Auto update last modified date {{{
  function! LastModified()
 	 if &modified
 		 normal msHmS

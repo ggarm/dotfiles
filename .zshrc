@@ -38,9 +38,10 @@ source $HOME/.config/zsh/prompt.zsh
 
 # Set terminal title
 case $TERM in
- screen|xterm|rxvt*)
-  fortune;
-  PROMPT_COMMAND='';
-  trap 'echo -ne "\e]0;$BASH_COMMAND\007" ' DEBUG;
+ screen*|xterm|rxvt*)
+  cat /etc/motd
+  #fortune;
+  #PROMPT_COMMAND='';
+  #trap 'echo -ne "\e]0;$BASH_COMMAND\007" ' DEBUG;
  ;;
 esac
