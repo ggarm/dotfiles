@@ -36,10 +36,12 @@ source $HOME/.config/zsh/binds.zsh
 
 source $HOME/.config/zsh/prompt.zsh
 
+if [ -f ~/TODO ]; then cat ~/TODO; fi
+
 # Set terminal title
 case $TERM in
  screen*|xterm|rxvt*)
-  cat /etc/motd
+  #cat /etc/motd
   #fortune;
   #PROMPT_COMMAND='';
   #trap 'echo -ne "\e]0;$BASH_COMMAND\007" ' DEBUG;

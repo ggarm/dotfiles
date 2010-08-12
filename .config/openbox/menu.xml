@@ -25,18 +25,6 @@
 				</startupnotify>
 			</action>
 		</item>
-		<item label="GEdit">
-			<action name="Execute">
-				<command>
-					gedit
-				</command>
-				<startupnotify>
-					<enabled>
-						yes
-					</enabled>
-				</startupnotify>
-			</action>
-		</item>
 	</menu>
 	<menu id="apps-term-menu" label="Terminals">
 		<item label="Rxvt Unicode">
@@ -123,42 +111,6 @@
 		</item>
 	</menu>
 	<menu id="apps-multimedia-menu" label="Multimedia">
-		<item label="Amarok">
-			<action name="Execute">
-				<command>
-					amarok
-				</command>
-				<startupnotify>
-					<enabled>
-						yes
-					</enabled>
-				</startupnotify>
-			</action>
-		</item>
-		<item label="Rhythmbox">
-			<action name="Execute">
-				<command>
-					rhythmbox
-				</command>
-				<startupnotify>
-					<enabled>
-						yes
-					</enabled>
-				</startupnotify>
-			</action>
-		</item>
-		<item label="K3b">
-			<action name="Execute">
-				<command>
-					k3b
-				</command>
-				<startupnotify>
-					<enabled>
-						yes
-					</enabled>
-				</startupnotify>
-			</action>
-		</item>
 		<item label="MPlayer">
 			<action name="Execute">
 				<command>
@@ -171,18 +123,6 @@
 					<wmclass>
 						MPlayer
 					</wmclass>
-				</startupnotify>
-			</action>
-		</item>
-		<item label="Totem">
-			<action name="Execute">
-				<command>
-					totem
-				</command>
-				<startupnotify>
-					<enabled>
-						yes
-					</enabled>
 				</startupnotify>
 			</action>
 		</item>
@@ -228,35 +168,43 @@
 		</item>
 	</menu>
 	<menu id="system-menu" label="System">
-		<item label="Openbox Configuration Manager">
-			<action name="Execute">
-				<command>
-					obconf
-				</command>
-				<startupnotify>
-					<enabled>
-						yes
-					</enabled>
-				</startupnotify>
-			</action>
-		</item>
-		<separator/>
 		<item label="Reconfigure Openbox">
 			<action name="Reconfigure"/>
 		</item>
 	</menu>
+	<menu id="wallpaper-menu" label="Wallpaper">
+		<item label="Randomize Wall">
+			<action name="Execute"> <command> randomWall.sh </command> </action>
+		</item>
+	</menu>
 	<menu id="root-menu" label="Openbox 3">
+		<item label="urxvtc">
+			<action name="Execute"> <command> urxvtc </command> </action>
+		</item>
+		<item label="tmux">
+			<action name="Execute"> <command> urxvtc -e tmux -2 attach </command> </action>
+		</item>
+		<item label="vimperator">
+			<action name="Execute"> <command> firefox </command> </action>
+		</item>
+		<item label="pcmanfm">
+			<action name="Execute"> <command> pcmanfm </command> </action>
+		</item>
 		<separator label="Applications"/>
-		<menu id="apps-accessories-menu"/>
-		<menu id="apps-editors-menu"/>
-		<menu id="apps-graphics-menu"/>
-		<menu id="apps-net-menu"/>
+		<!-- <menu id="apps-accessories-menu"/> -->
+		<!-- <menu id="apps-editors-menu"/> -->
+		<!-- <menu id="apps-graphics-menu"/> -->
+		<!-- <menu id="apps-net-menu"/> -->
 		<menu id="apps-office-menu"/>
-		<menu id="apps-multimedia-menu"/>
+		<!-- <menu id="apps-multimedia-menu"/> -->
 		<menu id="apps-term-menu"/>
-		<menu id="apps-fileman-menu"/>
-		<separator label="System"/>
+		<!-- <menu id="apps-fileman-menu"/> -->
+		<!-- <separator label="System"/> -->
+		<item label="Wallpaper">
+			<action name="Execute"> <command> randomWall.sh </command> </action>
+		</item>
 		<menu id="system-menu"/>
+		<!-- <menu id="wallpaper-menu"/> -->
 		<separator/>
 		<item label="Log Out">
 			<action name="Exit">

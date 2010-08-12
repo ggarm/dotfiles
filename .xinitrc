@@ -9,9 +9,9 @@
 # exec startxfce4
 # ...or the Window Manager of your choice
 
-xmodmap .Xmodmap &
+(xmodmap .Xmodmap) &
 
-setxkbmap pt
+(setxkbmap pt) &
 
 #for disabling the touchpad when I am writing
 #(syndaemon -i 2 -d) &
@@ -24,7 +24,7 @@ setxkbmap pt
 #(conky -c ~/.config/conky/stats 2>/dev/null) &
 #(conky -c ~/.config/conky/clock 2>/dev/null) &
 
-(sh .fehbg) &
+eval `cat ~/.fehbg` &
 
 #(pcmanfm --desktop -d 2>/dev/null) &
 (adeskbar 2>/dev/null) &
@@ -36,11 +36,14 @@ setxkbmap pt
 (mpd 2>/dev/null) &
 
 (urxvtd -q -o -f) &
-#(urxvtc -e tmux && tmux detach) &
+(tmux -2 attach) &
+#(urxvt -e tmux -2 attach) &
 
 # TODO: check if there is internet before launch
-(sleep 2; thunderbird 2>/dev/null) &
-(sleep 3; sonata --hidden 2>/dev/null) &
+nocope ping -c 1 www.google.com 2>/dev/null && (thunderbird 2>/dev/null) &
+#(sleep 3; sonata --hidden 2>/dev/null) &
+
+(statusbar.sh) &
 
 #exec ck-launch-session openbox-session
 #exec startfluxbox

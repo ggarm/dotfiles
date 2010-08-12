@@ -1,0 +1,101 @@
+#!/bin/sh
+
+BG='#101010'     # dzen background
+FG='#fffff0'     # dzen foreground
+W=45         # width of the dzen bar
+GW=40         #  width of the volume gauge
+GFG='#395573' # color of the gauge
+GH=6          # height of the gauge
+GBG='#333'    # color of gauge background
+BAT_GW=50      # width of the gauge
+BAT_GFG='#999'  # color of the gauge
+BAT_GH=7       # height of the gauge
+BAT_GBG='#333'  # color of gauge background
+#X=1227         # x position
+X=0         # x position
+Y=0         # y position
+ 
+# Font to use
+FN='-xos4-terminus-*-*-*-*-11-*-*-*-*-*-*-*'
+#FN='-*-terminal-*-*-*-*-14-*-*-*-*-*-*-*'
+
+TIME_INT=1         # time interval in seconds
+
+# Battery settings {{{
+STATEFILE='/proc/acpi/battery/BAT1/state' # battery's state file
+INFOFILE='/proc/acpi/battery/BAT1/info'   # battery's info file
+ 
+LOWBAT=25        # percentage of battery life marked as low
+LOWCOL='#ff4747' # color when battery is low
+
+BATFULL_CAPTION='^i(/home/ricardo/Scripts/dzen/xbm/power-bat.xbm)' # caption (also icons are possible)
+BAT_CAPTION='^i(/home/ricardo/Scripts/dzen/xbm/power-bat2.xbm)'
+AC_CAPTION='^i(/home/ricardo/Scripts/dzen/xbm/power-ac.xbm)'
+ 
+BAT_FULL=`cat $INFOFILE|grep design|line|cut -d " " -f 11`;
+RCAP=`cat $STATEFILE|grep remaining|cut -d " " -f 8`;
+AC_POWER="echo -n '100' | tr '\n' ' ' ";
+#}}}
+
+# Volume settings {{{
+# Captions of the gauge
+VOL_CAPTION="^i(/home/ricardo/Scripts/dzen/xbm/vol-hi.xbm)"
+	 
+# command to increase the volume
+CI="amixer -c0 sset PCM 2dB+ >/dev/null"
+#CI="aumix -v +5"
+# command to decrease the volume
+CD="amixer -c0 sset PCM 2dB- >/dev/null"
+#CD="aumix -v -5
+ 
+# command to pipe into gdbar to display the gauge
+# should print out 2 space-seperated values, the first is the current
+# volume, the second the maximum volume
+#MAX=`amixer -c0 get PCM | awk '/^  Limits/ { print $5 }'`
+MAX=255
+CV="amixer -c0 get PCM | awk '/^  Front Left/ { print \$4 \" \" $MAX }'"
+#CV="aumix -q | line | cut -d \" \" -f 3"
+
+# }}}
+
+# MPC settings {{{
+MPC_CAPTION="^i(/home/ricardo/Scripts/dzen/xbm/mpd.xbm)"
+#MPC_SONG="nocope mpc current | cut -b-30 | tr '\n' ' ' "
+MPC_SONG="nocope mpc current | tr '\n' ' ' "
+# }}}
+
+while true; do
+	#Volume info {{{
+	echo -n "^p(10X)";
+	echo -n $VOL_CAPTION;
+	eval "$CV" | gdbar -ss 1 -s o -sw 2 -sh 3 -h $GH -w $GW -fg $GFG -bg $GBG; #}}}
+
+	#Battery/ac info {{{
+	if [[ -n $RCAP ]]; then
+		# calculate remaining power
+		RPERCT=`expr $RCAP \* 100`;
+		RPERC=`expr $RPERCT / $BAT_FULL`;
+		 
+		if [ $RPERC -le $LOWBAT ]; then BAT_GFG=$LOWCOL; fi
+		#echo -n "^fg($BAT_GFG)";
+		echo -n "$BAT_CAPTION^p(3X)";
+		echo -n `echo -n "$RPERC" | gdbar -s o -h $BAT_GH -w $BAT_GW -fg $BAT_GFG -bg $BAT_GBG;`
+	else
+		echo -n $AC_CAPTION;
+		echo -n `echo -n $AC_POWER | gdbar -ss 1 -s o -h $BAT_GH -w $BAT_GW -fg $BAT_GFG -bg $BAT_GBG`
+		#echo -n "^ib(1)^fg(lightgreen)^ro(6x3)^p(-4)^fg()^ib(0)^p(6)"
+	fi # }}}
+
+	#MPC info {{{
+	echo -n "^p(10X)";
+	echo -n "$MPC_CAPTION^p(3X)";
+	#echo -n "^fg($GFG)";
+	echo -n "^fg(#3955CC)";
+	# falta avaliar quando estiver parado
+	eval "$MPC_SONG";
+	echo -n "^fg()"; #}}}
+
+sleep $TIME_INT;
+
+#done | dzen2 -ta center -tw $W -h 9 -y $Y -x $X -fg $FG -bg $BG -e "button3=exit;button4=exec:$CI;button5=exec:$CD" -fn $FN
+done | dzen2 -ta left -y $Y -x $X -fg $FG -bg $BG -e "button3=exit;button4=exec:$CI;button5=exec:$CD" -fn $FN

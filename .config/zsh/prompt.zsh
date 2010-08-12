@@ -34,7 +34,7 @@ precmd(){ #{{{
 vcs_info 'prompt'
 local GIT_BRANCH="$vcs_info_msg_0_"
 
-if [[ -n $GIT_BRANCH ]]; then GIT_BRANCH="%{$fg[red]%} $GIT_BRANCH"; fi
+if [[ -n "$GIT_BRANCH" ]]; then GIT_BRANCH="%{$fg[red]%} $GIT_BRANCH"; fi
 
 #PROMPT=$'%{${fg[yellow]}%}%B® %n%b%{${fg[default]}%} %{${fg[blue]}%}%B%~%b%{${fg[default]}%}
 #%{${fg[yellow]}%}%B®®%b ${exit} ${fg[default]}→ '

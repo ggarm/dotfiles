@@ -265,6 +265,8 @@ hi BufferNormal term=NONE ctermfg=black ctermbg=darkcyan cterm=NONE
 :noremap    k gk
 :noremap    j gj
 
+" Comments:
+
 " Key mappings }}}
 
 " Auto Commands "{{{

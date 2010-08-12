@@ -13,6 +13,7 @@ if [[ $SHELL == *zsh ]]; then
 	alias -s {avi,wmv,mp4,mp3,wav}=mplayer
 	alias -s pdf=$PDFVIEWER
 	alias -s {png,jpg,gif}=$IMGVIEWER
+	alias -s exe=wine
 	# }
 fi
 
@@ -62,14 +63,14 @@ alias ..='cd ..'
 #ls
 alias ls='ls --group-directories-first -hF --color=always'
 alias la='ls -A'
-alias ll='ls -l'
+alias ll='ls -l --show-control-chars'
 alias lla='ll -A'
 alias lh='ls -lh'
 alias lr='ls -R'
 alias lx='ll -BX'	#sort by extension
 alias lz='ll -rS'	#sort by size
 alias lt='ll -rt'	#sort by date
-alias l='ls -1' 	#because of typos
+alias l='ls' 	#because of typos
 
 #power management
 alias poweroff='sudo poweroff'

@@ -156,7 +156,7 @@
      Many programs reserve space automatically, but you can use this in other
      cases. -->
 <margins>
-  <top>0</top>
+  <top>16</top>
   <bottom>0</bottom>
   <left>0</left>
   <right>0</right>
@@ -290,11 +290,7 @@
 		  </command> </action> </keybind>
   <keybind key="C-A-l">
 	  <action name="Execute"> <command>
-			  xlock
-		  </command> </action> </keybind>
-  <keybind key="C-A-l">
-	  <action name="Execute"> <command>
-			  xlock
+			  alock -bg image:file=/home/ricardo/Walls/brb.jpg -auth pam
 		  </command> </action> </keybind>
   <keybind key="XF86HomePage">
 	  <action name="Execute"> <command>
