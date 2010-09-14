@@ -3,9 +3,11 @@
 ## Variables et al
 export BROWSER=firefox
 export EDITOR=vim
+export FM=pcmanfm
 export PDFVIEWER=zathura
 export IMGVIEWER=mirage
-export PATH=/usr/share/perl5/site_perl/5.10.1/auto/share/dist/Cope:$HOME/bin:$PATH
+#export PATH=$HOME/bin:$PATH
+export PATH=/usr/share/perl5/site_perl/auto/share/dist/Cope:$HOME/bin:$PATH
 #export LD_LIBRARY_PATH=$HOME/compiladores/root/usr/include/rts:$LD_LIBRARY_PATH
 
 #rxvt

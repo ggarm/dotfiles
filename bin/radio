@@ -1,0 +1,67 @@
+#!/bin/sh
+
+# Where to save the pid
+MPID="/home/ricardo/.mplayer/mplayer.pid"
+
+# Function to kill the mplayer process
+function kill_mplayer {
+	kill $(cat $MPID)
+	rm -f $MPID
+}
+
+# Figure out what to do 
+case $1 in
+	"ultra")
+		STREAM="mms://stream.radio.com.pt/ROLI-ENC-506"
+		NAME="Ultra FM"
+	;;
+	"mega")
+		STREAM="mms://stream2.mega.fm/MegaFM"
+		NAME="Mega FM"
+	;;
+	"orbital")
+		STREAM="mms://stream.radio.com.pt/ROLI-ENC-401"
+		NAME="Orbital"
+	;;
+	"hardcore")
+		STREAM="http://u10.di.fm:80/di_hardcore"
+		NAME="Happy Hardcore"
+	;;
+	"vtrance")
+		STREAM="http://u11b.di.fm:80/di_vocaltrance"
+		NAME="Vocal Trance"
+	;;
+	"ambient")
+		STREAM="http://ice.somafm.com/groovesalad"
+		NAME="Ambient"
+	;;
+	"stop")
+		kill_mplayer
+		echo "The music has been stopped. Listen again soon :)"
+		exit 1
+	;;
+	*)
+		echo "Usage: music {ultra|orbital|mega|ambient|vtrance|hardcore|stop}"
+		exit 1
+	;;
+esac
+
+# Make sure we arn't already playing music
+if [ -f $MPID ]
+then
+	#pkill mplayer
+	kill_mplayer
+else
+	# Turn down the sound for multiple reasons
+	amixer -q -c 0 sset "PCM" 25
+fi
+
+# Startup the stream, pipe all output to oblivion and bg it
+#mplayer ${STREAM} -really-quiet > /dev/null 2>&1 & 
+mplayer -identify ${STREAM}> $HOME/.mplayer/mylog.log 2>&1 &
+
+# Store the PID so we can kill it later
+echo $! >  ~/.mplayer/mplayer.pid
+
+# Nice little message
+echo "${NAME} radio is now streaming... Turn up the volume and enjoy!"

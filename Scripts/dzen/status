@@ -1,45 +1,57 @@
 #!/bin/sh
 
 BG='#101010'     # dzen background
-FG='#fffff0'     # dzen foreground
+FG='#ffffff'     # dzen foreground
 W=45         # width of the dzen bar
 GW=40         #  width of the volume gauge
+GH=7          # height of the gauge
 GFG='#395573' # color of the gauge
-GH=6          # height of the gauge
 GBG='#333'    # color of gauge background
+VOL_GW=10         #  width of the volume gauge
+VOL_GH=22          # height of the gauge
+VOL_GFG='#395573' # color of the gauge
+VOL_GBG='#333'    # color of gauge background
 BAT_GW=50      # width of the gauge
-BAT_GFG='#999'  # color of the gauge
 BAT_GH=7       # height of the gauge
+BAT_GFG='#80CC83'  # color of the gauge
 BAT_GBG='#333'  # color of gauge background
-#X=1227         # x position
 X=0         # x position
 Y=0         # y position
  
 # Font to use
-FN='-xos4-terminus-*-*-*-*-11-*-*-*-*-*-*-*'
-#FN='-*-terminal-*-*-*-*-14-*-*-*-*-*-*-*'
+FN='-xos4-terminus-*-*-*-*-10-*-*-*-*-*-*-*'
+#FN='-*-*-*-*-*-*-12-*-*-*-*-*-*-*'
 
 TIME_INT=1         # time interval in seconds
+ICONPATH='/home/ricardo/Scripts/dzen/xbm'
 
+ 
+# Workspace settings {{{
+WS_ACTIVE="^i(${ICONPATH}/has_win.xbm)"
+WS_INACTIVE="^i(${ICONPATH}/has_win_nv.xbm)"
+# }}}
+# Tasks settings {{{
+TASK_ACTIVE_ID=`xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}' | cut -b 3-`;
+#TASK_ACTIVE_NAME=`wmctrl -l | awk "/$TASK_ACTIVE_ID/"'{for (i=4; i<=NF; i++) print $i;}' | cut -b-70`;
+# }}}
 # Battery settings {{{
 STATEFILE='/proc/acpi/battery/BAT1/state' # battery's state file
 INFOFILE='/proc/acpi/battery/BAT1/info'   # battery's info file
  
-LOWBAT=25        # percentage of battery life marked as low
+LOWBAT=15        # percentage of battery life marked as low
 LOWCOL='#ff4747' # color when battery is low
 
-BATFULL_CAPTION='^i(/home/ricardo/Scripts/dzen/xbm/power-bat.xbm)' # caption (also icons are possible)
-BAT_CAPTION='^i(/home/ricardo/Scripts/dzen/xbm/power-bat2.xbm)'
-AC_CAPTION='^i(/home/ricardo/Scripts/dzen/xbm/power-ac.xbm)'
+BATFULL_CAPTION="^i(${ICONPATH}/power-bat.xbm)" # caption (also icons are possible)
+BAT_CAPTION="^i(${ICONPATH}/power-bat2.xbm)"
+AC_CAPTION="^i(${ICONPATH}/power-ac.xbm)"
  
-BAT_FULL=`cat $INFOFILE|grep design|line|cut -d " " -f 11`;
+BAT_FULL=4800;
 RCAP=`cat $STATEFILE|grep remaining|cut -d " " -f 8`;
-AC_POWER="echo -n '100' | tr '\n' ' ' ";
 #}}}
-
 # Volume settings {{{
 # Captions of the gauge
-VOL_CAPTION="^i(/home/ricardo/Scripts/dzen/xbm/vol-hi.xbm)"
+VOL_CAPTION="^i(${ICONPATH}/vol-hi.xbm)"
+VOL_CAPTION_MUTE="^i(${ICONPATH}/vol-mute.xbm)"
 	 
 # command to increase the volume
 CI="amixer -c0 sset PCM 2dB+ >/dev/null"
@@ -57,45 +69,176 @@ CV="amixer -c0 get PCM | awk '/^  Front Left/ { print \$4 \" \" $MAX }'"
 #CV="aumix -q | line | cut -d \" \" -f 3"
 
 # }}}
-
 # MPC settings {{{
-MPC_CAPTION="^i(/home/ricardo/Scripts/dzen/xbm/mpd.xbm)"
-#MPC_SONG="nocope mpc current | cut -b-30 | tr '\n' ' ' "
-MPC_SONG="nocope mpc current | tr '\n' ' ' "
+MPC_CAPTION="^i(${ICONPATH}8x8/phones.xbm)"
+MPC_PLAY_CAPTION="^i(${ICONPATH}8x8/play.xbm)"
+MPC_PAUSE_CAPTION="^i(${ICONPATH}8x8/pause.xbm)"
+MPC_STOP_CAPTION="^i(${ICONPATH}8x8/stop.xbm)"
+#MPC_SONG="/usr/bin/mpc current | tr '\n' ' ' "
+MPC_SONG="/usr/bin/mpc current | cut -b-60 | tr '\n' ' ' "
+#MPC_FG='#7744AA'
+MPC_FG='#B0AA83'
 # }}}
+# Net settings {{{
+INTERFACE=wlan0
+	# Here we remember the previous rx/tx counts
+	RXB=`cat /sys/class/net/${INTERFACE}/statistics/rx_bytes`
+	TXB=`cat /sys/class/net/${INTERFACE}/statistics/tx_bytes`
+#}}}
+
+LAST_WS=main
 
 while true; do
-	#Volume info {{{
-	echo -n "^p(10X)";
-	echo -n $VOL_CAPTION;
-	eval "$CV" | gdbar -ss 1 -s o -sw 2 -sh 3 -h $GH -w $GW -fg $GFG -bg $GBG; #}}}
+  
+#Workspace info {{{
+WS_ACTIVE="^i(${ICONPATH}/has_win.xbm)"
+WS_INACTIVE="^i(${ICONPATH}/has_win_nv.xbm)"
+ WS=` wmctrl -d | awk '/\*/ {print $10}' `
+ echo -n "^p(_LEFT)^p(-5X)";
 
-	#Battery/ac info {{{
+ i=0;
+ for ws in {main,web,code,game}; do
+	 echo -n "^ca(1,wmctrl -s $i)";
+	 if [[ $WS == $ws ]]; then
+		 echo -n "^fg(white)^bg(black)$WS_ACTIVE$ws";
+		 if [[ $LAST_WS != $ws ]]; then
+			 feh --bg-scale ~/Walls/$ws;
+		 fi
+		 LAST_WS=$ws;
+	 else
+		 echo -n "^fg($MPC_FG)^bg(black)$WS_INACTIVE$ws";
+	 fi
+	 echo -n "^ca()^fg()^bg()";
+	 i=`expr $i + 1` #shell script i++
+ done
+# }}}
+#Tasks info {{{
+	TASK_ACTIVE_ID=`xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}' | cut -b 3-`;
+	#TASK_ACTIVE_NAME=`wmctrl -l | awk "/$TASK_ACTIVE_ID/"'{for (i=4; i<=NF; i++) print $i;}' | cut -b-70`;
+    #echo -n " < ^fg(lightgreen)";
+	echo -n " < ^fg(#afff2f)"; 
+	echo -n `wmctrl -l | awk "/$TASK_ACTIVE_ID/"'{for (i=4; i<=NF; i++) print $i, $++i, $++i;}' | cut -b-33`;
+	#echo -n "$TASK_ACTIVE_NAME"; 
+	echo -n " ^fg()>";
+#}}}
+#Center Format
+ echo -n "^p(_CENTER)";
+ echo -n "^p(-200X)";
+ echo -n "^p(_LOCK_X)";
+#Net info {{{
+	# get new rx/tx counts
+	RXBN=`cat /sys/class/net/${INTERFACE}/statistics/rx_bytes`
+	TXBN=`cat /sys/class/net/${INTERFACE}/statistics/tx_bytes`
+
+	# calculate the rates
+	# format the values to 4 digit fields
+	RXDIFF="$(expr $RXBN - $RXB)"
+	TXDIFF="$(expr $TXBN - $TXB)"
+	RXR="$(printf "%4d" $(echo $(expr $RXDIFF / 1024)) )"
+	TXR="$(printf "%4d" $(echo $(expr $TXDIFF / 1024)) )"
+
+	# print out the rates with some nice formatting
+	echo -n "^p(_UNLOCK_X)";
+	#if [[ -z $RXDIFF ]]; then 
+		echo -n "^fg(white)${RXR} kB/s";
+	#fi
+		#echo -n "^fg(#80AA83)^i(${ICONPATH}/arr_down.xbm)";
+		echo -n "^fg(#80AA83)^i(${ICONPATH}8x8/net_down_03.xbm)";
+		echo -n "^fg(white)${TXR} kB/s";
+		#echo -n "^fg(orange3)^i(${ICONPATH}/arr_up.xbm)^fg()"
+		echo -n "^fg(orange3)^i(${ICONPATH}8x8/net_up_03.xbm)^fg()"
+	#if [[ -z $TXDIFF ]]; then 
+	#fi
+
+	# reset old rates
+	RXB=$RXBN; TXB=$TXBN
+#}}}
+#MPC info {{{
+	MAXPOS="100"
+	POS=`/usr/bin/mpc | sed -ne 's/^.*(\([0-9]*\)%).*$/\1/p'`
+	POSM="$POS $MAXPOS"
+
+	MPC_STATUS=`/usr/bin/mpc status | awk '/#/ {print $1}'`
+
+	#echo -n "^p(_UNLOCK_X)";
+	echo -n "^p(10X)";
+	echo -n "^ca(1,sonata -t)^ca(2,mpc -q toggle)^ca(4,mpc -q next)^ca(5,mpc -q prev)^fg(gray)";
+	case "$MPC_STATUS" in
+		\[playing\])
+			#MPC_TIME_LEFT=`/usr/bin/mpc status | awk -F: '/#/ {print $3 - $2}'`;
+			MPC_LENGTH=`/usr/bin/mpc status | awk '/#/ {print $3}'`
+			echo -n "$MPC_CAPTION^p(3X)";
+			echo -n $MPC_PLAY_CAPTION;
+			echo -n "($MPC_LENGTH) ";
+			#echo -n `echo -n "$POSM" | gdbar -s o -h $GH -w $GW -fg $MPC_FG -bg $GBG`
+			echo -n "^fg($MPC_FG)";
+			MPC_SONGNAME=$(eval $MPC_SONG);
+		;;
+		\[paused\])
+			MPC_LENGTH=`/usr/bin/mpc status | awk '/#/ {print $3}'`
+			echo -n "$MPC_CAPTION^p(3X)";
+			echo -n $MPC_PAUSE_CAPTION;
+			echo -n "^fg(gray)";
+			echo -n "($MPC_LENGTH) ";
+			MPC_SONGNAME=$(eval $MPC_SONG);
+		;;
+		*)
+			echo -n "$MPC_CAPTION^p(3X)";
+			echo -n "$MPC_STOP_CAPTION^p(3x)";
+		;;
+	esac
+	echo -n "$MPC_SONGNAME";
+	echo -n "^ca()^ca()^ca()^ca()^fg()";
+#}}}
+#Right Format
+	echo -n "^p(_RIGHT)";
+	echo -n "^p(-350X)";
+	echo -n "^fg(gray)";
+#Pacman info {{{
+	PACMAN_CAPTION="^i(${ICONPATH}8x8/pacman.xbm)";
+	echo -n "$PACMAN_CAPTION^p(3X)";
+	echo -n `~/bin/pac_up.sh`;
+	echo -n "^p(3X)";
+#}}}
+#Battery/ac info {{{
+#RCAP=`cat $STATEFILE|grep remaining|cut -d " " -f 8`;
+RCAP=`cat $STATEFILE| awk '/remaining/ {print $3}'`;
 	if [[ -n $RCAP ]]; then
 		# calculate remaining power
 		RPERCT=`expr $RCAP \* 100`;
 		RPERC=`expr $RPERCT / $BAT_FULL`;
 		 
-		if [ $RPERC -le $LOWBAT ]; then BAT_GFG=$LOWCOL; fi
-		#echo -n "^fg($BAT_GFG)";
-		echo -n "$BAT_CAPTION^p(3X)";
-		echo -n `echo -n "$RPERC" | gdbar -s o -h $BAT_GH -w $BAT_GW -fg $BAT_GFG -bg $BAT_GBG;`
+		if [ $RPERC -le $LOWBAT ]; then BAT_GFG=$LOWCOL; 
+			elif [ $RPERC -le 50 ]; then BAT_GFG=khaki;
+			else BAT_GFG=#80CC83;
+			fi
+		echo -n "^p(3X) $BAT_CAPTION^p(3X)";
+		#echo -n `echo -n "$RPERC" | gdbar -s o -h $BAT_GH -w $BAT_GW -fg $BAT_GFG -bg $BAT_GBG;`
+		echo -n "^fg($BAT_GFG)$RPERC%^fg()";
+	#else
+		#echo -n "^p(3X)^fg(green) $AC_CAPTION^fg()";
+		#echo -n `echo -n $AC_POWER | gdbar -ss 1 -s v -h $BAT_GH -w $BAT_GW -fg $BAT_GFG -bg $BAT_GBG`
+	fi 
+#}}}
+#Volume info {{{
+	echo -n "^p(10X)^fg(gray)";
+	echo -n "^ca(1,amixer -q set Master toggle)";
+	NUM=$(eval "$CV");
+	MUTE=`amixer -c0 get Master | awk '/\[off\]/ {print $6}'`;
+	if [[ $NUM == "0 255" || $MUTE == "[off]" ]]; then 
+		echo -n $VOL_CAPTION_MUTE;
 	else
-		echo -n $AC_CAPTION;
-		echo -n `echo -n $AC_POWER | gdbar -ss 1 -s o -h $BAT_GH -w $BAT_GW -fg $BAT_GFG -bg $BAT_GBG`
-		#echo -n "^ib(1)^fg(lightgreen)^ro(6x3)^p(-4)^fg()^ib(0)^p(6)"
-	fi # }}}
-
-	#MPC info {{{
-	echo -n "^p(10X)";
-	echo -n "$MPC_CAPTION^p(3X)";
-	#echo -n "^fg($GFG)";
-	echo -n "^fg(#3955CC)";
-	# falta avaliar quando estiver parado
-	eval "$MPC_SONG";
-	echo -n "^fg()"; #}}}
-
+		echo -n $VOL_CAPTION;
+	fi
+	echo -n "^p(3X)^ca()";
+	#eval "$CV"
+	echo -n $NUM | gdbar -nonl -ss 1 -s v -sw 8 -sh 2 -h $VOL_GH -w $VOL_GW -fg $VOL_GFG -bg $VOL_GBG;
+#}}}
+#Date {{{
+	echo -n "^p(_RIGHT)";
+	echo -n "^p(-110X)";
+	echo `date +"%a %b %d, %H:%M" `;
+#}}}
 sleep $TIME_INT;
 
-#done | dzen2 -ta center -tw $W -h 9 -y $Y -x $X -fg $FG -bg $BG -e "button3=exit;button4=exec:$CI;button5=exec:$CD" -fn $FN
 done | dzen2 -ta left -y $Y -x $X -fg $FG -bg $BG -e "button3=exit;button4=exec:$CI;button5=exec:$CD" -fn $FN

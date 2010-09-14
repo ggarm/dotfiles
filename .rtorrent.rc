@@ -2,11 +2,11 @@
 # Author: Ricardo Costa
 
 # Colors
-done_fg_color = 1
-done_bg_color = 0 
-active_fg_color = 2
-active_bg_color = 0
-
+#done_fg_color = 1
+#done_bg_color = 0 
+#active_fg_color = 2
+#active_bg_color = 0
+#
 # Maximum and minimum number of peers to connect to per torrent, down and seed.
 min_peers = 40
 max_peers = 100
@@ -21,7 +21,7 @@ download_rate = 0
 upload_rate = 15
 
 # Default directory to save the downloaded torrents.
-directory ="~/Downloads/"
+directory ="~/Downloads/Completed/"
 # Default session directory.
 session ="~/Downloads/Torrents/"
 
@@ -48,12 +48,16 @@ dht_port = 6881
 system.method.set_key = event.download.finished,notify_me,"execute=~/bin/down-complete.sh,$d.get_name="
 
 # Close torrents when diskspace is low.
-schedule = low_diskspace,5,60,close_low_diskspace=400M
+schedule = low_diskspace,5,60,close_low_diskspace=100M
 
 # Watch a directory for new torrents, and stop those that have been deleted.
 schedule = watch_directory,10,10,load_start=~/Downloads/Torrents/*.torrent
 schedule = tied_directory,10,10,start_tied=~/Downloads/Torrents/*.torrent
 schedule = untied_directory,10,10,close_untied=~/Downloads/Torrents/*.torrent
+
+# for the rutorrent interface
+#scgi_port = 127.0.0.1:5001
+scgi_local = "/tmp/rpc.socket"
 
 #						<<DISABLED>>				{{{
 # Stop torrents when reaching upload ratio in percent,
@@ -83,9 +87,8 @@ schedule = untied_directory,10,10,close_untied=~/Downloads/Torrents/*.torrent
 # outgoing connections but retries with encryption if they fail, preferring
 # plaintext to RC4 encryption after the encrypted handshake
 #
-# encryption = allow_incoming,enable_retry,prefer_plaintext
+encryption = allow_incoming,enable_retry,prefer_plaintext
 # }}}
-
 #						<<ATTENTION>>				{{{
 # Do not modify the following parameters unless you know what you're doing.
 #

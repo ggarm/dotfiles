@@ -27,8 +27,10 @@ set complete=l
 set focuscontent
 
 "map lazyness
+noremap h 4h
 noremap j 4j
 noremap k 4k
+noremap l 4l
 
 javascript <<EOM
 mappings.addUserMap([modes.NORMAL, modes.PLAYER, modes.VISUAL, modes.CARET,

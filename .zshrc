@@ -27,6 +27,7 @@ source $HOME/.config/zsh/style.zsh
 source $HOME/.config/zsh/opts.zsh
 
 WORDCHARS="${WORDCHARS:s#/#}"
+REPORTTIME=5       # report about cpu-/system-/user-time of command if running longer than 5 seconds
 
 # BINDINGS ================================
 
@@ -36,11 +37,10 @@ source $HOME/.config/zsh/binds.zsh
 
 source $HOME/.config/zsh/prompt.zsh
 
-if [ -f ~/TODO ]; then cat ~/TODO; fi
-
 # Set terminal title
 case $TERM in
- screen*|xterm|rxvt*)
+ xterm*|rxvt*)
+	 [ -f ~/TODO ] && cat ~/TODO
   #cat /etc/motd
   #fortune;
   #PROMPT_COMMAND='';

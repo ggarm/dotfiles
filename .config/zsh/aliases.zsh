@@ -10,7 +10,7 @@ if [[ $SHELL == *zsh ]]; then
 	alias -s {sxw,doc,ppt,xls}=soffice
 	alias -s {html,org,php,com,net}=$BROWSER
 	alias -s {java,txt,c,cpp,h,PKGBUILD}=$EDITOR
-	alias -s {avi,wmv,mp4,mp3,wav}=mplayer
+	alias -s {asx,avi,wmv,mp4,mp3,wav}=mplayer
 	alias -s pdf=$PDFVIEWER
 	alias -s {png,jpg,gif}=$IMGVIEWER
 	alias -s exe=wine

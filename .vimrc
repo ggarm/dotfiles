@@ -1,11 +1,25 @@
 " Colorscheme and Background "{{{
 set background=light 	" light things up
 if has("gui_running")
-	set lines=41 columns=71 	" Set window size close to maximized
-	colorscheme zenburn			" Need a better one...
-	set guioptions=avRT
-	set showtabline=2
-	set mousehide
+	" Gui Options "{{{
+		set lines=45 columns=80 	" Set window size close to maximized
+		"let g:zenburn_high_Contrast = 1
+		"let g:zenburn_alternate_Visual = 1
+		"let g:zenburn_alternate_Error = 1
+		"let g:zenburn_alternate_Include = 1
+		"colorscheme zenburn			" Need a better one...
+		"let g:darkburn_high_Contrast = 1
+		"let g:darkburn_alternate_Visual = 1
+		"let g:darkburn_alternate_Error = 1
+		"let g:darkburn_alternate_Include = 1
+		"colorscheme darkburn			" Need a better one...
+		colorscheme darkspectrum			" Need a better one...
+		set guioptions=aivmR
+		set showtabline=2
+		set mousehide
+		"set guifont=Envy\ Code\ R\ 10
+		set guifont=Terminus\ 10
+	"}}}
 elseif ( &term =~ 'linux' || $DISPLAY =~ ' ')
 	colorscheme desert256
 	"colorscheme caravaggio
@@ -13,7 +27,8 @@ elseif ( &term =~ 'linux' || $DISPLAY =~ ' ')
 else                            " we are on tty
 	set t_Co=256				" Using 256-color yay
 	"colorscheme neverland-dont_use_this_one " This 256-theme rocks!
-	colorscheme zenburn
+	"colorscheme zenburn
+	colorscheme neverland
 	"set term=rxvt-256color
     " Stupid Bindings for tmux/Screen "{{{
     
@@ -71,7 +86,7 @@ if has('folding')
 	set foldopen-=undo " Do not open folds when undo'ing changes
 	set foldlevel=0 " Zero default so folds are hidden at start
 	" set foldlevel=999 " High default so folds are shown to start
-	set foldmarker={,} " Fold C style code
+	set foldmarker={{{,}}} " Fold C style code
 	set foldcolumn=0 " Don't waste screen space
 
 function! SimpleFoldText() " {
@@ -101,11 +116,14 @@ filetype on
 filetype plugin on
 filetype indent on
 
+set autoread		" auto read when file is changed
 set nocompatible 	" vi is dead
 set backup
 set backupdir=~/.vim/backup
 "set noswapfile
 set autowrite		" Save before commands like :next and :make
+set shortmess=aIoO	" short msg, no intro
+set cot+=menuone	" show preview of function prototype
 set mouse=a
 " }}}
 
@@ -166,7 +184,7 @@ set statusline=%F%m%r%h%w%=(%{strlen(&ft)?&ft:'?'},%{&fenc},%{&ff})\ \ %-9.(%l,%
 
 " Filter expected errors from make
 if has("eval") && v:version >= 700
-	if hostname() == "snowcone"
+	if hostname() == "ricardo"
 		let &makeprg="nice -n7 make -j4 2>&1"
 	elseif hostname() == "snowmobile"
 		let &makeprg="nice -n7 make -j1 2>&1"
@@ -180,7 +198,6 @@ if has("eval") && v:version >= 700
 " catch internal errors
     let &errorformat="%.%#Internal error at %.%# at %f:%l: %m,".&errorformat
 endif
-
 
 " Key mappings {{{
 
@@ -205,16 +222,18 @@ cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 " Remap code completion from Ctrl+x, Ctrl+o to Ctrl+Space
 inoremap <C-Space> <C-x><C-o>
 
-" Folds:
-nnoremap za 3za
-nnoremap zc 3zc
-
+" Mapping Enter and Backspace 
+"  to work in normal mode.
+nmap <Return> o<Esc>
+nmap <Backspace> i<Backspace><Esc>
+ 
 " Typos:
 " Use ',' instead of ':'
 " Use :W as :w
 noremap , :
 cmap W w
 nmap q: :q<cr>
+ 
 " Don't use Ex mode, use Q for formatting
 map Q gq
 

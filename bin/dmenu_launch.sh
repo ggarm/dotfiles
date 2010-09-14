@@ -3,8 +3,9 @@
 if [ -f $HOME/.dmenurc ]; then
   . $HOME/.dmenurc
 else
-  DMENU="dmenu -p >> -sb #00DDDD -sf #000000 -nb #000000 -nf #0099FF ${1+"$@"}"
-  #DMENU='dmenu -p $ -i -fn terminus -nb #000000 -nf #ffffff -sb #1793d1 -sf #ffffff'
+  #DMENU="dmenu -b -p >> -sb #00DDDD -sf #000000 -nb #000000 -nf #0099FF ${1+"$@"}"
+  #DMENU='dmenu -b -p $ -i -fn terminus -nb #000000 -nf #ffffff -sb #1793d1 -sf #ffffff'
+  DMENU='dmenu -b -p $ -i -fn terminus -nb #000000 -nf #b9c0af -sb #afff2f -sf #000 '
 
   #DMENU='dmenu -i'
 fi

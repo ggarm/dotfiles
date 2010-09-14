@@ -69,6 +69,9 @@ task_active_background_id = 2
 #---------------------------------------------
 systray_padding = 0 4 5
 systray_background_id = 1 
+systray_sort = ascending
+systray_icon_size = 30
+#systray_icon_asb = 30 0 0
 
 #---------------------------------------------
 # CLOCK
@@ -119,7 +122,7 @@ tooltip_font = sans 10
 #---------------------------------------------
 # AUTOHIDE OPTIONS
 #---------------------------------------------
-autohide = 1
+autohide = 0
 autohide_show_timeout = 0.3
 autohide_hide_timeout = 5.5
 autohide_height = 1

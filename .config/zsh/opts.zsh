@@ -10,6 +10,8 @@ setopt prompt_subst
 setopt always_last_prompt
 setopt nohup
 setopt interactive_comments
+unsetopt BG_NICE 
+unsetopt bgnice				# do NOT nice bg commands
 
 autoload -Uz compinit colors vcs_info
 compinit colors

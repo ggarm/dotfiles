@@ -1,0 +1,194 @@
+#!/usr/bin/perl
+# RPC - Radio Playing Client
+# Copyright (C) 2010 Magnus Woldrich <trapd00r@trapd00r.se>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+###############################################################################
+
+our $APP = 'Radio Playing Client';
+our $VERSION = 0.3;
+
+use strict;
+use RPD::URI qw(geturi listchans getchname);
+use Mplayer::NowPlaying qw(stream_np $np_log);
+use Data::Dumper;
+
+my $options; 
+my($action,$arg) = @ARGV;
+my $pipe_w    = "$ENV{HOME}/.mplayer/mplayer.fifo";
+my $log       = "$ENV{HOME}/.mplayer/rpd.log";
+my $favtracks = "$ENV{HOME}/.mplayer/rpd.fav";
+$np_log       = $log;
+my $rpd_pid   = '/tmp/rpd.pid';
+
+if(!(-f $rpd_pid)) {
+  print "RPD is not running, starting...\n";
+  system("rpd") == 0 or print "RPD could not start. $!\n";
+  exit 0;
+}
+
+if(!-e $log) {
+  open(my $fh,'>',$log) or die "Cant create $log: $!";
+}
+
+
+$options = {
+  quit    => sub {
+    fifo_w($action);
+    unlink($rpd_pid) 
+      or print "Cant unlink $rpd_pid: $!. Please remove $rpd_pid.\n";
+  },
+
+  stop    => sub {
+    fifo_w('pause') && print "Toggled!\n";
+  },
+  
+  toggle   => sub {
+    fifo_w('pause') && print "Toggled!\n";
+  },
+
+  son      => sub {
+    fifo_w('mute 0') && print "Sound on!\n";
+  },
+
+  soff      => sub {
+    fifo_w('mute 1') && print "Sound off!\n";
+  },
+
+  help      => sub {
+    usage();
+  },
+
+  list      => sub {
+    listchans();
+  },
+
+  npi       => sub {
+    my $info = stream_np();
+    printf("%s [%s] (%s)",
+      $info->{title}, $info->{genre}, $info->{website});
+  },
+
+  np        => sub {
+    my $info = stream_np();
+    my ($bold, $normal, $blue, $red) =
+      ("\033[1m", "\033[0m", "\033[34;1m", "\033[31m");
+    my $bitrate = $info->{bitrate};
+
+    if($bitrate =~ m/^([0-9]+)/) {
+      if($1 < 160) {
+        $bitrate = "$red$1$normal kbps";
+      }
+    }
+
+    printf("$bold$blue%7s$normal: $bold%.70s$normal\n", 'title',$info->{title})
+      unless $info->{title} eq '';
+    printf("$blue%7s$normal: %.70s\n", 'bitrate', $bitrate)
+      unless $bitrate eq '';
+    for(qw(genre name website)) {
+      printf("$blue%7s$normal: %.70s\n", $_, $info->{$_})
+        unless !defined($info->{$_}) or $info->{$_} eq '';
+      }
+  },
+
+  play       => sub {
+    my $stream = undef;
+    if(!defined(geturi($arg))) {
+      $stream = $arg; # arbitary urls..
+    }
+    else {
+      $stream = geturi($arg);
+    }
+    fifo_w('loadfile', $stream);
+    #print 'Playing: ', getchname($arg), "\n   From $stream\n";
+    sleep 2;
+    $options->{np}->();
+
+    exit(0);
+  },
+  fav         => sub {
+    my $info = stream_np();
+    open(my $fh, '>>', $favtracks) or die "Cant append data to $favtracks: $!";
+    print($fh $info->{title}, "\n") unless $info->{title} eq '';
+    close($fh);
+    yell($info->{title});
+    print ' from ';
+    yell($info->{website});
+    print ' >> ';
+    yell("$favtracks\n");
+
+    exit(0);
+      
+  },
+  shfav        => sub {
+    open(my $fh, '<', $favtracks) or die "Cant read data from $favtracks: $!";
+    my @favs = <$fh>;
+    close($fh);
+
+    yell(@favs);
+  },
+  kill          => sub {
+    open(my $fh, '<', $rpd_pid) or croak("Cant open $rpd_pid: $!");
+    my $target = <$fh>;
+    close($fh);
+    if(kill(9, $target)) {
+      print "RPD ($target) have been killed\n";
+      unlink($rpd_pid);
+      exit(0);
+    }
+    else {
+      print "Could not kill $target: $!\n";
+    }
+  },
+};
+
+
+$options->{'help'}->() unless $action;
+defined $options->{$action} && $options->{$action}->();
+
+sub fifo_w {
+  my($action,$arg) = @_;
+  open(my $fh, '>', $pipe_w) or die "Can not open $pipe_w for writing: $!";
+  print {$fh} "$action $arg\n";
+}
+
+sub yell {
+  my @text = @_;
+  map{$_ = "\033[1m$_\033[0m"} @text;
+  print @text;
+}
+
+sub usage {
+  print << "USAGE";
+  $APP $VERSION
+  Usage: rpc [OPTIONS] (ARGS) 
+
+  OPTIONS:
+      np      show the currently playing song
+      npi     show the currently playing song on one line
+      play    play/switch to channel
+      list    list all available channels
+      fav     add track to the favlist
+      shfav   show favorites
+      son     turn on sound
+      soff    turn off sound
+      toggle  toggle playback status, pause/play
+      stop    pauses playback. If you really want to stop, use quit
+      quit    stops RPD
+
+  EXAMPLES:
+      rpc play psy
+
+USAGE
+}

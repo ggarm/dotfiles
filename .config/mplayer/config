@@ -35,3 +35,5 @@ spualign=-1
 spuaa=4
 # Fullscreen
 fs=yes
+# Always on Top
+onTop=1

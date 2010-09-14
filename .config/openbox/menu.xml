@@ -171,6 +171,13 @@
 		<item label="Reconfigure Openbox">
 			<action name="Reconfigure"/>
 		</item>
+		<item label="Log Out">
+			<action name="Exit">
+				<prompt>
+					yes
+				</prompt>
+			</action>
+		</item>
 	</menu>
 	<menu id="wallpaper-menu" label="Wallpaper">
 		<item label="Randomize Wall">
@@ -178,18 +185,26 @@
 		</item>
 	</menu>
 	<menu id="root-menu" label="Openbox 3">
-		<item label="urxvtc">
+		<!-- <item label="urxvtc">
 			<action name="Execute"> <command> urxvtc </command> </action>
-		</item>
+		</item> -->
 		<item label="tmux">
 			<action name="Execute"> <command> urxvtc -e tmux -2 attach </command> </action>
 		</item>
 		<item label="vimperator">
 			<action name="Execute"> <command> firefox </command> </action>
 		</item>
-		<item label="pcmanfm">
+		<item label="FM">
 			<action name="Execute"> <command> pcmanfm </command> </action>
 		</item>
+		<separator/>
+		<!-- <menu id="chwall" label="Wallpaper" execute="wallmenu.py" /> -->
+		<item label="Wallpaper">
+			<action name="Execute"> <command> nitrogen </command> </action>
+		</item>
+		<menu id="pipe-wifi" label="Wifi" execute="sudo /home/ricardo/.config/openbox/wifi-pipe wlan0" />
+        <menu id="obfb-home" label="home" execute="obfilebrowser ~" />
+		<separator/>
 		<separator label="Applications"/>
 		<!-- <menu id="apps-accessories-menu"/> -->
 		<!-- <menu id="apps-editors-menu"/> -->
@@ -200,18 +215,7 @@
 		<menu id="apps-term-menu"/>
 		<!-- <menu id="apps-fileman-menu"/> -->
 		<!-- <separator label="System"/> -->
-		<item label="Wallpaper">
-			<action name="Execute"> <command> randomWall.sh </command> </action>
-		</item>
-		<menu id="system-menu"/>
-		<!-- <menu id="wallpaper-menu"/> -->
 		<separator/>
-		<item label="Log Out">
-			<action name="Exit">
-				<prompt>
-					yes
-				</prompt>
-			</action>
-		</item>
+		<menu id="system-menu"/>
 	</menu>
 </openbox_menu>
