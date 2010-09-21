@@ -19,7 +19,6 @@ unclutter &
 
 eval `cat ~/.fehbg` &
 (pytyle >/dev/null 2>/dev/null) &
-(netcfgfx 2>/dev/null) &
 
 #(pcmanfm --desktop -d 2>/dev/null) &
 (tint2 -c ~/.config/tint2/tint2rc.icons) &
@@ -36,9 +35,10 @@ eval `cat ~/.fehbg` &
 (urxvtd -q -o -f) &
 (tmux -2 attach) &
 
-( /bin/ping -c 1 www.google.com 2>/dev/null && (thunderbird 2>/dev/null) ) &
+#( /bin/ping -c 1 www.google.com 2>/dev/null && (thunderbird 2>/dev/null) ) &
 
 (sleep 1; statusbar.sh) &
+(sleep 2; netcfgfx 2>/dev/null) &
 
 #exec startfluxbox
 #exec ck-launch-session openbox-session

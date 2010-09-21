@@ -115,11 +115,17 @@ WS_INACTIVE="^i(${ICONPATH}/has_win_nv.xbm)"
 #Tasks info {{{
 	TASK_ACTIVE_ID=`xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}' | cut -b 3-`;
 	#TASK_ACTIVE_NAME=`wmctrl -l | awk "/$TASK_ACTIVE_ID/"'{for (i=4; i<=NF; i++) print $i;}' | cut -b-70`;
-    #echo -n " < ^fg(lightgreen)";
-	echo -n " < ^fg(#afff2f)"; 
-	echo -n `wmctrl -l | awk "/$TASK_ACTIVE_ID/"'{for (i=4; i<=NF; i++) print $i, $++i, $++i;}' | cut -b-33`;
-	#echo -n "$TASK_ACTIVE_NAME"; 
-	echo -n " ^fg()>";
+	#echo -n " { $TASK_ACTIVE_ID }";
+	if [ $TASK_ACTIVE_ID != 0 ]; then
+		echo -n " < ^fg(#afff2f)"; 
+		echo -n `wmctrl -l | awk "/$TASK_ACTIVE_ID/"'{for (i=4; i<=NF; i++) \
+			print $i, $++i, $++i, $++i, $++i, $++i, $++i, $++i, $++i, $++i, \
+			$++i, $++i, $++i, $++i, $++i, $++i, $++i;}' \
+			| cut -b-60`;
+		#echo -n "$TASK_ACTIVE_NAME"; 
+		echo -n "$NAME"; 
+		echo -n " ^fg()>";
+	fi
 #}}}
 #Center Format
  echo -n "^p(_CENTER)";
@@ -191,18 +197,22 @@ WS_INACTIVE="^i(${ICONPATH}/has_win_nv.xbm)"
 	echo -n "^ca()^ca()^ca()^ca()^fg()";
 #}}}
 #Right Format
-	echo -n "^p(_RIGHT)";
-	echo -n "^p(-350X)";
-	echo -n "^fg(gray)";
+ echo -n "^p(_RIGHT)";
+ echo -n "^p(-200)";
+ echo -n "^fg(gray)";
 #Pacman info {{{
-	PACMAN_CAPTION="^i(${ICONPATH}8x8/pacman.xbm)";
-	echo -n "$PACMAN_CAPTION^p(3X)";
-	echo -n `~/bin/pac_up.sh`;
-	echo -n "^p(3X)";
+	UP=`cat ~/Scripts/pacman_updates`;
+	if [ -z $UP ]; then 
+		PACMAN_CAPTION="^i(${ICONPATH}8x8/pacman.xbm)";
+		echo -n "$PACMAN_CAPTION^p(3X)";
+		echo -n "^fg(yellow3)";
+		echo -n `cat ~/Scripts/pacman_updates`;
+		#echo -n `~/bin/pac_up.sh`;
+	fi
 #}}}
 #Battery/ac info {{{
-#RCAP=`cat $STATEFILE|grep remaining|cut -d " " -f 8`;
-RCAP=`cat $STATEFILE| awk '/remaining/ {print $3}'`;
+	echo -n "^p(_RIGHT)^p(-180X)";
+	RCAP=`cat $STATEFILE| awk '/remaining/ {print $3}'`;
 	if [[ -n $RCAP ]]; then
 		# calculate remaining power
 		RPERCT=`expr $RCAP \* 100`;
@@ -221,7 +231,8 @@ RCAP=`cat $STATEFILE| awk '/remaining/ {print $3}'`;
 	fi 
 #}}}
 #Volume info {{{
-	echo -n "^p(10X)^fg(gray)";
+	echo -n "^p(_RIGHT)^p(-150X)";
+	echo -n "^fg(gray)";
 	echo -n "^ca(1,amixer -q set Master toggle)";
 	NUM=$(eval "$CV");
 	MUTE=`amixer -c0 get Master | awk '/\[off\]/ {print $6}'`;

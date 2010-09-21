@@ -2,12 +2,23 @@
 #
 # Author: Ricardo Costa 
 #
+# done in .zprofile {{{
 # EXPORTS =================================
-# done in .zprofile
 #source $HOME/.config/zsh/exports.zsh
+#
+# ZSTYLE ==================================
+#source $HOME/.config/zsh/style.zsh
+#
+# OPTIONS =================================
+#
+#source $HOME/.config/zsh/opts.zsh
+#
+#WORDCHARS="${WORDCHARS:s#/#}"
+#REPORTTIME=5       # report about cpu-/system-/user-time of command if running longer than 5 seconds
+#}}}
 
 # COLORS ==================================
-# 
+ 
 source $HOME/.config/zsh/colors.zsh
 
 # ALIASES =================================
@@ -17,17 +28,6 @@ source $HOME/.config/zsh/aliases.zsh
 # FUNCTIONS  ==============================
  
 source $HOME/.config/zsh/functions.zsh
-
-# ZSTYLE ==================================
-
-source $HOME/.config/zsh/style.zsh
-
-# OPTIONS =================================
-
-source $HOME/.config/zsh/opts.zsh
-
-WORDCHARS="${WORDCHARS:s#/#}"
-REPORTTIME=5       # report about cpu-/system-/user-time of command if running longer than 5 seconds
 
 # BINDINGS ================================
 

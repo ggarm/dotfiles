@@ -41,7 +41,7 @@ URxvt*background: black
 URxvt*foreground: white
 URxvt*cursorColor: orange
 URxvt*cursorBlink: true
-URxvt*underlineColor: yellow
+URxvt*underlineColor: orange
 
 ! clickable URLS
 URxvt*perl-ext: default,matcher
@@ -56,7 +56,7 @@ URxvt*borderLess: false
 ! Transparency stuff
 URxvt*inheritPixmap: true
 URxvt*tintColor: white
-URxvt*shading: 25
+URxvt*shading: 1
 
 ! Icon for urxvt
 !URxvt*iconFile: /usr/share/pixmaps/rxvt-unicode.png
@@ -64,9 +64,9 @@ URxvt*iconFile: /usr/share/pixmaps/terminal.png
 
 ! geometry and font
 URxvt*geometry: 80x30
-#URxvt*font: xft:profont:pixelsize=14:antialias=false
-#URxvt*boldFont: xft:profont:bold:pixelsize=14:antialias=false
-#URxvt*italicFont: xft:profont:bold:pixelsize=14:antialias=false
+#URxvt*font: xft:montecarlo:pixelsize=17:antialias=false
+#URxvt*boldFont: xft:montecarlo:bold:pixelsize=17:antialias=false
+#URxvt*italicFont: xft:montecarlo:bold:pixelsize=17:antialias=false
 URxvt*font: xft:terminus:pixelsize=14:antialias=false
 URxvt*boldFont: xft:terminus:bold:pixelsize=14:antialias=false
 URxvt*italicFont: xft:terminus:bold:pixelsize=14:antialias=false

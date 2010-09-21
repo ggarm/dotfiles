@@ -48,6 +48,11 @@ cd () {
  true;
 }
 
+alias () {
+ ~/Scripts/utils/alias;
+ }
+
+
 # Creates an archive from given directory
 mktar() { tar cvf  "${1%%/}.tar"     "${1%%/}/"; }
 

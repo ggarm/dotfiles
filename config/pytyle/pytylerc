@@ -272,7 +272,7 @@ Config.WORKAREA = {}
 #
 # Note 2: You shouldn't need to put dmenu here.
 Config.FILTER = [
-               'gmrun', 'gimp', 'download',
+               'gmrun', 'gimp', 'download', 'shutdown-dialog.py'
                ]
 
 

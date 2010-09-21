@@ -23,7 +23,7 @@ set showstatuslinks=2
 set ic
 "set popups=2
 set wildoptions=auto
-set complete=l
+set complete=bl
 set focuscontent
 
 "map lazyness

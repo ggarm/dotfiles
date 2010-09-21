@@ -5,64 +5,10 @@
 # Last Modified:
 #  23 Jun 2010 @ 1:46
 
-#. /etc/rc.conf
-#. /etc/rc.d/functions
-
-# Welcome to Arch Linux #{{{
-
-#echo " "
-#printhl "Arch Linux\n"
-#printhl "${C_H2}http://www.archlinux.org"
-#printhl "Copyright 2002-2007 Judd Vinet"
-#printhl "Copyright 2007-2010 Aaron Griffin"
-#printhl "Distributed under the GNU General Public License (GPL)"
-#printsep
-# }}}
-
-# initial mountpoints #{{{
-## mount /proc, /sys and our RAM /dev
-#if ! /bin/mountpoint -q /proc; then
-  #stat_busy "mount /proc"
-  #/bin/mount -n -t proc none /proc
-  #stat_done
-#fi
-#if ! /bin/mountpoint -q /sys; then
-  #stat_busy "mount /sys"
-  #/bin/mount -n -t sysfs none /sys
-  #stat_done
-#fi
-#if ! /bin/mountpoint -q /dev; then
-  #stat_busy "/dev is a mountpoint"
-  #stat_done
-  #if grep -q devtmpfs /proc/filesystems 2>/dev/null; then
-  #stat_busy "mount devtmpfs"
-  #stat_done
-    #/bin/mount -n -t devtmpfs udev /dev -o mode=0755,size=10M,nosuid
-  #else
-  #stat_busy "mount tmpfs"
-  #stat_done
-    #/bin/mount -n -t tmpfs udev /dev -o mode=0755,size=10M,nosuid
-  #fi
-#fi
-#}}}
-
 # Copy static device nodes to /dev
 /bin/cp -a /lib/udev/devices/* /dev/
 
 /bin/dmesg -n 1
-
-	## enable rtc access #{{{
-	#/sbin/modprobe -q rtc-cmos
-	## If devtmpfs is used, the required RTC device already exists now
-	## Otherwise, create whatever device is available
-	#if [ ! -c /dev/rtc -a ! -c /dev/rtc0 ]; then
-		#if [ -f /sys/class/rtc/rtc0/dev ]; then
-            #stat_busy "Mknod rtc0"
-			#IFS=: read -r major minor < /sys/class/rtc/rtc0/dev
-			#/bin/mknod /dev/rtc0 c $major $minor
-            #stat_done
-        #fi
-	#fi #}}}
 
 (/sbin/hwclock --hctosys --localtime --noadjfile) &
 
@@ -86,21 +32,11 @@ echo > /proc/sys/kernel/hotplug
 cat /proc/mounts >| /etc/mtab
 /bin/mount /dev/sda11 #-L ArchHome
 
-#/bin/mount -t devpts -o defaults none /dev/pts
-#/bin/mount -t tmpfs -o defaults none /dev/shm
-#
-#/bin/mount -t ext3 -o defaults,noatime /dev/sda7 /media/UbuntuRoot #-L UbuntuRoot
-#/bin/mount -t ext3 -o defaults,noatime /dev/sda8 /media/UbuntuHome #-L UbuntuHome
-#/bin/mount -t ntfs -o rw,noexec,dmask=007,fmask=117,uid=ricardo,gid=ricardo /dev/sda1 /media/Ricardo #-L Ricardo
-#/bin/mount -t ntfs -o rw,noexec,dmask=007,fmask=117,uid=ricardo,gid=ricardo /dev/sda5 /media/Dados #-L Dados
-#/bin/mount -t ntfs -o rw,noexec,dmask=007,fmask=117,uid=ricardo,gid=ricardo /dev/sda6 /media/Prog #-L Prog
-/bin/mount -a -t nonfs,nonfs4,nosmbfs,nocifs,nocodafs,noncpfs,nosysfs,noshfs,nofuse,nofuseblk,noglusterfs
-#(/bin/mount -a -F -t devpts,tmpfs,ext3,ntfs) &
-#(/bin/mount -a -F) &
 #}}}
 
 (/bin/hostname ricardoArch) & #status "Setting Hostname: $HOSTNAME"
 (/bin/loadkeys -q -u pt-latin9) & #status "Loading Keyboard Map: $KEYMAP" 
+#(/usr/bin/setfont Lat2-Terminus16) &
 
 # End of file
-# vim: set ts=2 sw=2 noet:
+# vim: set ft=sh ts=2 sw=2 noet:

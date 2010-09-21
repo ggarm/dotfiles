@@ -7,7 +7,8 @@ export FM=pcmanfm
 export PDFVIEWER=zathura
 export IMGVIEWER=mirage
 #export PATH=$HOME/bin:$PATH
-export PATH=/usr/share/perl5/site_perl/auto/share/dist/Cope:$HOME/bin:$PATH
+export PATH=/usr/share/perl5/site_perl/auto/share/dist/Cope:$PATH
+export PATH=$HOME/bin:$PATH
 #export LD_LIBRARY_PATH=$HOME/compiladores/root/usr/include/rts:$LD_LIBRARY_PATH
 
 #rxvt
@@ -38,9 +39,9 @@ export HISTSIZE=5000
 export SAVEHIST=5000
 
 #XDG vars
-export XDG_DATA_HOME=/home/ricardo/dotfiles/.local/share 
-export XDG_CONFIG_HOME=/home/ricardo/dotfiles/.config 
-export XDG_CACHE_HOME=/home/ricardo/dotfiles/.cache 
+export XDG_DATA_HOME=/home/ricardo/.local/share 
+export XDG_CONFIG_HOME=/home/ricardo/.config 
+export XDG_CACHE_HOME=/home/ricardo/.cache 
 
 #XAUTHORITY
 export XAUTHORITY=$HOME/.config/.Xauthority

@@ -18,7 +18,7 @@ if [[ $SHELL == *zsh ]]; then
 fi
 
 # mplayer --now-playing
-alias mplayer='mplayer -identify $@> $HOME/.mplayer/mylog.log'
+alias mplayer='mplayer -identify $@> $HOME/.mplayer/mplayerd.log'
 
 #Downloads dir
 alias dl='~/Downloads'
@@ -61,7 +61,8 @@ alias cd..='cd ..'
 alias ..='cd ..'
 
 #ls
-alias ls='ls --group-directories-first -hF --color=always'
+alias ls='~/bin/pilsner'
+#alias ls='ls --group-directories-first -hF --color=always'
 alias la='ls -A'
 alias ll='ls -l --show-control-chars'
 alias lla='ll -A'
