@@ -197,13 +197,15 @@
 		<item label="FM">
 			<action name="Execute"> <command> pcmanfm </command> </action>
 		</item>
+		<item label="Steam">
+			<action name="Execute"> <command> wine ~/.wine/drive_c/Program\ Files/Steam/Steam.exe </command> </action>
+		</item>
 		<separator/>
 		<!-- <menu id="chwall" label="Wallpaper" execute="wallmenu.py" /> -->
 		<item label="Wallpaper">
 			<action name="Execute"> <command> nitrogen </command> </action>
 		</item>
 		<menu id="pipe-wifi" label="Wifi" execute="sudo /home/ricardo/.config/openbox/wifi-pipe wlan0" />
-        <menu id="obfb-home" label="home" execute="obfilebrowser ~" />
 		<separator/>
 		<separator label="Applications"/>
 		<!-- <menu id="apps-accessories-menu"/> -->

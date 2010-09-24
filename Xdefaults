@@ -55,7 +55,7 @@ URxvt*borderLess: false
 
 ! Transparency stuff
 URxvt*inheritPixmap: true
-URxvt*tintColor: white
+#URxvt*tintColor: white
 URxvt*shading: 1
 
 ! Icon for urxvt
@@ -72,7 +72,7 @@ URxvt*boldFont: xft:terminus:bold:pixelsize=14:antialias=false
 URxvt*italicFont: xft:terminus:bold:pixelsize=14:antialias=false
 
 ! fade text n% upon unfocus
-urxvt*fading:             20
+#urxvt*fading:             20
 ! }}}
 
 ! x11-ssh-askpass ------------------------------------------------------------ {{{

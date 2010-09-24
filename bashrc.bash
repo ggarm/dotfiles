@@ -1,8 +1,20 @@
 # Check for an interactive session
 [ -z "$PS1" ] && return
 
-. $HOME/.config/zsh/aliases.zsh
-. $HOME/.config/zsh/functions.zsh
+if [[ -d $HOME/dotfiles/config/zsh ]]; then
+	BASHDOTDIR="$HOME/dotfiles/config/zsh";
+elif [[ -d $HOME/.config/zsh ]]; then
+	BASHDOTDIR="$HOME/.config/zsh";
+else
+	BASHDOTDIR=$HOME;
+fi
+
+. $BASHDOTDIR/aliases.zsh
+. $BASHDOTDIR/functions.zsh
+. $BASHDOTDIR/exports.zsh
+. $BASHDOTDIR/colors.zsh
+#. $HOME/.config/zsh/aliases.zsh
+#. $HOME/.config/zsh/functions.zsh
 #. $HOME/.config/zsh/exports.zsh
 
 # cd to a dir without cd!
@@ -45,7 +57,6 @@ PS1="$white( $red\A$white ) - ( $cyan\u$white @ $blue\w$white ) $cyan>> $normal"
 case $TERM in
  screen|xterm|rxvt*)
   cat /etc/motd;
-  fortune -n256;
   #PROMPT_COMMAND='echo -ne "\e]0;$USER@$HOSTNAME: $BASH_COMMAND\007" '
   PROMPT_COMMAND='';
   trap 'echo -ne "\e]0;$BASH_COMMAND\007" ' DEBUG;

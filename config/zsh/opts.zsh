@@ -15,9 +15,9 @@ unsetopt bgnice				# do NOT nice bg commands
 
 autoload -Uz compinit colors vcs_info
 compinit colors
-#zle -N zle-line-init
-#zle -N zle-keymap-select
 
 HISTFILE=$HOME/.histfile
 HISTSIZE=5000
 SAVEHIST=5000
+WORDCHARS="${WORDCHARS:s#/#}"
+REPORTTIME=5       # report about cpu-/system-/user-time of command if running longer than 5 seconds

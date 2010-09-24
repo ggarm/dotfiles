@@ -61,8 +61,11 @@ alias cd..='cd ..'
 alias ..='cd ..'
 
 #ls
-alias ls='~/bin/pilsner'
-#alias ls='ls --group-directories-first -hF --color=always'
+if [[ -f ~/bin/pilsner ]]; then
+	alias ls='~/bin/pilsner';
+else
+	alias ls='ls --group-directories-first -hF --color=always'
+fi
 alias la='ls -A'
 alias ll='ls -l --show-control-chars'
 alias lla='ll -A'

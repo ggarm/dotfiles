@@ -38,7 +38,12 @@ eval `cat ~/.fehbg` &
 #( /bin/ping -c 1 www.google.com 2>/dev/null && (thunderbird 2>/dev/null) ) &
 
 (sleep 1; statusbar.sh) &
-(sleep 2; netcfgfx 2>/dev/null) &
+#(sleep 2; netcfgfx 2>/dev/null) &
+
+#If at home don't annoy me
+if [[ `iwgetid | awk '{print $2}'` == ESSID:\"DLink-B686C5\" ]]; then
+	(netcfgfx 2>/dev/null) &
+fi
 
 #exec startfluxbox
 #exec ck-launch-session openbox-session

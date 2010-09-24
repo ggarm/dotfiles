@@ -8,7 +8,7 @@ GH=7          # height of the gauge
 GFG='#395573' # color of the gauge
 GBG='#333'    # color of gauge background
 VOL_GW=10         #  width of the volume gauge
-VOL_GH=22          # height of the gauge
+VOL_GH=20          # height of the gauge
 VOL_GFG='#395573' # color of the gauge
 VOL_GBG='#333'    # color of gauge background
 BAT_GW=50      # width of the gauge
@@ -38,20 +38,24 @@ TASK_ACTIVE_ID=`xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}' | cut -b 3-`;
 STATEFILE='/proc/acpi/battery/BAT1/state' # battery's state file
 INFOFILE='/proc/acpi/battery/BAT1/info'   # battery's info file
  
-LOWBAT=15        # percentage of battery life marked as low
+#LOWBAT=15        # percentage of battery life marked as low
 LOWCOL='#ff4747' # color when battery is low
 
-BATFULL_CAPTION="^i(${ICONPATH}/power-bat.xbm)" # caption (also icons are possible)
-BAT_CAPTION="^i(${ICONPATH}/power-bat2.xbm)"
-AC_CAPTION="^i(${ICONPATH}/power-ac.xbm)"
+#BAT_CAPTION="^i(${ICONPATH}/power-bat2.xbm)"
+BAT_FULL="^i(${ICONPATH}8x8/bat_full_02.xbm)"
+BAT_MID="^i(${ICONPATH}8x8/bat_low_02.xbm)"
+BAT_LOW="^i(${ICONPATH}8x8/bat_empty_02.xbm)"
+AC_CAPTION="^i(${ICONPATH}8x8/ac_01.xbm)"
  
 BAT_FULL=4800;
 RCAP=`cat $STATEFILE|grep remaining|cut -d " " -f 8`;
 #}}}
 # Volume settings {{{
 # Captions of the gauge
-VOL_CAPTION="^i(${ICONPATH}/vol-hi.xbm)"
-VOL_CAPTION_MUTE="^i(${ICONPATH}/vol-mute.xbm)"
+VOL_CAPTION="^i(${ICONPATH}8x8/spkr_01.xbm)"
+VOL_CAPTION_MUTE="^i(${ICONPATH}8x8/spkr_02.xbm)"
+#VOL_CAPTION="^i(${ICONPATH}/vol-hi.xbm)"
+#VOL_CAPTION_MUTE="^i(${ICONPATH}/vol-mute.xbm)"
 	 
 # command to increase the volume
 CI="amixer -c0 sset PCM 2dB+ >/dev/null"
@@ -65,7 +69,8 @@ CD="amixer -c0 sset PCM 2dB- >/dev/null"
 # volume, the second the maximum volume
 #MAX=`amixer -c0 get PCM | awk '/^  Limits/ { print $5 }'`
 MAX=255
-CV="amixer -c0 get PCM | awk '/^  Front Left/ { print \$4 \" \" $MAX }'"
+#CV="amixer -c0 get PCM | awk '/^  Front Left/ { print \$4 * 100 / $MAX}'"
+CV="amixer -c0 get PCM | awk '/^  Front Left/ { print \$5 }' | tr -d '[]'" ;
 #CV="aumix -q | line | cut -d \" \" -f 3"
 
 # }}}
@@ -89,24 +94,46 @@ INTERFACE=wlan0
 LAST_WS=main
 
 while true; do
-  
+#Left Format
+ echo -n "^p(_LEFT)";
+ echo -n "^p(-5X)";
+#Arch Icon {{{
+ echo -n "^fg(lightblue3)";
+ #echo -n "^i(${ICONPATH}8x8/arch.xbm)";
+ echo -n "^i(${ICONPATH}8x8/arch_10x10.xbm)";
+ echo -n "^p(2X)";
+#}}}
 #Workspace info {{{
 WS_ACTIVE="^i(${ICONPATH}/has_win.xbm)"
 WS_INACTIVE="^i(${ICONPATH}/has_win_nv.xbm)"
- WS=` wmctrl -d | awk '/\*/ {print $10}' `
- echo -n "^p(_LEFT)^p(-5X)";
+WS=` wmctrl -d | awk '/\*/ {print $10}' `
 
+ NUM_TASK=0;
  i=0;
  for ws in {main,web,code,game}; do
 	 echo -n "^ca(1,wmctrl -s $i)";
+	 NUM_WIN=`wmctrl -l | awk "/ $i /"'{ i += 1 } END { print i }' `;
+	 #echo -n "$NUM_WIN";
 	 if [[ $WS == $ws ]]; then
-		 echo -n "^fg(white)^bg(black)$WS_ACTIVE$ws";
+		 echo -n "^fg(white)^bg(black)$ws";
 		 if [[ $LAST_WS != $ws ]]; then
 			 feh --bg-scale ~/Walls/$ws;
 		 fi
 		 LAST_WS=$ws;
+		 if [[ $NUM_WIN -gt 0 ]]; then
+			 echo -n "$WS_ACTIVE";
+			 NUM_TASK=$NUM_WIN;
+		 else
+			 echo -n " ";
+			 NUM_TASK=0;
+		 fi
 	 else
-		 echo -n "^fg($MPC_FG)^bg(black)$WS_INACTIVE$ws";
+		 echo -n "^fg($MPC_FG)^bg(black)$ws";
+		 if [[ $NUM_WIN -gt 0 ]]; then
+			 echo -n "$WS_INACTIVE";
+		 else
+			 echo -n " ";
+		 fi
 	 fi
 	 echo -n "^ca()^fg()^bg()";
 	 i=`expr $i + 1` #shell script i++
@@ -116,15 +143,15 @@ WS_INACTIVE="^i(${ICONPATH}/has_win_nv.xbm)"
 	TASK_ACTIVE_ID=`xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}' | cut -b 3-`;
 	#TASK_ACTIVE_NAME=`wmctrl -l | awk "/$TASK_ACTIVE_ID/"'{for (i=4; i<=NF; i++) print $i;}' | cut -b-70`;
 	#echo -n " { $TASK_ACTIVE_ID }";
-	if [ $TASK_ACTIVE_ID != 0 ]; then
-		echo -n " < ^fg(#afff2f)"; 
+	if [[ $TASK_ACTIVE_ID != 0 && $NUM_TASK != 0 ]]; then
+		echo -n " <^fg(#afff2f)$NUM_TASK^fg()> "; 
+		echo -n "^fg(#afff2f)";
 		echo -n `wmctrl -l | awk "/$TASK_ACTIVE_ID/"'{for (i=4; i<=NF; i++) \
 			print $i, $++i, $++i, $++i, $++i, $++i, $++i, $++i, $++i, $++i, \
 			$++i, $++i, $++i, $++i, $++i, $++i, $++i;}' \
 			| cut -b-60`;
 		#echo -n "$TASK_ACTIVE_NAME"; 
-		echo -n "$NAME"; 
-		echo -n " ^fg()>";
+		#echo -n " ^fg()>";
 	fi
 #}}}
 #Center Format
@@ -198,40 +225,40 @@ WS_INACTIVE="^i(${ICONPATH}/has_win_nv.xbm)"
 #}}}
 #Right Format
  echo -n "^p(_RIGHT)";
- echo -n "^p(-200)";
+ echo -n "^p(-230)";
  echo -n "^fg(gray)";
 #Pacman info {{{
 	UP=`cat ~/Scripts/pacman_updates`;
-	if [ -z $UP ]; then 
+	if [ ! -z $UP ]; then 
 		PACMAN_CAPTION="^i(${ICONPATH}8x8/pacman.xbm)";
 		echo -n "$PACMAN_CAPTION^p(3X)";
 		echo -n "^fg(yellow3)";
 		echo -n `cat ~/Scripts/pacman_updates`;
-		#echo -n `~/bin/pac_up.sh`;
 	fi
+	echo -n "^fg(gray)";
 #}}}
 #Battery/ac info {{{
-	echo -n "^p(_RIGHT)^p(-180X)";
+	echo -n "^p(_RIGHT)^p(-210X)";
 	RCAP=`cat $STATEFILE| awk '/remaining/ {print $3}'`;
 	if [[ -n $RCAP ]]; then
 		# calculate remaining power
-		RPERCT=`expr $RCAP \* 100`;
-		RPERC=`expr $RPERCT / $BAT_FULL`;
+		#RPERCT=`expr $RCAP \* 100`;
+		#RPERC=`expr $RPERCT / $BAT_FULL`;
+		RPERC=`expr $RCAP \* 100 / $BAT_FULL`;
 		 
-		if [ $RPERC -le $LOWBAT ]; then BAT_GFG=$LOWCOL; 
-			elif [ $RPERC -le 50 ]; then BAT_GFG=khaki;
-			else BAT_GFG=#80CC83;
-			fi
+		if [ $RPERC -le 15 ]; then BAT_GFG=$LOWCOL; BAT_CAPTION=$BAT_FULL;
+		elif [ $RPERC -le 50 ]; then BAT_GFG=khaki; BAT_CAPTION=$BAT_MID;
+		else BAT_GFG=#80CC83; BAT_CAPTION=$BAT_LOW;
+		fi
 		echo -n "^p(3X) $BAT_CAPTION^p(3X)";
 		#echo -n `echo -n "$RPERC" | gdbar -s o -h $BAT_GH -w $BAT_GW -fg $BAT_GFG -bg $BAT_GBG;`
 		echo -n "^fg($BAT_GFG)$RPERC%^fg()";
-	#else
-		#echo -n "^p(3X)^fg(green) $AC_CAPTION^fg()";
-		#echo -n `echo -n $AC_POWER | gdbar -ss 1 -s v -h $BAT_GH -w $BAT_GW -fg $BAT_GFG -bg $BAT_GBG`
+	else
+		echo -n "^p(3X) $AC_CAPTION ^fg(#80CC83)On^fg()";
 	fi 
 #}}}
 #Volume info {{{
-	echo -n "^p(_RIGHT)^p(-150X)";
+	echo -n "^p(_RIGHT)^p(-160X)";
 	echo -n "^fg(gray)";
 	echo -n "^ca(1,amixer -q set Master toggle)";
 	NUM=$(eval "$CV");
@@ -243,12 +270,17 @@ WS_INACTIVE="^i(${ICONPATH}/has_win_nv.xbm)"
 	fi
 	echo -n "^p(3X)^ca()";
 	#eval "$CV"
-	echo -n $NUM | gdbar -nonl -ss 1 -s v -sw 8 -sh 2 -h $VOL_GH -w $VOL_GW -fg $VOL_GFG -bg $VOL_GBG;
+	#echo -n "^fg($VOL_GFG)$NUM^fg()";
+	echo -n "^fg(lightblue3)$NUM^fg()";
+	#echo -n $NUM | gdbar -nonl -ss 0 -s v -sw 8 -sh 1 -h $VOL_GH -w $VOL_GW -fg $VOL_GFG -bg $VOL_GBG;
 #}}}
 #Date {{{
 	echo -n "^p(_RIGHT)";
-	echo -n "^p(-110X)";
-	echo `date +"%a %b %d, %H:%M" `;
+	echo -n "^p(-55X)";
+	echo -n "^i(${ICONPATH}8x8/clock.xbm) "
+	echo -n "^p(3X)";
+	#echo `date +"%a %b %d, %H:%M" `;
+	echo `date +"%H:%M" `;
 #}}}
 sleep $TIME_INT;
 

@@ -142,7 +142,7 @@ set numberwidth=1		" Keep number bar small if it's shown
 
 set hlsearch			" highlight search terms
 set incsearch			" go jump around hits
-set ignorecase			" search ignoring case
+"set ignorecase			" search ignoring case
 set smartcase			" if there are caps, go case-sensitive
 set wildignore=*.o,*.obj,*.bak,*.exe
 set hidden				" hide buffers
@@ -321,6 +321,7 @@ if has('autocmd')
 	" au BufWritePre * %s/\s\+$//e | norm! ``
 
 	autocmd BufWinEnter *.c,*.cpp,*.h set foldmethod=syntax
+	autocmd BufWinEnter TODO set ft=todo
 
     " Reread configuration of Vim if .vimrc is saved
     augroup VimConfig

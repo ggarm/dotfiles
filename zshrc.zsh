@@ -6,15 +6,6 @@
 # EXPORTS =================================
 #source $HOME/.config/zsh/exports.zsh
 #
-# ZSTYLE ==================================
-#source $HOME/.config/zsh/style.zsh
-#
-# OPTIONS =================================
-#
-#source $HOME/.config/zsh/opts.zsh
-#
-#WORDCHARS="${WORDCHARS:s#/#}"
-#REPORTTIME=5       # report about cpu-/system-/user-time of command if running longer than 5 seconds
 #}}}
 
 # COLORS ==================================
@@ -28,6 +19,14 @@ source $HOME/.config/zsh/aliases.zsh
 # FUNCTIONS  ==============================
  
 source $HOME/.config/zsh/functions.zsh
+
+# OPTIONS =================================
+
+source $HOME/.config/zsh/opts.zsh
+
+# ZSTYLE ==================================
+
+source $HOME/.config/zsh/style.zsh
 
 # BINDINGS ================================
 

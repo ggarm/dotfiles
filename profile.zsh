@@ -1,5 +1,4 @@
 . $HOME/.config/zsh/exports.zsh
-. $HOME/.config/zsh/style.zsh
 . $HOME/.config/zsh/opts.zsh
 
 WORDCHARS="${WORDCHARS:s#/#}"

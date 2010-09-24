@@ -27,7 +27,7 @@ ex () {
 }
 
 # Compress to an archive
-function roll() {
+roll() {
 	local FILE
 	FILE=$1
 	case $FILE in
@@ -48,9 +48,9 @@ cd () {
  true;
 }
 
-alias () {
- ~/Scripts/utils/alias;
- }
+if [[ -f ~/Scripts/utils/alias ]]; then
+	alias () { ~/Scripts/utils/alias; }
+fi
 
 
 # Creates an archive from given directory
@@ -84,11 +84,8 @@ hist () {
  `history | grep $number | tr -s ' ' | cut -d ' ' -f 3-`
 }
 
-# Locate + Grep
-# locate () { locate $@ | grep $@ }
-
 # clyde - no more manual sudo
-clyde() {
+clyde () {
 	case $1 in
 		(-Ss | -Si | -Q* | -T | -G | --stats)
 			/usr/bin/clyde "$@" ;;
@@ -101,24 +98,22 @@ clyde() {
 }
 
 # git functions
-function ga() { git add $* }
-function gl() { git log $* }
-function gs() { git status $* }
-function gp() { git push $* }
-function gpl() { git pull $* }
-function gc() { 
+ga () { git add $*; }
+gl () { git log $*; }
+gs () { git status $*; }
+gp () { git push $*; }
+gpl () { git pull $*; }
+gc () { 
 	if [ -z "$1" ]; then
-		git commit
+		git commit;
 	else
-		git commit -m "$*"
+		git commit -m "$*";
 	fi
 }
-#function gc() { git commit -m "$*" }
-function gco() {
-  if [ -z "$1" ]; then
-      git checkout master
-  else
-      git checkout $1
-  fi
+gco () {
+	if [ -z "$1" ]; then
+		git checkout master;
+	else
+		git checkout $1;
+	fi
 }
-

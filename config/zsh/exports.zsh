@@ -6,8 +6,9 @@ export EDITOR=vim
 export FM=pcmanfm
 export PDFVIEWER=zathura
 export IMGVIEWER=mirage
-#export PATH=$HOME/bin:$PATH
-export PATH=/usr/share/perl5/site_perl/auto/share/dist/Cope:$PATH
+if [[ -d /usr/share/perl5/site_perl/auto/share/dist/Cope ]]; then
+	export PATH=/usr/share/perl5/site_perl/auto/share/dist/Cope:$PATH
+fi
 export PATH=$HOME/bin:$PATH
 #export LD_LIBRARY_PATH=$HOME/compiladores/root/usr/include/rts:$LD_LIBRARY_PATH
 

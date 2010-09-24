@@ -3,7 +3,7 @@
 # Epic hack:
 #  /etc/rc.sysinit
 # Last Modified:
-#  23 Jun 2010 @ 1:46
+#  23 Sep 2010 @ 18:13
 
 # Copy static device nodes to /dev
 /bin/cp -a /lib/udev/devices/* /dev/
