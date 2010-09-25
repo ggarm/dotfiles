@@ -45,4 +45,10 @@ case $TERM in
   #PROMPT_COMMAND='';
   #trap 'echo -ne "\e]0;$BASH_COMMAND\007" ' DEBUG;
  ;;
+ screen*)
+	 echo -n "$fg_bold[white]Arch$fg_bold[blue]linux$fg[white]\v\t";
+	 [ -f ~/Scripts/slogans/slogan.txt ] && shuf -n1 ~/Scripts/slogans/slogan.txt
+	 echo -n "$reset_color";
+ ;;
 esac
+

@@ -143,15 +143,23 @@ WS=` wmctrl -d | awk '/\*/ {print $10}' `
 	TASK_ACTIVE_ID=`xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}' | cut -b 3-`;
 	#TASK_ACTIVE_NAME=`wmctrl -l | awk "/$TASK_ACTIVE_ID/"'{for (i=4; i<=NF; i++) print $i;}' | cut -b-70`;
 	#echo -n " { $TASK_ACTIVE_ID }";
+	#if [[ $NUM_TASK != 0 ]]; then
 	if [[ $TASK_ACTIVE_ID != 0 && $NUM_TASK != 0 ]]; then
-		echo -n " <^fg(#afff2f)$NUM_TASK^fg()> "; 
-		echo -n "^fg(#afff2f)";
+		if [[ $NUM_TASK -gt 1 ]]; then
+			echo -n " ^i(${ICONPATH}/mtall.xbm)@^fg(#afff2f)$NUM_TASK^fg()";
+			#echo -n " (^fg(yellow3)$NUM_TASK^fg())";
+			#echo -n " <^fg(#afff2f)$NUM_TASK^fg()>";
+		fi
+		#echo -n " ^bg(black)^fg(lightblue3)";
+		#echo -n " ^fg(black)^bg(#DDDD83)";
+		#echo -n " ^fg(black)^bg(#afff2f)";
+		echo -n " ^fg(#afff2f)";
 		echo -n `wmctrl -l | awk "/$TASK_ACTIVE_ID/"'{for (i=4; i<=NF; i++) \
 			print $i, $++i, $++i, $++i, $++i, $++i, $++i, $++i, $++i, $++i, \
 			$++i, $++i, $++i, $++i, $++i, $++i, $++i;}' \
 			| cut -b-60`;
+		echo -n "^bg()";
 		#echo -n "$TASK_ACTIVE_NAME"; 
-		#echo -n " ^fg()>";
 	fi
 #}}}
 #Center Format
