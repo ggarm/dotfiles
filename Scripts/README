@@ -1,18 +1,18 @@
 Just some fun stuff
 --
-Hacks:
+etc:
  '-->' system init scripts & kernel
 dzen:
  '-->' scripts for dzen, bitmaps not included
 issues:
  '-->' cool ascii art for /etc/issue
- motd:
+motd:
  '-->' ascii art from 'milomouse' ?
- pacman:
+pacman:
  '-->' pacman sync scripts
- rxvt:
+rxvt:
  '-->' quake-like terminal scripts
- slogans:
+slogans:
  '-->' Arch Linux slogans
- utils:
+utils:
  '-->' some trapd00r's utils

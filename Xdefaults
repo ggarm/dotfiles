@@ -2,7 +2,7 @@
 ! ! file:     ~/.Xdefaults
 ! ! author:   Ricardo Costa (and +stolen stuff)
 ! ! modified: 2010-07-03 15:50
-! ! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
+! ! vim::nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
 ! ! ----------------------------------------------------------------------------
 !
 !
@@ -15,6 +15,21 @@ Xcursor.theme: whiteglass
 Xcursor.size:  18
 !Xcursor.theme: pulse
 !Xcursor.size:  18
+! }}}
+
+! Xautolock ----------------------------------------------------------------- {{{
+Xautolock.time: 2
+Xautolock.locker: alock -bg image:file=/home/ricardo/Walls/brb.jpg -auth pam
+
+! }}}
+
+! Font Management -------------------------------------------------------- {{{
+Xft.dpi:       96
+!Xft.dpi:       100
+!Xft.antialias: true
+!Xft.hinting:   true
+!Xft.hintstyle: hintslight
+Xft.rgba:      rgb
 ! }}}
 
 ! Xterm ---------------------------------------------------------------------- {{{
@@ -37,11 +52,11 @@ xterm*geometry:         80x25
 ! urxvt ---------------------------------------------------------------------- {{{
 URxvt*termName: rxvt-256color
 URxvt*buffered: true
-URxvt*background: black
-URxvt*foreground: white
-URxvt*cursorColor: orange
+!URxvt*background: black
+!URxvt*foreground: white
+!URxvt*cursorColor: orange
 URxvt*cursorBlink: true
-URxvt*underlineColor: orange
+!URxvt*underlineColor: orange
 
 ! clickable URLS
 URxvt*perl-ext: default,matcher
@@ -54,9 +69,18 @@ URxvt*scrollBar: false
 URxvt*borderLess: false
 
 ! Transparency stuff
-URxvt*inheritPixmap: true
+#URxvt*inheritPixmap: true
 #URxvt*tintColor: white
-URxvt*shading: 1
+#URxvt*shading: 1
+
+! fade text n% upon unfocus
+#urxvt*fading:             20
+
+URxvt*trippleclickwords: true
+URxvt*pasteableTabs: true
+URxvt*pointerBlank: true
+URxvt*pointerBlankDelay: 2
+URxvt*depth: 24
 
 ! Icon for urxvt
 !URxvt*iconFile: /usr/share/pixmaps/rxvt-unicode.png
@@ -67,12 +91,21 @@ URxvt*geometry: 80x30
 #URxvt*font: xft:montecarlo:pixelsize=17:antialias=false
 #URxvt*boldFont: xft:montecarlo:bold:pixelsize=17:antialias=false
 #URxvt*italicFont: xft:montecarlo:bold:pixelsize=17:antialias=false
+!URxvt.font:xft:envy code r:medium:pixelsize=14:antialias=false
+!URxvt.boldFont:xft:envy code r:medium:pixelsize=14:antialias=false
+!URxvt.italicFont:xft:envy code r:medium:pixelsize=14:antialias=false
+!URxvt*font: xft:inconsolata:pixelsize=12:antialias=false
+!URxvt*boldFont: xft:inconsolata:bold:pixelsize=12:antialias=false
+!URxvt*italicFont: xft:inconsolata:bold:pixelsize=12:antialias=false
+!
+!URxvt*font: -windows-montecarlo-medium-r-normal--11-110-72-72-c-60-microsoft-cp1252
+!URxvt*boldFont: -windows-montecarlo-bold-r-normal--11-110-72-72-c-60-microsoft-cp1252
+!URxvt*italicFont: -nil-profont-medium-r-normal--10-100-72-72-c-50-iso8859-1
+
 URxvt*font: xft:terminus:pixelsize=14:antialias=false
 URxvt*boldFont: xft:terminus:bold:pixelsize=14:antialias=false
 URxvt*italicFont: xft:terminus:bold:pixelsize=14:antialias=false
 
-! fade text n% upon unfocus
-#urxvt*fading:             20
 ! }}}
 
 ! x11-ssh-askpass ------------------------------------------------------------ {{{
@@ -113,10 +146,75 @@ XLock.messagefont: -xos4-terminus-*-*-*-*-*-*-*-*-*-*-*-*
 XLock.ncolors: 256
 !}}}
 
+! XfontSel ------------------------------------------------------------------- {{{
+
+XFontSel*sampleText.background: TEXTBG
+XFontSel*menu*showUnselectable: false
+XFontSel*MenuButton.shadowWidth: 0
+XFontSel*Toggle*ToggleStyle: check
+XFontSel*MenuButton*Justify: left
+XFontSel*MenuButton*MenuButtonStyle: select
+
+.xfontsel.pane.commandBox.quitButton.background: #252525
+.xfontsel.pane.commandBox.quitButton.foreground: snow
+.xfontsel.pane.commandBox.ownButton.background: orange3
+.xfontsel.pane.commandBox.ownButton.foreground: snow
+!.xfontsel.pane.commandBox.countLabel.background: snow
+.xfontsel.pane.viewPort.sampleText.background: #252525
+.xfontsel.pane.viewPort.sampleText.foreground: snow
+.xfontsel.pane.fieldBox.field0.background: #252525
+.xfontsel.pane.fieldBox.field0.foreground: snow
+.xfontsel.pane.fieldBox.field1.background: #252525
+.xfontsel.pane.fieldBox.field1.foreground: snow
+.xfontsel.pane.fieldBox.field2.background: #252525
+.xfontsel.pane.fieldBox.field2.foreground: snow
+.xfontsel.pane.fieldBox.field3.background: #252525
+.xfontsel.pane.fieldBox.field3.foreground: snow
+.xfontsel.pane.fieldBox.field4.background: #252525
+.xfontsel.pane.fieldBox.field4.foreground: snow
+.xfontsel.pane.fieldBox.field5.background: #252525
+.xfontsel.pane.fieldBox.field5.foreground: snow
+.xfontsel.pane.fieldBox.field6.background: #252525
+.xfontsel.pane.fieldBox.field6.foreground: snow
+.xfontsel.pane.fieldBox.field7.background: #252525
+.xfontsel.pane.fieldBox.field7.foreground: snow
+.xfontsel.pane.fieldBox.field8.background: #252525
+.xfontsel.pane.fieldBox.field8.foreground: snow
+.xfontsel.pane.fieldBox.field9.background: #252525
+.xfontsel.pane.fieldBox.field9.foreground: snow
+.xfontsel.pane.fieldBox.field10.background: #252525
+.xfontsel.pane.fieldBox.field10.foreground: snow
+.xfontsel.pane.fieldBox.field11.background: #252525
+.xfontsel.pane.fieldBox.field11.foreground: snow
+.xfontsel.pane.fieldBox.field12.background: #252525
+.xfontsel.pane.fieldBox.field12.foreground: snow
+.xfontsel.pane.fieldBox.field13.background: #252525
+.xfontsel.pane.fieldBox.field13.foreground: snow
+.xfontsel.pane.fieldBox*background: #252525
+.xfontsel.pane.fieldBox.MenuButton.borderWidth: 1
+.xfontsel.pane.fieldBox.MenuButton.internalHeight:1
+.xfontsel.pane.fieldBox.MenuButton.internalWidth: 2
+.xfontsel.pane.fieldBox.MenuButton.shapeStyle: rectangle
+
+! }}}
+
 !Colors ------------------------------------------------------------------- {{{
 !
-URxvt*background: #FFFFFF
+!URxvt*background: #FFFFFF
+!URxvt*foreground: #FFFFFF
+
+URxvt*background: #121212
 URxvt*foreground: #A8A8A8
+URxvt*cursorColor: #EB122E
+URxvt*cursorColor2: #252525
+URxvt*colorIT: #FFFFFF
+URxvt*colorBD: #FFFFFF
+URxvt*colorUL: #FF8F00
+URxvt*colorRV: #333333
+URxvt*underlineColor: #0E0E0E
+URxvt*borderColor: #0E0E0E
+URxvt*pointerColor: #252525
+URxvt*pointerColor2: #0092FF
 
 !Latest
 !#include "/home/ricardo/.colours/arch"

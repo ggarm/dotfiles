@@ -21,8 +21,9 @@
 ###
 
 # source this just to get PROFILE_DIR
-. /usr/lib/network/network
-[ -z "$PROFILE_DIR" ] && PROFILE_DIR='/etc/network.d/'
+#. /usr/lib/network/network
+#[ -z "$PROFILE_DIR" ] && PROFILE_DIR='/etc/network.d/'
+PROFILE_DIR='/etc/network.d/'
 
 # awk code for parsing iwlist output
 # putting it here removes the wifi-select dependency

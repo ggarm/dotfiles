@@ -41,3 +41,4 @@ Powered by tacos.
 No defaults. No cruft. No limitations.
 Arch Linux: It won't stab you.
 We don't need to duck for silly slogans
+A pacman a day, keeps the bugs at bay.

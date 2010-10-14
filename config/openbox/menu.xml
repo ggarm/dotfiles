@@ -171,11 +171,35 @@
 		<item label="Reconfigure Openbox">
 			<action name="Reconfigure"/>
 		</item>
-		<item label="Log Out">
-			<action name="Exit">
-				<prompt>
-					yes
-				</prompt>
+		<item label="Exit Openbox">
+			<action name="Execute">
+				<command>
+					~/bin/shutdown-dialog.py
+				</command>
+			</action>
+		</item>
+		<!-- <item label="Log Out"> <action name="Exit"> <prompt> yes </prompt> </action> </item> !-->
+	</menu>
+	<menu id="games-menu" label="Games">
+		<item label="Steam">
+			<action name="Execute">
+				<command>
+					wine ~/.wine/drive_c/Program\ Files/Steam/Steam.exe
+				</command>
+			</action>
+		</item>
+		<item label="World of Goo">
+			<action name="Execute">
+				<command>
+					~/WorldOfGoo/WorldOfGoo
+				</command>
+			</action>
+		</item>
+		<item label="Eschalon Book II">
+			<action name="Execute">
+				<command>
+					~/eschalon_book_2/eschalon_book_2
+				</command>
 			</action>
 		</item>
 	</menu>
@@ -194,17 +218,12 @@
 		<item label="vimperator">
 			<action name="Execute"> <command> firefox </command> </action>
 		</item>
-		<item label="FM">
+		<item label="Home">
 			<action name="Execute"> <command> pcmanfm </command> </action>
 		</item>
-		<item label="Steam">
-			<action name="Execute"> <command> wine ~/.wine/drive_c/Program\ Files/Steam/Steam.exe </command> </action>
-		</item>
+		<menu id="games-menu"/>
 		<separator/>
 		<!-- <menu id="chwall" label="Wallpaper" execute="wallmenu.py" /> -->
-		<item label="Wallpaper">
-			<action name="Execute"> <command> nitrogen </command> </action>
-		</item>
 		<menu id="pipe-wifi" label="Wifi" execute="sudo /home/ricardo/.config/openbox/wifi-pipe wlan0" />
 		<separator/>
 		<separator label="Applications"/>
@@ -219,5 +238,8 @@
 		<!-- <separator label="System"/> -->
 		<separator/>
 		<menu id="system-menu"/>
+		<item label="Set Wallpaper">
+			<action name="Execute"> <command> nitrogen </command> </action>
+		</item>
 	</menu>
 </openbox_menu>

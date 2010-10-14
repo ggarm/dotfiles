@@ -1,0 +1,42 @@
+#!/bin/dash
+#
+# Epic hack:
+#  /etc/rc.sysinit
+# Last Modified:
+#  23 Sep 2010 @ 18:13
+
+# Copy static device nodes to /dev
+/bin/cp -a /lib/udev/devices/* /dev/
+
+/bin/dmesg -n 1
+
+(/sbin/hwclock --hctosys --localtime --noadjfile) &
+
+echo > /proc/sys/kernel/hotplug
+
+#status "Starting UDev Daemon" #{{{
+  /sbin/udevd --daemon
+  #/sbin/udevadm control --property=STARTUP=1
+  /sbin/udevadm trigger --action=add
+  (/sbin/udevadm settle) &
+  #/sbin/udevadm control --property=STARTUP=
+
+  (/sbin/modprobe iwlagn) &
+  #}}}
+
+# bring up the loopback interface
+(/sbin/ifconfig lo 127.0.0.1 up) &
+
+#status "Mounting Local Filesystems" #{{{
+/bin/mount -n -o remount,rw /
+cat /proc/mounts >| /etc/mtab
+/bin/mount /dev/sda11 #-L ArchHome
+
+#}}}
+
+(/bin/hostname ricardoArch) & #status "Setting Hostname: $HOSTNAME"
+(/bin/loadkeys -q -u pt-latin9) & #status "Loading Keyboard Map: $KEYMAP" 
+#(/usr/bin/setfont Lat2-Terminus16) &
+
+# End of file
+# vim: set ft=sh ts=2 sw=2 noet:

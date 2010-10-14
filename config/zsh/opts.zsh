@@ -16,6 +16,10 @@ unsetopt bgnice				# do NOT nice bg commands
 autoload -Uz compinit colors vcs_info
 compinit colors
 
+# smart urls
+autoload -U url-quote-magic
+zle -N self-insert url-quote-magic
+
 HISTFILE=$HOME/.histfile
 HISTSIZE=5000
 SAVEHIST=5000

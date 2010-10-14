@@ -8,7 +8,7 @@ map <C-b> <C-v><C-b>
 "colorscheme bigchu-mini
 colorscheme bigchu
 
-au LocationChange .* js modes.passAllKeys = /google\.com\/(reader|calendar|mail|a)/.test(buffer.URL);
+"au LocationChange .* js modes.passAllKeys = /google\.com\/(reader|calendar|mail|a)/.test(buffer.URL);
 
 "loadplugins
 source ~/.vimperator/styles/styles.js
@@ -23,7 +23,7 @@ set showstatuslinks=2
 set ic
 "set popups=2
 set wildoptions=auto
-set complete=bl
+set complete=l
 set focuscontent
 
 "map lazyness

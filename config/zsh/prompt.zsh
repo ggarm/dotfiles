@@ -68,12 +68,15 @@ parse_git_dirty () { #{{{
 #}
 #}}}
 
-PROMPT='%{$fg[yellow]%}%n%{$reset_color%} on %{$fg[blue]%}%m%{$reset_color%} in %{$fg[red]%}%~%{$reset_color%}$(git_prompt_info)
-$(battery_prompt.pl)%{$fg[green]%}>%{$fg[blue]%}>%{$fg[cyan]%}>%{$reset_color%} '
-local time="%{$fg[magenta]%}%*%{$reset_color%}"
-local batt="$(battery_prompt.pl)"
-RPROMPT='${time} $(battery_prompt.pl)'
+precmd(){
 
+PROMPT="%{$fg[yellow]%}%n%{$reset_color%} on %{$fg[blue]%}%m%{$reset_color%} in %{$fg[red]%}%~%{$reset_color%}$(git_prompt_info)
+$(battery_prompt.pl)%{$fg[green]%}>%{$fg[blue]%}>%{$fg[cyan]%}>%{$reset_color%} "
+local time="%{$fg[magenta]%}%*%{$reset_color%}"
+#local batt="$(battery_prompt.pl)"
+RPROMPT="${time} %{$reset_color%}"
+
+}
 ZSH_THEME_GIT_PROMPT_PREFIX=" [branch: %{$fg[magenta]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}]"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[green]%}!"

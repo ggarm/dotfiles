@@ -9,9 +9,6 @@ double=yes
 #
 quiet=1 # Output
 # really-quiet=1 # very little output
-# Disable gnome-screensaver, prolly
-# heartbeat-cmd="gnome-screensaver-command -p"
-# heartbeat-cmd="dbus-send --session --dest=org.gnome.ScreenSaver --type=method_call /org/gnome/ScreenSaver org.gnome.ScreenSaver.SimulateUserActivity"
 #
 # Captions
 sub-bg-alpha="0" #background color ala closed captions
@@ -19,6 +16,8 @@ sub-bg-color="0" #black to white
 subfont-text-scale="1" #truetype font scaling
 ffactor="10" #black outline
 #sid="0" #subtitle set
+embeddedfonts=yes
+fontconfig=yes
 subfont-encoding=unicode
 unicode=yes
 utf8=yes
@@ -35,5 +34,7 @@ spualign=-1
 spuaa=4
 # Fullscreen
 fs=yes
-# Always on Top
-onTop=1
+
+# Misc settings
+nolirc=yes
+onTop=1 # Always on Top

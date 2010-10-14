@@ -17,13 +17,16 @@ if has("gui_running")
 		set guioptions=aivmR
 		set showtabline=2
 		set mousehide
-		"set guifont=Envy\ Code\ R\ 10
-		set guifont=Terminus\ 10
+		set guifont=Envy\ Code\ R\ 11
+		"set guifont=Terminus\ 10
 	"}}}
 elseif ( &term =~ 'linux' || $DISPLAY =~ ' ')
 	colorscheme desert256
 	"colorscheme caravaggio
 	set bg=dark
+	"set colorcolumn=80		" line at 80 cols
+	highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+	match OverLength /\%81v.\+/
 else                            " we are on tty
 	set t_Co=256				" Using 256-color yay
 	"colorscheme neverland-dont_use_this_one " This 256-theme rocks!
@@ -88,6 +91,7 @@ if has('folding')
 	" set foldlevel=999 " High default so folds are shown to start
 	set foldmarker={{{,}}} " Fold C style code
 	set foldcolumn=0 " Don't waste screen space
+	set foldminlines=10       " Minimum lines to fold
 
 function! SimpleFoldText() " {
     return getline(v:foldstart).' '
@@ -137,24 +141,28 @@ set viminfo='20,\"50    " read/write a .viminfo file, don't store more
 						" than 50 lines of registers
 set history=50          " keep 50 lines of command line history
 set ruler               " show the cursor position all the time
+set autoread			" auto read when file is changed
 set number 				" show line numbers
 set numberwidth=1		" Keep number bar small if it's shown
 
 set hlsearch			" highlight search terms
 set incsearch			" go jump around hits
-"set ignorecase			" search ignoring case
-set smartcase			" if there are caps, go case-sensitive
+set ignorecase			" search ignoring case
+"set smartcase			" if there are caps, go case-sensitive
 set wildignore=*.o,*.obj,*.bak,*.exe
 set hidden				" hide buffers
 set splitbelow          " splitted window under current one
+set wildchar=<Tab>		" tab for autocompletion
 set completeopt-=menu	" Get rid of the ugly menu
 
 set linespace=0			" don't insert any extra pixel lines
 						" betweens rows
-set autochdir			" always switch to the current file directory 
+
+set autochdir			" always switch to the current file directory
 set nostartofline		" leave my cursor where it was
 
 set clipboard+=unnamed  " yank and copy to X clipboard
+set selection=inclusive
 " }}}
 
 " Low priority filename suffixes for filename completion {{{
@@ -178,8 +186,9 @@ set laststatus=2
 
 " Uber cool status line
 " Ripped of in github.com
-set statusline=%F%m%r%h%w%=(%{strlen(&ft)?&ft:'?'},%{&fenc},%{&ff})\ \ %-9.(%l,%c%V%)\ \ %<%P
+set statusline=%<[%02n]\ %F%m%r%h%w%=(%{strlen(&ft)?&ft:'?'},%{&fenc},%{&ff})\ \ %-9.(%l,%c%V%)\ \ %<%P
 
+"set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)\ [%08O:%02B]
 "}}}
 
 " Filter expected errors from make
@@ -268,6 +277,9 @@ noremap <F4> <Esc>:bd<CR>
 " NERD_Tree:
 :map <F12> <Esc>:NERDTreeToggle<CR>
 
+" TagList:
+:map <F1> <Esc>:Tlist<CR>
+
 " BufferList:
 nnoremap \ :call BufferList()<CR>
 let g:BufferListWidth = 25
@@ -287,51 +299,6 @@ hi BufferNormal term=NONE ctermfg=black ctermbg=darkcyan cterm=NONE
 " Comments:
 
 " Key mappings }}}
-
-" Auto Commands "{{{
-if has('autocmd')
-
-	" Automatically add CREATED date and update MODIFIED date
-    autocmd BufNewFile * call Created()
-    autocmd BufWrite * call LastModified()
-
-	" Set comment characters for common languages
-	autocmd FileType python,sh,bash,zsh,ruby,perl,muttrc let StartComment="#" | let EndComment=""
-	autocmd FileType html let StartComment="<!--" | let EndComment="-->"
-	autocmd FileType php,cpp,javascript let StartComment="//" | let EndComment=""
-	autocmd FileType c,css let StartComment="/*" | let EndComment="*/"
-	autocmd FileType vim let StartComment="\"" | let EndComment=""
-	autocmd FileType ini let StartComment=";" | let EndComment=""
-
-	" Go back where I left off
-	autocmd BufReadPost * call RestoreCursorPos()
-	autocmd BufWinEnter * call OpenFoldOnRestore()
-
-	" Automatic ctags handling
-	function! UPDATE_TAGS()
-		let _f_ = expand("%:p")
-		let _cmd_ = '"ctags -a -R --c++-kinds=+p --fields=+iaS --extra=+q " ' . '"' . _f_ . '"'
-		let _resp = system(_cmd_)
-		unlet _cmd_
-		unlet _f_
-		unlet _resp
-	endfunction
-	au BufReadPost *.cpp,*.h,*.c call UPDATE_TAGS()
-	" au BufWritePost *.cpp,*.h,*.c call UPDATE_TAGS()
-	" au BufWritePre * %s/\s\+$//e | norm! ``
-
-	autocmd BufWinEnter *.c,*.cpp,*.h set foldmethod=syntax
-	autocmd BufWinEnter TODO set ft=todo
-
-    " Reread configuration of Vim if .vimrc is saved
-    augroup VimConfig
-        au!
-        autocmd BufWritePost ~/.vimrc       so ~/.vimrc
-        autocmd BufWritePost vimrc          so ~/.vimrc
-    augroup END
-
-endif
-"}}}
 
 " Tabs {{{
 
@@ -424,8 +391,85 @@ endfunction
 " InsertTabWrapper() }}}
 
 "}}}
+"
+" Plugins {{{ 
+	"TagList {{{
+	"will recurse backwards until 'tags' is found
+	set tags+=tags;
+
+	"let Tlist_Display_Tag_Scope = 1 "ugh...
+	let g:Tlist_Display_Prototype = 1
+	let g:Tlist_Use_Right_Window = 1
+	let g:Tlist_Exit_OnlyWindow = 1
+	let g:Tlist_Enable_Fold_Column = 0
+	let g:Tlist_Sort_Type = "name"
+	let g:Tlist_Compact_Format = 0
+	let g:Tlist_File_Fold_Auto_Close = 0
+	let g:Tlist_WinWidth = 50
+	" }}}
+
+	"NetRW {{{
+	let g:netrw_keepdir = 1
+	let g:netrw_winsize = 40
+	let g:netrw_alto = 1
+	" }}}
+
+	" NERDTree {{{
+	let g:NERDChristmasTree = 1
+	let g:NERDTreeiHijackNetrw = 1
+	" }}}
+" }}}
+
+" Auto Commands "{{{
+if has('autocmd')
+
+	" Automatically add CREATED date and update MODIFIED date
+    autocmd BufNewFile * call Created()
+    autocmd BufWrite * call LastModified()
+
+	" Set comment characters for common languages
+	autocmd FileType python,sh,bash,zsh,ruby,perl,muttrc let StartComment="#" | let EndComment=""
+	autocmd FileType html let StartComment="<!--" | let EndComment="-->"
+	autocmd FileType php,cpp,javascript let StartComment="//" | let EndComment=""
+	autocmd FileType c,css let StartComment="/*" | let EndComment="*/"
+	autocmd FileType vim let StartComment="\"" | let EndComment=""
+	autocmd FileType ini let StartComment=";" | let EndComment=""
+
+	" Go back where I left off
+	autocmd BufReadPost * call RestoreCursorPos()
+	autocmd BufWinEnter * call OpenFoldOnRestore()
+
+	" Automatic ctags handling
+	function! UPDATE_TAGS()
+		let _f_ = expand("%:p")
+		let _cmd_ = '"ctags -a -R --c++-kinds=+p --fields=+iaS --extra=+q " ' . '"' . _f_ . '"'
+		let _resp = system(_cmd_)
+		unlet _cmd_
+		unlet _f_
+		unlet _resp
+	endfunction
+	au BufReadPost *.cpp,*.h,*.c call UPDATE_TAGS()
+	" au BufWritePost *.cpp,*.h,*.c call UPDATE_TAGS()
+	" au BufWritePre * %s/\s\+$//e | norm! ``
+
+	autocmd BufWinEnter *.c,*.cpp,*.h set foldmethod=syntax
+	autocmd BufWinEnter TODO set ft=todo
+
+    " Reread configuration of Vim if .vimrc is saved
+    augroup VimConfig
+        au!
+        autocmd BufWritePost ~/.vimrc       so ~/.vimrc
+        autocmd BufWritePost vimrc          so ~/.vimrc
+    augroup END
+
+endif
+"}}}
 
 " Settings for specific syntax files {{{
+
+"Lisp syntax
+let g:lisp_rainbow = 1
+
 let c_gnu=1
 let c_comment_strings=1
 let c_space_errors=1

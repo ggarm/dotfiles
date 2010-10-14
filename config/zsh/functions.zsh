@@ -49,7 +49,7 @@ cd () {
 }
 
 if [[ -f ~/Scripts/utils/alias ]]; then
-	alias () { ~/Scripts/utils/alias; }
+	salias () { ~/Scripts/utils/alias; }
 fi
 
 
@@ -95,6 +95,7 @@ clyde () {
 			/usr/bin/clyde "$@" ;;
 	esac
 	rehash
+	/usr/bin/clyde -Qu | wc -l > ~/Scripts/pacman_updates;
 }
 
 # git functions

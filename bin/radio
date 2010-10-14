@@ -58,7 +58,7 @@ fi
 
 # Startup the stream, pipe all output to oblivion and bg it
 #mplayer ${STREAM} -really-quiet > /dev/null 2>&1 & 
-mplayer -identify ${STREAM}> $HOME/.mplayer/mylog.log 2>&1 &
+mplayer -cache 400 -identify ${STREAM}> $HOME/.mplayer/mylog.log 2>&1 &
 
 # Store the PID so we can kill it later
 echo $! >  ~/.mplayer/mplayer.pid

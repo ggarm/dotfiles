@@ -14,6 +14,7 @@ if [[ $SHELL == *zsh ]]; then
 	alias -s pdf=$PDFVIEWER
 	alias -s {png,jpg,gif}=$IMGVIEWER
 	alias -s exe=wine
+	alias -s PKGBUILD=$EDITOR
 	# }
 fi
 
@@ -60,6 +61,9 @@ alias back='cd $OLDPWD'
 alias cd..='cd ..'
 alias ..='cd ..'
 
+#top10
+alias top10='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
+
 #ls
 if [[ -f ~/bin/pilsner ]]; then
 	alias ls='~/bin/pilsner';
@@ -75,6 +79,7 @@ alias lx='ll -BX'	#sort by extension
 alias lz='ll -rS'	#sort by size
 alias lt='ll -rt'	#sort by date
 alias l='ls' 	#because of typos
+alias lsq='ls -AlQ --color=always --time-style=full-iso'
 
 #power management
 alias poweroff='sudo poweroff'
@@ -95,6 +100,15 @@ alias xterm='xterm -bg black -fg green -cr orange -geometry 80x25'
 alias sigma='ssh sigma.ist.utl.pt -l ist162578'
 alias comp='ssh comp.rnl.ist.utl.pt -l ist162578'
 
+# Coding
+alias gcc='gcc -Wall -Wextra -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-declarations -Wredundant-decls -Wnested-externs -Winline -Wno-long-long -Winit-self -Wmissing-prototypes -Wstrict-prototypes -Wconversion -pedantic'
+alias valgrind='valgrind --tool=memcheck --leak-check=full --show-reachable=yes'
+alias gdb='gdb -ex run -ex backtrace --args'
+
+#cpu
+alias cpuu='ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10'
+
 #typos
 alias ç='l'
 alias çç='ll'
+alias xs='cd'

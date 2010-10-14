@@ -61,3 +61,4 @@ zstyle ':vcs_info:*:prompt:*' stagedstr '${YELLOW}+${NC}'
 zstyle ':vcs_info:*:prompt:*' actionformats "${white}[${WHITE}%b%u%c${white}]${NC}" ''
 zstyle ':vcs_info:*:prompt:*' formats "${white}[${WHITE}%b%u%c${white}]${NC}" ''
 zstyle ':vcs_info:*:prompt:*' nvcsformats '' 
+
