@@ -15,6 +15,7 @@ if [[ $SHELL == *zsh ]]; then
 	alias -s {png,jpg,gif}=$IMGVIEWER
 	alias -s exe=wine
 	alias -s PKGBUILD=$EDITOR
+	alias -s TODO=$EDITOR
 	# }
 fi
 
@@ -38,7 +39,7 @@ alias svi='sudo vim'
 alias suvi='svi'
 
 #ping
-alias ping='ping -c 3 www.google.com'
+alias ping='ping -c 1 www.google.com'
 
 #df
 alias df='df -h'
@@ -65,7 +66,7 @@ alias ..='cd ..'
 alias top10='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
 
 #ls
-if [[ -f ~/bin/pilsner ]]; then
+if [[ -f ~/bin/pilsner && $TERM != linux ]]; then
 	alias ls='~/bin/pilsner';
 else
 	alias ls='ls --group-directories-first -hF --color=always'

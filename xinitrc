@@ -4,49 +4,46 @@
 #
 # Executed by startx (run your window manager from here)
 
-(xmodmap .Xmodmap) &
+(xmodmap .Xmodmap) &			#keymapping
+#(setxkbmap pt) &				#pt-keys (Xorg ignores the conf file? FIXME)
+xload .Xdefaults				#Xmonad is retarded
+xsetroot -cursor_name left_ptr	#see above
 
-(setxkbmap pt) &
+unclutter &						#for hiding the mouse when idle
+(urxvtd -q -o -f) &				#URxvt daemon starts here
 
-#for hiding the mouse when idle
-unclutter &
+#Disabled Apps #{{{
+	#Non-Essential
+		#(pcmanfm --desktop -d 2>/dev/null) &
+		#(sleep 3; pytyle 2>/dev/null) &
+		#(~/bin/mpd-notify.py 2>/dev/null) & 
 
-# Prettify apps
-#(idesk &>/dev/null) &
-#(tint2 &>/dev/null) &
-#(conky -c ~/.config/conky/stats 2>/dev/null) &
-#(conky -c ~/.config/conky/clock 2>/dev/null) &
+	# Trays, icons
+		#(idesk &>/dev/null) &
+		#(tint2 &>/dev/null) &
+		#(sleep 2; adeskbar 2>/dev/null) &
 
-eval `cat ~/.fehbg` &
-(pytyle >/dev/null 2>/dev/null) &
+	#Stats in conky
+		#(conky -c ~/.config/conky/stats 2>/dev/null) &
+		#(conky -c ~/.config/conky/clock 2>/dev/null) &
 
-#(pcmanfm --desktop -d 2>/dev/null) &
-#(tint2 -c ~/.config/tint2/tint2rc.icons) &
-(adeskbar 2>/dev/null) &
-#(trayer --edge bottom --align right --widthtype request --transparent true --alpha 255 --tint ffffff --SetDockType true --SetPartialStrut false --expand true) &
-#(xcompmgr -c -D 7 -f -F -n 2>/dev/null) &
-#(xcompmgr -cCfF -r7 -o.65 -l-10 -t-8 -D7 2>/dev/null) &
+	#Compositing
+		#(xcompmgr -c -D 7 -f -F -n 2>/dev/null) &
+		#(xcompmgr -cCfF -r7 -o.65 -l-10 -t-8 -D7 2>/dev/null) &
+#}}}
 
-#Using mpd for now...
-(mpd 2>/dev/null) &
-#(amixer -q -c0 set PCM 25% ) &
-(amixer -q -c0 set Master mute) &
-#(~/bin/mpd-notify.py 2>/dev/null) & 
+#eval `cat ~/.fehbg` &			#Set the last wallpaper
+wallpaperd &					#Set a wallpaper per workspace
 
-(urxvtd -q -o -f) &
-(tmux -2 attach) &
+(stalonetray 2>/dev/null) &		#systray in upper-right corner
 
-#( /bin/ping -c 1 www.google.com 2>/dev/null && (thunderbird 2>/dev/null) ) &
+(sleep 1; mpd 2>/dev/null) &	#MPD starts here
+#(amixer -q set PCM 25% ) &		#Lower the volume (place it in rc.local? FIXME)
+#(amixer -q set Master mute) &	#Mute the volume
 
-(sleep 1; statusbar.sh) &
-#(sleep 2; netcfgfx 2>/dev/null) &
+#(tmux) &						#tmux starts here (can't figure out the auto-start part... FIXME)
 
-#If at home don't annoy me
-#if [[ `iwgetid | awk '{print $2}'` != ESSID:\"DLink-B686C5\" ]]; then
-	#(netcfgfx 2>/dev/null) &
-#fi
+#(statusbar.sh) &				#Dzen-statusbar (only for openbox, code-it... FIXME)
 
-#exec startfluxbox
-#exec ck-launch-session openbox-session
-exec dbus-launch --exit-with-session openbox-session
-#exec echinus
+#exec dbus-launch --exit-with-session openbox-session
+xmonad

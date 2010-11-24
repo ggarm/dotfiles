@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 #
 #   bigpkg : find packages that require a lot of space on your system
 #   v0.2.1 (2009-06-01)

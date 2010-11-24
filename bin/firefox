@@ -1,4 +1,0 @@
-#!/bin/sh
-firefox-sync
-rm -f ~/.mozilla/firefox/*/compatibility.ini
-/usr/bin/firefox "$@"

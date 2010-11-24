@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 
 import pygtk
@@ -16,6 +16,7 @@ class DoTheLogOut:
 	# Logout
 	def logout(self, widget):
 		os.system("openbox --exit")
+		os.system("killall X")
 	
 	# Reboot
 	def reboot(self, widget):

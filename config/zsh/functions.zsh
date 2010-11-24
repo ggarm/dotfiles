@@ -95,7 +95,8 @@ clyde () {
 			/usr/bin/clyde "$@" ;;
 	esac
 	rehash
-	/usr/bin/clyde -Qu | wc -l > ~/Scripts/pacman_updates;
+	~ricardo/Scripts/pacman/pacman_updates.cron
+	#/usr/bin/clyde -Qu | wc -l > ~/Scripts/pacman_updates;
 }
 
 # git functions

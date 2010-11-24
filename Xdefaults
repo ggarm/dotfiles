@@ -1,7 +1,7 @@
 ! ----------------------------------------------------------------------------
 ! ! file:     ~/.Xdefaults
 ! ! author:   Ricardo Costa (and +stolen stuff)
-! ! modified: 2010-07-03 15:50
+! ! modified: 2010-11-05 15:38
 ! ! vim::nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
 ! ! ----------------------------------------------------------------------------
 !
@@ -19,17 +19,17 @@ Xcursor.size:  18
 
 ! Xautolock ----------------------------------------------------------------- {{{
 Xautolock.time: 2
-Xautolock.locker: alock -bg image:file=/home/ricardo/Walls/brb.jpg -auth pam
+Xautolock.locker: "alock -bg image:file=/home/ricardo/Walls/brb.jpg -auth pam"
 
 ! }}}
 
 ! Font Management -------------------------------------------------------- {{{
 Xft.dpi:       96
 !Xft.dpi:       100
-!Xft.antialias: true
-!Xft.hinting:   true
-!Xft.hintstyle: hintslight
+!Xft.antialias: 1
 Xft.rgba:      rgb
+Xft.hinting:   1
+Xft.hintstyle: hintfull
 ! }}}
 
 ! Xterm ---------------------------------------------------------------------- {{{
@@ -57,6 +57,8 @@ URxvt*buffered: true
 !URxvt*cursorColor: orange
 URxvt*cursorBlink: true
 !URxvt*underlineColor: orange
+!
+URxvt*urgentOnBell: true
 
 ! clickable URLS
 URxvt*perl-ext: default,matcher
@@ -88,12 +90,12 @@ URxvt*iconFile: /usr/share/pixmaps/terminal.png
 
 ! geometry and font
 URxvt*geometry: 80x30
-#URxvt*font: xft:montecarlo:pixelsize=17:antialias=false
-#URxvt*boldFont: xft:montecarlo:bold:pixelsize=17:antialias=false
-#URxvt*italicFont: xft:montecarlo:bold:pixelsize=17:antialias=false
-!URxvt.font:xft:envy code r:medium:pixelsize=14:antialias=false
-!URxvt.boldFont:xft:envy code r:medium:pixelsize=14:antialias=false
-!URxvt.italicFont:xft:envy code r:medium:pixelsize=14:antialias=false
+!URxvt*font: xft:montecarlo:pixelsize=17:antialias=true
+!URxvt*boldFont: xft:montecarlo:bold:pixelsize=17:antialias=true
+!URxvt*italicFont: xft:montecarlo:bold:pixelsize=17:antialias=true
+!URxvt.font:xft:envy code r:medium:pixelsize=14:antialias=true
+!URxvt.boldFont:xft:envy code r:medium:pixelsize=14:antialias=true
+!URxvt.italicFont:xft:envy code r:medium:pixelsize=14:antialias=true
 !URxvt*font: xft:inconsolata:pixelsize=12:antialias=false
 !URxvt*boldFont: xft:inconsolata:bold:pixelsize=12:antialias=false
 !URxvt*italicFont: xft:inconsolata:bold:pixelsize=12:antialias=false
@@ -102,9 +104,12 @@ URxvt*geometry: 80x30
 !URxvt*boldFont: -windows-montecarlo-bold-r-normal--11-110-72-72-c-60-microsoft-cp1252
 !URxvt*italicFont: -nil-profont-medium-r-normal--10-100-72-72-c-50-iso8859-1
 
-URxvt*font: xft:terminus:pixelsize=14:antialias=false
-URxvt*boldFont: xft:terminus:bold:pixelsize=14:antialias=false
-URxvt*italicFont: xft:terminus:bold:pixelsize=14:antialias=false
+URxvt*font:        xft:Droid Sans Mono Slashed:style=Regular:pixelsize=12:antialias=true:hinting=true:hintstyle=hintfull
+URxvt*boldFont:    xft:Droid Sans Mono Slashed:style=Regular:pixelsize=12:antialias=true:hinting=true:hintstyle=hintfull
+
+#URxvt*font: xft:terminus:pixelsize=14:antialias=false
+#URxvt*boldFont: xft:terminus:bold:pixelsize=14:antialias=false
+#URxvt*italicFont: xft:terminus:bold:pixelsize=14:antialias=false
 
 ! }}}
 

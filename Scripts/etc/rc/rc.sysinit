@@ -34,6 +34,11 @@ cat /proc/mounts >| /etc/mtab
 
 #}}}
 
+(/etc/rc.d/net-profiles start ) 2>/dev/null &
+(/etc/rc.d/laptop-mode start ) 2>/dev/null &
+(/etc/rc.d/alsa start ) 2>/dev/null &
+(/etc/rc.d/lighttpd start ) 2>/dev/null &
+
 (/bin/hostname ricardoArch) & #status "Setting Hostname: $HOSTNAME"
 (/bin/loadkeys -q -u pt-latin9) & #status "Loading Keyboard Map: $KEYMAP" 
 #(/usr/bin/setfont Lat2-Terminus16) &

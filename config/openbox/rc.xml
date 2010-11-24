@@ -47,7 +47,8 @@
 <theme>
 	<!-- <name>Clearlooks</name> -->
 	<!-- <name>PerfectGnome</name> -->
-	<name>2px</name>
+	<name>Variable I</name>
+	<!-- <name>2px</name> -->
   <titleLayout>NLIMC</titleLayout>
   <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -222,7 +223,7 @@
   <keybind key="W-4">
     <action name="Desktop"><desktop>4</desktop></action>
   </keybind>
-  <keybind key="W-d">
+  <keybind key="C-A-d">
     <action name="ToggleShowDesktop"/>
   </keybind>
 
@@ -253,47 +254,26 @@
     </action>
   </keybind>
    
-  <!-- Keybindings for tiling windows 
-    <keybind key="W-space">
-	  <action name="Execute"> <command>
-			  stiler cycle
-	  </command></action>
-  </keybind>
-    <keybind key="W-h">
-	  <action name="Execute"> <command>
-			  stiler left
-	  </command></action>
-  </keybind>
-    <keybind key="W-l">
-	  <action name="Execute"> <command>
-			  stiler right
-	  </command></action>
-  </keybind>
-    <keybind key="W-j">
-	  <action name="Execute"> <command>
-			  stiler horizontal
-	  </command></action>
-  </keybind>
-    <keybind key="W-k">
-	  <action name="Execute"> <command>
-			  stiler vertical
-	  </command></action>
-  </keybind>
-    <keybind key="W-F10">
-	  <action name="Execute"> <command>
-			  stiler maximize
-	  </command></action>
-  </keybind> -->
 
 
   <!-- Keybindings for running applications -->
-  <keybind key="W-e">
+  <keybind key="C-e">
     <action name="Execute">
       <startupnotify>
         <enabled>true</enabled>
         <name>FileManager</name>
       </startupnotify>
       <command>pcmanfm</command>
+    </action>
+  </keybind>
+
+  <keybind key="W-m">
+    <action name="Execute">
+      <startupnotify>
+        <enabled>true</enabled>
+        <name>FileManager</name>
+      </startupnotify>
+      <command>urxvt -g 71x13 -e ncmpcpp</command>
     </action>
   </keybind>
 
@@ -377,10 +357,98 @@
 	<keybind key="Menu">
 		<!-- <keybind key="BackSpace"> sonata -t -->
 			<action name="Execute"> <command>
-				~/bin/dmenu-mpc-search.sh
-			</command> </action> </keybind>
-			<!-- </keybind> -->
+					~/bin/dmenu-mpc-search.sh
+		</command> </action> </keybind>
+		<!-- </keybind> -->
 
+	<!-- Keybindings for tiling windows -->
+	<keybind key="W-f">
+		<action name="ToggleMaximizeFull"/>
+	</keybind>
+	<keybind key="W-h">
+		<action name="MoveResizeTo">
+			<x>0</x>
+			<y>-0</y>
+			<width>720</width>
+			<height>850</height>
+		</action>
+	</keybind>
+	<keybind key="W-j">
+		<action name="MoveResizeTo">
+			<y>-0</y>
+			<width>720</width>
+			<height>425</height>
+		</action>
+	</keybind>
+	<keybind key="W-k">
+		<action name="MoveResizeTo">
+			<y>0</y>
+			<width>720</width>
+			<height>425</height>
+		</action>
+	</keybind>
+	<keybind key="W-l">
+		<action name="MoveResizeTo">
+			<x>-0</x>
+			<y>-0</y>
+			<width>720</width>
+			<height>850</height>
+		</action>
+	</keybind>
+	<keybind key="W-q">
+		<action name="MoveResizeTo">
+			<x>0</x>
+			<y>0</y>
+		</action>
+	</keybind>
+	<keybind key="W-w">
+		<action name="MoveResizeTo">
+			<x>center</x>
+			<y>0</y>
+		</action>
+	</keybind>
+	<keybind key="W-e">
+		<action name="MoveResizeTo">
+			<x>-0</x>
+			<y>0</y>
+		</action>
+	</keybind>
+	<keybind key="W-a">
+		<action name="MoveResizeTo">
+			<x>0</x>
+			<y>center</y>
+		</action>
+	</keybind>
+	<keybind key="W-s">
+		<action name="MoveResizeTo">
+			<x>center</x>
+			<y>center</y>
+		</action>
+	</keybind>
+	<keybind key="W-d">
+		<action name="MoveResizeTo">
+			<x>-0</x>
+			<y>center</y>
+		</action>
+	</keybind>
+	<keybind key="W-z">
+		<action name="MoveResizeTo">
+			<x>0</x>
+			<y>-0</y>
+		</action>
+	</keybind>
+	<keybind key="W-x">
+		<action name="MoveResizeTo">
+			<x>center</x>
+			<y>-0</y>
+		</action>
+	</keybind>
+	<keybind key="W-c">
+		<action name="MoveResizeTo">
+			<x>-0</x>
+			<y>-0</y>
+		</action>
+	</keybind>
 
 </keyboard>
 
@@ -767,8 +835,13 @@
 </menu>
 
 <applications>
-	<application class="*">
+	<!-- 
+		 <application class="*">
 	<decor>no</decor>
+	</application>
+	-->
+	<application class="URxvt">
+		<decor>no</decor>
 	</application>
 <!--
   # this is an example with comments through out. use these to make your

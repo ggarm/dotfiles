@@ -17,8 +17,8 @@ if has("gui_running")
 		set guioptions=aivmR
 		set showtabline=2
 		set mousehide
-		set guifont=Envy\ Code\ R\ 11
-		"set guifont=Terminus\ 10
+		"set guifont=Envy\ Code\ R\ 11
+		set guifont=Droid\ Sans\ Mono\ Slashed\ 10
 	"}}}
 elseif ( &term =~ 'linux' || $DISPLAY =~ ' ')
 	colorscheme desert256
@@ -29,7 +29,6 @@ elseif ( &term =~ 'linux' || $DISPLAY =~ ' ')
 	match OverLength /\%81v.\+/
 else                            " we are on tty
 	set t_Co=256				" Using 256-color yay
-	"colorscheme neverland-dont_use_this_one " This 256-theme rocks!
 	"colorscheme zenburn
 	colorscheme neverland
 	"set term=rxvt-256color
@@ -91,7 +90,7 @@ if has('folding')
 	" set foldlevel=999 " High default so folds are shown to start
 	set foldmarker={{{,}}} " Fold C style code
 	set foldcolumn=0 " Don't waste screen space
-	set foldminlines=10       " Minimum lines to fold
+	set foldminlines=5       " Minimum lines to fold
 
 function! SimpleFoldText() " {
     return getline(v:foldstart).' '
@@ -120,13 +119,13 @@ filetype on
 filetype plugin on
 filetype indent on
 
-set autoread		" auto read when file is changed
 set nocompatible 	" vi is dead
 set backup
 set backupdir=~/.vim/backup
 "set noswapfile
 set autowrite		" Save before commands like :next and :make
-set shortmess=aIoO	" short msg, no intro
+set shortmess=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
+"set shortmess=aIoO	" short msg, no intro
 set cot+=menuone	" show preview of function prototype
 set mouse=a
 " }}}
@@ -158,7 +157,7 @@ set completeopt-=menu	" Get rid of the ugly menu
 set linespace=0			" don't insert any extra pixel lines
 						" betweens rows
 
-set autochdir			" always switch to the current file directory
+"set autochdir			" always switch to the current file directory
 set nostartofline		" leave my cursor where it was
 
 set clipboard+=unnamed  " yank and copy to X clipboard
@@ -194,7 +193,7 @@ set statusline=%<[%02n]\ %F%m%r%h%w%=(%{strlen(&ft)?&ft:'?'},%{&fenc},%{&ff})\ \
 " Filter expected errors from make
 if has("eval") && v:version >= 700
 	if hostname() == "ricardo"
-		let &makeprg="nice -n7 make -j4 2>&1"
+		let &makeprg="nice -n7 make -j3 2>&1"
 	elseif hostname() == "snowmobile"
 		let &makeprg="nice -n7 make -j1 2>&1"
 	else
@@ -391,7 +390,7 @@ endfunction
 " InsertTabWrapper() }}}
 
 "}}}
-"
+
 " Plugins {{{ 
 	"TagList {{{
 	"will recurse backwards until 'tags' is found
@@ -452,7 +451,7 @@ if has('autocmd')
 	" au BufWritePost *.cpp,*.h,*.c call UPDATE_TAGS()
 	" au BufWritePre * %s/\s\+$//e | norm! ``
 
-	autocmd BufWinEnter *.c,*.cpp,*.h set foldmethod=syntax
+	autocmd BufWinEnter *.c,*.cpp,*.h,*.java set foldmethod=syntax
 	autocmd BufWinEnter TODO set ft=todo
 
     " Reread configuration of Vim if .vimrc is saved
@@ -461,6 +460,8 @@ if has('autocmd')
         autocmd BufWritePost ~/.vimrc       so ~/.vimrc
         autocmd BufWritePost vimrc          so ~/.vimrc
     augroup END
+
+	au FocusLost * :wa " Save when losing focus
 
 endif
 "}}}

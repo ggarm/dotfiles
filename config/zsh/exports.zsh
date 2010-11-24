@@ -30,7 +30,12 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
-# Less has no memory
+# Colorized input files, yeah
+export LESSOPEN='| /usr/bin/lesspipe.sh %s'
+export LESSCLOSE='/usr/bin/lesspipe.sh %s %s'
+export LESS='--RAW-CONTROL-CHARS --tabs=8 -r'
+
+#Less has no memory
 export LESSHISTFILE='/dev/null'
 
 #history

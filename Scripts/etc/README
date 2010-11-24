@@ -1,5 +1,7 @@
-/etc -> inittab mkinitcpio.conf rc.conf
-/boot -> kernel26*
+Files:
+	mkinitcpio.conf
+	kernel and initramfs
+	init rc.* scripts
 
 These are modified (or backups of) initscripts from Arch Linux.
 Usually for reverting back to a more stable system.

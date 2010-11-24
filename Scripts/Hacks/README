@@ -1,6 +1,0 @@
-/etc -> inittab mkinitcpio.conf rc.conf
-/boot -> kernel26*
-
-These are modified (or backups of) initscripts from Arch Linux.
-Usually for reverting back to a more stable system.
-The modifications here are *NOT* good practice a.k.a. They will break your system.

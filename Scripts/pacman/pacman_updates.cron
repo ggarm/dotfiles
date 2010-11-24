@@ -3,8 +3,12 @@
 
 FILE='/home/ricardo/Scripts/pacman_updates'
 
-pacman -Syy >/dev/null #most be done as root
+#pacman -Syy >/dev/null #must be done as root
 
 NUM=`pacman -Qu | wc -l`
 
-echo $NUM > $FILE
+if [[ $NUM -gt 0 ]]; then
+	echo $NUM > $FILE
+else
+	echo '' > $FILE
+fi

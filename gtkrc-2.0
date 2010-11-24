@@ -1,9 +1,11 @@
 gtk-icon-theme-name = "Tango"
-gtk-icon-theme-name = "gnome-human"
-gtk-theme-name = "Shiki-Human"
+#gtk-icon-theme-name = "gnome-human"
+#gtk-theme-name = "ntsumi"
+gtk-theme-name = "Shiki-Wise"
 
 #include "/home/ricardo/.config/gtk-2.0/ElegantBrit/gtkrc"
 #include "/home/ricardo/.config/gtk-2.0/PerfectGnome/gtkrc"
 #include "/home/ricardo/.config/gtk-2.0/Variable/gtkrc"
 #include "/home/ricardo/.config/gtk-2.0/termGTK/gtkrc"
 #include "/home/ricardo/.config/gtk-2.0/gtkrc.arch"
+#include "/home/ricardo/.themes/ntsumi/gtk-2.0/gtkrc"
