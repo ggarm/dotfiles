@@ -116,8 +116,12 @@
 # Program Shortcuts
 				[key] mod = {"Mod4"} key = "e" func = "spawn" cmd = "pcmanfm" [/key]
 				[key] mod = {"Mod4"} key = "h" func = "spawn" cmd = "urxvtc -e htop" [/key]
-				[key] mod = {"Mod4"} key = "m" func = "spawn" cmd = "urxvtc -e mutt && ~/Scripts/cron/new_mail.cron" [/key]
-				[key] mod = {"Mod4"} key = "n" func = "spawn" cmd = "urxvtc -e ncmpcpp" [/key]
+				[key] mod = {"Mod4"} key = "m" func = "spawn" cmd = "urxvtc -name Mail -e mutt && ~/Scripts/cron/new_mail.cron" [/key]
+				[key] mod = {"Mod4"} key = "n" func = "spawn" cmd = "urxvtc -g 100x24 -e ncmpcpp" [/key]
+#Music keys
+				[key] mod = {"Mod4"} key = "f" func = "spawn" cmd = "/usr/bin/mpc -q seek +10" [/key]
+				[key] mod = {"Mod4"} key = "PgDown" func = "spawn" cmd = "/usr/bin/mpc -q next" [/key]
+				[key] mod = {"Mod4"} key = "PgUp" func = "spawn" cmd = "/usr/bin/mpc -q prev" [/key]
 
 # Media Keys 
 				[key] key = "XF86HomePage"        func = "spawn" cmd = "firefox" [/key]

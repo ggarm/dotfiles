@@ -135,47 +135,47 @@ set timeoutlen=500 " Lower timeout for mappings
 " }}}
 
 " Matching (), History, Lineno, Search options " {{{
-set showfulltag         " Get function usage help automatically
-set showcmd             " Show current vim command in status bar
-set showmatch           " Show matching parentheses/brackets
-set matchtime=3			" Show matching brackets for only 0.3 seconds
-set showmode            " Show current vim mode
-set viminfo='20,\"50    " read/write a .viminfo file, don't store more
-" than 50 lines of registers
-set history=50          " keep 50 lines of command line history
-set ruler               " show the cursor position all the time
-set autoread			" auto read when file is changed
-set number 				" show line numbers
-set numberwidth=1		" Keep number bar small if it's shown
+set showfulltag          " Get function usage help automatically
+set showcmd              " Show current vim command in status bar
+set showmatch            " Show matching parentheses/brackets
+set matchtime=3          " Show matching brackets for only 0.3 seconds
+set showmode             " Show current vim mode
+set viminfo='20,\"50     " read/write a .viminfo file, store max 50 lines of registers
+set history=50           " keep 50 lines of command line history
+set ruler                " show the cursor position all the time
+set autoread             " auto read when file is changed
+set number               " show line numbers
+set numberwidth=1        " Keep number bar small if it's shown
 
-set hlsearch			" highlight search terms
-set incsearch			" go jump around hits
-set ignorecase			" search ignoring case
-"set smartcase			" if there are caps, go case-sensitive
-set wildignore=*.o,*.obj,*.bak,*.exe
-set hidden				" hide buffers
-set splitbelow          " splitted window under current one
-set wildchar=<Tab>		" tab for autocompletion
-set completeopt+=menu	" show preview of function prototype
-set completeopt+=preview	" show preview of function prototype
-set completeopt+=longest	" show longest match
-"set completeopt-=menu	" Get rid of the ugly menu
+set hlsearch             " highlight search terms
+set incsearch            " go jump around hits
+set ignorecase           " search ignoring case
+" set smartcase          " if there are caps, go case-sensitive
+set hidden               " hide buffers
+set splitbelow           " splitted window under current one
+set wildchar=<Tab>       " tab for autocompletion
+set completeopt+=menu    " show preview of function prototype
+set completeopt+=preview " show preview of function prototype
+set completeopt+=longest " show longest match
+" set completeopt-=menu  " Get rid of the ugly menu
 
-set linespace=0			" don't insert any extra pixel lines
-" betweens rows
+set linespace=0          " don't insert any extra pixel lines
+                         " betweens rows
 
-"set autochdir			" always switch to the current file directory
-set nostartofline		" leave my cursor where it was
+" set autochdir          " always switch to the current file directory
+set nostartofline        " leave my cursor where it was
 
-set clipboard+=unnamed  " yank and copy to X clipboard
+set clipboard+=unnamed   " yank and copy to X clipboard
 set selection=inclusive
+set wildignore=*.o,*.obj,*.bak,*.exe
+set wildignore+=*.nb,*.dvi,*.pdf,*.jpg,*.png,*.gif
+set wildignore+=*.git,*.cvs,*.svn,*~
 " }}}
 
 " Low priority filename suffixes for filename completion {{{
 set suffixes-=.h        " Don't give .h low priority
 set suffixes+=.aux
 set suffixes+=.log
-set wildignore+=*.dvi
 set suffixes+=.bak
 set suffixes+=~
 set suffixes+=.swp
@@ -199,13 +199,13 @@ set statusline=%<[%02n]\ %F%m%r%h%w%{fugitive#statusline()}%=(%{strlen(&ft)?&ft:
 
 " Filter expected errors from make
 if has("eval") && v:version >= 700
-	"if hostname() == "ricardo"
-	"let &makeprg="nice -n7 make -j2 2>&1"
-	"elseif hostname() == "snowmobile"
-	"let &makeprg="nice -n7 make -j1 2>&1"
-	"else
-	"let &makeprg="nice -n7 make -j2 2>&1"
-	"endif
+	if hostname() == "ricardoArch"
+	let &makeprg="nice -n7 make -j2 2>&1"
+	elseif hostname() == "rnl1*"
+	let &makeprg="nice -n7 make -j1 2>&1"
+	else
+	let &makeprg="nice -n7 make -j2 2>&1"
+	endif
 
 	" ignore libtool links with version-info
 	let &errorformat="%-G%.%#libtool%.%#version-info%.%#,".&errorformat
@@ -342,6 +342,12 @@ endif
 map <Leader>gc :Gcommit
 map <Leader>gs :Gstatus
 
+" MRU Maps:
+map <Leader>m :MRU<CR>
+
+" Time Savers:
+map <Leader>w :w<CR>
+map <Leader>q :q<CR>
 
 "inoremap <silent> =   =<Esc>:call <SID>align()<CR>a
 "
@@ -512,6 +518,30 @@ let g:Tlist_WinWidth = 50
 
 	"ino <C-Space> <c-r>=TriggerSnippet()<cr>
 	"snor <C-Space> <esc>i<right><c-r>=TriggerSnippet()<cr>
+	" }}}
+	" MRU: {{{
+	
+	let MRU_File                 = '/home/ricardo/.vim/mru_files'
+	let MRU_Max_Entries          = 100
+	"let MRU_Exclude_Files       = '^/tmp/.*\|^/var/tmp/.*'  " For Unix
+	"let MRU_Include_Files       = '\.c$\|\.h$'
+	let MRU_Window_Height        = 8
+	let MRU_Use_Current_Window   = 0
+"  let MRU_Auto_Close          = 0
+"  let MRU_Add_Menu            = 0
+"  let MRU_Max_Menu_Entries    = 20
+"  let MRU_Max_Submenu_Entries = 15
+
+	map 
+
+	" }}}
+	" Command-t: {{{
+	"
+	let g:CommandTMaxFiles  = 20000
+	let g:CommandTMaxDepth  = 15
+	let g:CommandTMaxHeight = 0
+	let g:CommandTMaxFiles  = 20000
+
 	" }}}
 " }}}
 

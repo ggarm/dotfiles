@@ -2,7 +2,7 @@
 #
 # Author: Ricardo Costa 
 #
-# Last Modified: 2011-01-17 17:31
+# Last Modified: 2011-02-05 22:27
 #
 # done in .zprofile
 #source $HOME/.config/zsh/exports.zsh
@@ -26,7 +26,7 @@ case $TERM in
 		#cat /etc/motd
 		;;
 	xterm*|rxvt*)
-		[ -f ~/TODO ] && cat ~/TODO
+		[ -f ~/TODO ] && v ~/TODO
 		#PROMPT_COMMAND='';
 		#trap 'echo -ne "\e]0;$BASH_COMMAND\007" ' DEBUG;
 		;;

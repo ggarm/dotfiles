@@ -1,12 +1,12 @@
 ! -------------------------------------------------
 ! file:     .colours/modR                           
 ! author:   Ricardo Costa
-! modified: 2006-01-27 13:36
+! modified: 2011-02-01 19:50
 ! vim:ft=xdefaults:nu:ai:si:et:ts=4:sw=4:
 ! -------------------------------------------------
 
-URxvt*background: #060606
-URxvt*foreground: #a9a6af
+!URxvt*background: #060606
+!URxvt*foreground: #a9a6af
 
 /* black */
 URxvt.color0: #121212
@@ -29,8 +29,10 @@ URxvt.color12: #5496FF
 URxvt.color5: #89005A
 URxvt.color13: #B50077
 /* cyan */
-URxvt.color6: #CB1C13 /* cyan => red */ /* 47E0FF */
-URxvt.color14: #6BE603 /* cyan => green */
+/* cyan => red */ /* 47E0FF */
+URxvt.color6: #CB1C13
+ /* cyan => green */
+URxvt.color14: #6BE603
 /* white */
 URxvt.color7: #FFFFFF
 URxvt.color15: #DEDEDE

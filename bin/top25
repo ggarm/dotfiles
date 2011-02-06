@@ -16,9 +16,9 @@ for(@records) {
 }
 
 for(sort { $commands{$b} <=> $commands{$a} } keys(%commands)) {
-	  if($count == 0) {
-			    exit(0);
-					  }
-		  printf("% 4d => %s\n", $commands{$_}, $_);
-			  $count--;
+	if($count == 0) {
+		exit(0);
+	}
+	printf("\e[4;32m %4d \e[4;35m=> \e[4;37m%s\n", $commands{$_}, $_);
+	$count--;
 }

@@ -1,0 +1,43 @@
+#!/usr/bin/env perl
+
+sub get_stats {
+  my $dev = shift;
+  my @stats;
+
+  open(my $fh, '<', "/sys/class/net/$dev/statistics/tx_bytes")
+    or die("Failed to open file: $!");
+
+  chomp($stats[0] = <$fh>);
+	$stats[0] /= 1024 * 1024;
+	#$stats[0] = $stats[0] >> 20;
+  close $fh;
+
+
+  open(my $fh, '<', "/sys/class/net/$dev/statistics/rx_bytes")
+    or die("Failed to open file: $!");
+
+  chomp($stats[1] = <$fh>);
+	$stats[1] /= 1024 * 1024;
+	#$stats[1] = $stats[1] >> 20;
+  close $fh;
+
+
+	if($stats[1] > 0){
+	  $stats[2] = $stats[0] / $stats[1];
+	}
+
+  return @stats;
+}
+
+opendir(my $dh, "/sys/class/net") or die("Failed to open dir: $!");
+
+print "Network Device Statistics (in mb)\n";
+printf "\n%8s%10s%10s%8s\n", 'Device', 'Sent', 'Received', 'Ratio';
+
+while (readdir($dh)) {
+  next if /\.\.?/;
+  printf("%8s%10.2f%10.2f%8.2f\n", $_, get_stats($_));
+}
+
+closedir($dh);
+

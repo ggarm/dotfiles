@@ -1,7 +1,7 @@
 ! ----------------------------------------------------------------------------
 ! ! file:     ~/.Xdefaults
 ! ! author:   Ricardo Costa (and +stolen stuff)
-! ! modified: 2006-01-27 13:32
+! ! modified: 2011-02-01 20:05
 ! ! vim::nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
 ! ! ----------------------------------------------------------------------------
 !
@@ -89,7 +89,7 @@ URxvt*depth: 24
 URxvt*iconFile: /usr/share/pixmaps/terminal.png
 
 ! geometry and font
-URxvt*geometry: 80x30
+URxvt*geometry: 130x32
 !URxvt*font: xft:montecarlo:pixelsize=17:antialias=true
 !URxvt*boldFont: xft:montecarlo:bold:pixelsize=17:antialias=true
 !URxvt*italicFont: xft:montecarlo:bold:pixelsize=17:antialias=true

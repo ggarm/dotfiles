@@ -2,7 +2,7 @@
 ## Aliases
 
 if [[ $SHELL == *zsh ]]; then
-	#Zsh Auto extension {{{
+	# Suffix aliases
 	alias -s gz=tar -xzvf
 	alias -s bz2=tar -xjvf
 	alias -s nfo=pnfo
@@ -16,7 +16,14 @@ if [[ $SHELL == *zsh ]]; then
 	alias -s exe=wine
 	alias -s PKGBUILD=$EDITOR
 	alias -s TODO=$EDITOR
-	# }}}
+	# Global aliases
+	alias -g L='| less'
+	alias -g G='| grep'
+	# Named Dirs
+	# http://zshwiki.org/home/examples/aliasdirs
+	hash -d zsh="$HOME/.config/zsh"
+	hash -d Ricardo="/mnt/Ricardo/"
+	hash -d Prog="/mnt/Prog/"
 fi
 
 # mplayer --now-playing
@@ -38,7 +45,6 @@ alias vim='vim -p'
 alias gvim='gvim -p'
 alias vi='vim'
 alias svi='sudo vim'
-alias suvi='svi'
 
 #ping
 alias ping='ping -c 1 www.google.com'

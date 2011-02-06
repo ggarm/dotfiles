@@ -4,7 +4,7 @@
 export BROWSER=firefox
 export EDITOR=vim
 export FM=pcmanfm
-export PDFVIEWER=zathura
+export PDFVIEWER=evince
 export IMGVIEWER=mirage
 if [[ -d /usr/lib/cw ]]; then
 	export PATH=/usr/lib/cw:$PATH

@@ -1,5 +1,5 @@
 # Author: Ricardo Costa
-# Modified Mon Jan 17 15:44:39 GMT 2011
+# Modified: 2011-02-02 15:55
 # ~/.config/wmfs/rules.wmfsrc 
 #
 
@@ -9,9 +9,23 @@
 							 class    = "MPlayer"  # Seconf part of WM_CLASS, not needed if first part is correct
 							 # role = ""           # WM_WINDOW_ROLE
 							 screen   = 0          # Screen to use
-							 tag      = 2          # Tag number of apps
+#                tag      = 2          # Tag number of apps
 							 free     = true       # Set automatic free client
 							 max      = false      # Set automatic maximized client
+			 [/rule]
+			 [rule]
+							 instance = "Mail"
+							 class    = "Lanikai"  
+							 tag      = 5          
+							 free     = false      
+							 max      = false     
+			 [/rule]
+			 [rule]
+							 instance = "lol.launcher.exe" 
+							 class    = "Wine"  
+							 tag      = 4          
+							 free     = true      
+							 max      = false     
 			 [/rule]
 			 [rule]
 							 instance = "Navigator" 

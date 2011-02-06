@@ -3,7 +3,7 @@
 # Epic hack:
 #  /etc/rc.sysinit
 # Last Modified:
-#  16 Nov 2010 @ 22:35
+#  25 Dez 2010 @ 18:48
 
 # No initramfs steps #{{{
 # STEP 1 - mount /proc, /sys and our RAM /dev
@@ -32,7 +32,10 @@
 
 (/sbin/hwclock --hctosys --localtime --noadjfile) &
 
-echo > /proc/sys/kernel/hotplug
+(/sbin/modprobe nvidia) &
+(/sbin/modprobe tg3) &
+
+#echo > /proc/sys/kernel/hotplug
 
 #status "Starting UDev Daemon" #{{{
   /sbin/udevd --daemon
@@ -51,28 +54,29 @@ echo > /proc/sys/kernel/hotplug
 #status "Mounting Local Filesystems" #{{{
 /bin/mount -n -o remount,rw /
 cat /proc/mounts >| /etc/mtab
-#/bin/mount /dev/sda11 #-L ArchHome
+/bin/mount -t ext3 /dev/sda11 /home #-L ArchHome
+#{
+#/bin/mount /dev/pts
+#/bin/mount /dev/shm
+#/bin/mount /tmp
+#/bin/mount /var/lock
+#/bin/mount /var/run
+
+#/bin/mount /dev/sda1
+#/bin/mount /dev/sda5
+#/bin/mount /dev/sda6
+#/bin/mount /dev/sda7
+#/bin/mount /dev/sda8
+#} &
 (/bin/mount -a -F ) & #Late mounting
 
-#(sleep 5; /bin/mount -a)
-
-#}}}
-
-#status "Starting daemons" #{{{
-
-(/usr/sbin/crond -l info >/dev/null ) &>/dev/null &
-(/etc/rc.d/wpa_auto start ) &>/dev/null &
-(/etc/rc.d/laptop-mode start ) &>/dev/null &
-(/etc/rc.d/alsa start ) &>/dev/null &
-(/etc/rc.d/lighttpd start ) &>/dev/null &
+#(sleep 5; /bin/mount -a -F) &
 
 #}}}
 
 (/bin/hostname ricardoArch) & #status "Setting Hostname: $HOSTNAME"
 (/bin/loadkeys -q -u pt-latin9) & #status "Loading Keyboard Map: $KEYMAP" 
 #(/usr/bin/setfont Lat2-Terminus16) &
-
-(/etc/rc.local) &
 
 # End of file
 # vim: set ft=sh ts=2 sw=2 noet:

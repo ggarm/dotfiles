@@ -1,7 +1,7 @@
 # ------------------------------------------------------
 # file:     $HOME/.config/wmfs/wmfstatus.sh
 # author:   Ricardo Costa 
-# modified: 2011-01-24 22:10
+# modified: 2011-01-28 22:45
 # vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
 # ------------------------------------------------------
 
@@ -41,9 +41,9 @@ STATEFILE='/proc/acpi/battery/BAT1/state' # battery's state file
             \s[930;12;$BAT_GFG; $RPERC%]\ "
         fi 
 
-		DATE=$(date "+%H:%M:%S")
-		SDA4=$(/bin/df -h /home | awk '/home/ {print $3}')
-		SDA2=$(/bin/df -h / | awk '/\/$/ {print $3}')
+		DATE=$(/bin/date "+%H:%M:%S")
+		SDA4=$(/bin/df -h /home | awk '/home/ {print $4}')
+		SDA2=$(/bin/df -h / | awk '/\/$/ {print $4}')
 		#TEMP=$(cat /proc/acpi/thermal_zone/TZ01/temperature | awk '{print $2}')
         VOL=$(amixer get PCM | awk '/Front\ Left:/ {print $5}' | tr -d '[]')
         #VOL=$(amixer get PCM | awk '/Front\ Left:/ {print $5}' | sed -e 's/\[//g' -e 's/]//g')
