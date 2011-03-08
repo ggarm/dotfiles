@@ -1,20 +1,48 @@
 #!/usr/bin/env perl
 
+my $dh;
+my $dev;
+if( @ARGV ){
+	$arg = @ARGV[0];
+	opendir($dh, "/sys/class/net/$arg") or die("Failed to open dir: $!");
+	$dev = $arg;
+
+	print "Network Device Statistics (in Kbps)\n";
+	printf "\n%8s%10s%10s\n", 'Device', 'Up', 'Down';
+	printf("%8s%10.2f%10.2f\n", $arg, get_stats($_));
+} else {
+	opendir($dh, "/sys/class/net") or die("Failed to open dir: $!");
+#  $dev = shift;
+
+	print "Network Device Statistics (in Kbps)\n";
+	printf "\n%8s%10s%10s\n", 'Device', 'Up', 'Down';
+
+	while (readdir($dh)) {
+		next if /\.\.?/;
+		printf("%8s%10.2f%10.2f\n", $_, get_stats($_));
+	}
+
+	closedir($dh);
+}
+
 sub get_stats {
-  my $dev = shift;
-  my @speed;
+#  my $dev = shift;
+	if( !$dev){
+		$dev = shift;
+	}
+	my @speed;
 	my @old;
 
-  open(my $fh1, '<', "/sys/class/net/$dev/statistics/tx_bytes")
-    or die("Failed to open file: $!");
+	open(my $fh1, '<', "/sys/class/net/$dev/statistics/tx_bytes")
+		or die("Failed to open file: $!");
 
-  chomp($speed[0] = <$fh1>);
+	chomp($speed[0] = <$fh1>);
 	close $fh1;
 
-  open(my $fh2, '<', "/sys/class/net/$dev/statistics/rx_bytes")
-    or die("Failed to open file: $!");
+	open(my $fh2, '<', "/sys/class/net/$dev/statistics/rx_bytes")
+		or die("Failed to open file: $!");
 
-  chomp($speed[1] = <$fh2>);
+	chomp($speed[1] = <$fh2>);
 	close $fh2;
 
 	sleep 1;
@@ -49,18 +77,7 @@ sub get_stats {
 		$speed[1] /= 1024;
 	}
 
+	$dev = "";
 	return @speed;
 }
-
-opendir(my $dh, "/sys/class/net") or die("Failed to open dir: $!");
-
-print "Network Device Statistics (in Kbps)\n";
-printf "\n%8s%10s%10s\n", 'Device', 'Up', 'Down';
-
-while (readdir($dh)) {
-	next if /\.\.?/;
-	printf("%8s%10.2f%10.2f\n", $_, get_stats($_));
-}
-
-closedir($dh);
 

@@ -216,22 +216,12 @@ endif
 
 " Key mappings {{{
 
-" simulate shift-arrows (select block in windows) with control-arrows
-inoremap <Esc>[a <C-O>vk
-vnoremap <Esc>[a k
-inoremap <Esc>[b <C-O>vj
-vnoremap <Esc>[b j
-inoremap <Esc>[c <C-O>vl
-vnoremap <Esc>[c l
-inoremap <Esc>[d <C-O>vh
-vnoremap <Esc>[d h
-
-inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+"inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
 "inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+"inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+"inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+"inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+"inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 " Move text, but keep highlight
 vnoremap > ><CR>gv
@@ -245,9 +235,6 @@ nmap . .`[
 " Allow the . to execute once for each line in visual selection
 vnoremap . :normal .<CR>
 
-" Make tab perform keyword/tag completion if we're not following whitespace
-inoremap <tab> <C-r>=InsertTabWrapper()<CR>
-
 " Ctrl-s saves
 inoremap <C-s> <Esc>:w<CR>a
 nnoremap <C-s> :w<CR>
@@ -256,7 +243,7 @@ nnoremap <C-s> :w<CR>
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 
 " Remap code completion from Ctrl+x, Ctrl+o to Ctrl+Space
-inoremap <C-space> <C-x><C-o>
+"inoremap <C-space> <C-x><C-o>
 
 " Mapping Enter and Backspace 
 "  to work in normal mode.
@@ -266,7 +253,7 @@ nmap <Backspace> i<Backspace><Esc>l
 " Typos:
 " Use ',' instead of ':'
 " Use :W as :w
-noremap , :
+"noremap , :
 cmap W w
 nmap q: :q<cr>
 nmap ZA zA
@@ -307,16 +294,6 @@ noremap <F2> <Esc>:bn<CR>
 noremap <F3> <Esc>:bp<CR>
 noremap <F4> <Esc>:bd<CR>
 
-" NERD_Tree:
-:map <F12> <Esc>:NERDTreeToggle<CR>
-
-" BufferList:
-nnoremap \ :call BufferList()<CR>
-let g:BufferListWidth = 25
-let g:BufferListMaxWidth = 50
-hi BufferSelected term=reverse ctermfg=white ctermbg=red cterm=bold
-hi BufferNormal term=NONE ctermfg=black ctermbg=darkcyan cterm=NONE
-
 " Navigation:
 " Scroll one screen line regardless of editor line length
 ":noremap    <Up> gk
@@ -346,22 +323,9 @@ map <Leader>gs :Gstatus
 map <Leader>m :MRU<CR>
 
 " Time Savers:
-map <Leader>w :w<CR>
-map <Leader>q :q<CR>
+"map <Leader>w :w<CR>
+"map <Leader>q :q<CR>
 
-"inoremap <silent> =   =<Esc>:call <SID>align()<CR>a
-"
-"function! s:align()
-	"let p = '^\s*|\s.*\s|\s*$'
-	"if exists(':Tabularize') && getline('.') =~# '^\s*=' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-		"echo "ola"
-		"let column = strlen(substitute(getline('.')[0:col('.')],'[^=]','','g'))
-		"let position = strlen(matchstr(getline('.')[0:col('.')],'.*=\s*\zs.*'))
-		"Tabularize/=/l1
-		"normal! 0
-		"call search(repeat('[^=]*=',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-	"endif
-"endfunction
 " Key mappings }}}
 
 " Tabs {{{
@@ -450,27 +414,37 @@ function! InsertTabWrapper()
         return "\<c-p>"
     endif
 endfunction
- "inoremap <Tab> <C-R>=InsertTabWrapper()<CR>
- "inoremap <S-Tab> <C-P>
+" Make tab perform keyword/tag completion if we're not following whitespace
+" inoremap <Tab> <C-R>=InsertTabWrapper()<CR>
+" inoremap <S-Tab> <C-P>
 " InsertTabWrapper() }}}
 
 "}}}
 
 " Plugins {{{ 
-" TagList: {{{
-"will recurse backwards until 'tags' is found
-set tags+=tags;
 
-"let Tlist_Display_Tag_Scope = 1 "ugh...
-let g:Tlist_Display_Prototype = 1
-let g:Tlist_Use_Right_Window = 1
-let g:Tlist_Exit_OnlyWindow = 1
-let g:Tlist_Enable_Fold_Column = 0
-let g:Tlist_Sort_Type = "name"
-let g:Tlist_Compact_Format = 0
-let g:Tlist_File_Fold_Auto_Close = 0
-let g:Tlist_WinWidth = 50
-" }}}
+	" BufferList: {{{
+	"
+	let g:BufferListWidth = 25
+	let g:BufferListMaxWidth = 50
+	hi BufferSelected term=reverse ctermfg=black ctermbg=red cterm=bold
+	hi BufferNormal term=NONE ctermfg=white ctermbg=black cterm=NONE
+
+	nnoremap \ :call BufferList()<CR>
+	" }}}
+	" TagList: {{{
+	set tags+=tags; " will recurse backwards until 'tags' is found
+
+	"let Tlist_Display_Tag_Scope = 1 "ugh...
+	let g:Tlist_Display_Prototype    = 1
+	let g:Tlist_Use_Right_Window     = 1
+	let g:Tlist_Exit_OnlyWindow      = 1
+	let g:Tlist_Enable_Fold_Column   = 0
+	let g:Tlist_Sort_Type            = "name"
+	let g:Tlist_Compact_Format       = 0
+	let g:Tlist_File_Fold_Auto_Close = 0
+	let g:Tlist_WinWidth             = 50
+	" }}}
 	" NetRW: {{{
 	"
 	let g:netrw_keepdir = 1
@@ -483,6 +457,7 @@ let g:Tlist_WinWidth = 50
 	let g:NERDChristmasTree = 1
 	let g:NERDTreeiHijackNetrw = 1
 
+	map <F12> <Esc>:NERDTreeToggle<CR>
 	" }}}
 	" SuperTab {{{
 	"let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
@@ -497,24 +472,25 @@ let g:Tlist_WinWidth = 50
 	" }}}
 	" OmniComplete: {{{
 	let OmniCpp_GlobalScopeSearch   = 1
-	let OmniCpp_NamespaceSearch     = 1				" 2 for searching in included files
-	let OmniCpp_DisplayMode         = 0				" 1 always show all members
-	let OmniCpp_ShowScopeInAbbr     = 0				" 1 scope to the left
-	let OmniCpp_ShowPrototypeInAbbr = 0		" 1 display prototype
-	let OmniCpp_ShowAccess          = 1						" 0 disable
-	let OmniCpp_MayCompleteDot      = 1				" .
-	let OmniCpp_MayCompleteArrow    = 1			" ->
-	let OmniCpp_MayCompleteScope    = 1			" ::
+	let OmniCpp_NamespaceSearch     = 1  			" 2 for searching in included files
+	let OmniCpp_DisplayMode         = 0  			" 1 always show all members
+	let OmniCpp_ShowScopeInAbbr     = 0  			" 1 scope to the left
+	let OmniCpp_ShowPrototypeInAbbr = 0  			" 1 display prototype
+	let OmniCpp_ShowAccess          = 1  			" 0 disable
+	let OmniCpp_MayCompleteDot      = 1  			" .
+	let OmniCpp_MayCompleteArrow    = 1 			" ->
+	let OmniCpp_MayCompleteScope    = 1				" ::
 	let OmniCpp_SelectFirstItem     = 0				" 1 select first & insert / 2 select !insert
 	let OmniCpp_LocalSearchDecl     = 0				" 1 local search function
-	"let omnicpp-popup 
+"  let omnicpp-popup 
+
 
 	" }}}
 	" SnipMate: {{{
 	let g:snips_author = 'Ricardo Costa'
 
-	ino <tab> <c-r>=TriggerSnippet()<cr>
-	snor <tab> <esc>i<right><c-r>=TriggerSnippet()<cr>
+  ino <tab> <c-r>=TriggerSnippet()<cr>
+  snor <tab> <esc>i<right><c-r>=TriggerSnippet()<cr>
 
 	"ino <C-Space> <c-r>=TriggerSnippet()<cr>
 	"snor <C-Space> <esc>i<right><c-r>=TriggerSnippet()<cr>
@@ -550,15 +526,7 @@ if has('autocmd')
 
 	" Automatically add CREATED date and update MODIFIED date
   autocmd BufNewFile * call Created()
-  autocmd BufWrite * call LastModified()
-
-	" Set comment characters for common languages
-	autocmd FileType python,sh,bash,zsh,ruby,perl,muttrc let StartComment="#" | let EndComment=""
-	autocmd FileType html let StartComment="<!--" | let EndComment="-->"
-	autocmd FileType php,cpp,javascript let StartComment="//" | let EndComment=""
-	autocmd FileType c,css let StartComment="/*" | let EndComment="*/"
-	autocmd FileType vim let StartComment="\"" | let EndComment=""
-	autocmd FileType ini let StartComment=";" | let EndComment=""
+  autocmd BufWrite   * call LastModified()
 
 	" Go back where I left off
 	autocmd BufReadPost * call RestoreCursorPos()

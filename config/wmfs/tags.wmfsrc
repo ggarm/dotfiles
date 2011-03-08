@@ -1,5 +1,5 @@
 # Author: Ricardo Costa
-# Modified: 2011-02-04 15:25
+# Modified: 2011-03-06 23:34
 #
 # ~/.config/wmfs/tags.wmfsrc 
 #
@@ -39,7 +39,7 @@
 				mouse_button_tag_prev      = "5"
 
 				[tag]
-								name             = "main"
+								name             = "\i[2;3;10;10;/home/ricardo/Scripts/wmfs/tags/term.png]\  term"
 								screen           = 0
 								mwfact           = 0.65
 								nmaster          = 1
@@ -49,13 +49,13 @@
 								#[mouse] [/mouse] Possible multi mouse section
 				[/tag]
 
-				[tag] name = "web" [/tag]
-				[tag] name = "chat" layout = "free" [/tag]
+				[tag] name = "\i[2;3;10;10;/home/ricardo/Scripts/wmfs/tags/browser.png]\  web" [/tag]
+				[tag] name = "\i[2;3;10;10;/home/ricardo/Scripts/wmfs/tags/speaker.png]\  chat"
+								layout = "free" [/tag]
 				[tag] 
-								name = "wine"
-								infobar_position = "none"
+								name = "\i[2;3;10;10;/home/ricardo/Scripts/wmfs/tags/mouse.png]\  wine"
 				[/tag]
-				[tag] name = "mail"  [/tag]
+				[tag] name = "\i[2;3;10;10;/home/ricardo/Scripts/wmfs/tags/mail.png]\  mail" [/tag]
 				[tag] name = "six"   [/tag]
 				[tag] name = "seven" [/tag]
 				[tag] name = "eight" [/tag]

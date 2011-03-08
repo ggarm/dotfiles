@@ -23,7 +23,7 @@ autoload -U colors && colors
 ## pwd max length L, prefix shortened pwd with m
 #local L=30 m='←<'
 #if [ ${#w} -gt $L ]; then
-	#local w="${m}%.";
+#local w="${m}%.";
 #fi
 #
 #PROMPT="%{$fg_bold[blue]%}${w}${GIT_BRANCH} %b$(battery_prompt.pl)%B${retchar} %{$reset_color%}"
@@ -39,8 +39,8 @@ autoload -U colors && colors
 
 # get the name of the branch we are on
 function git_prompt_info() {
-	ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-	echo -n "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
+ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+echo -n "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
 parse_git_dirty () { #{{{
@@ -62,22 +62,22 @@ parse_git_dirty () { #{{{
 # Will return the current branch name
 # Usage example: git pull origin $(current_branch)
 #function current_branch() {
-	#ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-	#echo ${ref#refs/heads/}
+#ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+#echo ${ref#refs/heads/}
 #}
 
 #}}}
 
 precmd(){
 
-local time="%B%{$fg[black]%}%@%b" #%* for hh:mm:ss
-local batt="$(battery_prompt.pl)"
+	local time="%B%{$fg[black]%}%@%b" #%* for hh:mm:ss
+	local batt="$(battery_prompt.pl)"
 
-PROMPT="${batt}${time} %b%{$fg[magenta]%}%~%b%{$reset_color%}$(git_prompt_info) "
+	PROMPT="${batt}${time} %b%{$fg[magenta]%}%~%b%{$reset_color%}$(git_prompt_info) "
 
-#PROMPT="%{$fg[yellow]%}%n%{$reset_color%} in %{$fg[blue]%}%~%{$reset_color%}$(git_prompt_info)
-#$(battery_prompt.pl)%{$fg[green]%}» "
-#RPROMPT="${time} %{$reset_color%}"
+	#PROMPT="%{$fg[yellow]%}%n%{$reset_color%} in %{$fg[blue]%}%~%{$reset_color%}$(git_prompt_info)
+	#$(battery_prompt.pl)%{$fg[green]%}» "
+	#RPROMPT="${time} %{$reset_color%}"
 
 }
 ZSH_THEME_GIT_PROMPT_PREFIX=" [branch: %{$fg[red]%}"

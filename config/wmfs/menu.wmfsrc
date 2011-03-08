@@ -13,13 +13,14 @@
 								# x = 40 y = 50
 
 								# Available "center", "left", "right" menu align. Default: "center".
-								align = "left"
+								align = "center"
 
 								fg_focus  = "#191919" bg_focus  = "#7E89A2"
 								fg_normal = "#9F9AB3" bg_normal = "#191919"
 
-								[item] name = "Tmux"        func = "spawn" cmd = "urxvtc -e tmux attach || urxvt -e tmux attach" [/item]
+								[item] name = "Tmux"            func = "spawn" cmd = "urxvtc -e tmux attach || urxvt -e tmux attach" [/item]
 								[item] name = "Terminal"        func = "spawn" cmd = "urxvtc || urxvt || xterm || gnome-terminal" [/item]
+								[item] name = "Change wall"     func = "spawn" cmd = "nitrogen"    [/item]
 								[item] name = "Applications" submenu = "appmenu"                   [/item]
 								[item] name = "Next tag"        func = "tag_next"                  [/item]
 								[item] name = "Previous tag"    func = "tag_prev"                  [/item]
@@ -36,10 +37,10 @@
 								fg_focus  = "#191919" bg_focus  = "#7E89A2"
 								fg_normal = "#9F9AB3" bg_normal = "#191919"
 
-								[item] name = "Browser"         func = "spawn" cmd = "firefox"     [/item]
+								[item] name = "Browser"         func = "spawn" cmd = "opera"     [/item]
 								[item] name = "Music Player"      func = "spawn" cmd = "sonata"       [/item]
 								[item] name = "LoL"      func = "spawn" cmd = "~/Desktop/Play\ League\ of\ Legends.desktop"       [/item]
-								[item] name = "Calculator"      func = "spawn" cmd = "xcalc"       [/item]
+#                 [item] name = "Calculator"      func = "spawn" cmd = "xcalc"       [/item]
 				[/set_menu]
 
 				[set_menu]

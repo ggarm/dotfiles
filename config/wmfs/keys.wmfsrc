@@ -15,7 +15,7 @@
 				[key] mod = {"Alt"} key = "F4" func = "client_kill" [/key]
 
 				# Quit wmfs.
-				[key] mod = {"Control", "Alt", "Shift"} key = "q" func = "quit" [/key]
+#         [key] mod = {"Control", "Alt", "Shift"} key = "q" func = "quit" [/key]
 
 				# Swap current client with the next.
 				[key] mod = {"Alt"} key = "t" func = "client_swap_next" [/key]
@@ -36,7 +36,7 @@
 				[key] mod = {"Shift", "Control"} key = "r" func = "toggle_resizehint" [/key]
 
 				# Toggle the tag_autohide mode
-				[key] mod = {"Shift", "Control"} key = "t" func = "toggle_tagautohide" [/key]
+#         [key] mod = {"Shift", "Control"} key = "t" func = "toggle_tagautohide" [/key]
 
 				# Select the next client.
 				[key] mod = {"Alt"} key = "Tab" func = "client_next" [/key]
@@ -45,16 +45,16 @@
 				[key] mod = {"Alt","Shift"} key = "Tab" func = "client_prev" [/key]
 
 				# Select the next tag.
-				[key] mod = {"Control"} key = "Right" func = "tag_next" [/key]
+				[key] mod = {"Mod4"} key = "Right" func = "tag_next_visible" [/key]
 
 				# Select the previous tag.
-				[key] mod = {"Control"} key = "Left" func = "tag_prev" [/key]
+				[key] mod = {"Mod4"} key = "Left" func = "tag_prev_visible" [/key]
 
 				# Select the next visible tag.
-				[key] mod = {"Control","Alt"} key = "Right" func = "tag_next_visible" [/key]
+				[key] mod = {"Control","Alt"} key = "Right" func = "tag_next" [/key]
 
 				# Select the previous visible tag.
-				[key] mod = {"Control","Alt"} key = "Left" func = "tag_prev_visible" [/key]
+				[key] mod = {"Control","Alt"} key = "Left" func = "tag_prev" [/key]
 
 				# Set the next layout.
 				[key] mod = {"Alt"} key = "space" func = "layout_next" [/key]
@@ -69,10 +69,10 @@
 				[key] mod = {"Alt"} key = "h" func = "set_mwfact" cmd = "-0.025" [/key]
 
 				# Increase nmaster.
-				[key] mod = {"Alt"} key = "d" func = "set_nmaster" cmd = "+1" [/key]
+				[key] mod = {"Alt"} key = "," func = "set_nmaster" cmd = "+1" [/key]
 
 				# Decrease nmaster.
-				[key] mod = {"Alt", "Shift"} key = "d" func = "set_nmaster" cmd = "-1" [/key]
+				[key] mod = {"Alt"} key = "." func = "set_nmaster" cmd = "-1" [/key]
 
 				#Launcher.
 				[key] mod = {"Alt"} key = "p" func = "launcher" cmd = "launcher_exec" [/key]
@@ -113,18 +113,21 @@
 				[key] mod = {"Alt", "Super"} key = "8" func = "tag_toggle_additional" cmd ="8" [/key]
 				[key] mod = {"Alt", "Super"} key = "9" func = "tag_toggle_additional" cmd ="9" [/key]
 
+# Menu
+#[key] key = "Menu" func = "spawn" cmd ="right_click" [/key]
+
 # Program Shortcuts
 				[key] mod = {"Mod4"} key = "e" func = "spawn" cmd = "pcmanfm" [/key]
-				[key] mod = {"Mod4"} key = "h" func = "spawn" cmd = "urxvtc -e htop" [/key]
-				[key] mod = {"Mod4"} key = "m" func = "spawn" cmd = "urxvtc -name Mail -e mutt && ~/Scripts/cron/new_mail.cron" [/key]
-				[key] mod = {"Mod4"} key = "n" func = "spawn" cmd = "urxvtc -g 100x24 -e ncmpcpp" [/key]
+				[key] mod = {"Mod4"} key = "h" func = "spawn" cmd = "urxvt -e htop" [/key]
+				[key] mod = {"Mod4"} key = "m" func = "spawn" cmd = "urxvt -name Mail -e mutt && ~/Scripts/cron/new_mail.cron" [/key]
+				[key] mod = {"Mod4"} key = "n" func = "spawn" cmd = "urxvt -g 100x24 -e ncmpcpp" [/key]
 #Music keys
 				[key] mod = {"Mod4"} key = "f" func = "spawn" cmd = "/usr/bin/mpc -q seek +10" [/key]
 				[key] mod = {"Mod4"} key = "PgDown" func = "spawn" cmd = "/usr/bin/mpc -q next" [/key]
 				[key] mod = {"Mod4"} key = "PgUp" func = "spawn" cmd = "/usr/bin/mpc -q prev" [/key]
 
 # Media Keys 
-				[key] key = "XF86HomePage"        func = "spawn" cmd = "firefox" [/key]
+				[key] key = "XF86HomePage"        func = "spawn" cmd = "opera" [/key]
 				[key] key = "XF86MailForward"     func = "spawn" cmd = "rfkill.sh" [/key]
 				[key] key = "XF86Mail"            func = "spawn" cmd = "thunderbird" [/key]
 
@@ -144,6 +147,6 @@
 				[key] key = "XF86AudioNext" func = "spawn" cmd = "/usr/bin/mpc -q next   && wmfs -S" [/key]
 
 # Screenshot
-				[key] key = "XF86Print" func = "spawn" cmd = "scrot --quality 100 '%d-%m-%Y_$wx$h.png' -e 'mv $f ~/Desktop'" [/key]
+				[key] key = "XF86Print" func = "spawn" cmd = "scrot --quality 100 %d-%m-%Y" [/key] #-e 'mv $f ~/Desktop'" [/key]
 
 [/keys]

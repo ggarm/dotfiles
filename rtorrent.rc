@@ -2,6 +2,12 @@
 # Author: Ricardo Costa
 # vim:syntax=sh
 
+#Colors: 0 = black 1 = red 2 = green 3 = yellow 4 = blue 5 = magenta 6 = cyan 7 = white
+#done_fg_color=2
+#done_bg_color=7
+#active_fg_color=5
+#active_bg_color=0
+
 # Maximum and minimum number of peers to connect to per torrent, down and seed.
 min_peers = 40
 max_peers = 100
@@ -28,7 +34,7 @@ port_random = no
 check_hash = yes
 
 # Set wherever the client should try to connect to UDP trackers.
-use_udp_trackers = yes
+use_udp_trackers = no
 
 # Enable DHT support for trackerless torrents or when all trackers are down.
 # May be set to "disable" (completely disable DHT), "off" (do not start DHT),
@@ -40,7 +46,7 @@ dht = auto
 dht_port = 6881
 
 # First and only argument to rtorrent_mail.sh is completed file's name (d.get_name)
-system.method.set_key = event.download.finished,notify_me,"execute=~/bin/down-complete.sh,$d.get_name="
+system.method.set_key = event.download.finished,notify_me,"execute=~/bin/down-complete-dzen.sh,$d.get_name="
 
 # Close torrents when diskspace is low.
 schedule = low_diskspace,5,60,close_low_diskspace=100M

@@ -10,7 +10,7 @@ if [[ $SHELL == *zsh ]]; then
 	alias -s {sxw,doc,ppt,xls}=soffice
 	alias -s {html,org,php,com,net}=$BROWSER
 	alias -s {java,txt,c,cpp,h,PKGBUILD}=$EDITOR
-	alias -s {asx,avi,wmv,mp4,mp3,wav}=mplayerd
+	alias -s {asx,avi,wmv,mkv,mp4,mp3,wav}=mplayerd
 	alias -s pdf=$PDFVIEWER
 	alias -s {png,jpg,gif}=$IMGVIEWER
 	alias -s exe=wine
@@ -19,15 +19,17 @@ if [[ $SHELL == *zsh ]]; then
 	# Global aliases
 	alias -g L='| less'
 	alias -g G='| grep'
+	alias -g E='| egrep'
 	# Named Dirs
 	# http://zshwiki.org/home/examples/aliasdirs
 	hash -d zsh="$HOME/.config/zsh"
+	hash -d abs="/var/abs"
 	hash -d Ricardo="/mnt/Ricardo/"
 	hash -d Prog="/mnt/Prog/"
 fi
 
 # mplayer --now-playing
-#alias mplayer='mplayerd'
+alias mplayer='mplayer -msgcolor -msgmodule'
 #alias mplayer='mplayer -identify $@> $HOME/.mplayer/mplayerd.log'
 
 #Downloads & Torrent dir
@@ -54,6 +56,7 @@ alias df='df -h'
 
 #du
 alias du='du -h -s -c'
+alias dum='du * | egrep "[0-9]M|[0-9]G" '
 
 #feh - preload, quiet, filenames visible, borderless
 alias feh='feh -pqdx -Z --scale-down ' #-g 800x400'
@@ -119,7 +122,7 @@ alias valgrind='valgrind --tool=memcheck --leak-check=full --show-reachable=yes'
 alias gdb='gdb -ex run -ex backtrace --args'
 
 #cpu
-alias cpuu='ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10'
+alias cpuu='ps -eo pcpu,pid,user,args | sort -n -r | head '
 
 #typos
 alias ç='l'

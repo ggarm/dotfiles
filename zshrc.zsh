@@ -2,7 +2,7 @@
 #
 # Author: Ricardo Costa 
 #
-# Last Modified: 2011-02-05 22:27
+# Last Modified: 2011-02-16 19:33
 #
 # done in .zprofile
 #source $HOME/.config/zsh/exports.zsh
@@ -17,6 +17,7 @@ source $HOME/.config/zsh/functions.zsh
 source $HOME/.config/zsh/opts.zsh
 source $HOME/.config/zsh/style.zsh
 source $HOME/.config/zsh/binds.zsh
+source $HOME/.config/zsh/zsh-history-substring-search.plugin.zsh
 source $HOME/.config/zsh/prompt.zsh
 
 # Set terminal title

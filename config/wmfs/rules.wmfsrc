@@ -1,5 +1,5 @@
 # Author: Ricardo Costa
-# Modified: 2011-02-02 15:55
+# Modified: 2011-02-17 17:36
 # ~/.config/wmfs/rules.wmfsrc 
 #
 
@@ -47,7 +47,7 @@
 							 instance = "emesene" 
 							 class    = "emesene"  
 							 screen   = 0          
-							 tag      = 3          
+#                tag      = 3          
 							 free     = true      
 							 max      = false    
 			 [/rule]
@@ -56,5 +56,10 @@
 							 class    = "Eclipse"  
 							 free     = true      
 							 max      = false    
+			 [/rule]
+			 [rule]
+							 instance = "nitrogen" 
+							 class    = "Nitrogen"  
+							 free     = true      
 			 [/rule]
 [/rules]

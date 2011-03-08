@@ -1,0 +1,34 @@
+! -------------------------------------------------
+! file:     .colours/Sepia                           
+! author:   "Him"
+! modified: 2011-02-15 19:24
+! vim:ft=xdefaults:nu:ai:si:et:ts=4:sw=4:
+! -------------------------------------------------
+!Theme Twenty-Two
+!*background: [90]rgb:00/00/00
+*background: #000000
+*foreground: #9CB955
+! Sepia
+
+*color0:  #382d22
+*color1:  #c37b5f
+*color2:  #9cb955
+*color3:  #bba85b
+*color4:  #748e9b
+*color5:  #925e5a
+*color6:  #5f9566
+*color7:  #bdbc8f
+*color8:  #4a3f2e
+*color9:  #e19688
+*color10: #c0d584
+*color11: #dbc585
+*color12: #a3bac5
+*color13: #ba8092
+*color14: #8cb9a2
+*color15: #dbd5ba
+
+
+! fonts
+! run "fc-list" for a list of available fonts
+! URxvt*font:    xft:montecarlo:pixelsize=15
+! URxvt*depth:   32

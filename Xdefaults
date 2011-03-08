@@ -1,7 +1,7 @@
 ! ----------------------------------------------------------------------------
 ! ! file:     ~/.Xdefaults
 ! ! author:   Ricardo Costa (and +stolen stuff)
-! ! modified: 2011-02-01 20:05
+! ! modified: 2011-02-26 22:43
 ! ! vim::nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
 ! ! ----------------------------------------------------------------------------
 !
@@ -11,10 +11,10 @@
 !Xcursor*theme: Vanilla-DMZ-AA
 !Xcursor.theme: neutral
 !Xcursor.size:  22
-Xcursor.theme: whiteglass
-Xcursor.size:  18
-!Xcursor.theme: pulse
-!Xcursor.size:  18
+!Xcursor.theme: whiteglass
+!Xcursor.size:  16
+Xcursor.theme: Ecliz-Arch
+Xcursor.size:  16
 ! }}}
 
 ! Xautolock ----------------------------------------------------------------- {{{
@@ -40,7 +40,7 @@ xterm*eightBitInput:    true
 xterm*saveLines:        32767
 xterm*scrollTtyKeypress:       false
 xterm*scrollTtyOutput:  true
-#xterm*font:		*-fixed-medium-*-normal-*-14-*
+!xterm*font:		*-fixed-medium-*-normal-*-14-*
 xterm*scrollBar:        false
 xterm*loginShell:       false
 xterm*jumpScroll:       true
@@ -71,18 +71,19 @@ URxvt*scrollBar: false
 URxvt*borderLess: false
 
 ! Transparency stuff
-#URxvt*inheritPixmap: true
-#URxvt*tintColor: white
-#URxvt*shading: 1
+!URxvt*inheritPixmap: true
+!URxvt*tintColor: white
+!URxvt*shading: 1
 
 ! fade text n% upon unfocus
-#urxvt*fading:             20
+!urxvt*fading:             20
 
 URxvt*trippleclickwords: true
 URxvt*pasteableTabs: true
 URxvt*pointerBlank: true
 URxvt*pointerBlankDelay: 2
-URxvt*depth: 24
+!URxvt*depth: 24
+URxvt*depth:   32
 
 ! Icon for urxvt
 !URxvt*iconFile: /usr/share/pixmaps/rxvt-unicode.png
@@ -90,12 +91,21 @@ URxvt*iconFile: /usr/share/pixmaps/terminal.png
 
 ! geometry and font
 URxvt*geometry: 130x32
-!URxvt*font: xft:montecarlo:pixelsize=17:antialias=true
-!URxvt*boldFont: xft:montecarlo:bold:pixelsize=17:antialias=true
-!URxvt*italicFont: xft:montecarlo:bold:pixelsize=17:antialias=true
-!URxvt.font:xft:envy code r:medium:pixelsize=14:antialias=true
-!URxvt.boldFont:xft:envy code r:medium:pixelsize=14:antialias=true
-!URxvt.italicFont:xft:envy code r:medium:pixelsize=14:antialias=true
+!
+! Montecarlo
+!
+URxvt*font: xft:montecarlo:pixelsize=15
+URxvt*boldFont: xft:montecarlo:bold:pixelsize=15
+URxvt*italicFont: xft:montecarlo:bold:pixelsize=15
+!
+! Envy Code R
+!
+!URxvt.font:         xft:envy code r:medium:pixelsize=12:antialias=true
+!URxvt.boldFont:     xft:envy code r:style=Bold:pixelsize=12:antialias=true
+!URxvt.italicFont:   xft:envy code r:style=Italic:pixelsize=12:antialias=true
+!
+! Inconsolata
+!
 !URxvt*font: xft:inconsolata:pixelsize=12:antialias=false
 !URxvt*boldFont: xft:inconsolata:bold:pixelsize=12:antialias=false
 !URxvt*italicFont: xft:inconsolata:bold:pixelsize=12:antialias=false
@@ -103,13 +113,18 @@ URxvt*geometry: 130x32
 !URxvt*font: -windows-montecarlo-medium-r-normal--11-110-72-72-c-60-microsoft-cp1252
 !URxvt*boldFont: -windows-montecarlo-bold-r-normal--11-110-72-72-c-60-microsoft-cp1252
 !URxvt*italicFont: -nil-profont-medium-r-normal--10-100-72-72-c-50-iso8859-1
-
-URxvt*font:        xft:Droid Sans Mono Slashed:style=Regular:pixelsize=12:antialias=true:hinting=true:hintstyle=hintfull
-URxvt*boldFont:    xft:Droid Sans Mono Slashed:style=Regular:pixelsize=12:antialias=true:hinting=true:hintstyle=hintfull
-
-#URxvt*font: xft:terminus:pixelsize=14:antialias=false
-#URxvt*boldFont: xft:terminus:bold:pixelsize=14:antialias=false
-#URxvt*italicFont: xft:terminus:bold:pixelsize=14:antialias=false
+!
+! Droid Sans Mono Slashed
+!
+!URxvt*font:        xft:Droid Sans Mono Slashed:style=Regular:pixelsize=12:antialias=true:hinting=true:hintstyle=hintfull
+!URxvt*boldFont:    xft:Droid Sans Mono Slashed:style=Regular:pixelsize=12:antialias=true:hinting=true:hintstyle=hintfull
+!URxvt*italicFont: -nil-profont-medium-r-normal--10-100-72-72-c-50-iso8859-1
+!
+! Terminus
+! 
+!URxvt*font: xft:terminus:pixelsize=14:antialias=false
+!URxvt*boldFont: xft:terminus:bold:pixelsize=14:antialias=false
+!URxvt*italicFont: xft:terminus:bold:pixelsize=14:antialias=false
 
 ! }}}
 
@@ -223,7 +238,10 @@ URxvt*pointerColor2: #0092FF
 
 !Latest
 !#include "/home/ricardo/.colours/arch"
-#include "/home/ricardo/.colours/modR"
+!#include "/home/ricardo/.colours/modR"
+#include "/home/ricardo/.colours/Sepia"
+!#include "/home/ricardo/.colours/candymouse"
+!#include "/home/ricardo/.colours/cottonmouse"
 !#include "/home/ricardo/.colours/mason"
 !#include "/home/ricardo/.colours/thayer"
 !#include "/home/ricardo/.colours/tvale"

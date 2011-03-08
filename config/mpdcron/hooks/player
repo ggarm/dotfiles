@@ -1,0 +1,3 @@
+hooks/dump-status.bash
+hooks/dump-song.bash
+hooks/playing.sh

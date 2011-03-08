@@ -49,7 +49,7 @@ zstyle ':completion:*:mplayer:*' ignored-patterns \
 	cdda:// cddb:// dvd:// file: ftp:// gopher:// http:// https:// tv:// vcd:// 
 zstyle ':completion:*:man:*' menu yes select
 zstyle ':completion:*:history-words' menu yes # activate menu
-zstyle ':completion:*:*:cd:*:directory-stack' menu yes select # complete 'cd -<tab>' with menu
+# zstyle ':completion:*:*:cd:*:directory-stack' menu yes select # complete 'cd -<tab>' with menu
 zstyle ':completion:*:functions' ignored-patterns '_*'
 
 # Filename suffixes to ignore during completion (except after rm command)

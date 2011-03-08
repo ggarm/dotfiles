@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ## Variables et al
-export BROWSER=firefox
+export BROWSER=opera
 export EDITOR=vim
 export FM=pcmanfm
 export PDFVIEWER=evince
@@ -20,6 +20,10 @@ export RXVT_SOCKET=$HOME/.config/rxvt-unicode-ricardoArch
 
 # speed up firefox
 export MOZ_DISABLE_PANGO=1
+
+# speed up opera
+export OPERAPLUGINWRAPPER_PRIORITY=0
+export OPERA_KEEP_BLOCKED_PLUGIN=1
 
 #Less
 export LESSCHARSET="utf-8"

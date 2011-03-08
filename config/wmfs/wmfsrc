@@ -6,14 +6,15 @@
 
 [misc]
         font               = "montecarlo-10"
-        raisefocus         = false
-        focus_follow_mouse = true
+        raisefocus         = true
+        focus_follow_mouse = false
         # focus_pointer_click: click on unfocused client area:
         # true  -- default, set focus
         # false -- click go to client; including dockapps
         focus_pointer_click = true
         status_timing      = 1     #seconds
         status_path        = "~/.config/wmfs/wmfstatus.sh"
+				opacity            = 250
 [/misc]
 
 [bar]
@@ -25,16 +26,16 @@
         [systray]
 								active = true # Enable/disable systray
 								screen = 0 # Screen of systray
-                spacing = 3 # Spacing between tray icons
+                spacing = 2 # Spacing between tray icons
         [/systray]
 
         # Remove this section to disable the selbar.
         [selbar]
-                bg = "#191919"
-                fg = "#D4D4ff"
+                fg = "#191919"
+                bg = "#F99017" #D4D4ff"
 
                 # Cut title length
-                # max_length = 25
+                max_length = 100
 
                 [mouse] button = "3" func = "clientlist"  [/mouse]
                 [mouse] button = "4" func = "client_next" [/mouse]
@@ -83,7 +84,7 @@ background_command = "nitrogen --restore" #"xsetroot -solid black"
 [/root]
 
 [client]
-#client_round         = false
+				client_round         = true
         border_height        = 1
         border_shadow        = false
         border_normal        = "#222222"

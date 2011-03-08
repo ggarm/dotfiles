@@ -1,0 +1,22 @@
+#text/html; lynx -dump %s; nametemplate=%s.html; copiousoutput
+text/html; $BROWSER %s & sleep 2;
+text/html; w3m %s; nametemplate=%s.html;
+image/*; mirage %s
+image/*; feh %s
+video; mplayer %s
+text/*; vim %s
+application/pdf; zathura %s
+application/pdf; evince %s
+application/rar; file-roller %s
+application/x-tar; file-roller %s
+application/x-tar-gz; file-roller %s
+application/x-bzip; file-roller %s
+application/x-gzip; file-roller %s
+application/x-7z-compressed; file-roller %s
+application/zip; file-roller %s
+application/msword; soffice -writer %s
+application/vns.ms-word; soffice -writer %s
+application/vns.ms-excel; soffice -calc %s
+application/vns.ms-powerpoint; soffice -draw %s
+application/vns.oasis.opendocument.text; soffice -writer %s
+application/*; vim %s

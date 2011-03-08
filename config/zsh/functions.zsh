@@ -52,9 +52,12 @@ if [[ -f ~/Scripts/utils/alias ]]; then
 	salias () { ~/Scripts/utils/alias; }
 fi
 
+# Change permissions
 function +x(){ chmod +x $1; }
 function +w(){ chmod +w $1; }
 
+# Timec
+function timec {while sleep 1 ; do printf '\r%s ' "$(date +'%T %Y-%m-%d')" ; done}
 
 # Creates an archive from given directory
 mktar() { tar cvf  "${1%%/}.tar"     "${1%%/}/"; }
@@ -64,6 +67,17 @@ mkcd () { mkdir $1 && cd $1; }
 
 # Move file to a directory and enter it
 mvcd () { mv $1 $2 && cd $2; }
+
+# native function for showing 256 colors, properly formatted:
+function 256co {
+# if [[ ${TERM} != linux ]]; then
+	for line in {0..15}; do for col in {0..15}; do
+		local code=$(( $col * 16 + ${line} ))
+		printf $'\e[38;05;%dm %03d' ${code} ${code}
+	done
+	print ; done
+# fi
+}
 
 # Define stuff
 google () {

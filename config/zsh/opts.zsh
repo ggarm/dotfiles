@@ -16,6 +16,10 @@ setopt correctall					# ^^ for all args
 #setopt CSHJUNKIEQUOTES    # quote unmatched :) 
 unsetopt BG_NICE 
 unsetopt bgnice				# do NOT nice bg commands
+setopt multibyte      # must check?
+setopt mark_dirs      # append a '/' to dirs
+# setopt glob_dots      # do not require a '.' for files
+
 
 autoload -Uz compinit colors vcs_info
 compinit colors
@@ -23,6 +27,7 @@ compinit colors
 # smart urls
 autoload -U url-quote-magic
 #zle -N self-insert url-quote-magic
+# zle -N history-beginning-search-backward
 
 
 

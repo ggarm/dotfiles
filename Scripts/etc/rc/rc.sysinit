@@ -2,8 +2,7 @@
 #
 # Epic hack:
 #  /etc/rc.sysinit
-# Last Modified:
-#  25 Dez 2010 @ 18:48
+# Modified: #  25 Dez 2010 @ 18:48
 
 # No initramfs steps #{{{
 # STEP 1 - mount /proc, /sys and our RAM /dev
@@ -32,47 +31,26 @@
 
 (/sbin/hwclock --hctosys --localtime --noadjfile) &
 
-(/sbin/modprobe nvidia) &
-(/sbin/modprobe tg3) &
+{
+(/sbin/modprobe nvidia) 
+#(/sbin/modprobe iwlagn)
+#tg3
+} &
 
-#echo > /proc/sys/kernel/hotplug
-
-#status "Starting UDev Daemon" #{{{
-  /sbin/udevd --daemon
-  ##/sbin/udevadm control --property=STARTUP=1
-  /sbin/udevadm trigger --action=add
-  (/sbin/udevadm settle) &
-  ##/sbin/udevadm control --property=STARTUP=
-
-	#Compiled directly in the kernel
-  #(/sbin/modprobe iwlagn) &
-  #}}}
+#status "Starting UDev Daemon"
+/sbin/udevd --daemon
+##/sbin/udevadm control --property=STARTUP=1
+/sbin/udevadm trigger --action=add
+(/sbin/udevadm settle) &
+##/sbin/udevadm control --property=STARTUP=
 
 # bring up the loopback interface
 (/sbin/ifconfig lo 127.0.0.1 up) &
 
-#status "Mounting Local Filesystems" #{{{
-/bin/mount -n -o remount,rw /
-cat /proc/mounts >| /etc/mtab
-/bin/mount -t ext3 /dev/sda11 /home #-L ArchHome
-#{
-#/bin/mount /dev/pts
-#/bin/mount /dev/shm
-#/bin/mount /tmp
-#/bin/mount /var/lock
-#/bin/mount /var/run
-
-#/bin/mount /dev/sda1
-#/bin/mount /dev/sda5
-#/bin/mount /dev/sda6
-#/bin/mount /dev/sda7
-#/bin/mount /dev/sda8
-#} &
+/bin/mount -n -o remount,rw,relatime /
+#cat /proc/mounts >| /etc/mtab
+/bin/mount -t ext3 /dev/sda11 /home -o defaults,relatime #-L ArchHome
 (/bin/mount -a -F ) & #Late mounting
-
-#(sleep 5; /bin/mount -a -F) &
-
-#}}}
 
 (/bin/hostname ricardoArch) & #status "Setting Hostname: $HOSTNAME"
 (/bin/loadkeys -q -u pt-latin9) & #status "Loading Keyboard Map: $KEYMAP" 

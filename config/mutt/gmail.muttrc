@@ -1,0 +1,17 @@
+#########################
+# gmail specific options
+#########################
+
+color status    white  blue
+
+set from      = "ricostaantunes@gmail.com"
+#set sendmail  = "/usr/bin/msmtp"
+set sendmail  = "/usr/bin/msmtp -a gmail"
+set mbox      = "+GMAIL/Archive"
+set record    = "+GMAIL/Sent"
+set postponed = "+GMAIL/Drafts"
+
+macro index E "<change-folder>+GMAIL/Archives<enter><limit>~B "   "search everything"
+macro index D "<save-message>+GMAIL/Trash<enter>"                "move message to the trash"
+macro index S "<save-message>+GMAIL/Archives<enter>"                 "mark message as archived"
+

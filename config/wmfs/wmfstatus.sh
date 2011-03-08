@@ -1,7 +1,7 @@
 # ------------------------------------------------------
 # file:     $HOME/.config/wmfs/wmfstatus.sh
 # author:   Ricardo Costa 
-# modified: 2011-01-28 22:45
+# modified: 2011-03-06 23:26
 # vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
 # ------------------------------------------------------
 
@@ -13,18 +13,12 @@ STATEFILE='/proc/acpi/battery/BAT1/state' # battery's state file
 # -------------
 # Defining VARS
 # -------------
-        read MSG < /tmp/new_mail;
-        if [[ $MSG -gt 0 ]]; then 
-            MAIL="
-            \i[860;-3;0;0;$ICONPATH/mail.png]\ 
-            \s[871;12;#DCDCDC; $MSG]\ "
-        fi
-
         read UP < /tmp/pacman_updates;
         if [[ $UP -gt 0 ]]; then 
             PACMAN="
-            \i[890;1;0;0;$ICONPATH/ghost4.png]\ 
-            \s[901;12;#DCDCDC; is sad...]\ "
+            \i[850;1;0;0;$ICONPATH/ghost2.png]\ 
+            \s[865;12;#DCDCDC; $UP]\ "
+#            \s[865;12;#DCDCDC; is sad...]\ "
         fi
 
         RCAP=`awk '/remaining/ {print $3 }' $STATEFILE`;
@@ -32,13 +26,27 @@ STATEFILE='/proc/acpi/battery/BAT1/state' # battery's state file
             # calculate remaining power
             RPERC=`expr $RCAP \* 100 / 4800`;
              
-            if [ $RPERC -le 15 ]; then BAT_GFG="#EE0000";
-            elif [ $RPERC -le 50 ]; then BAT_GFG="#E1DF3A";
-            else BAT_GFG="#52E83E";
+            if [ "$RPERC" -lt "15" ]; then
+                if [ `cat /tmp/batteryfail` = "1" ]; then
+                    color="#ff0000"
+                    echo 0 > /tmp/batteryfail
+                    POWER="
+                    \i[927;2;0;0;$ICONPATH/bat.png]\ 
+                    \s[935;12;$color; $RPERC%]\ "
+                else
+                    echo 1 > /tmp/batteryfail
+                fi
+            else
+                color="#DCDCDC" #52E83E"
+                POWER="
+                \i[927;2;0;0;$ICONPATH/bat.png]\ 
+                \s[935;12;$color; $RPERC%]\ 
+                \s[955;12;#8F8F8F; |]\ "
             fi
-            POWER="
-            \i[920;2;0;0;$ICONPATH/bat.png]\ 
-            \s[930;12;$BAT_GFG; $RPERC%]\ "
+#            if [ $RPERC -le 15 ]; then color="#EE0000";
+#            elif [ $RPERC -le 50 ]; then color="#E1DF3A";
+#            else color="#52E83E";
+#            fi
         fi 
 
 		DATE=$(/bin/date "+%H:%M:%S")
@@ -71,7 +79,6 @@ STATEFILE='/proc/acpi/battery/BAT1/state' # battery's state file
 #$(wmfs-status-gauge 954 8 35 3 '#df0031' 1 '#333333' $CPU1) \
 wmfs -s "
         $POWER
-        $MAIL
         $PACMAN
 		\i[968;3;0;0;$ICONPATH/cpu.png]\ 
 		\s[1067;12;#8F8F8F;|]\ 

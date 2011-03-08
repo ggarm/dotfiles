@@ -35,8 +35,8 @@ spuaa=4
 # Fullscreen
 fs=0
 # Colors
-msgmodule=1
-msgcolor=1
+# msgmodule=1
+# msgcolor=1
 
 # Misc settings
 nolirc=yes
