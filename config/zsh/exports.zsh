@@ -59,6 +59,12 @@ export XDG_CACHE_HOME=/home/ricardo/.cache
 #XAUTHORITY
 export XAUTHORITY=$HOME/.config/.Xauthority
 
+#jboss
+# export JBOSS_HOME=$HOME/jboss-6.0.0.Final
+
+#xfce global menu
+GTK_MODULES=globalmenu-gnome
+
 #cvs
 #export CVSROOT=':ext:ist162578@comp.rnl.ist.utl.pt:/cvs'
 #export CVS_RSH='ssh'

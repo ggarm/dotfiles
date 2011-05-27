@@ -1,7 +1,7 @@
 ! ----------------------------------------------------------------------------
 ! ! file:     ~/.Xdefaults
 ! ! author:   Ricardo Costa (and +stolen stuff)
-! ! modified: 2011-02-26 22:43
+! ! modified: 2011-05-27 17:20
 ! ! vim::nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
 ! ! ----------------------------------------------------------------------------
 !
@@ -13,14 +13,18 @@
 !Xcursor.size:  22
 !Xcursor.theme: whiteglass
 !Xcursor.size:  16
-Xcursor.theme: Ecliz-Arch
-Xcursor.size:  16
+!Xcursor.theme: Ecliz-Arch
+!Xcursor.size:  16
+Xcursor.theme: oxy-neon
+!Xcursor.size:  16
 ! }}}
 
 ! Xautolock ----------------------------------------------------------------- {{{
+!
+!
 Xautolock.time: 2
 Xautolock.locker: "alock -bg image:file=/home/ricardo/Walls/brb.jpg -auth pam"
-
+!
 ! }}}
 
 ! Font Management -------------------------------------------------------- {{{
@@ -29,6 +33,7 @@ Xft.dpi:       96
 !Xft.antialias: 1
 Xft.rgba:      rgb
 Xft.hinting:   1
+!Xft.hintstyle: hintslight
 Xft.hintstyle: hintfull
 ! }}}
 
@@ -62,7 +67,7 @@ URxvt*urgentOnBell: true
 
 ! clickable URLS
 URxvt*perl-ext: default,matcher
-URxvt*urlLauncher: /usr/bin/firefox
+URxvt*urlLauncher: /usr/bin/opera
 URxvt*matcher.button: 1
 
 ! borderless and no scrollbar
@@ -94,9 +99,19 @@ URxvt*geometry: 130x32
 !
 ! Montecarlo
 !
-URxvt*font: xft:montecarlo:pixelsize=15
-URxvt*boldFont: xft:montecarlo:bold:pixelsize=15
-URxvt*italicFont: xft:montecarlo:bold:pixelsize=15
+!URxvt*font: xft:montecarlo:pixelsize=15
+!URxvt*boldFont: xft:montecarlo:bold:pixelsize=15
+!URxvt*italicFont: xft:montecarlo:bold:pixelsize=15
+!
+! Monaco
+!
+!URxvt*font: xft:Monaco:pixelsize=11:antialias=false
+!URxvt*boldFont : xft:Monaco: pixelsize=11:weight=bold
+!
+URxvt*font:         xft:monaco:size=10
+URxvt*bolfFont:     xft:monaco:size=10:weight=bold
+URxvt*italicFont:   xft:monaco:size=10
+!URxvt*italicFont:   xft:monaco:size=9:weight=italic:antialias=true
 !
 ! Envy Code R
 !
@@ -239,7 +254,9 @@ URxvt*pointerColor2: #0092FF
 !Latest
 !#include "/home/ricardo/.colours/arch"
 !#include "/home/ricardo/.colours/modR"
-#include "/home/ricardo/.colours/Sepia"
+!#include "/home/ricardo/.colours/Sepia"
+!#include "/home/ricardo/.colours/Solarized"
+#include "/home/ricardo/.colours/rakka"
 !#include "/home/ricardo/.colours/candymouse"
 !#include "/home/ricardo/.colours/cottonmouse"
 !#include "/home/ricardo/.colours/mason"

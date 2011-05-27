@@ -54,7 +54,7 @@ zstyle ':completion:*:functions' ignored-patterns '_*'
 
 # Filename suffixes to ignore during completion (except after rm command)
 zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.hi' '*?.o' '*?.c~' \
-	'*?.old' '*?.pro'
+	'*?.old' '*?.pro' '*?.class'
 
 zstyle ':vcs_info:*' enable git cvs svn
 zstyle ':vcs_info:*:prompt:*' check-for-changes true

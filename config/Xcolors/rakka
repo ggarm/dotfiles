@@ -1,0 +1,32 @@
+! -------------------------------------------------
+! file:     .colours/rakka                           
+! author:   "rakka"
+! modified: 2011-03-23 01:34
+! vim:ft=xdefaults:nu:ai:si:et:ts=4:sw=4:
+! -------------------------------------------------
+*foreground: #DDEEDD
+*background: #1C1C1C
+!black
+*color0: #1C1C1C
+*color8: #4d4d4d
+!red
+*color1: #D81860
+*color9: #F00060
+!green
+*color2: #B7CE42
+*color10: #BDE077
+!yellow
+*color3: #FEA63C
+*color11: #ffa32c
+!blue
+*color4: #66AABB
+*color12: #509ec6
+!magenta
+*color5: #B7416E
+*color13: #BB4466
+!cyan
+*color6: #5E7175
+*color14: #526164
+!white
+*color7: #DDEEDD
+*color15: #EFEFEF

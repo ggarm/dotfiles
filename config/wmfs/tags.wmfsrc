@@ -1,5 +1,5 @@
 # Author: Ricardo Costa
-# Modified: 2011-03-06 23:34
+# Modified: 2011-04-15 22:22
 #
 # ~/.config/wmfs/tags.wmfsrc 
 #
@@ -9,13 +9,18 @@
 						 name             = "1"
 						 mwfact           = 0.5
 						 nmaster          = 1
-						 layout           = "tile_right"
-						 resizehint       = false
+						 layout           = "free"
+						 resizehint       = true
 						 infobar_position = "bottom"
 				[/default_tag]
 
+				# whether client_next on the last tag will send you on the first
+				# and client_prev on the first tag will send you on the last one
 				tag_round      = false
+
+				# Going twice on the same tag will bring you back on the previous one
 				tag_auto_prev  = true
+
 				occupied_bg    = "#2f2f2f"
 				occupied_fg    = "#D4D4D4"
 				sel_fg         = "#bc61a3"
@@ -24,6 +29,9 @@
 				urgent_fg      = "#000000"
 				# If true, number of the tag will be used for name
 				name_count     = false
+
+				expose_name    = "EXPOSE"
+				expose_layout  = "tile_left"
 
 				# Border around the tag buttons.
 				border      = false
@@ -40,24 +48,25 @@
 
 				[tag]
 								name             = "\i[2;3;10;10;/home/ricardo/Scripts/wmfs/tags/term.png]\  term"
-								screen           = 0
 								mwfact           = 0.65
 								nmaster          = 1
-								layout           = "tile_right"
+								layout           = "tile_grid"
 								resizehint       = false
+								infobar_position = "bottom"
 
 								#[mouse] [/mouse] Possible multi mouse section
 				[/tag]
 
-				[tag] name = "\i[2;3;10;10;/home/ricardo/Scripts/wmfs/tags/browser.png]\  web" [/tag]
-				[tag] name = "\i[2;3;10;10;/home/ricardo/Scripts/wmfs/tags/speaker.png]\  chat"
-								layout = "free" [/tag]
-				[tag] 
-								name = "\i[2;3;10;10;/home/ricardo/Scripts/wmfs/tags/mouse.png]\  wine"
+				[tag] name = "\i[2;3;10;10;/home/ricardo/Scripts/wmfs/tags/browser.png]\  web"
+							layout = "tile_grid"
 				[/tag]
+				[tag] name = "\i[2;3;10;10;/home/ricardo/Scripts/wmfs/tags/speaker.png]\  chat"
+							layout = "free"
+				[/tag]
+				[tag] name = "\i[2;3;10;10;/home/ricardo/Scripts/wmfs/tags/mouse.png]\  wine" [/tag]
 				[tag] name = "\i[2;3;10;10;/home/ricardo/Scripts/wmfs/tags/mail.png]\  mail" [/tag]
-				[tag] name = "six"   [/tag]
-				[tag] name = "seven" [/tag]
-				[tag] name = "eight" [/tag]
-				[tag] name = "nine"  [/tag]
+#         [tag] name = "six"   [/tag]
+#         [tag] name = "seven" [/tag]
+#         [tag] name = "eight" [/tag]
+#         [tag] name = "nine"  [/tag]
 [/tags]

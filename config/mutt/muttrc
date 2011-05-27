@@ -92,7 +92,9 @@ mailboxes +GMAIL/Archives +GMAIL/Inbox +GMAIL/Sent +GMAIL/Drafts +GMAIL/Trash
 
 # always sourced
 #source $alias_file                                              # required for functionality
-source ~/.mutt/256colors.muttrc                                    # source colors file
+source ~/.mutt/mutt-colors-solarized-dark-256.muttrc             # source dark colors file
+#source ~/.mutt/mutt-colors-solarized-light-256.muttrc             # source light colors file
+#source ~/.mutt/256colors.muttrc                                    # source colors file
 source ~/.mutt/gpg.rc                                           # use GPG
 source ~/.mutt/gmail.muttrc
 source ~/.mutt/sidebar.muttrc
@@ -143,6 +145,9 @@ macro index B    "<limit>~b "                              "search message bodie
 macro index,pager <F1> "<shell-escape>less /usr/share/doc/mutt/manual.txt<enter>" "Show Mutt documentation"
 macro index,pager <F2> ":toggle help<enter>:set ?help<enter>"    "toggle help status line"
 macro index,pager <F5> ":source ~/.mutt/muttrc\n"          "Reload the muttrc"
+#source ~/.mutt/mutt-colors-solarized-light-256.muttrc             # source light colors file
+macro index,pager <F10> ":source ~/.mutt/mutt-colors-solarized-dark-256.muttrc\n"             " Dark colors scheme"
+macro index,pager <F11> ":source ~/.mutt/mutt-colors-solarized-light-256.muttrc\n"            " Light colors scheme"
 
 macro compose \Cg "Fgpg --clearsign\ny"
 macro compose \Cp "Fgpg --clearsign\ny^T^Uapplication/pgp; format=text; x-action=sign\n"

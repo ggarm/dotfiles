@@ -18,6 +18,7 @@ if [[ $SHELL == *zsh ]]; then
 	alias -s TODO=$EDITOR
 	# Global aliases
 	alias -g L='| less'
+	alias -g T='| tail'
 	alias -g G='| grep'
 	alias -g E='| egrep'
 	# Named Dirs

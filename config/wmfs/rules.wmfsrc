@@ -1,5 +1,5 @@
 # Author: Ricardo Costa
-# Modified: 2011-02-17 17:36
+# Modified: 2011-04-10 01:44
 # ~/.config/wmfs/rules.wmfsrc 
 #
 
@@ -8,7 +8,6 @@
 							 instance = "xv"       # First part of WM_CLASS
 							 class    = "MPlayer"  # Seconf part of WM_CLASS, not needed if first part is correct
 							 # role = ""           # WM_WINDOW_ROLE
-							 screen   = 0          # Screen to use
 #                tag      = 2          # Tag number of apps
 							 free     = true       # Set automatic free client
 							 max      = false      # Set automatic maximized client
@@ -19,6 +18,7 @@
 							 tag      = 5          
 							 free     = false      
 							 max      = false     
+							 follow_client = true      # if the client open in an other tag/screen, follow it.
 			 [/rule]
 			 [rule]
 							 instance = "lol.launcher.exe" 
@@ -30,7 +30,6 @@
 			 [rule]
 							 instance = "Navigator" 
 							 class    = "Namoroka"  
-							 screen   = 0          
 							 tag      = 2          
 							 free     = false      
 							 max      = false     
@@ -38,7 +37,6 @@
 			 [rule]
 							 instance = "sonata" 
 							 class    = "Sonata"  
-							 screen   = 0          
 							 tag      = 2          
 							 free     = true      
 							 max      = false    
@@ -46,10 +44,11 @@
 			 [rule]
 							 instance = "emesene" 
 							 class    = "emesene"  
-							 screen   = 0          
 #                tag      = 3          
 							 free     = true      
 							 max      = false    
+							 ignore_tags   = false      # ignore tag (free mode)
+							 follow_client = true      # if the client open in an other tag/screen, follow it.
 			 [/rule]
 			 [rule]
 							 instance = "eclipse" 
@@ -60,6 +59,11 @@
 			 [rule]
 							 instance = "nitrogen" 
 							 class    = "Nitrogen"  
+							 free     = true      
+			 [/rule]
+			 [rule]
+							 instance = "wicd-client.py" 
+							 class    = "Wicd-client.py"  
 							 free     = true      
 			 [/rule]
 [/rules]

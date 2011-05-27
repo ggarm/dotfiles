@@ -8,11 +8,15 @@
 #unclutter &					#for hiding the mouse when idle
 (xmodmap .Xmodmap) &			#keymapping
 (urxvtd -q -o -f) &				#URxvt daemon starts here
-(nice -n-5 mpd 2>/dev/null) &	#MPD starts here
-(mpdcron 2>/dev/null) &	#MPDCron starts here
+#(nice -n-5 mpd 2>/dev/null) &	#MPD starts here
+(dropboxd 2>/dev/null) & #Dropbox daemon
+#(wicd-client 2>/dev/null) & #wicd-gui
+(thunderbird 2>/dev/null) & #wicd-gui
+(emesene 2>/dev/null) & #IM
+#(mpdcron 2>/dev/null) &	#MPDCron starts here
 #(tmux) &						#tmux starts here (can't figure out the auto-start part... FIXME)
 
-WM=wmfs
+WM=xfce
 
 case $WM in
 	openbox)
@@ -32,6 +36,9 @@ case $WM in
 		;;
 	wmfs)
 		exec wmfs
+		;;
+	xfce)
+		exec ck-launch-session dbus-launch --exit-with-session startxfce4
 		;;
 	*)
 		for i in {lbottom.sh,rbottom.sh,rtop.sh}; do

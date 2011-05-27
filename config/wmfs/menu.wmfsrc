@@ -39,7 +39,7 @@
 
 								[item] name = "Browser"         func = "spawn" cmd = "opera"     [/item]
 								[item] name = "Music Player"      func = "spawn" cmd = "sonata"       [/item]
-								[item] name = "LoL"      func = "spawn" cmd = "~/Desktop/Play\ League\ of\ Legends.desktop"       [/item]
+								[item] name = "HoN"      func = "spawn" cmd = "~/HoN/hon.sh"       [/item]
 #                 [item] name = "Calculator"      func = "spawn" cmd = "xcalc"       [/item]
 				[/set_menu]
 

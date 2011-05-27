@@ -23,14 +23,18 @@
 				# Swap current client with the previous.
 				[key] mod = {"Alt", "Shift"} key = "t" func = "client_swap_prev" [/key]
 
+				# Set the selected client as Master
+				[key] mod = {"Control"} key = "m" func = "client_set_master" [/key]
+
 				# Toggle maximum the selected client
 				[key] mod = {"Alt"} key = "m" func = "toggle_max" [/key]
 
 				# Toggle free the selected client.
 				[key] mod = {"Alt"} key = "f" func = "toggle_free" [/key]
 
-				# Toggle the position of the infobar.
+				# Toggle the position of the infobar
 				[key] mod = {"Alt"} key = "b" func = "toggle_infobar_position" [/key]
+				[key] mod = {"Alt", "Shift"} key = "b" func = "toggle_infobar_display" [/key]
 
 				# Toggle the resizehint of the current tag/screen
 				[key] mod = {"Shift", "Control"} key = "r" func = "toggle_resizehint" [/key]
@@ -69,10 +73,10 @@
 				[key] mod = {"Alt"} key = "h" func = "set_mwfact" cmd = "-0.025" [/key]
 
 				# Increase nmaster.
-				[key] mod = {"Alt"} key = "," func = "set_nmaster" cmd = "+1" [/key]
+				[key] mod = {"Alt"} key = "d" func = "set_nmaster" cmd = "+1" [/key]
 
 				# Decrease nmaster.
-				[key] mod = {"Alt"} key = "." func = "set_nmaster" cmd = "-1" [/key]
+				[key] mod = {"Alt","Shift"} key = "d" func = "set_nmaster" cmd = "-1" [/key]
 
 				#Launcher.
 				[key] mod = {"Alt"} key = "p" func = "launcher" cmd = "launcher_exec" [/key]
@@ -113,6 +117,12 @@
 				[key] mod = {"Alt", "Super"} key = "8" func = "tag_toggle_additional" cmd ="8" [/key]
 				[key] mod = {"Alt", "Super"} key = "9" func = "tag_toggle_additional" cmd ="9" [/key]
 
+				# Change Screen
+				[key] mod = {"Super"} key = "Tab" func = "screen_next" [/key]
+				[key] mod = {"Super","Shift"} key = "Tab" func = "screen_prev" [/key]
+
+				# Expose?
+				[key] mod = {"Alt"} key = "e" func = "toggle_tag_expose" [/key]
 # Menu
 #[key] key = "Menu" func = "spawn" cmd ="right_click" [/key]
 
@@ -129,7 +139,7 @@
 # Media Keys 
 				[key] key = "XF86HomePage"        func = "spawn" cmd = "opera" [/key]
 				[key] key = "XF86MailForward"     func = "spawn" cmd = "rfkill.sh" [/key]
-				[key] key = "XF86Mail"            func = "spawn" cmd = "thunderbird" [/key]
+				[key] key = "XF86Mail"            func = "spawn" cmd = "thunderbird && wmfs -c tag 5" [/key]
 
 # Power
 				[key] key = "XF86PowerOff"				func = "spawn" cmd = "shutdown-dialog.py" [/key]
@@ -141,7 +151,8 @@
 				[key] key = "XF86AudioMute" func = "spawn" cmd = "amixer -q set Master toggle" [/key]
 
 # MPD
-				[key] key = "XF86AudioPlay" func = "spawn" cmd = "/usr/bin/mpc -q toggle && wmfs -S" [/key]
+				[key] key = "XF86AudioPlay" func = "spawn" cmd = "mediaPlay.sh && wmfs -S" [/key]
+#         [key] key = "XF86AudioPlay" func = "spawn" cmd = "/usr/bin/mpc -q toggle && wmfs -S" [/key]
 				[key] key = "XF86AudioStop" func = "spawn" cmd = "/usr/bin/mpc -q stop   && wmfs -S" [/key]
 				[key] key = "XF86AudioPrev" func = "spawn" cmd = "/usr/bin/mpc -q prev   && wmfs -S" [/key]
 				[key] key = "XF86AudioNext" func = "spawn" cmd = "/usr/bin/mpc -q next   && wmfs -S" [/key]

@@ -14,7 +14,7 @@
         focus_pointer_click = true
         status_timing      = 1     #seconds
         status_path        = "~/.config/wmfs/wmfstatus.sh"
-				opacity            = 250
+				opacity            = 150
 [/misc]
 
 [bar]
@@ -22,6 +22,9 @@
         fg     = "#D4D4D4"
         height = 16
 				border = false
+
+				light_shade =  0.10
+				dark_shade  = -0.10
 
         [systray]
 								active = true # Enable/disable systray
@@ -32,7 +35,7 @@
         # Remove this section to disable the selbar.
         [selbar]
                 fg = "#191919"
-                bg = "#F99017" #D4D4ff"
+                bg = "#66AABB" #d81860" #F99017" #D4D4ff"
 
                 # Cut title length
                 max_length = 100
@@ -85,26 +88,55 @@ background_command = "nitrogen --restore" #"xsetroot -solid black"
 
 [client]
 				client_round         = true
-        border_height        = 1
+        client_auto_center   = false
+        border_height        = 3
         border_shadow        = false
         border_normal        = "#222222"
-        border_focus         = "#F99017"
-        resize_corner_normal = "#222222"
-        resize_corner_focus  = "#F99017"
-				set_new_win_master	 = false
+        border_focus         = "#66AABB" #bc61a3"
+        place_at_mouse       = false
+        resize_corner_normal  = "#d81860"
+        resize_corner_focus = "#bc61a3"
+				set_new_win_master	 = true
+        client_tile_raise    = false
+        new_client_get_mouse = false
 
         # Space between tiled clients
-        padding = 0
+        padding = 5
 
         # Modifier for mouse use
         modifier = "Alt"
+
+				light_shade =  0.10
+				dark_shade  = -0.10
 
         [mouse] button = "1" func = "client_raise" [/mouse]
         [mouse] button = "1" func = "mouse_move"   [/mouse]
         [mouse] button = "3" func = "client_raise" [/mouse]
         [mouse] button = "3" func = "mouse_resize" [/mouse]
 
-        # Remove this section to delete the titlebar.
+				# Remove this section to delete the titlebar.
+				[titlebar]
+								stipple   = false
+								height    = 12
+								fg_normal = "#7E89A2"
+								fg_focus  = "#000000" #9F9AB3"
+
+								[mouse] button = "1" func = "client_raise" [/mouse]
+								[mouse] button = "1" func = "mouse_move"   [/mouse]
+								[mouse] button = "3" func = "client_raise" [/mouse]
+								[mouse] button = "3" func = "mouse_resize" [/mouse]
+
+								[button]
+												# Available "free", "max", "tile" flags or button.
+												flags = "free,max,tile"
+												[mouse] button = "1" func = "client_kill"             [/mouse]
+												[mouse] button = "3" func = "menu" cmd = "clientmenu" [/mouse]
+
+												[line] coord = {1, 1, 4, 1} [/line]
+												[line] coord = {1, 1, 1, 4} [/line]
+												[line] coord = {1, 4, 4, 4} [/line]
+								[/button]
+				[/titlebar]
 [/client]
 
 @include "~/.config/wmfs/rules.wmfsrc"
