@@ -1,0 +1,47 @@
+#
+# /etc/inittab
+#
+
+#  Runlevels:
+#    0    Halt
+#    1(S)	Single-user
+#    2    Not used
+#    3    Multi-user
+#    4    Not used
+#    5    X11
+#    6    Reboot
+
+## Only one of the following two lines can be uncommented!
+# Boot to console
+#id:3:initdefault:
+# Boot to X11
+id:5:initdefault:
+
+rc::sysinit:/etc/rc.sysinit
+
+x:5:respawn:/bin/su ricardo -l -c "/bin/zsh --login -c xinit >/dev/null"
+
+#c1:2345:respawn:/sbin/agetty -8 -n -l /usr/local/sbin/autologinricardo 38400 tty1 linux
+#1:23:respawn:/sbin/mingetty --nonewline --noissue --noclear --nohostname --autologin ricardo tty1 linux
+#1:23:once:/sbin/mingetty --nonewline --noissue --noclear --nohostname tty1 linux
+#1:23:respawn:/sbin/mingetty tty1 linux
+#2:23:respawn:/sbin/fgetty tty1 linux
+#2:23:respawn:/sbin/mingetty tty2 linux
+
+rm:2345:once:/etc/rc.multi > /dev/null
+
+1:235:respawn:/sbin/fgetty tty2 linux
+
+rs:S1:once:/etc/rc.single
+rh:06:once:/etc/rc.shutdown
+su:S:once:/sbin/sulogin -p
+
+ca::ctrlaltdel:/sbin/shutdown -t3 -r now
+
+# Example lines for starting a login manager
+#x:5:respawn:/usr/bin/xdm -nodaemon
+#x:5:respawn:/usr/sbin/gdm -nodaemon
+#x:5:respawn:/usr/bin/kdm -nodaemon
+#x:5:respawn:/usr/bin/slim >& /dev/null
+
+# End of file
