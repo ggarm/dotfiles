@@ -30,3 +30,6 @@ bindkey 'Od' backward-word
 
 # completion in the middle of a line
 bindkey '^i' expand-or-complete-prefix
+
+bindkey ' ' magic-space    # also do history expansion on space
+

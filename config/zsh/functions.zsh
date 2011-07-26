@@ -44,7 +44,8 @@ roll() {
 # auto-ls on cd
 cd () {
  builtin cd $@ && ls;
- grep -s -i . README;
+#  grep -s -i . README*;
+ find . -maxdepth 1 -name 'README*' -exec v {} \;
  true;
 }
 
@@ -112,7 +113,7 @@ clyde () {
 			/usr/bin/clyde "$@" ;;
 	esac
 	rehash
-	~ricardo/Scripts/cron/pacman_updates.cron
+#   $HOME/Scripts/cron/pacman_updates.cron
 	#/usr/bin/clyde -Qu | wc -l > ~/Scripts/pacman_updates;
 }
 

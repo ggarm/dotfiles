@@ -1,7 +1,7 @@
 ! -------------------------------------------------
-! file:     .colours/Sepia                           
+! file:     .colours/Solarized                           
 ! author:   Ethan Schoonover
-! modified: 2011-05-01 22:28
+! modified: 2011-07-01 23:27
 ! vim:ft=xdefaults:nu:ai:si:et:ts=4:sw=4:
 !! drop in Solarized colorscheme for Xresources/Xdefaults
 ! -------------------------------------------------

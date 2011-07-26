@@ -1,11 +1,16 @@
 ! -------------------------------------------------
 ! file:     .colours/rakka                           
 ! author:   "rakka"
-! modified: 2011-03-23 01:34
+! modified: 2011-07-01 23:09
 ! vim:ft=xdefaults:nu:ai:si:et:ts=4:sw=4:
 ! -------------------------------------------------
 *foreground: #DDEEDD
 *background: #1C1C1C
+
+*fading:                40
+*fadeColor:             #002b36
+*cursorColor:           #93a1a1
+
 !black
 *color0: #1C1C1C
 *color8: #4d4d4d

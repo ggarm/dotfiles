@@ -39,6 +39,9 @@ unset help
 # index options
 set sort                = threads                               # like gmail 
 set sort_aux            = reverse-last-date-received            # like gmail
+set strict_threads                                              # don't use subject on threads
+set narrow_tree         = yes                                   # Small tree structure on threads
+set collapse_unread                                             # collapse on an unread message 
 set uncollapse_jump                                             # don't collapse on an unread message 
 set sort_re                                                     # thread based on regex
 set reply_regexp        = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
@@ -50,7 +53,7 @@ set pager_stop                                                  # don't go to ne
 set menu_scroll                                                 # scroll in menus 
 set smart_wrap                                                  # don't split words
 set tilde                                                       # show tildes like in vim
-unset markers                                                   # no ugly plus signs
+#unset markers                                                   # no ugly plus signs
 auto_view text/html                                             # view html automatically
 alternative_order text/plain text/enriched text/html            # save html for last
 set quote_regexp        = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
@@ -58,7 +61,8 @@ set status_on_top                                              # as you'd expect
 
 # formats
 set date_format         = "%d/%m/%y at %I:%M%P"
-set index_format        = "%3C  %S   %D  •  %-35.35L %s %> %c"
+#set index_format        = "%3C  %S   %D  •  %-35.35L %s %> %c"
+set index_format        = "%3C  %S %M  %{%b %d}  • %s    %-35.35L %>"
 set pager_format        = "Reading message %C of %m %> %lL (%P)" # pager statusbar
 set folder_format       = "%2C %t %N %8s %d %f"                 # mailbox list view
 set status_format       = " %?M?%M/?%m total: %?n?%n new, ?%?u?%u unread, ?%?p?%p drafts, ?%?t?%t +tagged, ?%?d?%d deleted, ?(%f %l)  %?b?%b unread messages. ?%>  %V   sort by: %s/%S  (%P)"
@@ -101,6 +105,7 @@ source ~/.mutt/sidebar.muttrc
 
 # account specific sources
 folder-hook +GMAIL/* source ~/.mutt/gmail.muttrc
+#folder-hook +GMAIL/* exec collapse-all
 
 # Mailing lists
 lists arch-announce@archlinux.org                               # Arch announcements

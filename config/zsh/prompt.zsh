@@ -42,15 +42,16 @@ precmd(){
 	local time="%B%{$fg[black]%}%@%b" #%* for hh:mm:ss
 #   local batt="$(battery_prompt.pl)"
 
-	PROMPT="${batt}${time} %b%{$fg[magenta]%}%~%b%{$reset_color%}$(git_prompt_info) "
+	PROMPT="${batt}${time} %B%{$fg[magenta]%}%~%B%{$reset_color%}$(git_prompt_info) "
 
 	#PROMPT="%{$fg[yellow]%}%n%{$reset_color%} in %{$fg[blue]%}%~%{$reset_color%}$(git_prompt_info)
 	#$(battery_prompt.pl)%{$fg[green]%}» "
 	#RPROMPT="${time} %{$reset_color%}"
 
 }
-ZSH_THEME_GIT_PROMPT_PREFIX=" [branch: %{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}]"
+# ZSH_THEME_GIT_PROMPT_PREFIX=" [branch: %{$fg[red]%}"
+ZSH_THEME_GIT_PROMPT_PREFIX="%B%{$fg[white]%} on %{$fg[blue]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[green]%}!"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?"
 ZSH_THEME_GIT_PROMPT_CLEAN=""

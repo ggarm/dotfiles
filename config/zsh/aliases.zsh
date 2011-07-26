@@ -10,7 +10,7 @@ if [[ $SHELL == *zsh ]]; then
 	alias -s {sxw,doc,ppt,xls}=soffice
 	alias -s {html,org,php,com,net}=$BROWSER
 	alias -s {java,txt,c,cpp,h,PKGBUILD}=$EDITOR
-	alias -s {asx,avi,wmv,mkv,mp4,mp3,wav}=mplayerd
+	alias -s {asx,avi,wmv,mkv,mp4,mp3,wav}=mplayer
 	alias -s pdf=$PDFVIEWER
 	alias -s {png,jpg,gif}=$IMGVIEWER
 	alias -s exe=wine
@@ -19,6 +19,7 @@ if [[ $SHELL == *zsh ]]; then
 	# Global aliases
 	alias -g L='| less'
 	alias -g T='| tail'
+	alias -g H='| head'
 	alias -g G='| grep'
 	alias -g E='| egrep'
 	# Named Dirs

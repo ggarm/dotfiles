@@ -1,7 +1,7 @@
 ! ----------------------------------------------------------------------------
 ! ! file:     ~/.Xdefaults
 ! ! author:   Ricardo Costa (and +stolen stuff)
-! ! modified: 2011-05-27 17:20
+! ! modified: 2011-07-26 19:56
 ! ! vim::nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
 ! ! ----------------------------------------------------------------------------
 !
@@ -67,7 +67,7 @@ URxvt*urgentOnBell: true
 
 ! clickable URLS
 URxvt*perl-ext: default,matcher
-URxvt*urlLauncher: /usr/bin/opera
+URxvt*urlLauncher: /usr/bin/chromium
 URxvt*matcher.button: 1
 
 ! borderless and no scrollbar
@@ -240,6 +240,8 @@ XFontSel*MenuButton*MenuButtonStyle: select
 
 URxvt*background: #121212
 URxvt*foreground: #A8A8A8
+!URxvt*background:               #fdf6e3
+!URxvt*foreground:               #1c1c1c
 URxvt*cursorColor: #EB122E
 URxvt*cursorColor2: #252525
 URxvt*colorIT: #FFFFFF
