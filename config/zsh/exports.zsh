@@ -1,16 +1,16 @@
 #!/bin/sh
 
 ## Variables et al
-export BROWSER=opera
+export BROWSER=chromium
 export EDITOR=vim
-export FM=pcmanfm
+export FM=nautilus
 export PDFVIEWER=evince
 export IMGVIEWER=mirage
 if [[ -d /usr/lib/cw ]]; then
 	export PATH=/usr/lib/cw:$PATH
 fi
-if [[ -d /usr/share/perl5/site_perl/auto/share/dist/Cope ]]; then
-	export PATH=/usr/share/perl5/site_perl/auto/share/dist/Cope:$PATH
+if [[ -d `cope_path` ]]; then
+	export PATH=`cope_path`:$PATH
 fi
 export PATH=$HOME/bin:$PATH
 #export LD_LIBRARY_PATH=$HOME/compiladores/root/usr/include/rts:$LD_LIBRARY_PATH
@@ -57,13 +57,10 @@ export XDG_CONFIG_HOME=/home/ricardo/.config
 export XDG_CACHE_HOME=/home/ricardo/.cache 
 
 #XAUTHORITY
-export XAUTHORITY=$HOME/.config/.Xauthority
-
-#jboss
-# export JBOSS_HOME=$HOME/jboss-6.0.0.Final
+# export XAUTHORITY=$HOME/.config/.Xauthority
 
 #xfce global menu
-GTK_MODULES=globalmenu-gnome
+# GTK_MODULES=globalmenu-gnome
 
 #cvs
 #export CVSROOT=':ext:ist162578@comp.rnl.ist.utl.pt:/cvs'

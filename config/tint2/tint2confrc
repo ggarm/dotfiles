@@ -1,7 +1,0 @@
-#---------------------------------------------
-# TINT2CONF CONFIG FILE
-default_theme = /home/ricardo/.config/tint2/crunchIcons.tint2rc
-cmd_property = python /usr/bin/tintwizard.py
-width = 1173
-height = 787
-

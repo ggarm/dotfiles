@@ -2,10 +2,10 @@
 #
 # Author: Ricardo Costa 
 #
-# Last Modified: 2011-02-16 19:33
+# Last Modified: 2011-07-26 00:13
 #
 # done in .zprofile
-#source $HOME/.config/zsh/exports.zsh
+source $HOME/.config/zsh/exports.zsh
 
 #for i in {colors,aliases,functions,opts,style,binds,prompt}; do
 	#source $HOME/.config/zsh/$i.zsh
