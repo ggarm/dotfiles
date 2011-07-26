@@ -2,14 +2,16 @@
 #
 # Author: Ricardo Costa 
 #
-# Last Modified: 2011-02-16 19:33
+# Last Modified: 2011-07-12 16:19
 #
 # done in .zprofile
-#source $HOME/.config/zsh/exports.zsh
+source $HOME/.config/zsh/exports.zsh
 
 #for i in {colors,aliases,functions,opts,style,binds,prompt}; do
 	#source $HOME/.config/zsh/$i.zsh
 #done;
+
+# source /home/ricardo/.config/zsh/auto-fu.zsh
 
 source $HOME/.config/zsh/colors.zsh
 source $HOME/.config/zsh/aliases.zsh
@@ -18,7 +20,13 @@ source $HOME/.config/zsh/opts.zsh
 source $HOME/.config/zsh/style.zsh
 source $HOME/.config/zsh/binds.zsh
 source $HOME/.config/zsh/zsh-history-substring-search.plugin.zsh
+source $HOME/.config/zsh/git-flow.zsh
 source $HOME/.config/zsh/prompt.zsh
+
+source /home/ricardo/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+#fpath FIXME Move all plugins?
+fpath=(~/.zsh/functions/ $fpath)
 
 # Set terminal title
 case $TERM in

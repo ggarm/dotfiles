@@ -13,6 +13,8 @@
 #(wicd-client 2>/dev/null) & #wicd-gui
 (thunderbird 2>/dev/null) & #wicd-gui
 (emesene 2>/dev/null) & #IM
+#(ipager 2>/dev/null) & #workspace pager
+(batti 2>/dev/null) &
 #(mpdcron 2>/dev/null) &	#MPDCron starts here
 #(tmux) &						#tmux starts here (can't figure out the auto-start part... FIXME)
 

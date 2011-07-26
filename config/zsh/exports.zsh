@@ -9,8 +9,8 @@ export IMGVIEWER=mirage
 if [[ -d /usr/lib/cw ]]; then
 	export PATH=/usr/lib/cw:$PATH
 fi
-if [[ -d /usr/share/perl5/site_perl/auto/share/dist/Cope ]]; then
-	export PATH=/usr/share/perl5/site_perl/auto/share/dist/Cope:$PATH
+if [[ -d `cope_path` ]]; then
+	export PATH=`cope_path`:$PATH
 fi
 export PATH=$HOME/bin:$PATH
 #export LD_LIBRARY_PATH=$HOME/compiladores/root/usr/include/rts:$LD_LIBRARY_PATH

@@ -1,7 +1,7 @@
 ! ----------------------------------------------------------------------------
 ! ! file:     ~/.Xdefaults
 ! ! author:   Ricardo Costa (and +stolen stuff)
-! ! modified: 2011-05-27 17:20
+! ! modified: 2011-07-01 23:28
 ! ! vim::nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
 ! ! ----------------------------------------------------------------------------
 !
@@ -108,9 +108,9 @@ URxvt*geometry: 130x32
 !URxvt*font: xft:Monaco:pixelsize=11:antialias=false
 !URxvt*boldFont : xft:Monaco: pixelsize=11:weight=bold
 !
-URxvt*font:         xft:monaco:size=10
-URxvt*bolfFont:     xft:monaco:size=10:weight=bold
-URxvt*italicFont:   xft:monaco:size=10
+URxvt*font:         xft:monaco:size=8
+URxvt*bolfFont:     xft:monaco:size=8:weight=bold
+URxvt*italicFont:   xft:monaco:size=8
 !URxvt*italicFont:   xft:monaco:size=9:weight=italic:antialias=true
 !
 ! Envy Code R
@@ -240,6 +240,8 @@ XFontSel*MenuButton*MenuButtonStyle: select
 
 URxvt*background: #121212
 URxvt*foreground: #A8A8A8
+!URxvt*background:               #fdf6e3
+!URxvt*foreground:               #1c1c1c
 URxvt*cursorColor: #EB122E
 URxvt*cursorColor2: #252525
 URxvt*colorIT: #FFFFFF

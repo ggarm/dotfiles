@@ -1,6 +1,17 @@
 #!/bin/sh
 
 # list of completers to use
+
+# auto-fu configuration
+# zstyle ':completion:*' completer _oldlist _complete
+# zstyle ':auto-fu:highlight' input bold
+# zstyle ':auto-fu:highlight' completion fg=black,bold
+# zstyle ':auto-fu:highlight' completion/one fg=white,bold,underline
+# zstyle ':auto-fu:var' postdisplay $'\n-azfu-'
+# zstyle ':auto-fu:var' track-keymap-skip opp
+# zstyle ':auto-fu:var' disable magic-space
+# 
+#
 zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
  
 zstyle :compinstall filename '~/.zshrc'

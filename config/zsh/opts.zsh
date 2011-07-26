@@ -3,6 +3,7 @@
 setopt noflowcontrol			# don’t freeze the terminal if I type Ctrl−S
 setopt appendhistory 
 setopt autocd
+setopt auto_menu         # show completion menu on succesive tab press
 setopt extendedglob
 setopt nomatch
 setopt notify
@@ -23,6 +24,8 @@ setopt multibyte      # must check?
 setopt mark_dirs      # append a '/' to dirs
 # setopt glob_dots      # do not require a '.' for files
 
+#MIME Types 
+autoload -Uz zsh-mime-setup && zsh-mime-setup
 
 autoload -Uz compinit colors vcs_info
 compinit colors
@@ -36,6 +39,9 @@ autoload -U url-quote-magic
 #zle -N self-insert url-quote-magic
 # zle -N history-beginning-search-backward
 
+# auto-fu.zsh options
+# zle-line-init () {auto-fu-init;}; zle -N zle-line-init
+# zle -N zle-keymap-select auto-fu-zle-keymap-select
 
 
 HISTFILE=$HOME/.histfile
