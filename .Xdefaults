@@ -1,7 +1,7 @@
 ! ----------------------------------------------------------------------------
 ! ! file:     ~/.Xdefaults
 ! ! author:   Ricardo Costa (and +stolen stuff)
-! ! modified: 2011-07-01 23:28
+! ! modified: 2011-08-11 15:45
 ! ! vim::nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
 ! ! ----------------------------------------------------------------------------
 !
@@ -238,8 +238,8 @@ XFontSel*MenuButton*MenuButtonStyle: select
 !URxvt*background: #FFFFFF
 !URxvt*foreground: #FFFFFF
 
-URxvt*background: #121212
-URxvt*foreground: #A8A8A8
+!URxvt*background: #121212
+!URxvt*foreground: #A8A8A8
 !URxvt*background:               #fdf6e3
 !URxvt*foreground:               #1c1c1c
 URxvt*cursorColor: #EB122E
@@ -257,7 +257,11 @@ URxvt*pointerColor2: #0092FF
 !#include "/home/ricardo/.colours/arch"
 !#include "/home/ricardo/.colours/modR"
 !#include "/home/ricardo/.colours/Sepia"
+!#include "/home/ricardo/.colours/jwr_dark"
 !#include "/home/ricardo/.colours/Solarized"
+!#include "/home/ricardo/.colours/solarized_dark"
+!#include "/home/ricardo/.colours/solarized_light"
+!#include "/home/ricardo/.colours/coolio"
 #include "/home/ricardo/.colours/rakka"
 !#include "/home/ricardo/.colours/candymouse"
 !#include "/home/ricardo/.colours/cottonmouse"

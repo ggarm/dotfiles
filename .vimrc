@@ -18,7 +18,8 @@ if has("gui_running")
 	set showtabline=2
 	set mousehide
 	"set guifont=Envy\ Code\ R\ 11
-	set guifont=Droid\ Sans\ Mono\ Slashed\ 10
+"  set guifont=Droid\ Sans\ Mono\ Slashed\ 10
+  set guifont=Monaco\ 10
 	"}}}
 elseif ( &term =~ 'linux' || $DISPLAY =~ ' ')
 	colorscheme desert256
@@ -196,23 +197,6 @@ set statusline=%<[%02n]\ %F%m%r%h%w%{fugitive#statusline()}%=(%{strlen(&ft)?&ft:
 
 "set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)\ [%08O:%02B]
 "}}}
-
-" Filter expected errors from make
-if has("eval") && v:version >= 700
-	if hostname() == "ricardoArch"
-	let &makeprg="nice -n7 make -j2 2>&1"
-	elseif hostname() == "rnl1*"
-	let &makeprg="nice -n7 make -j1 2>&1"
-	else
-	let &makeprg="nice -n7 make -j2 2>&1"
-	endif
-
-	" ignore libtool links with version-info
-	let &errorformat="%-G%.%#libtool%.%#version-info%.%#,".&errorformat
-
-	" catch internal errors
-	let &errorformat="%.%#Internal error at %.%# at %f:%l: %m,".&errorformat
-endif
 
 " Key mappings {{{
 
@@ -507,8 +491,6 @@ endfunction
 "  let MRU_Add_Menu            = 0
 "  let MRU_Max_Menu_Entries    = 20
 "  let MRU_Max_Submenu_Entries = 15
-
-	map 
 
 	" }}}
 	" Command-t: {{{
