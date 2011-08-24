@@ -1,82 +1,96 @@
 " Colorscheme and Background "{{{
 set background=light 	" light things up
-if has("gui_running")
-	" Gui Options "{{{
+if has("gui_running") "{{{
 	set lines=45 columns=80 	" Set window size close to maximized
-	"let g:zenburn_high_Contrast = 1
-	"let g:zenburn_alternate_Visual = 1
-	"let g:zenburn_alternate_Error = 1
-	"let g:zenburn_alternate_Include = 1
-	"colorscheme zenburn			" Need a better one...
-	"let g:darkburn_high_Contrast = 1
-	"let g:darkburn_alternate_Visual = 1
-	"let g:darkburn_alternate_Error = 1
-	"let g:darkburn_alternate_Include = 1
-	"colorscheme darkburn			" Need a better one...
-	colorscheme neverland "darkspectrum
-	set guioptions=aivmR
+	" Zenburn {{{
+"  let g:zenburn_high_Contrast = 1
+"  let g:zenburn_alternate_Visual = 1
+"  let g:zenburn_alternate_Error = 1
+"  let g:zenburn_alternate_Include = 1
+"  colorscheme zenburn			" Need a better one...
+"  let g:darkburn_high_Contrast = 1
+"  let g:darkburn_alternate_Visual = 1
+"  let g:darkburn_alternate_Error = 1
+"  let g:darkburn_alternate_Include = 1
+"  colorscheme darkburn			" Need a better one...
+	" }}}
+	" Solarized
+	colorscheme solarized
+"  set guioptions=aivmR
+	set guioptions+=aivmR
 	set showtabline=2
 	set mousehide
-	"set guifont=Envy\ Code\ R\ 11
-	set guifont=Droid\ Sans\ Mono\ Slashed\ 10
+	" Font
+"  set guifont=Envy\ Code\ R\ 11
+"  set guifont=Droid\ Sans\ Mono\ Slashed\ 10
+  set guifont=Monaco\ 10
 	"}}}
-elseif ( &term =~ 'linux' || $DISPLAY =~ ' ')
+elseif ( &term =~ 'linux' || $DISPLAY =~ ' ') " we are on tty {{{
 	colorscheme desert256
 	set bg=dark
 	"set colorcolumn=80		" line at 80 cols
 	highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 	match OverLength /\%81v.\+/
-else                            " we are on tty
+	"}}}
+else                            " we are on rxvt
 	set t_Co=256				" Using 256-color yay
-	colorscheme neverland-ansi_bg "cottonmouse
-	"colorscheme neverland
+	"colorscheme neverland-ansi_bg "cottonmouse
+  let g:solarized_termcolors=256
+	colorscheme solarized
 	"set term=rxvt-256color
 	" Stupid Bindings for tmux/Screen "{{{
 
-	if $TERM == "linux"	" we are in X (hopefully)
+"  if $TERM == "linux"	" we are in X (hopefully)
 		"set t_#2=[7$     
 		"set t_KB=O*n     
-		set t_kh=[7~
-		set t_@7=[8~
+"    set t_kh=[7~
+"    set t_@7=[8~
 		"set t_#4=[d      
-		set t_k1=[11;*~  
+"    set t_k1=[11;*~  
 		"set t_kl=O*D
 		"set t_%1=[28;*~  
-		set t_k2=[12;*~  
+"    set t_k2=[12;*~  
 		"set t_kr=O*C
 		"set t_%i=[c      
-		set t_k3=[13;*~  
+"    set t_k3=[13;*~  
 		"set t_ku=O*A
 		"set t_&8=[26;*~  
-		set t_k4=[14;*~  
+"    set t_k4=[14;*~  
 		"set t_*7=[8$     
-		set t_k5=[15;*~ 
-		set t_k6=[17;*~
-		set t_F1=[23;*~  
-		set t_k7=[18;*~  
-		set t_F2=[24;*~  
-		set t_k8=[19;*~ 
+"    set t_k5=[15;*~ 
+"    set t_k6=[17;*~
+"    set t_F1=[23;*~  
+"    set t_k7=[18;*~  
+"    set t_F2=[24;*~  
+"    set t_k8=[19;*~ 
 		"set t_K1=[1;*~   
-		set t_k9=[20;*~
+"    set t_k9=[20;*~
 		"set t_K3=Oy      
-		set t_k;=[21;*~
+"    set t_k;=[21;*~
 		"set t_K4=[4;*~   
 		"set t_kB=[Z   
 		"set t_K5=Os      
-		set t_kD=[3~   
+"    set t_kD=[3~   
 		"set t_K6=O*k     
 		"set t_kI=[2;*~
 		"set t_K7=O*m     
-		set t_kN=[6;*~
+"    set t_kN=[6;*~
 		"set t_K8=O*o     
-		set t_kP=[5;*~       
+"    set t_kP=[5;*~       
 		"set t_K9=O*j     
 		"set t_KA=O*M     
 		"set t_kd=O*B       
 
-	endif
+"  endif
 	"}}}
 endif
+" }}}
+
+" Diff "{{{
+
+set diffopt=filler
+set diffopt+=iwhite
+
 " }}}
 
 " Folds "{{{
@@ -94,8 +108,7 @@ if has('folding')
 	function! SimpleFoldText() " {
 		return getline(v:foldstart).' '
 	endfunction " }
-	set foldtext=SimpleFoldText() " Custom fold text function
-	" (cleaner than default)
+	set foldtext=SimpleFoldText() " Custom fold text function (cleaner than default)
 
 endif
 " }}}
@@ -196,23 +209,6 @@ set statusline=%<[%02n]\ %F%m%r%h%w%{fugitive#statusline()}%=(%{strlen(&ft)?&ft:
 
 "set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)\ [%08O:%02B]
 "}}}
-
-" Filter expected errors from make
-if has("eval") && v:version >= 700
-	if hostname() == "ricardoArch"
-	let &makeprg="nice -n7 make -j2 2>&1"
-	elseif hostname() == "rnl1*"
-	let &makeprg="nice -n7 make -j1 2>&1"
-	else
-	let &makeprg="nice -n7 make -j2 2>&1"
-	endif
-
-	" ignore libtool links with version-info
-	let &errorformat="%-G%.%#libtool%.%#version-info%.%#,".&errorformat
-
-	" catch internal errors
-	let &errorformat="%.%#Internal error at %.%# at %f:%l: %m,".&errorformat
-endif
 
 " Key mappings {{{
 
@@ -507,8 +503,6 @@ endfunction
 "  let MRU_Add_Menu            = 0
 "  let MRU_Max_Menu_Entries    = 20
 "  let MRU_Max_Submenu_Entries = 15
-
-	map 
 
 	" }}}
 	" Command-t: {{{
