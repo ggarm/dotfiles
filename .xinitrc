@@ -18,7 +18,7 @@
 #(mpdcron 2>/dev/null) &	#MPDCron starts here
 #(tmux) &						#tmux starts here (can't figure out the auto-start part... FIXME)
 
-WM=xfce
+WM=e17
 
 case $WM in
 	openbox)
@@ -41,6 +41,12 @@ case $WM in
 		;;
 	xfce)
 		exec ck-launch-session dbus-launch --exit-with-session startxfce4
+		;;
+	subtle)
+		exec ck-launch-session dbus-launch --exit-with-session subtle
+		;;
+	e17)
+		exec ck-launch-session dbus-launch --exit-with-session enlightenment_start
 		;;
 	*)
 		for i in {lbottom.sh,rbottom.sh,rtop.sh}; do
