@@ -1,9 +1,10 @@
 #!/bin/sh
 # Author: Ricardo Costa
-# Modified: 2011-08-21 14:27
+# Modified: 2011-09-17 17:53
 # Script to update custom PKGBUILDs
 
 ABS_DIR='/var/abs'
+PAC_WRAPPER='packer' #sudo clyde
 
 black="\033[30m";
 bright_black="\033[30;1m";
@@ -22,8 +23,7 @@ bright_cyan="\033[36;1m";
 white="\033[37m";
 
 db() {
-	sudo clyde -Syy;
-	sudo clyde -Su --aur;
+	$PAC_WRAPPER -Syu;
 	sudo diffpac;
 }
 
@@ -35,10 +35,14 @@ pkgbuild() {
 	printf "==> Checking PKGBUILDS \n";
 	cd $HOME/devel;
 
+	printf "\r\t\t$white Attempting git pull\n";
 	for i in `find . -mindepth 1 -maxdepth 1 -type d | tr -d './'`; do
 
 		[[ $i == "patches" ]] && continue;
-		printf " $i:";
+		printf " $i: \r\t\t ";
+		cd $i;
+		[[ -e .git ]] && git pull && cd .. && continue;
+    cd ..;
 
 		ABS_FILE=`find /var/abs -path "/var/abs/*/$i/PKGBUILD"`
 		if [[ -n $ABS_FILE ]]; then
@@ -59,12 +63,6 @@ pkgbuild() {
 }
 
 case "$1" in
-	sync)
-		sync;
-		pkgbuild;
-		;;
-	-edit)
-		;;
 	-q)
 		pkgbuild;
 		;;
