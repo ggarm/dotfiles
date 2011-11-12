@@ -2,7 +2,7 @@
 #
 # Author: Ricardo Costa 
 #
-# Last Modified: 2011-07-26 17:54
+# Last Modified: 2011-10-08 16:14
 #
 # done in .zprofile
 source $HOME/.config/zsh/exports.zsh
@@ -23,7 +23,7 @@ source $HOME/.config/zsh/zsh-history-substring-search.plugin.zsh
 source $HOME/.config/zsh/git-flow.zsh
 source $HOME/.config/zsh/prompt.zsh
 
-source /home/ricardo/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /home/ricardo/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #fpath FIXME Move all plugins?
 fpath=(~/.zsh/functions/ $fpath)

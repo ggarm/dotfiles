@@ -1,6 +1,6 @@
 #!/bin/sh
 # Author: Ricardo Costa
-# Modified: 2011-01-22 15:36
+# Modified: 2011-10-07 20:35
 # Script to update custom PKGBUILDs
 
 ABS_DIR='/var/abs'
@@ -27,10 +27,11 @@ db() {
 }
 
 sync() {
-	sudo abs;
+	[[ `which abs` ]] && sudo abs;
 }
 
 pkgbuild() {
+	[[ ! `which abs` ]] && exit;
 	printf "==> Checking PKGBUILDS \n";
 	cd $HOME/devel;
 

@@ -95,7 +95,7 @@ if has('folding')
 		return getline(v:foldstart).' '
 	endfunction " }
 	set foldtext=SimpleFoldText() " Custom fold text function
-	" (cleaner than default)
+	                              " (cleaner than default)
 
 endif
 " }}}
@@ -123,7 +123,8 @@ set backup
 set backupdir=~/.vim/backup
 set undofile 		" Persistent undo upon leaving files
 set undodir=~/.vim/undo
-"set noswapfile
+set noswapfile
+
 set autowrite		" Save before commands like :next and :make
 "set shortmess=filmnrwxoOtT      " abbrev. of messages (avoids 'hit enter')
 set shortmess=asoOItT	" short msg, no intro
@@ -193,26 +194,12 @@ set laststatus=2
 " Uber cool status line
 " Ripped of in github.com
 set statusline=%<[%02n]\ %F%m%r%h%w%{fugitive#statusline()}%=(%{strlen(&ft)?&ft:'?'},%{&fenc},%{&ff})\ \ %-9.(%l,%c%V%)\ \ %<%P
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 "set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)\ [%08O:%02B]
 "}}}
-
-" Filter expected errors from make
-if has("eval") && v:version >= 700
-	if hostname() == "ricardoArch"
-	let &makeprg="nice -n7 make -j2 2>&1"
-	elseif hostname() == "rnl1*"
-	let &makeprg="nice -n7 make -j1 2>&1"
-	else
-	let &makeprg="nice -n7 make -j2 2>&1"
-	endif
-
-	" ignore libtool links with version-info
-	let &errorformat="%-G%.%#libtool%.%#version-info%.%#,".&errorformat
-
-	" catch internal errors
-	let &errorformat="%.%#Internal error at %.%# at %f:%l: %m,".&errorformat
-endif
 
 " Key mappings {{{
 
@@ -230,8 +217,11 @@ vnoremap < <<CR>gv
 " Pasting according to previous indentation
 nnoremap p ]p
 
+" Escape in insert mode with 'jj'
+inoremap jj <Esc>
+
 " Leave the cursor where it was before editing
-nmap . .`[
+"nmap . .`[
 " Allow the . to execute once for each line in visual selection
 vnoremap . :normal .<CR>
 
@@ -423,19 +413,25 @@ endfunction
 
 " Plugins {{{ 
 
+" Pathogen
+call pathogen#infect()
+
+" Syntastic
+let g:syntastic_enable_signs=1
+
 	" BufferList: {{{
 	"
-	let g:BufferListWidth = 25
-	let g:BufferListMaxWidth = 50
-	hi BufferSelected term=reverse ctermfg=black ctermbg=red cterm=bold
-	hi BufferNormal term=NONE ctermfg=white ctermbg=black cterm=NONE
+	let g:BufferListWidth             = 25
+	let g:BufferListMaxWidth          = 50
+	hi  BufferSelected   term=reverse   ctermfg=black   ctermbg=red     cterm=bold
+	hi  BufferNormal     term=NONE      ctermfg=white   ctermbg=black   cterm=NONE
 
 	nnoremap \ :call BufferList()<CR>
 	" }}}
 	" TagList: {{{
 	set tags+=tags; " will recurse backwards until 'tags' is found
 
-	"let Tlist_Display_Tag_Scope = 1 "ugh...
+	"let Tlist_Display_Tag_Scope     = 1 "ugh...
 	let g:Tlist_Display_Prototype    = 1
 	let g:Tlist_Use_Right_Window     = 1
 	let g:Tlist_Exit_OnlyWindow      = 1
@@ -447,9 +443,9 @@ endfunction
 	" }}}
 	" NetRW: {{{
 	"
-	let g:netrw_keepdir = 1
-	let g:netrw_winsize = 40
-	let g:netrw_alto = 1
+"  let g:netrw_keepdir = 1
+"  let g:netrw_winsize = 40
+"  let g:netrw_alto = 1
 
 	" }}}
 	" NERDTree: {{{
@@ -460,12 +456,12 @@ endfunction
 	map <F12> <Esc>:NERDTreeToggle<CR>
 	" }}}
 	" SuperTab {{{
-	"let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
-	let g:SuperTabDefaultCompletionType = "context"
+	"let g:SuperTabDefaultCompletionType       = "<c-x><c-u>"
+	let g:SuperTabDefaultCompletionType        = "context"
 	let g:SuperTabContextDefaultCompletionType = "<c-p>"
-	let g:SuperTabLongestEnhanced = 1
-	let g:SuperTabLongestHighlight = 1
-	let g:SuperTabCrMapping = 1
+	let g:SuperTabLongestEnhanced              = 1
+	let g:SuperTabLongestHighlight             = 1
+	let g:SuperTabCrMapping                    = 1
 
 	"let g:SuperTabMappingForward = '<c-space>'
 	"let g:SuperTabMappingBackward = '<s-c-space>'
@@ -507,8 +503,6 @@ endfunction
 "  let MRU_Add_Menu            = 0
 "  let MRU_Max_Menu_Entries    = 20
 "  let MRU_Max_Submenu_Entries = 15
-
-	map 
 
 	" }}}
 	" Command-t: {{{
