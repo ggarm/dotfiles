@@ -39,10 +39,10 @@ parse_git_dirty () { #{{{
 
 precmd(){
 
-	local time="%B%{$fg[black]%}%@%b" #%* for hh:mm:ss
-#   local batt="$(battery_prompt.pl)"
+	local time="%B%{$fg[white]%}%@%b" #%* for hh:mm:ss
+	local batt="$(battery_prompt.pl)"
 
-	PROMPT="${batt}${time} %B%{$fg[magenta]%}%~%B%{$reset_color%}$(git_prompt_info) "
+	PROMPT="${batt}${time} %B%{$fg[red]%}%~%B%{$reset_color%}$(git_prompt_info) "
 
 	#PROMPT="%{$fg[yellow]%}%n%{$reset_color%} in %{$fg[blue]%}%~%{$reset_color%}$(git_prompt_info)
 	#$(battery_prompt.pl)%{$fg[green]%}» "

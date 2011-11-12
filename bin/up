@@ -1,6 +1,6 @@
 #!/bin/sh
 # Author: Ricardo Costa
-# Modified: 2011-10-07 20:35
+# Modified: 2011-08-21 14:27
 # Script to update custom PKGBUILDs
 
 ABS_DIR='/var/abs'
@@ -24,6 +24,7 @@ white="\033[37m";
 db() {
 	sudo clyde -Syy;
 	sudo clyde -Su --aur;
+	sudo diffpac;
 }
 
 sync() {

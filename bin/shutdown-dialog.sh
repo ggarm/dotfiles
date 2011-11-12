@@ -18,8 +18,8 @@ rm -f /tmp/exitval.$$
 
 case $ACTION in
 	'Shutdown') sudo halt ;;
-'Reboot') sudo reboot ;;
-				'Suspend to RAM') sudo s2ram ;;
-			'Suspend to Disk') sudo s2disk ;;
-		*) exit ;;
-	esac
+  'Reboot') sudo reboot ;;
+	'Suspend to RAM') sudo s2ram ;;
+	'Suspend to Disk') sudo s2disk ;;
+	*) exit ;;
+esac
