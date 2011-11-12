@@ -1,0 +1,53 @@
+# $Id: PKGBUILD 102920 2010-12-13 06:36:00Z angvp $
+# $Id: PKGBUILD 136986 2011-09-04 17:03:38Z angvp $
+# Maintainer: Angel Velasquez <angvp@archlinux.org>
+# Contributor: Damir Perisa <damir.perisa@bluewin.ch>
+# Contributor: Ben <ben@benmazer.net>
+
+pkgname=mpd
+pkgver=0.16.4
+pkgrel=1
+pkgdesc="Music daemon that plays MP3, FLAC, and Ogg Vorbis files"
+arch=('i686' 'x86_64')
+license=('GPL')
+url="http://mpd.wikia.com/wiki/Server"
+depends=('ffmpeg'  'libmad' 'curl'
+         'sqlite3' 'libmpcdec' 'avahi' 'libid3tag')
+makedepends=('pkgconfig' )
+install=${pkgname}.install
+changelog=ChangeLog
+source=("http://downloads.sourceforge.net/musicpd/${pkgname}-${pkgver}.tar.bz2"
+'mpd')
+md5sums=('ddac46eb7d976c5cc6f9bac9e4e100f1'
+         'e5669c2bff4031928531e52475addeb1')
+
+build() {
+  cd ${srcdir}/${pkgname}-${pkgver}
+  ./configure --prefix=/usr \
+    --sysconfdir=/etc \
+    --disable-pulse \
+    --disable-libwrap \
+    --disable-cue \
+    --disable-sidplay 
+  make
+}
+
+package() {
+  cd ${srcdir}/${pkgname}-${pkgver}
+  make DESTDIR=${pkgdir} install
+
+  # set ours dirs in mpd.conf file
+  sed -i 's|^music_directory.*$|#music_directory "path_to_your_music_collection"|1' doc/mpdconf.example
+  sed -i 's|playlist_directory.*$|playlist_directory "/var/lib/mpd/playlists"|1' doc/mpdconf.example
+  sed -i 's|db_file.*$|db_file "/var/lib/mpd/mpd.db"|1' doc/mpdconf.example
+  sed -i 's|log_file.*$|log_file "/var/log/mpd/mpd.log"|1' doc/mpdconf.example
+  sed -i 's|error_file.*$|error_file "/var/log/mpd/mpd.error"|1' doc/mpdconf.example
+  sed -i 's|#pid_file.*$|pid_file "/var/run/mpd/mpd.pid"|1' doc/mpdconf.example
+  sed -i 's|#state_file.*$|state_file "/var/lib/mpd/mpdstate"|1' doc/mpdconf.example
+  sed -i 's|#user.*$|user "mpd"|1' doc/mpdconf.example
+
+  install -Dm644 doc/mpdconf.example ${pkgdir}/usr/share/mpd/mpd.conf.example
+
+  install -Dm755 ${srcdir}/mpd ${pkgdir}/etc/rc.d/mpd
+  install -d ${pkgdir}/var/{lib/mpd/playlists,log/mpd}
+}
