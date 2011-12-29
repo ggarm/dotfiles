@@ -1,0 +1,15 @@
+[submodule "config/vim/bundle/syntastic"]
+	path = config/vim/bundle/syntastic
+	url = git://github.com/scrooloose/syntastic.git
+[submodule "config/vim/bundle/prolog.vim"]
+	path = config/vim/bundle/prolog.vim
+	url = git://github.com/adimit/prolog.vim.git
+[submodule "devel/ls--"]
+	path = devel/ls--
+	url = git://github.com/trapd00r/ls--.git
+[submodule "devel/LS_COLORS"]
+	path = devel/LS_COLORS
+	url = git://github.com/trapd00r/LS_COLORS.git
+[submodule "devel/initscripts"]
+	path = devel/initscripts
+	url = git://projects.archlinux.org/initscripts.git
