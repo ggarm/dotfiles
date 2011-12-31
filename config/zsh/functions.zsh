@@ -45,7 +45,10 @@ roll() {
 cd () {
  builtin cd $@ && ls;
 #  grep -s -i . README*;
- find . -maxdepth 1 -name 'README*' -exec v {} \;
+ if [[ -n `find . -maxdepth 1 -name 'README*'` ]]; then
+	 find . -maxdepth 1 -name 'README*' -exec v {} \; | more;
+	 true;
+ fi
  true;
 }
 
@@ -102,25 +105,25 @@ hist () {
  `history | grep $number | tr -s ' ' | cut -d ' ' -f 3-`
 }
 
-# clyde - no more manual sudo
-clyde () {
+# pacman - no more manual sudo
+pacman () {
 	case $1 in
 		(-Ss | -Si | -Q* | -T | -G | --stats)
-			/usr/bin/clyde "$@" ;;
+			/usr/bin/pacman "$@" ;;
 		(-S* | -R* | -U)
-			/usr/bin/sudo /usr/bin/clyde "$@" ;;
+			/usr/bin/sudo /usr/bin/pacman "$@" ;;
 		(*)
-			/usr/bin/clyde "$@" ;;
+			/usr/bin/pacman "$@" ;;
 	esac
 	rehash
 #   $HOME/Scripts/cron/pacman_updates.cron
-	#/usr/bin/clyde -Qu | wc -l > ~/Scripts/pacman_updates;
+	#/usr/bin/pacman -Qu | wc -l > ~/Scripts/pacman_updates;
 }
 
 # git functions
 ga () { git add $*; }
 gl () { git log $*; }
-gs () { git status $*; }
+gs () { git status -s $*; }
 gp () { git push $*; }
 gpl () { git pull $*; }
 gc () { 

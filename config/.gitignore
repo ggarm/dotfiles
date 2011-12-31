@@ -1,0 +1,14 @@
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!conky
+!ls++
+!mpdcron
+!mplayer
+!mutt
+!tint2
+!vim
+!Xcolors
+!zsh

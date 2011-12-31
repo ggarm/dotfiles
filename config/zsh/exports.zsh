@@ -14,6 +14,7 @@ if [[ -d `cope_path` ]]; then
 fi
 export PATH=$HOME/bin:$PATH
 #export LD_LIBRARY_PATH=$HOME/compiladores/root/usr/include/rts:$LD_LIBRARY_PATH
+export LD_PRELOAD=$HOME/stderred/lib/stderred.so
 
 #rxvt
 export RXVT_SOCKET=$HOME/.config/rxvt-unicode-ricardoArch

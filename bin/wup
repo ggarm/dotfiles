@@ -1,8 +1,4 @@
 #!/bin/sh
 
-pkill -f wpa
-pkill -f dhc
-
-ifconfig wlan0 up
-wpa_supplicant -c /etc/wpa_supplicant.conf -i wlan0 -D wext -B
-dhcpcd -qL -t 10 wlan0
+sudo rmmod iwl4965;
+sudo modprobe iwl4965;

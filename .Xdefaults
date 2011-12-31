@@ -1,7 +1,7 @@
 ! ----------------------------------------------------------------------------
 ! ! file:     ~/.Xdefaults
 ! ! author:   Ricardo Costa (and +stolen stuff)
-! ! modified: 2011-08-21 16:16
+! ! modified: 2011-12-31 00:12
 ! ! vim::nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
 ! ! ----------------------------------------------------------------------------
 !
@@ -19,22 +19,15 @@ Xcursor.theme: oxy-neon
 !Xcursor.size:  16
 ! }}}
 
-! Xautolock ----------------------------------------------------------------- {{{
-!
-!
-Xautolock.time: 2
-Xautolock.locker: "alock -bg image:file=/home/ricardo/Walls/brb.jpg -auth pam"
-!
-! }}}
-
 ! Font Management -------------------------------------------------------- {{{
 Xft.dpi:       96
 !Xft.dpi:       100
-!Xft.antialias: 1
+Xft.antialias: 1
 Xft.rgba:      rgb
+Xft.lcdfilter: lcddefault
 Xft.hinting:   1
-!Xft.hintstyle: hintslight
-Xft.hintstyle: hintfull
+Xft.hintstyle: hintslight
+!Xft.hintstyle: hintfull
 ! }}}
 
 ! Xterm ---------------------------------------------------------------------- {{{
@@ -97,12 +90,6 @@ URxvt*iconFile: /usr/share/pixmaps/terminal.png
 ! geometry and font
 URxvt*geometry: 130x32
 !
-! Montecarlo
-!
-!URxvt*font: xft:montecarlo:pixelsize=15
-!URxvt*boldFont: xft:montecarlo:bold:pixelsize=15
-!URxvt*italicFont: xft:montecarlo:bold:pixelsize=15
-!
 ! Monaco
 !
 !URxvt*font: xft:Monaco:pixelsize=11:antialias=false
@@ -113,21 +100,6 @@ URxvt*bolfFont:     xft:monaco:size=10:weight=bold
 URxvt*italicFont:   xft:monaco:size=10
 !URxvt*italicFont:   xft:monaco:size=9:weight=italic:antialias=true
 !
-! Envy Code R
-!
-!URxvt.font:         xft:envy code r:medium:pixelsize=12:antialias=true
-!URxvt.boldFont:     xft:envy code r:style=Bold:pixelsize=12:antialias=true
-!URxvt.italicFont:   xft:envy code r:style=Italic:pixelsize=12:antialias=true
-!
-! Inconsolata
-!
-!URxvt*font: xft:inconsolata:pixelsize=12:antialias=false
-!URxvt*boldFont: xft:inconsolata:bold:pixelsize=12:antialias=false
-!URxvt*italicFont: xft:inconsolata:bold:pixelsize=12:antialias=false
-!
-!URxvt*font: -windows-montecarlo-medium-r-normal--11-110-72-72-c-60-microsoft-cp1252
-!URxvt*boldFont: -windows-montecarlo-bold-r-normal--11-110-72-72-c-60-microsoft-cp1252
-!URxvt*italicFont: -nil-profont-medium-r-normal--10-100-72-72-c-50-iso8859-1
 !
 ! Droid Sans Mono Slashed
 !
@@ -141,19 +113,6 @@ URxvt*italicFont:   xft:monaco:size=10
 !URxvt*boldFont: xft:terminus:bold:pixelsize=14:antialias=false
 !URxvt*italicFont: xft:terminus:bold:pixelsize=14:antialias=false
 
-! }}}
-
-! x11-ssh-askpass ------------------------------------------------------------ {{{
-!
-x11-ssh-askpass*font:                   -*-dina-medium-r-*-*-12-*-*-*-*-*-*-*
-x11-ssh-askpass*background:             #000000
-x11-ssh-askpass*foreground:             #ffffff
-x11-ssh-askpass.Button*background:      #000000
-x11-ssh-askpass.Indicator*foreground:   #ff9900
-x11-ssh-askpass.Indicator*background:   #090909
-x11-ssh-askpass*topShadowColor:         #000000
-x11-ssh-askpass*bottomShadowColor:      #000000
-x11-ssh-askpass.*borderWidth:           1
 ! }}}
 
 ! XLock ---------------------------------------------------------------------- {{{
@@ -180,58 +139,6 @@ XLock.planfont: -xos4-terminus-*-*-*-*-*-*-*-*-*-*-*-*
 XLock.messagefont: -xos4-terminus-*-*-*-*-*-*-*-*-*-*-*-*
 XLock.ncolors: 256
 !}}}
-
-! XfontSel ------------------------------------------------------------------- {{{
-
-XFontSel*sampleText.background: TEXTBG
-XFontSel*menu*showUnselectable: false
-XFontSel*MenuButton.shadowWidth: 0
-XFontSel*Toggle*ToggleStyle: check
-XFontSel*MenuButton*Justify: left
-XFontSel*MenuButton*MenuButtonStyle: select
-
-.xfontsel.pane.commandBox.quitButton.background: #252525
-.xfontsel.pane.commandBox.quitButton.foreground: snow
-.xfontsel.pane.commandBox.ownButton.background: orange3
-.xfontsel.pane.commandBox.ownButton.foreground: snow
-!.xfontsel.pane.commandBox.countLabel.background: snow
-.xfontsel.pane.viewPort.sampleText.background: #252525
-.xfontsel.pane.viewPort.sampleText.foreground: snow
-.xfontsel.pane.fieldBox.field0.background: #252525
-.xfontsel.pane.fieldBox.field0.foreground: snow
-.xfontsel.pane.fieldBox.field1.background: #252525
-.xfontsel.pane.fieldBox.field1.foreground: snow
-.xfontsel.pane.fieldBox.field2.background: #252525
-.xfontsel.pane.fieldBox.field2.foreground: snow
-.xfontsel.pane.fieldBox.field3.background: #252525
-.xfontsel.pane.fieldBox.field3.foreground: snow
-.xfontsel.pane.fieldBox.field4.background: #252525
-.xfontsel.pane.fieldBox.field4.foreground: snow
-.xfontsel.pane.fieldBox.field5.background: #252525
-.xfontsel.pane.fieldBox.field5.foreground: snow
-.xfontsel.pane.fieldBox.field6.background: #252525
-.xfontsel.pane.fieldBox.field6.foreground: snow
-.xfontsel.pane.fieldBox.field7.background: #252525
-.xfontsel.pane.fieldBox.field7.foreground: snow
-.xfontsel.pane.fieldBox.field8.background: #252525
-.xfontsel.pane.fieldBox.field8.foreground: snow
-.xfontsel.pane.fieldBox.field9.background: #252525
-.xfontsel.pane.fieldBox.field9.foreground: snow
-.xfontsel.pane.fieldBox.field10.background: #252525
-.xfontsel.pane.fieldBox.field10.foreground: snow
-.xfontsel.pane.fieldBox.field11.background: #252525
-.xfontsel.pane.fieldBox.field11.foreground: snow
-.xfontsel.pane.fieldBox.field12.background: #252525
-.xfontsel.pane.fieldBox.field12.foreground: snow
-.xfontsel.pane.fieldBox.field13.background: #252525
-.xfontsel.pane.fieldBox.field13.foreground: snow
-.xfontsel.pane.fieldBox*background: #252525
-.xfontsel.pane.fieldBox.MenuButton.borderWidth: 1
-.xfontsel.pane.fieldBox.MenuButton.internalHeight:1
-.xfontsel.pane.fieldBox.MenuButton.internalWidth: 2
-.xfontsel.pane.fieldBox.MenuButton.shapeStyle: rectangle
-
-! }}}
 
 !Colors ------------------------------------------------------------------- {{{
 !

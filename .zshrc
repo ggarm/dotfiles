@@ -2,7 +2,7 @@
 #
 # Author: Ricardo Costa 
 #
-# Last Modified: 2011-10-08 16:14
+# Last Modified: 2011-12-31 00:14
 #
 # done in .zprofile
 source $HOME/.config/zsh/exports.zsh
@@ -23,21 +23,14 @@ source $HOME/.config/zsh/zsh-history-substring-search.plugin.zsh
 source $HOME/.config/zsh/git-flow.zsh
 source $HOME/.config/zsh/prompt.zsh
 
-# source /home/ricardo/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-#fpath FIXME Move all plugins?
-fpath=(~/.zsh/functions/ $fpath)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
+source /home/ricardo/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Set terminal title
 case $TERM in
 	linux)
 		echo -n "$fg_bold[white]Arch$fg_bold[blue]linux$fg[white]";
 		#cat /etc/motd
-		;;
-	xterm*|rxvt*)
-		[ -f ~/TODO ] && v ~/TODO
-		#PROMPT_COMMAND='';
-		#trap 'echo -ne "\e]0;$BASH_COMMAND\007" ' DEBUG;
 		;;
 	screen*)
 		echo -n "$fg_bold[white]Arch$fg_bold[blue]linux$fg[white]\v\t";

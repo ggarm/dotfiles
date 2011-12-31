@@ -1,6 +1,6 @@
 #!/bin/sh
 # Author: Ricardo Costa
-# Modified: 2011-08-21 14:27
+# Modified: 2011-12-30 14:18
 # Script to update custom PKGBUILDs
 
 ABS_DIR='/var/abs'
@@ -21,9 +21,11 @@ cyan="\033[36m";
 bright_cyan="\033[36;1m";
 white="\033[37m";
 
+#[[ `which clyde` ]] && PROG=clyde
+[[ `which packer` ]] && PROG=packer
+
 db() {
-	sudo clyde -Syy;
-	sudo clyde -Su --aur;
+	sudo $PROG -Syu;
 	sudo diffpac;
 }
 
