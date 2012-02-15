@@ -40,6 +40,7 @@ alias dlc='~/Downloads/Completed/'
 
 #sudo
 alias !='sudo'
+alias rc.d='sudo rc.d'
 
 #tmux - 256 color hack
 #alias tmux='tmux -2 attach || tmux new'

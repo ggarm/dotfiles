@@ -1,6 +1,6 @@
 #!/bin/sh
 # Author: Ricardo Costa
-# Modified: 2011-12-30 14:18
+# Modified: 2012-02-09 11:34
 # Script to update custom PKGBUILDs
 
 ABS_DIR='/var/abs'
@@ -62,18 +62,7 @@ pkgbuild() {
 }
 
 case "$1" in
-	sync)
-		sync;
-		pkgbuild;
-		;;
-	-edit)
-		;;
 	-q)
-		pkgbuild;
-		;;
-	-a)
-		db;
-		sync;
 		pkgbuild;
 		;;
 	'')
@@ -82,7 +71,7 @@ case "$1" in
 		pkgbuild;
 		;;
 	*)
-		echo "usage: $0 {sync|-q|-a}"
+		echo "usage: $0 [-q]"
 esac
 
 # vim: set ts=2 noet:

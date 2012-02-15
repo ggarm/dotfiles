@@ -131,8 +131,8 @@ filetype plugin on
 filetype indent on
 
 set nocompatible 	" vi is dead
-set backup
-set backupdir=~/.vim/backup
+set nobackup
+"set backupdir=~/.vim/backup
 set undofile 		" Persistent undo upon leaving files
 set undodir=~/.vim/undo
 set noswapfile
@@ -430,6 +430,9 @@ call pathogen#infect()
 
 " Syntastic
 let g:syntastic_enable_signs=1
+
+" Vim-Powerline
+let g:Powerline_symbols = 'fancy'
 
 	" BufferList: {{{
 	"

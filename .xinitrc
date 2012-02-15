@@ -4,21 +4,22 @@
 #
 # Executed by startx (run your window manager from here)
 
-#(setxkbmap pt) &				#pt-keys (Xorg ignores the conf file? FIXME)
+(setxkbmap pt) &				#pt-keys (Xorg ignores the conf file? FIXME)
 #unclutter &					#for hiding the mouse when idle
 (xmodmap .Xmodmap) &			#keymapping
 (urxvtd -q -o -f) &				#URxvt daemon starts here
-#(nice -n-5 mpd 2>/dev/null) &	#MPD starts here
+(nice -n-5 mpd 2>/dev/null) &	#MPD starts here
 (dropboxd 2>/dev/null) & #Dropbox daemon
-#(wicd-client 2>/dev/null) & #wicd-gui
-(thunderbird 2>/dev/null) & #wicd-gui
+(sonata 2>/dev/null) &
+#(wicd-gtk 2>/dev/null) & #wicd-gui
+#(thunderbird 2>/dev/null) & #wicd-gui
 (emesene 2>/dev/null) & #IM
 #(ipager 2>/dev/null) & #workspace pager
 (batti 2>/dev/null) &
 #(mpdcron 2>/dev/null) &	#MPDCron starts here
 #(tmux) &						#tmux starts here (can't figure out the auto-start part... FIXME)
 
-WM=e17
+WM=xfce
 
 case $WM in
 	openbox)

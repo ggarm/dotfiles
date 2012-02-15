@@ -9,12 +9,14 @@ export IMGVIEWER=mirage
 if [[ -d /usr/lib/cw ]]; then
 	export PATH=/usr/lib/cw:$PATH
 fi
-if [[ -d `cope_path` ]]; then
-	export PATH=`cope_path`:$PATH
-fi
+# [[ -d `cope_path` ]] && export PATH=`cope_path`:$PATH;
 export PATH=$HOME/bin:$PATH
+export PATH="/usr/lib/ccache/bin/:$PATH"
+
+export CCACHE_DIR=/tmp/ccache             # Tell ccache to use this path to store its cache
+
 #export LD_LIBRARY_PATH=$HOME/compiladores/root/usr/include/rts:$LD_LIBRARY_PATH
-export LD_PRELOAD=$HOME/stderred/lib/stderred.so
+export LD_PRELOAD=$HOME/devel/stderred/lib64/stderred.so
 
 #rxvt
 export RXVT_SOCKET=$HOME/.config/rxvt-unicode-ricardoArch

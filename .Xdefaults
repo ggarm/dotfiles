@@ -1,7 +1,7 @@
 ! ----------------------------------------------------------------------------
 ! ! file:     ~/.Xdefaults
 ! ! author:   Ricardo Costa (and +stolen stuff)
-! ! modified: 2011-12-31 00:12
+! ! modified: 2012-02-15 00:04
 ! ! vim::nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
 ! ! ----------------------------------------------------------------------------
 !
@@ -95,14 +95,17 @@ URxvt*geometry: 130x32
 !URxvt*font: xft:Monaco:pixelsize=11:antialias=false
 !URxvt*boldFont : xft:Monaco: pixelsize=11:weight=bold
 !
-URxvt*font:         xft:monaco:size=10
-URxvt*bolfFont:     xft:monaco:size=10:weight=bold
-URxvt*italicFont:   xft:monaco:size=10
+!URxvt*font:         xft:monaco:size=8
+!URxvt*boldFont:     xft:monaco:size=8:weight=bold
+!URxvt*italicFont:   xft:monaco:size=8
 !URxvt*italicFont:   xft:monaco:size=9:weight=italic:antialias=true
 !
 !
 ! Droid Sans Mono Slashed
 !
+URxvt*font:        xft:Droid Sans Mono for Powerline:style=Regular:pixelsize=12:antialias=true:hinting=true:hintstyle=hintfull
+URxvt*boldFont:    xft:Droid Sans Mono for Powerline:style=Regular:pixelsize=12:antialias=true:hinting=true:hintstyle=hintfull
+URxvt*italicFont:  xft:Droid Sans Mono for Powerline:style=Regular:pixelsize=12:antialias=true:hinting=true:hintstyle=hintfull
 !URxvt*font:        xft:Droid Sans Mono Slashed:style=Regular:pixelsize=12:antialias=true:hinting=true:hintstyle=hintfull
 !URxvt*boldFont:    xft:Droid Sans Mono Slashed:style=Regular:pixelsize=12:antialias=true:hinting=true:hintstyle=hintfull
 !URxvt*italicFont: -nil-profont-medium-r-normal--10-100-72-72-c-50-iso8859-1
@@ -114,31 +117,6 @@ URxvt*italicFont:   xft:monaco:size=10
 !URxvt*italicFont: xft:terminus:bold:pixelsize=14:antialias=false
 
 ! }}}
-
-! XLock ---------------------------------------------------------------------- {{{
-!!
-!! X L O C K
-!!
-!!
-!XLock.mode: fzort
-!XLock.mode: atunnels
-XLock.username: User:
-XLock.password: Pass:
-XLock.timeout: 5
-XLock.foreground: White
-XLock.background: Gray20
-XLock.description: false
-XLock.echokeys: true
-XLock.echokey: *
-XLock.info:
-!XLock.info: Enter password to unlock \nSelect icon to lock
-XLock.validate: Validating login...
-XLock.invalid: Login failed, please go away
-XLock.font: -xos4-terminus-*-*-*-*-*-*-*-*-*-*-*-*
-XLock.planfont: -xos4-terminus-*-*-*-*-*-*-*-*-*-*-*-*
-XLock.messagefont: -xos4-terminus-*-*-*-*-*-*-*-*-*-*-*-*
-XLock.ncolors: 256
-!}}}
 
 !Colors ------------------------------------------------------------------- {{{
 !
@@ -161,32 +139,6 @@ URxvt*pointerColor: #252525
 URxvt*pointerColor2: #0092FF
 
 !Latest
-!#include "/home/ricardo/.colours/arch"
-!#include "/home/ricardo/.colours/modR"
-!#include "/home/ricardo/.colours/Sepia"
-!#include "/home/ricardo/.colours/jwr_dark"
-!#include "/home/ricardo/.colours/Solarized"
-!#include "/home/ricardo/.colours/solarized_dark"
-!#include "/home/ricardo/.colours/solarized_light"
-!#include "/home/ricardo/.colours/coolio"
-#include "/home/ricardo/.colours/rakka"
-!#include "/home/ricardo/.colours/candymouse"
-!#include "/home/ricardo/.colours/cottonmouse"
-!#include "/home/ricardo/.colours/mason"
-!#include "/home/ricardo/.colours/thayer"
-!#include "/home/ricardo/.colours/tvale"
-
-!#include "/home/ricardo/.colours/dark"
-!#include "/home/ricardo/.colours/pvenma"
-!#include "/home/ricardo/.colours/necromancer"
-!#include "/home/ricardo/.colours/milo"
-!#include "/home/ricardo/.colours/trap"
-!#include "/home/ricardo/.colours/trapd00r"
-!#include "/home/ricardo/.colours/daisuke"
-!#include "/home/ricardo/.colours/fall"
-!#include "/home/ricardo/.colours/molokai"
-!#include "/home/ricardo/.colours/insectica"
-!#include "/home/ricardo/.colours/mmso"
-!#include "/home/ricardo/.colours/crshd"
-!#include "/home/ricardo/.colours/fruityjessica"
+!#include "/home/ricardo/.config/Xcolors/Solarized"
+#include "/home/ricardo/.config/Xcolors/rakka"
 ! }}}

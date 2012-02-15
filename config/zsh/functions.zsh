@@ -116,8 +116,6 @@ pacman () {
 			/usr/bin/pacman "$@" ;;
 	esac
 	rehash
-#   $HOME/Scripts/cron/pacman_updates.cron
-	#/usr/bin/pacman -Qu | wc -l > ~/Scripts/pacman_updates;
 }
 
 # git functions

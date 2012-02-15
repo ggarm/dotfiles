@@ -7,12 +7,16 @@
 [submodule "devel/ls--"]
 	path = devel/ls--
 	url = git://github.com/trapd00r/ls--.git
-[submodule "devel/LS_COLORS"]
-	path = devel/LS_COLORS
-	url = git://github.com/trapd00r/LS_COLORS.git
 [submodule "devel/initscripts"]
 	path = devel/initscripts
-	url = git://projects.archlinux.org/initscripts.git
+;   url = git://projects.archlinux.org/initscripts.git
+	url = http://projects.archlinux.org/git/initscripts.git
 [submodule "config/zsh/zsh-syntax-highlighting"]
 	path = config/zsh/zsh-syntax-highlighting
 	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "devel/stderred"]
+	path = devel/stderred
+	url = git://github.com/sickill/stderred.git
+[submodule "config/vim/bundle/vim-powerline"]
+	path = config/vim/bundle/vim-powerline
+	url = git://github.com/Lokaltog/vim-powerline.git
