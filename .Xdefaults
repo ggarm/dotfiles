@@ -1,23 +1,11 @@
 ! ----------------------------------------------------------------------------
 ! ! file:     ~/.Xdefaults
 ! ! author:   Ricardo Costa (and +stolen stuff)
-! ! modified: 2012-02-15 00:04
+! ! modified: 2012-04-20 19:40
 ! ! vim::nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
 ! ! ----------------------------------------------------------------------------
 !
 !
-! Xcursor ---------------------------------------------------------------------- {{{
-!
-!Xcursor*theme: Vanilla-DMZ-AA
-!Xcursor.theme: neutral
-!Xcursor.size:  22
-!Xcursor.theme: whiteglass
-!Xcursor.size:  16
-!Xcursor.theme: Ecliz-Arch
-!Xcursor.size:  16
-Xcursor.theme: oxy-neon
-!Xcursor.size:  16
-! }}}
 
 ! Font Management -------------------------------------------------------- {{{
 Xft.dpi:       96
@@ -50,6 +38,9 @@ xterm*geometry:         80x25
 ! urxvt ---------------------------------------------------------------------- {{{
 URxvt*termName: rxvt-256color
 URxvt*buffered: true
+URxvt*allow_bold: true
+URxvt*foreground: grey
+URxvt*background: #242424
 !URxvt*background: black
 !URxvt*foreground: white
 !URxvt*cursorColor: orange
@@ -59,12 +50,17 @@ URxvt*cursorBlink: true
 URxvt*urgentOnBell: true
 
 ! clickable URLS
-URxvt*perl-ext: default,matcher
+URxvt*perl-ext: default,matcher,tabbed
 URxvt*urlLauncher: /usr/bin/chromium
 URxvt*matcher.button: 1
 
+! tabs
+URxvt.tabbed.tabbar-fg: 2
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg:    3
+URxvt.tabbed.tab-bg:    0
+
 ! borderless and no scrollbar
-URxvt*scrollBar_right: false
 URxvt*scrollBar: false
 URxvt*borderLess: false
 
@@ -140,5 +136,7 @@ URxvt*pointerColor2: #0092FF
 
 !Latest
 !#include "/home/ricardo/.config/Xcolors/Solarized"
-#include "/home/ricardo/.config/Xcolors/rakka"
+!#include "/home/ricardo/.config/Xcolors/rakka"
+!#include "/home/ricardo/.config/Xcolors/dark"
+#include "/home/ricardo/.config/Xcolors/tmux2"
 ! }}}

@@ -9,17 +9,17 @@
 (xmodmap .Xmodmap) &			#keymapping
 (urxvtd -q -o -f) &				#URxvt daemon starts here
 (nice -n-5 mpd 2>/dev/null) &	#MPD starts here
-(dropboxd 2>/dev/null) & #Dropbox daemon
+#(dropboxd 2>/dev/null) & #Dropbox daemon
 (sonata 2>/dev/null) &
 #(wicd-gtk 2>/dev/null) & #wicd-gui
 #(thunderbird 2>/dev/null) & #wicd-gui
-(emesene 2>/dev/null) & #IM
+#(emesene 2>/dev/null) & #IM
 #(ipager 2>/dev/null) & #workspace pager
 (batti 2>/dev/null) &
 #(mpdcron 2>/dev/null) &	#MPDCron starts here
 #(tmux) &						#tmux starts here (can't figure out the auto-start part... FIXME)
 
-WM=xfce
+WM=mate
 
 case $WM in
 	openbox)
@@ -38,10 +38,13 @@ case $WM in
 		exec xmonad
 		;;
 	wmfs)
-		exec wmfs
+		exec ck-launch-session dbus-launch wmfs
 		;;
 	xfce)
 		exec ck-launch-session dbus-launch --exit-with-session startxfce4
+		;;
+	mate)
+		exec ck-launch-session dbus-launch --exit-with-session mate-session
 		;;
 	subtle)
 		exec ck-launch-session dbus-launch --exit-with-session subtle

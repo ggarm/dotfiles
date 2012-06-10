@@ -2,7 +2,7 @@
 #
 # Author: Ricardo Costa 
 #
-# Last Modified: 2011-12-31 00:14
+# Last Modified: 2012-05-12 15:42
 #
 # done in .zprofile
 source $HOME/.config/zsh/exports.zsh
@@ -40,3 +40,4 @@ case $TERM in
 esac
 
 #vim: set st=2 sts=2
+alias avrora='java -jar /opt/avrora-beta-1.7.106.jar'

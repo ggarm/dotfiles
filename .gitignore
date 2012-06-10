@@ -1,3 +1,4 @@
+*.xz
 .cache
 .local
 devel/linux

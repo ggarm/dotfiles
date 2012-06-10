@@ -1,6 +1,4 @@
 #!/bin/sh
-# Author: Ricardo Costa
-# Modified: 2012-02-09 11:34
 # Script to update custom PKGBUILDs
 
 ABS_DIR='/var/abs'
@@ -21,16 +19,17 @@ cyan="\033[36m";
 bright_cyan="\033[36;1m";
 white="\033[37m";
 
-#[[ `which clyde` ]] && PROG=clyde
 [[ `which packer` ]] && PROG=packer
 
-db() {
+packages() {
 	sudo $PROG -Syu;
 	sudo diffpac;
+	[[ `which abs` ]] && sudo abs;
 }
 
-sync() {
-	[[ `which abs` ]] && sudo abs;
+submodules() {
+	cd $HOME/dotfiles;
+	git submodule update;
 }
 
 pkgbuild() {
@@ -40,7 +39,7 @@ pkgbuild() {
 
 	for i in `find . -mindepth 1 -maxdepth 1 -type d | tr -d './'`; do
 
-		[[ $i == "patches" ]] && continue;
+		[[ -e $i/.git ]] && continue;
 		printf " $i:";
 
 		ABS_FILE=`find /var/abs -path "/var/abs/*/$i/PKGBUILD"`
@@ -64,11 +63,12 @@ pkgbuild() {
 case "$1" in
 	-q)
 		pkgbuild;
+		submodules;
 		;;
 	'')
-		db;
-		sync;
+		packages;
 		pkgbuild;
+		submodules;
 		;;
 	*)
 		echo "usage: $0 [-q]"
