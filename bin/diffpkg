@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo $1;
+
+vimdiff PKGBUILD /var/abs/*/$1/PKGBUILD;
