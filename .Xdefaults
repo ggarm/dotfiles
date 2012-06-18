@@ -1,7 +1,7 @@
 ! ----------------------------------------------------------------------------
 ! ! file:     ~/.Xdefaults
 ! ! author:   Ricardo Costa (and +stolen stuff)
-! ! modified: 2012-04-20 19:40
+! ! modified: 2012-06-17 19:51
 ! ! vim::nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
 ! ! ----------------------------------------------------------------------------
 !
@@ -50,7 +50,7 @@ URxvt*cursorBlink: true
 URxvt*urgentOnBell: true
 
 ! clickable URLS
-URxvt*perl-ext: default,matcher,tabbed
+URxvt*perl-ext-common: default,tabbed
 URxvt*urlLauncher: /usr/bin/chromium
 URxvt*matcher.button: 1
 
@@ -80,7 +80,6 @@ URxvt*pointerBlankDelay: 2
 URxvt*depth:   32
 
 ! Icon for urxvt
-!URxvt*iconFile: /usr/share/pixmaps/rxvt-unicode.png
 URxvt*iconFile: /usr/share/pixmaps/terminal.png
 
 ! geometry and font

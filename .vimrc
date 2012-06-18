@@ -1,32 +1,25 @@
 " Colorscheme and Background "{{{
-set background=light 	" light things up
 if has("gui_running") "{{{
 	set lines=45 columns=80 	" Set window size close to maximized
-	" Zenburn {{{
-"  let g:zenburn_high_Contrast = 1
-"  let g:zenburn_alternate_Visual = 1
-"  let g:zenburn_alternate_Error = 1
-"  let g:zenburn_alternate_Include = 1
-"  colorscheme zenburn			" Need a better one...
+	set bg=light
+"  colorscheme darkburn {{{
 "  let g:darkburn_high_Contrast = 1
 "  let g:darkburn_alternate_Visual = 1
 "  let g:darkburn_alternate_Error = 1
 "  let g:darkburn_alternate_Include = 1
-"  colorscheme darkburn			" Need a better one...
 	" }}}
-	" Solarized
 	colorscheme solarized
 "  set guioptions=aivmR
 	set guioptions+=aivmR
 	set showtabline=2
 	set mousehide
-	" Font
+" Font
 "  set guifont=Envy\ Code\ R\ 11
-"  set guifont=Droid\ Sans\ Mono\ Slashed\ 10
-  set guifont=Monaco\ 10
+	set guifont=Droid\ Sans\ Mono\ 10
+"  set guifont=Monaco10px
 	"}}}
 elseif ( &term =~ 'linux' || $DISPLAY =~ ' ') " we are on tty {{{
-	colorscheme desert256
+	colorscheme default
 	set bg=dark
 	"set colorcolumn=80		" line at 80 cols
 	highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -34,55 +27,12 @@ elseif ( &term =~ 'linux' || $DISPLAY =~ ' ') " we are on tty {{{
 	"}}}
 else                            " we are on rxvt
 	set t_Co=256				" Using 256-color yay
-	"colorscheme neverland-ansi_bg "cottonmouse
-  let g:solarized_termcolors=256
-	colorscheme solarized
+	set bg=dark
+	colorscheme darkburn
+"  colorscheme neverland2 "cottonmouse
+"  let g:solarized_termcolors=256
+"  colorscheme solarized
 	"set term=rxvt-256color
-	" Stupid Bindings for tmux/Screen "{{{
-
-"  if $TERM == "linux"	" we are in X (hopefully)
-		"set t_#2=[7$     
-		"set t_KB=O*n     
-"    set t_kh=[7~
-"    set t_@7=[8~
-		"set t_#4=[d      
-"    set t_k1=[11;*~  
-		"set t_kl=O*D
-		"set t_%1=[28;*~  
-"    set t_k2=[12;*~  
-		"set t_kr=O*C
-		"set t_%i=[c      
-"    set t_k3=[13;*~  
-		"set t_ku=O*A
-		"set t_&8=[26;*~  
-"    set t_k4=[14;*~  
-		"set t_*7=[8$     
-"    set t_k5=[15;*~ 
-"    set t_k6=[17;*~
-"    set t_F1=[23;*~  
-"    set t_k7=[18;*~  
-"    set t_F2=[24;*~  
-"    set t_k8=[19;*~ 
-		"set t_K1=[1;*~   
-"    set t_k9=[20;*~
-		"set t_K3=Oy      
-"    set t_k;=[21;*~
-		"set t_K4=[4;*~   
-		"set t_kB=[Z   
-		"set t_K5=Os      
-"    set t_kD=[3~   
-		"set t_K6=O*k     
-		"set t_kI=[2;*~
-		"set t_K7=O*m     
-"    set t_kN=[6;*~
-		"set t_K8=O*o     
-"    set t_kP=[5;*~       
-		"set t_K9=O*j     
-		"set t_KA=O*M     
-		"set t_kd=O*B       
-
-"  endif
-	"}}}
 endif
 " }}}
 
@@ -114,14 +64,13 @@ endif
 
 " Indenting and spaces " {{{
 set backspace=indent,eol,start
-set tabstop=2		" Number of spaces of tab character
-set softtabstop=2 	" Backspace fake tabs
-set shiftwidth=2	" Number of spaces to (auto)indent
-set smarttab		" tabs at the beginning of lines, spaces everywhere else
-"set expandtab		" Insert spaces instead of tabs
-set whichwrap=b,s,h,l,<,>,~,[,] 
-set autoindent		" Always set autoindenting on
-set cindent         " Use strict C indenting
+set tabstop=2                   " Number of spaces of tab character
+set softtabstop=2               " Backspace fake tabs
+set shiftwidth=2                " Number of spaces to (auto)indent
+set smarttab                    " tabs at the beginning of lines, spaces everywhere else
+set whichwrap=b,s,h,l,<,>,~,[,]
+set autoindent                  " Always set autoindenting on
+set cindent                     " Use strict C indenting
 " }}}
 
 " Plugins, Backup options " {{{
@@ -132,7 +81,6 @@ filetype indent on
 
 set nocompatible 	" vi is dead
 set nobackup
-"set backupdir=~/.vim/backup
 set undofile 		" Persistent undo upon leaving files
 set undodir=~/.vim/undo
 set noswapfile
@@ -172,8 +120,7 @@ set completeopt+=preview " show preview of function prototype
 set completeopt+=longest " show longest match
 " set completeopt-=menu  " Get rid of the ugly menu
 
-set linespace=0          " don't insert any extra pixel lines
-                         " betweens rows
+set linespace=0          " don't insert any extra pixel lines betweens rows
 
 " set autochdir          " always switch to the current file directory
 set nostartofline        " leave my cursor where it was
@@ -197,20 +144,15 @@ set suffixes+=.class
 " }}}
 
 " Status Line "{{{
-"
-" cool status line with name, format, filetype, ascii/hex value of the 
-"  char under the cursor, file position and line count
-" set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 set laststatus=2
 
-" Uber cool status line
-" Ripped of in github.com
+" Cool status line
+" Stolen from github.com
 set statusline=%<[%02n]\ %F%m%r%h%w%{fugitive#statusline()}%=(%{strlen(&ft)?&ft:'?'},%{&fenc},%{&ff})\ \ %-9.(%l,%c%V%)\ \ %<%P
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-"set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)\ [%08O:%02B]
 "}}}
 
 " Key mappings {{{
@@ -325,26 +267,16 @@ map <Leader>gs :Gstatus
 map <Leader>m :MRU<CR>
 
 " Time Savers:
-"map <Leader>w :w<CR>
-"map <Leader>q :q<CR>
+map <Leader>w :w<CR>
+map <Leader>q :q<CR>
 
 " Key mappings }}}
 
-" Tabs {{{
+" Tabs: {{{
 
-" max number of tabs to display (not open)
-:set tabpagemax=6
+:set tabpagemax=6 " max number of tabs to display (not open)
 
-" Tab manipulation
-" :noremap <silent> <C-t> :tabnew<cr>
-" :noremap <silent> <C-w> :tabc<cr>
-" :noremap <silent> <C-tab> :tabn<cr>
-" :noremap <silent> <C-s-tab> :tabp<cr> 
-" noremap! <silent> <C-t> :tabnew<cr>
-" noremap! <silent> <C-x> :tabc<cr>
-" noremap! <silent> <C-tab> :tabn<cr>
-" noremap! <silent> <C-s-tab> :tabp<cr> 
-
+" Tab manipulation:
 :nmap <C-S-tab> :tabprevious<cr>
 :nmap <C-tab> :tabnext<cr>
 :nmap <C-t> :tabnew<cr>
@@ -423,12 +355,12 @@ endfunction
 
 "}}}
 
-" Plugins {{{ 
+" Plugins: {{{ 
 
-" Pathogen
+" Pathogen:
 call pathogen#infect()
 
-" Syntastic
+" Syntastic:
 let g:syntastic_enable_signs=1
 
 " Vim-Powerline
@@ -530,7 +462,7 @@ let g:Powerline_symbols = 'fancy'
 	" }}}
 " }}}
 
-" Auto Commands "{{{
+" Auto Commands: "{{{
 if has('autocmd')
 
 	" Automatically add CREATED date and update MODIFIED date
@@ -569,14 +501,13 @@ if has('autocmd')
 endif
 "}}}
 
-" Settings for specific syntax files {{{
+" Syntax: {{{
 
-"Lisp syntax
-let g:lisp_rainbow = 1
+let g:lisp_rainbow = 1 " lisp on LSD
 
 let c_gnu=1
 let c_comment_strings=1
-let c_space_errors=1
+let c_space_errors=1 " this is nice
 
 "let perl_fold=1          " turn on perl folding capabilities
 " }}}
