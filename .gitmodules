@@ -20,3 +20,6 @@
 [submodule "config/vim/bundle/vim-powerline"]
 	path = config/vim/bundle/vim-powerline
 	url = git://github.com/Lokaltog/vim-powerline.git
+[submodule "config/vim/bundle/vim-fugitive"]
+	path = config/vim/bundle/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
